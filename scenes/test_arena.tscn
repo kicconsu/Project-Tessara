@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp5wk26kfjvb0"]
+
+[ext_resource type="Script" path="res://scripts/ray_march_core.gd" id="1_ceg77"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/hypershape.tscn" id="1_obbmp"]
+[ext_resource type="PackedScene" uid="uid://bkucmd58h50oh" path="res://assets/shapes/tesseract.tscn" id="2_tpjdq"]
+[ext_resource type="Script" path="res://scenes/ComputeOutput.gd" id="4_hgj8c"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t857e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4tdv0"]
+size = Vector3(51.5096, 1, 45.7378)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6o0f"]
+
+[node name="TestArena" type="Node3D"]
+
+[node name="Hypershape2" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97237, 7.34166)
+color = Vector3(0.5, 0.3, 0.5)
+dimensions = Vector3(1, 9, 0.2)
+
+[node name="Hypershape" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.519566, 5.41269, 7.89709)
+dimensions = Vector3(5, 1, 10)
+
+[node name="Hypershape3" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34469, 4.72035, 0)
+dimensions = Vector3(2, 10, 0.5)
+
+[node name="Floor" type="StaticBody3D" parent="."]
+input_ray_pickable = false
+physics_material_override = SubResource("PhysicsMaterial_t857e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15619, 0, 3.23853)
+shape = SubResource("BoxShape3D_4tdv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(51.5614, 0, 0, 0, 1, 0, 0, 0, 45.6648, 5.16702, 0, 3.23925)
+mesh = SubResource("BoxMesh_j6o0f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61501, 0)
+light_size = 0.662
+omni_range = 10.4415
+
+[node name="Tesseract" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 0.106217, 0, 0, 0, 3.38902, -3.87267, 5.65374, -1.51777)
+
+[node name="Tesseract2" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 0.26846, 0, 0, 0, 4.31968, -4.63331, 0.685116, -0.0907259)
+
+[node name="Tesseract3" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 6.7278, 0, 0, 0, 3.04155, -6.70731, 7.20091, 2.19278)
+
+[node name="sceneCam" type="Camera3D" parent="."]
+transform = Transform3D(-0.669818, 0, -0.742526, 0, 1, 0, 0.742526, 0, -0.669818, -9.16061, 9.21393, -1.55118)
+fov = 90.0
+near = 1.0
+script = ExtResource("1_ceg77")
+
+[node name="Control" type="Control" parent="sceneCam"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="sceneCam/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+script = ExtResource("4_hgj8c")

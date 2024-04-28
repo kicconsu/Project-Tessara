@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bp5wk26kfjvb0"]
+
+[ext_resource type="Script" path="res://scripts/ray_march_core.gd" id="1_ceg77"]
+[ext_resource type="PackedScene" uid="uid://bkucmd58h50oh" path="res://assets/shapes/tesseract.tscn" id="2_tpjdq"]
+[ext_resource type="Script" path="res://scenes/HyperCube.gd" id="3_f2uoo"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t857e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4tdv0"]
+size = Vector3(51.5096, 1, 45.7378)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6o0f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h5etl"]
+size = Vector3(1, 0.487305, 2.76794)
+
+[node name="TestArena" type="Node3D"]
+
+[node name="Floor" type="StaticBody3D" parent="."]
+visible = false
+input_ray_pickable = false
+physics_material_override = SubResource("PhysicsMaterial_t857e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.15619, 0, 3.23853)
+shape = SubResource("BoxShape3D_4tdv0")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+transform = Transform3D(51.5614, 0, 0, 0, 1, 0, 0, 0, 45.6648, 5.16702, 0, 3.23925)
+mesh = SubResource("BoxMesh_j6o0f")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61501, 0)
+light_size = 0.662
+omni_range = 10.4415
+
+[node name="Tesseract" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 0.106217, 0, 0, 0, 3.38902, -3.62025, 0.509287, -1.83445)
+
+[node name="Tesseract2" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 0.26846, 0, 0, 0, 4.31968, -4.63331, 0.685116, -0.0907259)
+
+[node name="Tesseract3" parent="." instance=ExtResource("2_tpjdq")]
+transform = Transform3D(1, 0, 0, 0, 6.7278, 0, 0, 0, 3.04155, -6.70731, 7.20091, 2.19278)
+
+[node name="sceneCam" type="Camera3D" parent="."]
+transform = Transform3D(0.736043, -0.237686, 0.633835, 0.180109, 0.971342, 0.155098, -0.652535, 0, 0.757759, 3.05229, 9.23705, 5.74775)
+fov = 90.0
+script = ExtResource("1_ceg77")
+
+[node name="Control" type="Control" parent="sceneCam"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="sceneCam/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="sceneCam/Control"]
+layout_mode = 0
+offset_left = 73.0
+offset_top = 580.0
+offset_right = 472.0
+offset_bottom = 656.0
+text = "wenis"
+
+[node name="HyperCube" type="StaticBody3D" parent="." groups=["hyperShapes"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.72089, 4.87419, 3.97842)
+script = ExtResource("3_f2uoo")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HyperCube"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.256348, 0.0123901)
+shape = SubResource("BoxShape3D_h5etl")
