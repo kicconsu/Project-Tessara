@@ -14,20 +14,12 @@ size = Vector3(51.5096, 1, 45.7378)
 
 [node name="TestArena" type="Node3D"]
 
-[node name="Hypershape2" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.97237, 7.34166)
-color = Vector3(0.5, 0.3, 0.5)
-dimensions = Vector3(1, 9, 0.2)
-
 [node name="Hypershape" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.519566, 5.41269, 7.89709)
-dimensions = Vector3(5, 1, 10)
-
-[node name="Hypershape3" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.34469, 4.72035, 0)
-dimensions = Vector3(2, 10, 0.5)
+transform = Transform3D(0.775551, 0.631285, 0, -0.631285, 0.775551, 0, 0, 0, 1, -0.519566, 5.41269, 7.89709)
+rotation_edit_mode = 2
 
 [node name="Floor" type="StaticBody3D" parent="."]
+visible = false
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_t857e")
 
@@ -54,7 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 0.26846, 0, 0, 0, 4.31968, -4.63331, 0.68511
 transform = Transform3D(1, 0, 0, 0, 6.7278, 0, 0, 0, 3.04155, -6.70731, 7.20091, 2.19278)
 
 [node name="sceneCam" type="Camera3D" parent="."]
-transform = Transform3D(-0.669818, 0, -0.742526, 0, 1, 0, 0.742526, 0, -0.669818, -9.16061, 9.21393, -1.55118)
+transform = Transform3D(-0.997776, 0, 0.0666571, 0, 1, 0, -0.0666571, 0, -0.997776, -0.0753231, 5.1652, -1.58178)
 fov = 90.0
 near = 1.0
 script = ExtResource("1_ceg77")

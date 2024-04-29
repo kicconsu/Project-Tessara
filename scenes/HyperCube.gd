@@ -7,7 +7,7 @@ extends StaticBody3D
 @export var shapeType := int(0)
 
 func _ready():
-	shapeContainer.set_shape(shapeContainer.get_shape().duplicate(true))
+	shapeContainer.set_shape(BoxShape3D.new())
 	shapeContainer.get_shape().set_size(dimensions)
 
 func getSize():

@@ -90,16 +90,16 @@ vec4 Combine(float dstA, float dstB, vec3 colA, vec3 colB){
 
 }
 
-float cubeDistance(vec3 point, vec3 center, vec3 size){
+float cubeDistance(vec3 point, Shape shape){
 
+    mat4 inverseMat = inverse(shape.transform);
+    point = (inverseMat * vec4(point, 1.0)).xyz;
 
     //SDF of a cube!
 
-    vec3 o = abs(point - center) - size;
-    float ud = length(max(o, vec3(0.0)));
-    float n = max(max(min(o.x, 0.0), min(o.y, 0.0)), min(o.z, 0.0));
-
-    return ud + n;
+    vec3 vectorDistance = abs(point) - shape.size.xyz;
+    // ^ is a vector that points from the point parameter to the surface of the shape, if we return:
+    return length(max(vectorDistance,0.0)) + min(max(vectorDistance.x,max(vectorDistance.y,vectorDistance.z)),0.0);
 
     //return distance(point, center) - size[0];
 
@@ -135,7 +135,7 @@ float getShapeDistance(Shape shape, vec3 point){
     //Returns the distance between a Shape and a point
 
     if(shape.shapeType == 0){
-        return cubeDistance(point, vec3(shape.transform[3]), shape.size.xyz);
+        return cubeDistance(point, shape);
     }
 
     return maxDst;

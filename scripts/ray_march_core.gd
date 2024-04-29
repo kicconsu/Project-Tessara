@@ -72,9 +72,9 @@ func transform_to_bytes(t : Transform3D):
 	var basis : Basis = t.basis
 	var origin : Vector3 = t.origin
 	var bytes : PackedByteArray = PackedFloat32Array([
-		basis.x.x, basis.x.y, basis.x.z, 1.0, #Primera columna,
-		basis.y.x, basis.y.y, basis.y.z, 1.0, #Segunda columna...
-		basis.z.x, basis.z.y, basis.z.z, 1.0,
+		basis.x.x, basis.x.y, basis.x.z, 0.0, #Primera columna,
+		basis.y.x, basis.y.y, basis.y.z, 0.0, #Segunda columna...
+		basis.z.x, basis.z.y, basis.z.z, 0.0,
 		origin.x, origin.y, origin.z, 1.0     # Ultima columna; la columna de indice [3] corresponde a la traslación!
 	]).to_byte_array()
 	return bytes
