@@ -212,7 +212,7 @@ void main(){
             float col = rayDst * 0.05;
             vec3 zBuffer = vec3(col);
 
-            imageStore(outputTexture, pixelCoords, vec4(zBuffer, 1.0));
+            imageStore(outputTexture, pixelCoords, vec4(pixelCol, 1.0));
 
             hit = true;
 

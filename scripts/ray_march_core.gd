@@ -128,12 +128,12 @@ func setupCompute():
 	for shape in shapesInScene:
 		var shapeTransform : Transform3D = shape.get_transform() #4x4 matrix
 		var shapeCol = shape.getColor() #vec3
-		var shapeSize = shape.getSize() #vec3
+		var shapeSize = shape.getSize() #vec4
 		var shapeType = shape.getShapeType() #int
 		
 		shapeBytes.append_array(PackedInt32Array([shapeType, 0, 0, 0]).to_byte_array())
 		shapeBytes.append_array(vec3ToBytes(shapeCol))
-		shapeBytes.append_array(vec3ToBytes(shapeSize))
+		shapeBytes.append_array(PackedFloat32Array([shapeSize]).to_byte_array())
 		shapeBytes.append_array(transform_to_bytes(shapeTransform))
 	
 	var shapeBuffer = rd.storage_buffer_create(shapeBytes.size(), shapeBytes)
@@ -241,7 +241,7 @@ func render():
 	# Binds the uniform set with the data we want to give our shader 
 	rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
 	# Dispatch (X,Y,Z) work groups
-	rd.compute_list_dispatch(compute_list, (screen[0] / 8)+1, screen[1] / 8, 1)
+	rd.compute_list_dispatch(compute_list, (screen[0] / 8), (screen[1] / 8)+1, 1)
 	
 	# Tell the GPU we are done with this compute task
 	rd.compute_list_end()

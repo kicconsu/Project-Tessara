@@ -14,12 +14,16 @@ size = Vector3(51.5096, 1, 45.7378)
 
 [node name="TestArena" type="Node3D"]
 
+[node name="Hypershape2" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(0.187724, 0.415229, -0.890137, 0, 0.906249, 0.422745, 0.982222, -0.0793594, 0.170125, 8.98344, 4.55235, 0)
+color = Vector3(0.2, 0.4, 0.8)
+dimensions = Vector4(10, 5, 20, 1)
+
 [node name="Hypershape" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(0.775551, 0.631285, 0, -0.631285, 0.775551, 0, 0, 0, 1, -0.519566, 5.41269, 7.89709)
+transform = Transform3D(1, 0, 0, 0, 0.860902, 0.508771, 0, -0.508771, 0.860902, -0.519566, 5.41269, 7.89709)
 rotation_edit_mode = 2
 
 [node name="Floor" type="StaticBody3D" parent="."]
-visible = false
 input_ray_pickable = false
 physics_material_override = SubResource("PhysicsMaterial_t857e")
 
