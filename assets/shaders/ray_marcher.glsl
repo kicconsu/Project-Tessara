@@ -99,7 +99,7 @@ float cubeDistance(vec3 point, Shape shape){
 
     vec3 vectorDistance = abs(point) - shape.size.xyz;
     // ^ is a vector that points from the point parameter to the surface of the shape, if we return:
-    return length(max(vectorDistance,0.0)) + min(max(vectorDistance.x,max(vectorDistance.y,vectorDistance.z)),0.0);
+    return length(max(vectorDistance,0.0)) + min(max(vectorDistance.x, max(vectorDistance.y,vectorDistance.z)),0.0);
 
     //return distance(point, center) - size[0];
 

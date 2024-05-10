@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=7 format=3 uid="uid://bp5wk26kfjvb0"]
 
-[ext_resource type="Script" path="res://scripts/ray_march_core.gd" id="1_ceg77"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/hypershape.tscn" id="1_obbmp"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="1_obbmp"]
 [ext_resource type="PackedScene" uid="uid://bkucmd58h50oh" path="res://assets/shapes/tesseract.tscn" id="2_tpjdq"]
-[ext_resource type="Script" path="res://scenes/ComputeOutput.gd" id="4_hgj8c"]
+[ext_resource type="PackedScene" uid="uid://c855iubkgi6ne" path="res://scenes/player.tscn" id="5_esel3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t857e"]
 
@@ -15,12 +14,12 @@ size = Vector3(51.5096, 1, 45.7378)
 [node name="TestArena" type="Node3D"]
 
 [node name="Hypershape2" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(0.187724, 0.415229, -0.890137, 0, 0.906249, 0.422745, 0.982222, -0.0793594, 0.170125, 8.98344, 4.55235, 0)
-color = Vector3(0.2, 0.4, 0.8)
+transform = Transform3D(-0.0298557, -0.984102, -0.175078, 0.107652, -0.177302, 0.97825, -0.993741, 0.010359, 0.111234, 8.98344, 2.45862, 4.52945)
+color = Vector3(0.795, 0.185, 0.79)
 dimensions = Vector4(10, 5, 20, 1)
 
 [node name="Hypershape" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 0.860902, 0.508771, 0, -0.508771, 0.860902, -0.519566, 5.41269, 7.89709)
+transform = Transform3D(1, 0, 0, 0, 0.860902, 0.508771, 0, -0.508771, 0.860902, -0.519566, 0.545833, 7.89709)
 rotation_edit_mode = 2
 
 [node name="Floor" type="StaticBody3D" parent="."]
@@ -49,26 +48,5 @@ transform = Transform3D(1, 0, 0, 0, 0.26846, 0, 0, 0, 4.31968, -4.63331, 0.68511
 [node name="Tesseract3" parent="." instance=ExtResource("2_tpjdq")]
 transform = Transform3D(1, 0, 0, 0, 6.7278, 0, 0, 0, 3.04155, -6.70731, 7.20091, 2.19278)
 
-[node name="sceneCam" type="Camera3D" parent="."]
-transform = Transform3D(-0.997776, 0, 0.0666571, 0, 1, 0, -0.0666571, 0, -0.997776, -0.0753231, 5.1652, -1.58178)
-fov = 90.0
-near = 1.0
-script = ExtResource("1_ceg77")
-
-[node name="Control" type="Control" parent="sceneCam"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="sceneCam/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-script = ExtResource("4_hgj8c")
+[node name="Player" parent="." instance=ExtResource("5_esel3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63813, 0)
