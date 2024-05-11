@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://daf7qvy0xm1r7"]
+
+[ext_resource type="Script" path="res://scripts/ray_march_core.gd" id="1_jcy05"]
+[ext_resource type="Script" path="res://scripts/compute_output.gd" id="2_ah74o"]
+
+[node name="eyes" type="Camera3D"]
+fov = 90.0
+near = 1.0
+script = ExtResource("1_jcy05")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+script = ExtResource("2_ah74o")

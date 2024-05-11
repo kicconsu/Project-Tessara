@@ -11,10 +11,12 @@ extends StaticBody3D
 func _ready():
 	_shapeContainer.set_shape(BoxShape3D.new())
 	_shapeContainer.get_shape().set_size(Vector3(dimensions[0], dimensions[1], dimensions[2]))
-	var maxExtent = max(dimensions[0], dimensions[1], dimensions[2])
-	#Divide by 2 'cuz its a radius
-	_hyperRegion.get_shape().set_radius(maxExtent/2)
-	print("Shape ", self.name, " region radius of: ", maxExtent/2)
+	var maxExtentX:float = max(dimensions[0], dimensions[1])
+	var maxExtentY:float =  max(dimensions[2], dimensions[3])
+	var regionRadius:float = sqrt(pow(maxExtentX, 2)+pow(maxExtentY, 2)) + 1
+	_hyperRegion.set_shape(SphereShape3D.new())
+	_hyperRegion.get_shape().set_radius(regionRadius)
+	print("Shape ", self.name, " region radius of: ", regionRadius)
 
 func getSize():
 	return _shapeContainer.get_shape().get_size()

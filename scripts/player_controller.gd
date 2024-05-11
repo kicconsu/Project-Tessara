@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
 @onready var head = $Head
-
+var physVel:Vector3
+var hypercolliding:bool = false
 
 var mouseToggle = true
 var currentSpeed
@@ -32,11 +33,13 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	#print("hypercolliding" if hypercolliding else "not hypercolliding")
+	
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
 	
 	# Add the gravity.
-	if not is_on_floor():
+	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
 
 	if Input.is_action_pressed("sprint"):
@@ -45,8 +48,9 @@ func _physics_process(delta):
 		currentSpeed = walkSpeed
 	
 	 #Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or hypercolliding):
 		velocity.y = jumpVelocity
+		print("---------------------JUMP------------------")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -61,4 +65,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
+	physVel = velocity
+	
 	move_and_slide()
+	
+func getVel():
+	return physVel

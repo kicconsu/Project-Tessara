@@ -1,18 +1,16 @@
-[gd_scene load_steps=11 format=3 uid="uid://c855iubkgi6ne"]
+[gd_scene load_steps=9 format=3 uid="uid://c855iubkgi6ne"]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_vgsqr"]
 [ext_resource type="Script" path="res://scripts/hypercollider_controller.gd" id="2_60nv4"]
 [ext_resource type="Script" path="res://scripts/player_hypercollider.gd" id="3_8p2xr"]
 [ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_d28tg"]
-[ext_resource type="Script" path="res://scripts/ray_march_core.gd" id="5_0bdb3"]
-[ext_resource type="Script" path="res://scripts/compute_output.gd" id="6_25noo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r6c5g"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_gucw8"]
-radius = 0.3
+radius = 0.72427
 
 [sub_resource type="LabelSettings" id="LabelSettings_sk48v"]
 font_size = 31
@@ -22,7 +20,6 @@ font_color = Color(0, 0, 0, 1)
 script = ExtResource("1_vgsqr")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("CapsuleMesh_jcnsm")
 
 [node name="collider" type="CollisionShape3D" parent="."]
@@ -35,7 +32,6 @@ collision_layer = 0
 collision_mask = 8
 monitorable = false
 script = ExtResource("3_8p2xr")
-force_direction = Vector3(0, 1, 0)
 
 [node name="feetshape" type="CollisionShape3D" parent="collider/feet"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210337, 0)
@@ -64,28 +60,5 @@ text = "Message
 label_settings = SubResource("LabelSettings_sk48v")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="eyes" type="Camera3D" parent="Head"]
-fov = 90.0
-near = 1.0
-script = ExtResource("5_0bdb3")
-
-[node name="Control" type="Control" parent="Head/eyes"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Head/eyes/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-expand_mode = 1
-script = ExtResource("6_25noo")
 
 [connection signal="area_entered" from="collider/feet" to="collider/feet" method="_on_area_entered"]

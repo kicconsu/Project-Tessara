@@ -7,9 +7,10 @@
 [sub_resource type="BoxMesh" id="BoxMesh_4kw0f"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqhwn"]
+radius = 1.4
 
 [node name="Hypershape" type="StaticBody3D" groups=["hyperShapes"]]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_ijw01")
 
@@ -17,12 +18,12 @@ script = ExtResource("1_ijw01")
 shape = SubResource("BoxShape3D_h5etl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
 mesh = SubResource("BoxMesh_4kw0f")
 
 [node name="hyperRegion" type="Area3D" parent="."]
 collision_layer = 8
 collision_mask = 0
+monitoring = false
 
 [node name="regionShape" type="CollisionShape3D" parent="hyperRegion"]
 shape = SubResource("SphereShape3D_jqhwn")

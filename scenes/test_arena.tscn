@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=8 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="1_obbmp"]
 [ext_resource type="PackedScene" uid="uid://bkucmd58h50oh" path="res://assets/shapes/tesseract.tscn" id="2_tpjdq"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="4_jp8jq"]
 [ext_resource type="PackedScene" uid="uid://c855iubkgi6ne" path="res://scenes/player.tscn" id="5_esel3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_t857e"]
@@ -14,13 +15,26 @@ size = Vector3(51.5096, 1, 45.7378)
 [node name="TestArena" type="Node3D"]
 
 [node name="Hypershape2" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(-0.0298557, -0.984102, -0.175078, 0.107652, -0.177302, 0.97825, -0.993741, 0.010359, 0.111234, 8.98344, 2.45862, 4.52945)
+transform = Transform3D(1, 0, 0, 0, 0.940336, 0.340248, 0, -0.340248, 0.940335, 0, 0.265712, -13.4185)
 color = Vector3(0.795, 0.185, 0.79)
-dimensions = Vector4(10, 5, 20, 1)
+dimensions = Vector4(1, 1, 10, 1)
 
 [node name="Hypershape" parent="." instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 0.860902, 0.508771, 0, -0.508771, 0.860902, -0.519566, 0.545833, 7.89709)
-rotation_edit_mode = 2
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97428, 0.818137, 10.8274)
+dimensions = Vector4(1, 5, 1, 1)
+
+[node name="Hypershape3" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97428, -1.61757, 5.9117)
+dimensions = Vector4(1, 5, 1, 1)
+
+[node name="Hypershape4" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97428, 3.44972, 0.844412)
+color = Vector3(0.465, 0.01, 0.925)
+dimensions = Vector4(1, 2, 1, 1)
+
+[node name="Hypershape5" parent="." instance=ExtResource("1_obbmp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.97428, 3.44972, -2.42495)
+color = Vector3(0.465, 0.01, 0.925)
 
 [node name="Floor" type="StaticBody3D" parent="."]
 input_ray_pickable = false
@@ -49,4 +63,8 @@ transform = Transform3D(1, 0, 0, 0, 0.26846, 0, 0, 0, 4.31968, -4.63331, 0.68511
 transform = Transform3D(1, 0, 0, 0, 6.7278, 0, 0, 0, 3.04155, -6.70731, 7.20091, 2.19278)
 
 [node name="Player" parent="." instance=ExtResource("5_esel3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.63813, 0)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0.984787, 7.14989, -2.42001)
+collision_mask = 9
+
+[node name="eyes" parent="." instance=ExtResource("4_jp8jq")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.78732, 2.65563, 0)
