@@ -16,17 +16,27 @@ func _process(_delta):
 	for collider in colliders:
 		if collider.get_dist() < self._epsilon:
 			hasCollided = true
-			var slidingPlaneNormal:Vector3 = collider.getCollisionNormal()
-			var originalVel:Vector3 = player.getVel() #Vector to be projected on sliding plane
-			var projectedVel:Vector3 = ((originalVel.slide(slidingPlaneNormal)).normalized())*originalVel
-			var sendVel:Vector3 = projectedVel
-			print("plane normal: ", slidingPlaneNormal)
-			print("player vel: ", originalVel)
-			print("slid vel: ",projectedVel)
-			print("sent vel: ",sendVel)
-			player.set_velocity(sendVel)
-			player.hypercolliding = hasCollided 
+			player.hypercolliding = hasCollided
+			
+			#var slidingPlaneNormal:Vector3 = collider.getCollisionNormal()
+			#var originalVel:Vector3 = player.getVel() #Vector to be projected on sliding plane
+			#var mag:float = originalVel.length()
+			#var projectedVel:Vector3 = ((originalVel.slide(slidingPlaneNormal)).normalized())*mag
+			#var sendVel:Vector3 = projectedVel
+			#print("plane normal: ", slidingPlaneNormal)
+			#print("player vel: ", originalVel)
+			#print("slid vel: ",projectedVel)
+			#print("sent vel: ",sendVel)
+			#player.set_velocity(sendVel) 
+			
+			var collNormal:Vector3 = collider.getCollisionNormal()
+			#collNormal = 
+			var transformDir = collider.get_collidingWith().get_global_transform()
+			print("normal: ", collNormal)
+			player.set_velocity(Vector3(0,0,0))
+			player.translate(collNormal*-collider.get_dist()*0.5)
+			
 	if not hasCollided:
 		player.hypercolliding = false
-	print("colliding?: ",hasCollided)
+	#print("colliding?: ",hasCollided)
 

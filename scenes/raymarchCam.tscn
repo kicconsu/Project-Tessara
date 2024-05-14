@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/compute_output.gd" id="2_ah74o"]
 
 [node name="eyes" type="Camera3D"]
+cull_mask = 1047555
 fov = 90.0
 near = 1.0
 script = ExtResource("1_jcy05")
@@ -17,6 +18,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+visible = false
+show_behind_parent = true
+light_mask = 0
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -17,7 +17,7 @@ const _epsilon = 0.005
 @onready var _collidingWith:Node #terrible. just terrible. you should die and go to hell
 
 func _distToBox(shapeTransform:Transform3D, shapeSize:Vector3, pos:Vector3) -> float:
-	#Multiply point by the inversezsc transformMatrix to involve translation and rotation
+	#Multiply point by the inverse transformMatrix to involve translation and rotation
 	pos = (shapeTransform.inverse()) * pos
 	
 	#Regular SDF evaluation for a cube as seen in: https://iquilezles.org/articles/distfunctions/
@@ -103,3 +103,6 @@ func get_forceDir() -> Vector3:
 
 func get_collPoint() -> Vector3:
 	return self._collisionPoint
+
+func get_collidingWith() -> Node:
+	return self._collidingWith
