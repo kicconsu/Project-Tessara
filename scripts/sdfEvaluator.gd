@@ -4,17 +4,14 @@ extends RayCast3D
 var localPos:Vector3 = self.get_transform().origin
 
 func evaluateVelCast(displacement:Vector3):
-	#Evaluate the sdf from the origin point and compare it to the distance to the castedPoint
-	#If the SDFdistrance > castedDistance, there wont be a collision
-	#if theyre equal or if castedDistance > SDFdistance, there will be one somewhere along the way.
+	#Evaluate SDF along casted velocity vector. This means we ray march along it to check if theres any object in our way
+	#if theres a hit, we send the collision info to be handled by hyperCnS.
 	
 	var globalPos = areas.get_global_transform().origin
 	#Initial point
 	var pos = Vector3(globalPos.x, globalPos.y + localPos.y, globalPos.z)
 	#Final point
-	var castedPoint:Vector3 = pos+displacement
-	#Distance between start and finish
-	var castDistance:float = (castedPoint-pos).length()
+	var castedPoint:Vector3 = pos+(displacement/10)
 	
 	#Some raycast visualization stuff
 	self.set_position(pos)
@@ -24,7 +21,7 @@ func evaluateVelCast(displacement:Vector3):
 	
 	if dist == -1: #Theres no hit across casted velocity
 		return [false, 0, Vector3.ZERO]
-	else: #There is! a hit across casted velocity
+	else: #There is a hit across casted velocity
 		#collisionDist = the distance to the surface as calculated
 		var collisionDist = dist
 		#evaluate the normal at (shortenedDisplacement)+positionOffset
@@ -37,10 +34,12 @@ func _getCollisionAcross(from:Vector3, to:Vector3) -> float:
 	var vec:Vector3 = to-from
 	var dist:float = 0
 	var hit:bool = false
-	while dist<vec.length():
+	var steps:int = 0
+	while dist<vec.length() and steps < 20:
 		var rayPos:Vector3 = from + vec.normalized() * dist
 		var pointDist = _distFromShapes(rayPos)
 		dist += pointDist
+		steps += 1
 		if pointDist < 0.005:
 			hit = true
 			break

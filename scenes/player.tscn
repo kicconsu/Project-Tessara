@@ -1,50 +1,72 @@
-[gd_scene load_steps=9 format=3 uid="uid://c855iubkgi6ne"]
+[gd_scene load_steps=10 format=3 uid="uid://q6htwbr7ubm2"]
 
-[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_vgsqr"]
-[ext_resource type="Script" path="res://scripts/hypercollider_controller.gd" id="2_60nv4"]
-[ext_resource type="Script" path="res://scripts/player_hypercollider.gd" id="3_8p2xr"]
-[ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_d28tg"]
+[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_x2bix"]
+[ext_resource type="Script" path="res://scripts/hyperCnS.gd" id="2_8elja"]
+[ext_resource type="Script" path="res://scripts/sdfEvaluator.gd" id="3_ywqjp"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="4_6unae"]
+[ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_dj0eu"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r6c5g"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_gucw8"]
-radius = 0.72427
+[sub_resource type="SphereShape3D" id="SphereShape3D_01m26"]
+radius = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_sk48v"]
 font_size = 31
 font_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_vgsqr")
+script = ExtResource("1_x2bix")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_jcnsm")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r6c5g")
-script = ExtResource("2_60nv4")
+script = ExtResource("2_8elja")
 
-[node name="feet" type="Area3D" parent="collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.492911, 0)
+[node name="sdfregion" type="Area3D" parent="collider"]
 collision_layer = 0
 collision_mask = 8
 monitorable = false
-script = ExtResource("3_8p2xr")
 
-[node name="feetshape" type="CollisionShape3D" parent="collider/feet"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.210337, 0)
-shape = SubResource("SphereShape3D_gucw8")
+[node name="sdfsphere" type="CollisionShape3D" parent="collider/sdfregion"]
+shape = SubResource("SphereShape3D_01m26")
+
+[node name="feetsdf" type="RayCast3D" parent="collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.999889, 0)
+rotation_edit_mode = 2
+top_level = true
+target_position = Vector3(0, 0, -4)
+collision_mask = 0
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+debug_shape_thickness = 5
+script = ExtResource("3_ywqjp")
+
+[node name="headsdf" type="RayCast3D" parent="collider"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, 0, -4)
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="bodsdf" type="RayCast3D" parent="collider"]
+target_position = Vector3(0, 0, -4)
+collide_with_bodies = false
+debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501647, 0)
+
+[node name="eyes" parent="Head" instance=ExtResource("4_6unae")]
 
 [node name="InteractRay" type="RayCast3D" parent="Head"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 target_position = Vector3(0, 0, -4)
 collision_mask = 2
-script = ExtResource("4_d28tg")
+script = ExtResource("4_dj0eu")
 
 [node name="prompt" type="Label" parent="Head/InteractRay"]
 anchors_preset = 14
@@ -60,5 +82,3 @@ text = "Message
 label_settings = SubResource("LabelSettings_sk48v")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[connection signal="area_entered" from="collider/feet" to="collider/feet" method="_on_area_entered"]

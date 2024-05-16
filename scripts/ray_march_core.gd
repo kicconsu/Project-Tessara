@@ -31,7 +31,7 @@ func _process(_delta):
 #These two fellas here take matrixes and turn them into bytearrays to send to the shader
 #The order of the byte array matters!! OpenGL constructs matrixes in column major order
 #Basically, it fills up a column before moving to the next...
-func transform_to_bytes(t : Transform3D):
+func transform_to_bytes(t:Transform3D):
 	
 	# Helper function
 	# Encodes the values of a "global_transform" into bytes

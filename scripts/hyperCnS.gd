@@ -5,7 +5,7 @@ extends CollisionShape3D
 
 const maxDepth:int = 5
 #From the actual collider bound, walk back this distance
-const skinOffset:float = 0.0015
+const skinOffset:float = 0.05
 const maxSlopeAngle:float = 55
 
 @onready var feet:RayCast3D = $feetsdf
@@ -35,23 +35,24 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		
 		#Give the collision detection some breathing room...
 		if velSnap.length() <= skinOffset:
-			velSnap = Vector3.ZERO
+			velSnap = lerp(velSnap, hit[2]*velSnap.length(), 0.2)
 		
 		#Decide what to do depending on slope angle:
 		if angle <= maxSlopeAngle:
 			#Logic for walkable ground
 			if gravityPass: # If on gravity pass, dont slide
+				player.hypercolliding = true
 				return velSnap
 			leftover = projectAndScale(leftover, hit[2])
 		else:
 			#Logic for un-walkable ground (like, walls)
 			#Scale vel depending on the angle between initVel and the wall
 			var scale:float = 1 - (Vector3(hit[2].x, 0, hit[2].z).normalized()).dot(Vector3(velInit.x, 0, velInit.z).normalized())
-			leftover = projectAndScale(leftover, hit[2]) * scale
+			leftover = projectAndScale(leftover, hit[2]) * (scale)
 			
 		#Recursively resolve hypercollsions
 		return velSnap + hyperCollideAndSlide(leftover, pos+velSnap, depth+1, gravityPass, velInit)
-
+	player.hypercolliding = false
 	return vel
 
 func castVelocity(vel:Vector3)->Array:
@@ -71,6 +72,6 @@ func projectAndScale(leftover:Vector3, normal:Vector3):
 	#Get leftover magnitude to scale it back up after it gets projected
 	var mag:float = leftover.length()
 	#Project the leftover velocity vector onto sliding plane and normalize it
-	leftover = (leftover.slide(normal)).normalized()
+	leftover = (leftover.slide(normal))
 	#Scale back up and return
-	return leftover * mag
+	return leftover #* mag

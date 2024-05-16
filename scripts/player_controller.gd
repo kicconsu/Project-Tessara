@@ -44,7 +44,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
-		velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
+		#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
 
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = sprintSpeed
@@ -71,10 +71,9 @@ func _physics_process(delta):
 	physVel = velocity
 	
 	#Set region radius to the velocity magnitude for hypercollision detection
-	region.get_shape().set_radius(lerp(region.get_shape().get_radius(), physVel.length(), 0.2))
-	
-	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
-	
+	region.get_shape().set_radius(max(lerp(region.get_shape().get_radius(), physVel.length(), 0.2), 1))
+
+	#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
 	
 	move_and_slide()

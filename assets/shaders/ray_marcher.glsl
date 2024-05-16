@@ -62,7 +62,7 @@ screen;
 
 
 //Output image
-precision highp image2D;
+precision lowp image2D;
 layout(rgba32f, binding = 3) uniform writeonly image2D outputTexture;
 
 

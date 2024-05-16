@@ -18,7 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
-visible = false
 show_behind_parent = true
 light_mask = 0
 layout_mode = 1
