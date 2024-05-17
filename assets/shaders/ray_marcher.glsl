@@ -14,7 +14,7 @@ layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 const float maxDst = 80.0;
 const float epsilon = 0.001;
 const float shadowBias = epsilon*50.0;
-const int maxSteps = 25;
+const int maxSteps = 200;
 
 
 struct Shape{
@@ -23,6 +23,7 @@ struct Shape{
     vec4 color;
     vec4 size;
     mat4 transform;
+    vec4 hyperInfo; //Vector4(XW_degrees, YW_degrees, ZW_degrees, W_pos)
 
 };
 
@@ -62,7 +63,7 @@ screen;
 
 
 //Output image
-precision highp image2D;
+precision lowp image2D;
 layout(rgba32f, binding = 3) uniform writeonly image2D outputTexture;
 
 
@@ -95,6 +96,7 @@ float cubeDistance(vec3 point, Shape shape){
     mat4 inverseMat = inverse(shape.transform);
     point = (inverseMat * vec4(point, 1.0)).xyz;
 
+
     //SDF of a cube!
 
     vec3 vectorDistance = abs(point) - shape.size.xyz;
@@ -103,6 +105,21 @@ float cubeDistance(vec3 point, Shape shape){
 
     //return distance(point, center) - size[0];
 
+}
+
+float hyperCubeDistance(vec4 point, Shape shape){
+
+    mat4 inverseMat = inverse(shape.transform);
+    point.xyz = (inverseMat * vec4(point.x, point.y, point.z, 1.0)).xyz; //3d transform application
+
+    point.w -= shape.hyperInfo.w;
+    point.xw *= mat2(vec2(cos(shape.hyperInfo.x), sin(shape.hyperInfo.x)), vec2(-sin(shape.hyperInfo.x), cos(shape.hyperInfo.x)));
+	point.zw *= mat2(vec2(cos(shape.hyperInfo.z), -sin(shape.hyperInfo.z)), vec2(sin(shape.hyperInfo.z), cos(shape.hyperInfo.z)));
+	point.yw *= mat2(vec2(cos(shape.hyperInfo.y), -sin(shape.hyperInfo.y)), vec2(sin(shape.hyperInfo.y), cos(shape.hyperInfo.y)));
+
+    vec4 vectorDistance = abs(point) - shape.size;
+    return length(max(vectorDistance, 0.0)) + min(max(vectorDistance.x, max(vectorDistance.y, max(vectorDistance.z, vectorDistance.w))), 0.0);
+    //return min(max(dist.x, max(dist.y, max(dist.z, dist.w))), 0.0f) + length(max(dist, 0.0f));
 }
 
 
@@ -134,8 +151,13 @@ Ray createCamRay(vec2 uv){
 float getShapeDistance(Shape shape, vec3 point){
     //Returns the distance between a Shape and a point
 
-    if(shape.shapeType == 0){
+    vec4 hyperPoint = vec4(point, 0.0);
+
+    switch (shape.shapeType){
+    case 0:
         return cubeDistance(point, shape);
+    case 1:
+        return hyperCubeDistance(hyperPoint, shape);
     }
 
     return maxDst;
@@ -154,7 +176,7 @@ vec4 sceneInfo(vec3 camPos){
         Shape shape = shapes.shapeList[i];
         
         float localDst = getShapeDistance(shape, camPos);
-        vec3 localCol = shape.color.xyz;
+        vec3 localCol = (shape.shapeType == 0) ? vec3(-1) : shape.color.xyz;
 
         vec4 combined = Combine(globalDst, localDst, globalCol, localCol);
 
@@ -191,7 +213,7 @@ void main(){
 
     bool hit = false;
 
-    while (rayDst < maxDst){
+    while (rayDst < maxDst && marchSteps < maxSteps){
 
         //Every step,
         marchSteps++;
@@ -209,10 +231,7 @@ void main(){
             //TODO: them lights and shadows mate....
             vec3 pixelCol = sceneInfo.rgb;
 
-            float col = rayDst * 0.05;
-            vec3 zBuffer = vec3(col);
-
-            imageStore(outputTexture, pixelCoords, vec4(pixelCol, 1.0));
+            imageStore(outputTexture, pixelCoords, (pixelCol.x == -1) ? vec4(0):vec4(pixelCol, 1.0));
 
             hit = true;
 
@@ -224,10 +243,8 @@ void main(){
 
     }
 
-    float col = rayDst * 0.05;
-    vec3 zBuffer = vec3(col);
 
-    if(!hit) imageStore(outputTexture, pixelCoords, vec4(0));
+    if(!hit) imageStore(outputTexture, pixelCoords, vec4(0)); // refresh pixels if theyre not colliding
     //imageStore(outputTexture, pixelCoords, vec4(zBuffer,0.8));
     
 

@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
-@onready var head = $Head
+@onready var head:Node3D = $Head
+@onready var region:CollisionShape3D = $collider/sdfregion/sdfsphere
+@onready var body:CollisionShape3D = $collider
+
 var physVel:Vector3
 var hypercolliding:bool = false
 
@@ -41,6 +44,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
+		#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
 
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = sprintSpeed
@@ -50,7 +54,6 @@ func _physics_process(delta):
 	 #Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or hypercolliding):
 		velocity.y = jumpVelocity
-		print("---------------------JUMP------------------")
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -66,6 +69,12 @@ func _physics_process(delta):
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
 
 	physVel = velocity
+	
+	#Set region radius to the velocity magnitude for hypercollision detection
+	region.get_shape().set_radius(max(lerp(region.get_shape().get_radius(), physVel.length(), 0.2), 1))
+
+	#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
+	#$collider/feetsdf.evaluateVelCast(velocity)
 	
 	move_and_slide()
 	

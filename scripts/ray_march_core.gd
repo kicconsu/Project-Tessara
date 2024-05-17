@@ -31,7 +31,7 @@ func _process(_delta):
 #These two fellas here take matrixes and turn them into bytearrays to send to the shader
 #The order of the byte array matters!! OpenGL constructs matrixes in column major order
 #Basically, it fills up a column before moving to the next...
-func transform_to_bytes(t : Transform3D):
+func transform_to_bytes(t:Transform3D):
 	
 	# Helper function
 	# Encodes the values of a "global_transform" into bytes
@@ -86,22 +86,24 @@ func setupCompute():
 	
 	#Shapes SSBO
 	var shapeBytes := PackedByteArray()
-	var shapesInScene = get_tree().get_nodes_in_group("hyperShapes")
-	var shapeCount = shapesInScene.size()
+	var shapesInScene:Array[Node] = get_tree().get_nodes_in_group("hyperShapes")
+	var shapeCount:int = shapesInScene.size()
 	
 	shapeBytes.append_array(PackedInt32Array([shapeCount, 0, 0, 0]).to_byte_array())
 	#padding so that openGL wont shit its stupid fucking baby pants
 	
 	for shape in shapesInScene:
-		var shapeTransform : Transform3D = shape.get_transform() #4x4 matrix
-		var shapeCol = shape.getColor() #vec3
-		var shapeSize = shape.getSize() #vec4
-		var shapeType = shape.getShapeType() #int
+		var shapeTransform : Transform3D = shape.get_transform() #mat4
+		var shapeCol:Vector3 = shape.getColor() 
+		var shapeSize:Vector4 = shape.getSize() 
+		var shapeType:int = shape.getShapeType() 
+		var hyperInfo : Vector4 = shape.getHyperInfo()
 		
 		shapeBytes.append_array(PackedInt32Array([shapeType, 0, 0, 0]).to_byte_array())
 		shapeBytes.append_array(vec3ToBytes(shapeCol))
-		shapeBytes.append_array(PackedFloat32Array([shapeSize]).to_byte_array())
+		shapeBytes.append_array(PackedFloat32Array([shapeSize[0], shapeSize[1], shapeSize[2], shapeSize[3]]).to_byte_array())
 		shapeBytes.append_array(transform_to_bytes(shapeTransform))
+		shapeBytes.append_array(PackedFloat32Array([hyperInfo[0], hyperInfo[1], hyperInfo[2], hyperInfo[3]]).to_byte_array())
 	
 	var shapeBuffer = rd.storage_buffer_create(shapeBytes.size(), shapeBytes)
 	var shapeUniform := RDUniform.new()
@@ -178,15 +180,17 @@ func updateCompute():
 	#padding so that openGL wont shit its stupid fucking baby pants
 	
 	for shape in shapesInScene:
-		var shapeTransform : Transform3D = shape.get_transform() #4x4 matrix
-		var shapeCol = shape.getColor() #vec3
-		var shapeSize = shape.getSize() #vec3
-		var shapeType = shape.getShapeType() #int
+		var shapeTransform : Transform3D = shape.get_transform() #mat4
+		var shapeCol:Vector3 = shape.getColor() 
+		var shapeSize:Vector4 = shape.getSize() 
+		var shapeType:int = shape.getShapeType() 
+		var hyperInfo : Vector4 = shape.getHyperInfo()
 		
 		shapeBytes.append_array(PackedInt32Array([shapeType, 0, 0, 0]).to_byte_array())
 		shapeBytes.append_array(vec3ToBytes(shapeCol))
-		shapeBytes.append_array(vec3ToBytes(shapeSize))
+		shapeBytes.append_array(PackedFloat32Array([shapeSize[0], shapeSize[1], shapeSize[2], shapeSize[3]]).to_byte_array())
 		shapeBytes.append_array(transform_to_bytes(shapeTransform))
+		shapeBytes.append_array(PackedFloat32Array([hyperInfo[0], hyperInfo[1], hyperInfo[2], hyperInfo[3]]).to_byte_array())
 	
 	var shapeBuffer = rd.storage_buffer_create(shapeBytes.size(), shapeBytes)
 	var shapeUniform := RDUniform.new()
