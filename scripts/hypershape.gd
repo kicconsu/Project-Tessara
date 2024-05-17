@@ -4,9 +4,12 @@ extends StaticBody3D
 @onready var _hyperRegion:CollisionShape3D = get_node("hyperRegion/regionShape")
 
 @export_category("RayMarched Properties")
-@export var color:Vector3 = Vector3(0.2, 0.7, 0.3)
-@export var dimensions:Vector4 = Vector4(1.0, 1.0, 1.0, 1.0)
+@export var color := Vector3(0.2, 0.7, 0.3)
+@export var dimensions := Vector4(1.0, 1.0, 1.0, 1.0)
 @export var shapeType := int(0)
+@export var hyperInfo := Vector4(0.0, 0.0, 0.0, 0.0) 
+#the first three elements in this vector are xw, yw, zw rotation degrees.
+#the last one is the w coordinate position.
 
 func _ready():
 	_shapeContainer.set_shape(BoxShape3D.new())
@@ -18,12 +21,14 @@ func _ready():
 	_hyperRegion.get_shape().set_radius(regionRadius)
 	print("Shape ", self.name, " region radius of: ", regionRadius)
 
-func getSize():
-	return _shapeContainer.get_shape().get_size()
+func getSize() -> Vector4:
+	return self.dimensions
 
-func getColor():
-	return color
+func getColor() -> Vector3:
+	return self.color
 
-func getShapeType():
-	return shapeType
+func getShapeType() -> int:
+	return self.shapeType
 	
+func getHyperInfo() -> Vector4:
+	return self.hyperInfo

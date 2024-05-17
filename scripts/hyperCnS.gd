@@ -4,15 +4,22 @@ extends CollisionShape3D
 #https://www.youtube.com/watch?v=YR6Q7dUz2uk
 
 const maxDepth:int = 5
+
 #From the actual collider bound, walk back this distance
 const skinOffset:float = 0.05
-const maxSlopeAngle:float = 55
+
+const maxSlopeAngle:float = 50
 
 @onready var feet:RayCast3D = $feetsdf
 @onready var region:Area3D = $sdfregion
 @onready var player:CharacterBody3D = get_parent()
 
+
+#Take a velocity vector and cast it forward. Then, use SDF's to check for collisions in its path.
+#If there is a collision, take the collision normal to slide() the velocity vector across the surface.
+#Repeat this process until there are no more collisions or recursive maxDepth is reached.
 func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool, velInit:Vector3)->Vector3:
+	#TODO: dont increase depth unnecessarily
 	if depth>=maxDepth:
 		return Vector3.ZERO
 	
@@ -35,8 +42,8 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		
 		#Give the collision detection some breathing room...
 		if velSnap.length() <= skinOffset:
-			velSnap = lerp(velSnap, hit[2]*velSnap.length(), 0.2)
-		
+			velSnap = hit[2]*skinOffset
+			
 		#Decide what to do depending on slope angle:
 		if angle <= maxSlopeAngle:
 			#Logic for walkable ground
@@ -47,8 +54,8 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		else:
 			#Logic for un-walkable ground (like, walls)
 			#Scale vel depending on the angle between initVel and the wall
-			var scale:float = 1 - (Vector3(hit[2].x, 0, hit[2].z).normalized()).dot(Vector3(velInit.x, 0, velInit.z).normalized())
-			leftover = projectAndScale(leftover, hit[2]) * (scale)
+			var scale:float = 1 - (Vector3(hit[2].x, 0, hit[2].z)).dot(Vector3(velInit.x, 0, velInit.z))
+			leftover = projectAndScale(leftover, hit[2]) / (scale/2)
 			
 		#Recursively resolve hypercollsions
 		return velSnap + hyperCollideAndSlide(leftover, pos+velSnap, depth+1, gravityPass, velInit)
@@ -70,7 +77,7 @@ func castVelocity(vel:Vector3)->Array:
 
 func projectAndScale(leftover:Vector3, normal:Vector3):
 	#Get leftover magnitude to scale it back up after it gets projected
-	var mag:float = leftover.length()
+	#var mag:float = leftover.length()
 	#Project the leftover velocity vector onto sliding plane and normalize it
 	leftover = (leftover.slide(normal))
 	#Scale back up and return

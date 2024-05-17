@@ -11,7 +11,8 @@ func evaluateVelCast(displacement:Vector3):
 	#Initial point
 	var pos = Vector3(globalPos.x, globalPos.y + localPos.y, globalPos.z)
 	#Final point
-	var castedPoint:Vector3 = pos+(displacement/10)
+	var castDist:float = 0.1
+	var castedPoint:Vector3 = pos+(displacement.normalized()*castDist)
 	
 	#Some raycast visualization stuff
 	self.set_position(pos)
@@ -40,7 +41,7 @@ func _getCollisionAcross(from:Vector3, to:Vector3) -> float:
 		var pointDist = _distFromShapes(rayPos)
 		dist += pointDist
 		steps += 1
-		if pointDist < 0.005:
+		if pointDist < 0.05:
 			hit = true
 			break
 	return dist if hit else -1
