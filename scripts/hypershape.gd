@@ -32,3 +32,6 @@ func getShapeType() -> int:
 	
 func getHyperInfo() -> Vector4:
 	return self.hyperInfo
+
+func setDimensions(size:Vector4):
+	self.dimensions = size

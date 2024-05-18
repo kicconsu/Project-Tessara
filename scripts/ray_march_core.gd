@@ -93,6 +93,7 @@ func setupCompute():
 	#padding so that openGL wont shit its stupid fucking baby pants
 	
 	for shape in shapesInScene:
+		print(shape.get_name())
 		var shapeTransform : Transform3D = shape.get_transform() #mat4
 		var shapeCol:Vector3 = shape.getColor() 
 		var shapeSize:Vector4 = shape.getSize() 
