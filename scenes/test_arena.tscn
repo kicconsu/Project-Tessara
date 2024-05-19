@@ -1,9 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=8 format=3 uid="uid://bp5wk26kfjvb0"]
 
+[ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="1_ggrr2"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="1_obbmp"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="2_71fet"]
 [ext_resource type="Script" path="res://scripts/fpscounter.gd" id="4_y11jm"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="5_ej2lh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vlq1h"]
+shader = ExtResource("1_ggrr2")
+shader_parameter/grayscale = true
+shader_parameter/correction_mode = 1
+shader_parameter/correction_intensity = 1.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_anv8s"]
 
 [node name="root" type="SubViewportContainer"]
 texture_filter = 1
@@ -20,56 +29,62 @@ stretch = true
 [node name="viewport" type="SubViewport" parent="."]
 handle_input_locally = false
 scaling_3d_mode = 1
-size = Vector2i(576, 504)
+size = Vector2i(576, 554)
 render_target_update_mode = 4
 
-[node name="TestArena" type="Node3D" parent="viewport"]
+[node name="TextureRect" type="TextureRect" parent="viewport"]
+material = SubResource("ShaderMaterial_vlq1h")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("CompressedTexture2D_anv8s")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="viewport/TestArena"]
+[node name="TestArena" type="Node3D" parent="viewport/TextureRect"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="viewport/TextureRect/TestArena"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.61501, 0)
 light_size = 0.662
 omni_range = 10.4415
 
-[node name="Player" parent="viewport/TestArena" instance=ExtResource("5_ej2lh")]
+[node name="Player" parent="viewport/TextureRect/TestArena" instance=ExtResource("5_ej2lh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.804883, 1.56139, -0.635342)
 
-[node name="wall" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
+[node name="wall" parent="viewport/TextureRect/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(0.921335, 0, -0.38877, 0, 1, 0, 0.38877, 0, 0.921335, -3.89679, 1.70507, -9.82603)
 size = Vector3(0.514771, 3.49402, 22.1252)
 
-[node name="wall3" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
+[node name="wall3" parent="viewport/TextureRect/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.555447, -0.956274, 0, -0.292472, -3.38033, 8.15943, -21.9595)
 size = Vector3(0.514771, 24.2126, 3.47083)
 
-[node name="wall4" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
+[node name="wall4" parent="viewport/TextureRect/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(0.133773, 0.453138, 0.881346, -0.589972, 0.750987, -0.296567, -0.796264, -0.480297, 0.367801, 3.43873, -1.07923, -3.63323)
 size = Vector3(0.350281, 13.1407, 9.96194)
 
-[node name="wall2" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
+[node name="wall2" parent="viewport/TextureRect/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.5603)
 size = Vector3(37.7832, 0.462891, 51.2378)
 
-[node name="Hypershape" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
+[node name="Hypershape" parent="viewport/TextureRect/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(1, 0, 0, 0, -0.663926, 0.747798, 0, -0.747798, -0.663926, 10.8404, 8.21509, 0)
 dimensions = Vector4(5, 3, 1, 2)
 shapeType = 1
 hyperInfo = Vector4(-3.47, 3.745, 3.03, 1.84)
 
-[node name="Hypershape2" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
+[node name="Hypershape2" parent="viewport/TextureRect/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(0.925877, 0.377825, 0, -0.377825, 0.925877, 0, 0, 0, 1, 4.10058, 1.34794, 0)
 color = Vector3(0.925, 0.7, 0.3)
 dimensions = Vector4(7.35, 2.775, 1, 1.245)
 shapeType = 1
 hyperInfo = Vector4(0.215, 0.57, -0.46, 0)
 
-[node name="Hypershape3" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
+[node name="Hypershape3" parent="viewport/TextureRect/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(0.868891, 0.495004, 0, -0.495004, 0.868891, 0, 0, 0, 1, 8.55705, 3.70696, -2.7455)
 color = Vector3(0.2, 0.585, 2.5)
 dimensions = Vector4(1, 1, 4.065, 10)
 shapeType = 1
 hyperInfo = Vector4(1.18, 0.53, 0.68, 0.69)
 
-[node name="Hypershape4" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
+[node name="Hypershape4" parent="viewport/TextureRect/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(0.191694, 0.818185, 0.542059, 0.905432, 0.0657067, -0.419374, -0.378742, 0.571189, -0.728215, 7.44705, 4.4321, -9.82613)
 color = Vector3(0.965, 0.41, 0.415)
 dimensions = Vector4(1, 1, 4.065, 10)

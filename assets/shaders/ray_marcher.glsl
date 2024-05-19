@@ -190,30 +190,96 @@ vec4 sceneInfo(vec3 camPos){
 
 }
 
-void main(){
+vec3 getNormal(vec3 p) {
+    float x = sceneInfo(vec3(p.x+epsilon,p.y,p.z)).w - sceneInfo(vec3(p.x-epsilon,p.y,p.z)).w;
+    float y = sceneInfo(vec3(p.x,p.y+epsilon,p.z)).w - sceneInfo(vec3(p.x,p.y-epsilon,p.z)).w;
+    float z = sceneInfo(vec3(p.x,p.y,p.z+epsilon)).w - sceneInfo(vec3(p.x,p.y,p.z-epsilon)).w;
+    return normalize(vec3(x,y,z));
+}
 
-    //Get current pixel thru invocation ID 
-    ivec2 pixelCoords = ivec2(gl_GlobalInvocationID.xy);
+vec3 blinnPhong(vec3 position, // hit point
+                vec3 lightPosition, // position of the light source
+                vec3 ambientCol, // ambient color
+                vec3 lightCol, // light source color
+                float ambientCoeff, // scale ambient contribution
+                float diffuseCoeff, // scale diffuse contribution
+                float specularCoeff, // scale specular contribution
+                float specularExponent // how focused should the shiny spot be
+){
+    vec3 normal = getNormal(position);
+    vec3 toEye = normalize(vec3(camera.transform[3]) - position);
+    vec3 toLight = normalize(lightPosition - position);
+    vec3 reflection = reflect(-toLight, normal);
+     
+    vec3 ambientFactor = ambientCol * ambientCoeff;
+    vec3 diffuseFactor = diffuseCoeff * lightCol * max(0.0, dot(normal, toLight));
+    vec3 specularFactor = lightCol * pow(max(0.0, dot(toEye, reflection)), specularExponent)
+                     * specularCoeff;
+     
+    return ambientFactor + diffuseFactor + specularFactor;
+}
 
-    
-    //Check out of bounds  (very important)
-    if (pixelCoords.x >= int(screen.width) || pixelCoords.y >= int(screen.height)) {
-        return;
-    }
-
-    //UV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 
-    vec2 uv = pixelCoords / vec2(screen.width, screen.height) * 2.0 - 1.0;
-    uv = vec2(uv.x, -uv.y);
 
 
-    //The *thing*
-    Ray ray = createCamRay(uv);
+//RENDERING
+const float globalAmbient = 0.1; // how strong is the ambient lightning
+const float globalDiffuse = 1.0; // how strong is the diffuse lightning
+const float globalSpecular = 1.0; // how strong is the specular lightning
+const float globalSpecularExponent = 64.0; // how focused is the shiny spot
+const vec3 lightPos = vec3(-2.0,6.0, 3.0); // position of the light source
+const vec3 lightColor = vec3(0.9, 0.9, 0.68);//vec3(0.9, 0.9, 0.68); // color of the light source
+
+//Gooch!!!
+float shininess= 64.0;
+vec3 warm_col = vec3(0.3, 0.3, 0.0);
+vec3 cool_col = vec3(0.0, 0.0, 0.55);
+float alpha = 0.25;
+float beta = 0.5;
+
+//Everything you need to know comes from: https://users.cs.northwestern.edu/~ago820/SIG98/gooch98.pdf
+vec3 daGooch(vec3 ray_pos, // hit point
+            vec3 light_pos, // position of the light source
+            vec3 ambient_col, // ambient color
+            vec3 light_col // light source color
+){
+
+    //Commented lines are just random stuff I tried while trying to figure things out... gotta clean it soon c:
+    vec3 normal = getNormal(ray_pos);
+    vec3 light_dir = normalize(light_pos - ray_pos);
+    vec3 view_dir = normalize(vec3(camera.transform[3]) - ray_pos);
+    //vec3 half_angle = normalize(light_dir + view_dir);
+
+    //float ndoth = dot(half_angle, normal);
+    vec3 reflection_dir = normalize(reflect(-light_dir, normal));
+    float specular_strength = pow(max(0,dot(view_dir, reflection_dir)),shininess);//pow(ndoth, shininess);
+
+    float gooch_coeff = (1.0 + dot(light_dir, normal))/2.0;
+    //vec3 gooch = mix(warm_col, cool_col, gooch_coeff);
+
+    vec3 kCool = cool_col + alpha * ambient_col;
+    vec3 kWarm = warm_col + beta * ambient_col;
+
+    vec3 goochDiffuse = gooch_coeff*kWarm + (1-gooch_coeff)*kCool;
+
+    vec3 color = specular_strength + (1.0-specular_strength)*goochDiffuse;
+    //color = 1.0*ambient_col + 0.8*gooch + vec3(1.0)*0.9*specular_strength;
+
+    return color;
+}
+
+//Raymarch method, finds whether the raycast hits something or not. In case it does, it returns the color that should be rendered in the surface
+//Right now we could use BlinnPhong Shading, or a rough implementation of the Gooch method to determine the color of the pixel.
+//Added a simple edge detection for the render, it comes from https://www.shadertoy.com/view/wtcGDj
+//Should come up with something better for that, for now using small edge width doesn't ruin it that much
+vec4 raymarch(Ray ray){
     float rayDst = 0.0; //Distance traveled by the ray
     int marchSteps = 0; //Number o' steps
 
     bool hit = false;
+    bool edge = false;
+    float last_dist_eval = 1000000.0;
 
-    while (rayDst < maxDst && marchSteps < maxSteps){
+    while (rayDst < maxDst){
 
         //Every step,
         marchSteps++;
@@ -227,25 +293,43 @@ void main(){
         float dst = sceneInfo.w;
 
         if(dst <= epsilon){//Hit!!!
-
-            //TODO: them lights and shadows mate....
-            vec3 pixelCol = sceneInfo.rgb;
-
-            imageStore(outputTexture, pixelCoords, (pixelCol.x == -1) ? vec4(0):vec4(pixelCol, 1.0));
-
-            hit = true;
-
-            break;
-
+            //vec3 pixelCol = blinnPhong(rayPos, lightPos, sceneInfo.rgb, lightColor, globalAmbient, globalDiffuse, globalSpecular, globalSpecularExponent);
+            vec3 color = daGooch(rayPos, lightPos, sceneInfo.rgb, lightColor);
+            return vec4(color,1.0);
         }
-
         rayDst += dst;
 
+        //This is the edge detection... still works poorly...
+        if(dst > last_dist_eval && dst < 0.1 && !edge) { //edgeWidth = 0.1
+            //vec3 color = mix(vec3(0), daGooch(rayPos, lightPos, sceneInfo.rgb, lightColor), smoothstep(0.07, 0.1, dst));
+            return vec4(vec3(0.0), 1.0);
+        }
+        if(dst < last_dist_eval) last_dist_eval = dst;
+
+    }
+    return vec4(vec3(0.0,0.4,0.6),1.0); //If we never hit anything during the cycle, I'm just guessing it's the sky
+}
+
+void main(){
+
+    //Get current pixel thru invocation ID 
+    ivec2 pixelCoords = ivec2(gl_GlobalInvocationID.xy);
+
+  
+    //Check out of bounds  (very important)
+    if (pixelCoords.x >= int(screen.width) || pixelCoords.y >= int(screen.height)) {
+        return;
     }
 
+    //UV!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1 
+    vec2 uv = pixelCoords / vec2(screen.width, screen.height) * 2.0 - 1.0;
+    uv = vec2(uv.x, -uv.y);
 
-    if(!hit) imageStore(outputTexture, pixelCoords, vec4(0)); // refresh pixels if theyre not colliding
-    //imageStore(outputTexture, pixelCoords, vec4(zBuffer,0.8));
+    //Ray
+    Ray ray = createCamRay(uv);
+    vec4 outputCol = raymarch(ray);
+
+    imageStore(outputTexture, pixelCoords, outputCol);
     
 
 }
