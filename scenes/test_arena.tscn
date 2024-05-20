@@ -18,7 +18,7 @@ stretch = true
 
 [node name="viewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(1280, 720)
+size = Vector2i(360, 360)
 render_target_update_mode = 4
 
 [node name="TestArena" type="Node3D" parent="viewport"]
@@ -41,8 +41,8 @@ transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.5
 size = Vector3(0.514771, 24.2126, 3.47083)
 
 [node name="wall4" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.133773, 0.453138, 0.881346, -0.589972, 0.750987, -0.296567, -0.796264, -0.480297, 0.367801, 3.43873, -1.07923, -3.63323)
-size = Vector3(0.350281, 13.1407, 9.96194)
+transform = Transform3D(0.0604334, 0.818808, 0.570878, -0.170903, 0.571966, -0.802277, -0.983432, -0.04908, 0.174503, 3.72225, -3.9952, -5.60557)
+size = Vector3(4.58908, 13.1407, 9.96194)
 
 [node name="wall2" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030756, 0, -14.5592)
@@ -69,11 +69,11 @@ shapeType = 1
 hyperInfo = Vector4(1.18, 0.53, 0.68, 0.69)
 
 [node name="Hypershape4" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(0.191694, 0.818185, 0.542059, 0.905432, 0.0657067, -0.419374, -0.378742, 0.571189, -0.728215, 7.44705, 4.4321, -9.82613)
+transform = Transform3D(1, 0, 0, 0, 0.960557, 0.278086, 0, -0.278086, 0.960556, 7.44705, 4.59342, -11.9879)
 color = Vector3(0.965, 0.41, 0.415)
-dimensions = Vector4(1, 1, 4.065, 10)
+dimensions = Vector4(1, 1, 1, 5)
 shapeType = 1
-hyperInfo = Vector4(1.625, 0.12, -2.75, 0.69)
+hyperInfo = Vector4(-3.885, 8.085, 0.975, 0)
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 2

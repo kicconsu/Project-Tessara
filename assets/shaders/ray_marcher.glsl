@@ -297,17 +297,17 @@ vec4 raymarch(Ray ray){
             vec3 color = daGooch(rayPos, lightPos, sceneInfo.rgb, lightColor);
             return (sceneInfo.r == -1)? vec4(0.0) : vec4(color,1.0);
         }
+        
+        if((sceneInfo.r != -1) && dst > last_dist_eval && dst <= epsilon*100){
+            return vec4(vec3(0.1)*sceneInfo.rgb,1.0);
+        }
+
+        last_dist_eval = dst;
+
         rayDst += dst;
 
-        //This is the edge detection... still works poorly...
-        if(dst > last_dist_eval && dst < 0.1 && !edge) { //edgeWidth = 0.1
-            //vec3 color = mix(vec3(0), daGooch(rayPos, lightPos, sceneInfo.rgb, lightColor), smoothstep(0.07, 0.1, dst));
-            return vec4(vec3(0.0), 1.0);
-        }
-        if(dst < last_dist_eval) last_dist_eval = dst;
-
     }
-    return vec4(vec3(0.0,0.4,0.6),1.0); //If we never hit anything during the cycle, I'm just guessing it's the sky
+    return vec4(0.0); //If we never hit anything during the cycle, I'm just guessing it's the sky
 }
 
 void main(){
