@@ -35,3 +35,6 @@ func getHyperInfo() -> Vector4:
 
 func setDimensions(size:Vector4):
 	self.dimensions = size
+
+func setColor(color:Vector3):
+	self.color = color

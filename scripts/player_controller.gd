@@ -4,6 +4,9 @@ extends CharacterBody3D
 @onready var region:CollisionShape3D = $collider/sdfregion/sdfsphere
 @onready var body:CollisionShape3D = $collider
 
+signal hyper_inspection
+var inspection_enabled = false;
+
 var physVel:Vector3
 var hypercolliding:bool = false
 
@@ -76,7 +79,17 @@ func _physics_process(delta):
 	#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
 	
+	#HyperHand initial implementation
+	if Input.is_action_just_pressed("ui_focus_next"):
+		hyper_inspection.emit()
+	
 	move_and_slide()
 	
 func getVel():
 	return physVel
+	
+func isInspectionEnabled():
+	return inspection_enabled
+	
+func setInspectionEnabled(boolean:bool):
+	inspection_enabled = boolean

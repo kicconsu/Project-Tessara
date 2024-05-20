@@ -293,9 +293,9 @@ vec4 raymarch(Ray ray){
         float dst = sceneInfo.w;
 
         if(dst <= epsilon){//Hit!!!
-            //vec3 pixelCol = blinnPhong(rayPos, lightPos, sceneInfo.rgb, lightColor, globalAmbient, globalDiffuse, globalSpecular, globalSpecularExponent);
+            //vec3 color = blinnPhong(rayPos, lightPos, sceneInfo.rgb, lightColor, globalAmbient, globalDiffuse, globalSpecular, globalSpecularExponent);
             vec3 color = daGooch(rayPos, lightPos, sceneInfo.rgb, lightColor);
-            return vec4(color,1.0);
+            return (sceneInfo.r == -1)? vec4(0.0) : vec4(color,1.0);
         }
         rayDst += dst;
 
