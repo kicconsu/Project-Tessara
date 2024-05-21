@@ -54,18 +54,23 @@ func _distFromShapes(pos:Vector3) -> float:
 		match shape.getShapeType():
 			_:
 				var shapeTransform = shape.get_global_transform()
-				var distToShape = _distToBox(shapeTransform, shape.getSize(), pos)
+				var distToShape = _distToBox(shapeTransform, shape.getSize(), Vector4(pos.x, pos.y, pos.z, 0.0), shape.getHyperInfo())
 				if distToShape < dist:
 					#Get the minimum of all distances
 					dist = distToShape
-					#Know what you're colliding with (unnecesary i think)
-					#_collidingWith = shape
 	return dist
 
 #Distance from a point to the surface of a box
-func _distToBox(shapeTransform:Transform3D, shapeSize:Vector3, pos:Vector3) -> float:
-	#Multiply point by the inverse transformMatrix to involve translation and rotation
-	pos = (shapeTransform.inverse()) * pos
+func _distToBox(shapeTransform:Transform3D, shapeSize:Vector4, pos:Vector4, hyperInfo:Vector4) -> float:
+	#Multiply 3d point by the inverse transformMatrix to involve 3d translation and rotation
+	var trans3d:Vector3 = shapeTransform.inverse() * Vector3(pos.x, pos.y, pos.z)
+	pos.x = trans3d.x
+	pos.y = trans3d.y
+	pos.z = trans3d.z
+	
+	pos.w -= hyperInfo.w
+	#var xwRot : Vector2 = _vec2ByMat2(Vector2(pos.x, pos.w), [[cos(hyperInfo)], []])
+	
 	
 	#Regular SDF evaluation for a cube as seen in: https://iquilezles.org/articles/distfunctions/
 	var toSurface:Vector3 = abs(pos) - shapeSize
@@ -82,3 +87,10 @@ func _approximateNormalAt(pos:Vector3) -> Vector3:
 	var y = _distFromShapes(Vector3(pos.x, pos.y +epsillon, pos.z)) - _distFromShapes(Vector3(pos.x, pos.y-epsillon, pos.z))
 	var z = _distFromShapes(Vector3(pos.x, pos.y, pos.z+epsillon)) - _distFromShapes(Vector3(pos.x, pos.y, pos.z-epsillon))
 	return Vector3(x, y, z).normalized()
+
+#Vec2 * Mat2 auxiliary method
+func _vec2ByMat2(vec:Vector2, mat:Array) -> Vector2:
+	var out:Vector2
+	for i in range(2):
+		out[i] = vec.dot(Vector2(mat[i][0], mat[i][1]))
+	return out

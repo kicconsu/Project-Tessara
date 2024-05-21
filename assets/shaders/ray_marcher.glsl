@@ -14,7 +14,7 @@ layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 const float maxDst = 80.0;
 const float epsilon = 0.001;
 const float shadowBias = epsilon*50.0;
-const int maxSteps = 200;
+const int maxSteps = 300;
 
 
 struct Shape{
@@ -103,8 +103,6 @@ float cubeDistance(vec3 point, Shape shape){
     // ^ is a vector that points from the point parameter to the surface of the shape, if we return:
     return length(max(vectorDistance,0.0)) + min(max(vectorDistance.x, max(vectorDistance.y,vectorDistance.z)),0.0);
 
-    //return distance(point, center) - size[0];
-
 }
 
 float hyperCubeDistance(vec4 point, Shape shape){
@@ -114,8 +112,9 @@ float hyperCubeDistance(vec4 point, Shape shape){
 
     point.w -= shape.hyperInfo.w;
     point.xw *= mat2(vec2(cos(shape.hyperInfo.x), sin(shape.hyperInfo.x)), vec2(-sin(shape.hyperInfo.x), cos(shape.hyperInfo.x)));
-	point.zw *= mat2(vec2(cos(shape.hyperInfo.z), -sin(shape.hyperInfo.z)), vec2(sin(shape.hyperInfo.z), cos(shape.hyperInfo.z)));
 	point.yw *= mat2(vec2(cos(shape.hyperInfo.y), -sin(shape.hyperInfo.y)), vec2(sin(shape.hyperInfo.y), cos(shape.hyperInfo.y)));
+    point.zw *= mat2(vec2(cos(shape.hyperInfo.z), -sin(shape.hyperInfo.z)), vec2(sin(shape.hyperInfo.z), cos(shape.hyperInfo.z)));
+
 
     vec4 vectorDistance = abs(point) - shape.size;
     return length(max(vectorDistance, 0.0)) + min(max(vectorDistance.x, max(vectorDistance.y, max(vectorDistance.z, vectorDistance.w))), 0.0);
@@ -277,7 +276,7 @@ vec4 raymarch(Ray ray){
 
     bool hit = false;
     bool edge = false;
-    float last_dist_eval = 1000000.0;
+    float last_dist_eval = maxDst;
 
     while (rayDst < maxDst){
 
@@ -298,8 +297,9 @@ vec4 raymarch(Ray ray){
             return (sceneInfo.r == -1)? vec4(0.0) : vec4(color,1.0);
         }
         
-        if((sceneInfo.r != -1) && dst > last_dist_eval && dst <= epsilon*100){
-            return vec4(vec3(0.1)*sceneInfo.rgb,1.0);
+        //If the distance starts growing after it was diminishing, it means we're on the edge of a shape.
+        if((sceneInfo.r != -1) && dst > last_dist_eval && dst <= epsilon*60){
+            return vec4(vec3(0.3)*sceneInfo.rgb,1.0);
         }
 
         last_dist_eval = dst;

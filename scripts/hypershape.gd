@@ -31,7 +31,10 @@ func getShapeType() -> int:
 	return self.shapeType
 	
 func getHyperInfo() -> Vector4:
-	return self.hyperInfo
+	var hyperInfo = self.hyperInfo
+	for i in range(3):
+		hyperInfo[i] = deg_to_rad(hyperInfo[i])
+	return hyperInfo
 
 func setDimensions(size:Vector4):
 	self.dimensions = size
