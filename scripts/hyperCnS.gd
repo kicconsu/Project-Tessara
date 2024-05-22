@@ -6,7 +6,7 @@ extends CollisionShape3D
 const maxDepth:int = 5
 
 #From the actual collider bound, walk back this distance
-const skinOffset:float = 0.05
+const skinOffset:float = 0.5
 
 const maxSlopeAngle:float = 50
 

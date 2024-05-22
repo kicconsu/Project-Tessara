@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=7 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_eeyai"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="1_obbmp"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="2_71fet"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="4_tjuod"]
 [ext_resource type="Script" path="res://scripts/fpscounter.gd" id="4_y11jm"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="5_ej2lh"]
 
@@ -30,50 +31,43 @@ light_size = 0.662
 omni_range = 10.4415
 
 [node name="Player" parent="viewport/TestArena" instance=ExtResource("5_ej2lh")]
-transform = Transform3D(-0.156693, 0, -0.987647, 0, 1, 0, 0.987647, 0, -0.156693, -6.34285, 4.86426, -4.14133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48331, 1.68249, -0.803484)
 
 [node name="wall" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.921335, 0, -0.38877, 0, 1, 0, 0.38877, 0, 0.921335, -3.89679, 1.70507, -9.82603)
+transform = Transform3D(0.921335, 0, -0.38877, 0, 1, 0, 0.38877, 0, 0.921335, -9.00887, 1.70507, -45.5152)
 size = Vector3(0.514771, 3.49402, 22.1252)
 
 [node name="wall3" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.555447, -0.956274, 0, -0.292472, -3.38033, 8.15943, -21.9595)
+transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.555447, -0.956274, 0, -0.292472, -3.38033, 8.15943, -37.9165)
 size = Vector3(0.514771, 24.2126, 3.47083)
 
 [node name="wall4" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.0604334, 0.818808, 0.570878, -0.170903, 0.571966, -0.802277, -0.983432, -0.04908, 0.174503, 3.72225, -3.9952, -5.60557)
+transform = Transform3D(0.0200121, 0.927369, 0.373612, 8.73161e-06, 0.373687, -0.927556, -0.999799, 0.0185661, 0.00747037, 7.48981, -2.72693, -33.2548)
 size = Vector3(4.58908, 13.1407, 9.96194)
 
 [node name="wall2" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030756, 0, -14.5592)
 size = Vector3(37.7832, 0.462891, 51.2378)
 
+[node name="eyes" parent="viewport/TestArena" instance=ExtResource("4_tjuod")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.20227, 2.93361, -8.79184)
+
 [node name="Hypershape" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(-0.0557337, 0.704249, -0.707762, -0.980155, 0.0964706, 0.173176, 0.190237, 0.703368, 0.684897, -2.71956, 6.43692, -0.39885)
-dimensions = Vector4(5, 3.84, 12.335, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51224, 0.392971, -11.4896)
 shapeType = 1
-hyperInfo = Vector4(65.5, 163.315, 177.525, -5.725)
 
 [node name="Hypershape2" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(-0.308637, 0.653995, 0.690676, 0.315801, -0.614482, 0.722967, 0.897225, 0.441251, -0.0168801, 3.64487, 4.0496, 4.40259)
-color = Vector3(1.16, -1.185, 1.035)
-dimensions = Vector4(9.98, 4.98, 3.07, 3.71)
+transform = Transform3D(1, 0, 0, 0, 0.952279, -0.30523, 0, 0.30523, 0.952279, -4.51224, -0.176587, -13.9232)
+color = Vector3(1.85, 0, 0.435)
+dimensions = Vector4(0.545, 0.185, 8.94, 1)
 shapeType = 1
-hyperInfo = Vector4(29.395, 142.91, 50.885, 7.945)
 
 [node name="Hypershape3" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(-0.0184149, -0.794144, 0.607451, -0.666005, 0.462885, 0.584958, -0.745721, -0.393793, -0.537427, 4.51885, 2.01038, -2.7455)
-color = Vector3(0.2, 0.585, 2.5)
-dimensions = Vector4(1, 1, 4.065, 10)
+transform = Transform3D(0.995148, -0.0640501, 0.0746846, -0.0456531, 0.371814, 0.927184, -0.087155, -0.926095, 0.367086, -4.51224, 0.686631, -5.45328)
+color = Vector3(0.635, 0.835, 1.5)
+dimensions = Vector4(1, 2.205, 0.64, 1)
 shapeType = 1
-hyperInfo = Vector4(1.18, 0.53, 0.68, 0.69)
-
-[node name="Hypershape4" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 0.999611, 0.0279216, 0, -0.0279217, 0.99961, 7.44705, 4.59342, -11.9879)
-color = Vector3(0.965, 0.525, 0.415)
-dimensions = Vector4(3.46, 12.66, 1, 5)
-shapeType = 1
-hyperInfo = Vector4(48.835, 21.29, 122.72, 0.39)
+hyperInfo = Vector4(-1.555, 4.66, 16.69, 1.04)
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 2

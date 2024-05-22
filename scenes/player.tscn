@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://q6htwbr7ubm2"]
+[gd_scene load_steps=9 format=3 uid="uid://q6htwbr7ubm2"]
 
 [ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_x2bix"]
 [ext_resource type="Script" path="res://scripts/hyperCnS.gd" id="2_8elja"]
 [ext_resource type="Script" path="res://scripts/sdfEvaluator.gd" id="3_ywqjp"]
 [ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_dj0eu"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="5_3ebqn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
@@ -37,7 +36,6 @@ shape = SubResource("SphereShape3D_01m26")
 
 [node name="feetsdf" type="RayCast3D" parent="collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.999889, 0)
-rotation_edit_mode = 2
 top_level = true
 target_position = Vector3(0, 0, -4)
 collision_mask = 0
@@ -81,5 +79,3 @@ text = "Hyper It!!
 label_settings = SubResource("LabelSettings_sk48v")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]

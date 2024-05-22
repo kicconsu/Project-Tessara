@@ -76,7 +76,7 @@ func _physics_process(delta):
 	#Set region radius to the velocity magnitude for hypercollision detection
 	region.get_shape().set_radius(max(lerp(region.get_shape().get_radius(), physVel.length(), 0.2), 1))
 
-	#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
+	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
 	
 	#HyperHand initial implementation
