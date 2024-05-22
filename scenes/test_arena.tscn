@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=6 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_eeyai"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="1_obbmp"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="2_71fet"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="4_tjuod"]
 [ext_resource type="Script" path="res://scripts/fpscounter.gd" id="4_y11jm"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="5_ej2lh"]
 
@@ -49,25 +48,23 @@ size = Vector3(4.58908, 13.1407, 9.96194)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030756, 0, -14.5592)
 size = Vector3(37.7832, 0.462891, 51.2378)
 
-[node name="eyes" parent="viewport/TestArena" instance=ExtResource("4_tjuod")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 3.20227, 2.93361, -8.79184)
-
 [node name="Hypershape" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51224, 0.392971, -11.4896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51224, -0.096463, -11.4896)
 shapeType = 1
 
 [node name="Hypershape2" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 0.952279, -0.30523, 0, 0.30523, 0.952279, -4.51224, -0.176587, -13.9232)
+transform = Transform3D(0.0707905, 0.757117, 0.649432, 0.99617, -0.0871536, -0.00698126, 0.0513147, 0.647439, -0.760387, -4.512, 2.28518, -13.923)
 color = Vector3(1.85, 0, 0.435)
-dimensions = Vector4(0.545, 0.185, 8.94, 1)
+dimensions = Vector4(3.445, 0.52, 12.64, 2.07)
 shapeType = 1
+hyperInfo = Vector4(-0.34, 5.085, -6.66, 5.875)
 
 [node name="Hypershape3" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(0.995148, -0.0640501, 0.0746846, -0.0456531, 0.371814, 0.927184, -0.087155, -0.926095, 0.367086, -4.51224, 0.686631, -5.45328)
+transform = Transform3D(-0.297707, -0.952848, 0.0587446, -0.597198, 0.137874, -0.790155, 0.744798, -0.270317, -0.610086, -4.488, 1.066, -5.473)
 color = Vector3(0.635, 0.835, 1.5)
-dimensions = Vector4(1, 2.205, 0.64, 1)
+dimensions = Vector4(1, 2.205, 0.64, 10)
 shapeType = 1
-hyperInfo = Vector4(-1.555, 4.66, 16.69, 1.04)
+hyperInfo = Vector4(4.005, -0.86, 5.17, 0.905)
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 2

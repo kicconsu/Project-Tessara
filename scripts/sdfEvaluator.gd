@@ -41,10 +41,10 @@ func _getCollisionAcross(from:Vector3, to:Vector3) -> float:
 		var pointDist = _distFromShapes(rayPos)
 		dist += pointDist
 		steps += 1
-		if pointDist < 0.5:
+		if pointDist < 0.05:
 			hit = true
 			break
-	return dist if hit else -1
+	return dist if hit else -1.0
 
 #Get the minimum distance to all nearby shapes (take this as a compound SDF)
 func _distFromShapes(pos:Vector3) -> float:
@@ -100,6 +100,7 @@ func _approximateNormalAt(pos:Vector3) -> Vector3:
 
 #Vec2 * Mat2 auxiliary method (this works)
 func _vec2ByMat2(vec:Vector2, mat:Array) -> Vector2:
+	@warning_ignore("unassigned_variable")
 	var out:Vector2
 	for i in range(2):
 		out[i] = vec.dot(Vector2(mat[i][0], mat[i][1]))

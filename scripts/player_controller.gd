@@ -47,7 +47,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
-		#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
+		velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
 
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = sprintSpeed

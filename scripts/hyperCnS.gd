@@ -6,8 +6,7 @@ extends CollisionShape3D
 const maxDepth:int = 5
 
 #From the actual collider bound, walk back this distance
-const skinOffset:float = 0.5
-
+const skinOffset:float = 0.05
 const maxSlopeAngle:float = 50
 
 @onready var feet:RayCast3D = $feetsdf
@@ -47,15 +46,15 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		#Decide what to do depending on slope angle:
 		if angle <= maxSlopeAngle:
 			#Logic for walkable ground
+			player.hypercolliding = true
 			if gravityPass: # If on gravity pass, dont slide
-				player.hypercolliding = true
 				return velSnap
 			leftover = projectAndScale(leftover, hit[2])
 		else:
 			#Logic for un-walkable ground (like, walls)
 			#Scale vel depending on the angle between initVel and the wall
 			var scale:float = 1 - (Vector3(hit[2].x, 0, hit[2].z)).dot(Vector3(velInit.x, 0, velInit.z))
-			leftover = projectAndScale(leftover, hit[2]) / (scale/2)
+			leftover = projectAndScale(leftover, hit[2]) / (scale)
 			
 		#Recursively resolve hypercollsions
 		return velSnap + hyperCollideAndSlide(leftover, pos+velSnap, depth+1, gravityPass, velInit)

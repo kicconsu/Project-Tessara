@@ -110,7 +110,7 @@ float hyperCubeDistance(vec4 point, Shape shape){
     mat4 inverseMat = inverse(shape.transform);
     point.xyz = (inverseMat * vec4(point.x, point.y, point.z, 1.0)).xyz; //3d transform application
 
-    point.w -= shape.hyperInfo.w;
+    point.w += shape.hyperInfo.w;
     point.xw *= mat2(vec2(cos(shape.hyperInfo.x), sin(shape.hyperInfo.x)), vec2(-sin(shape.hyperInfo.x), cos(shape.hyperInfo.x)));
     point.zw *= mat2(vec2(cos(shape.hyperInfo.z), -sin(shape.hyperInfo.z)), vec2(sin(shape.hyperInfo.z), cos(shape.hyperInfo.z)));
 	point.yw *= mat2(vec2(cos(shape.hyperInfo.y), -sin(shape.hyperInfo.y)), vec2(sin(shape.hyperInfo.y), cos(shape.hyperInfo.y)));
