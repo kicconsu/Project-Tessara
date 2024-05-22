@@ -33,15 +33,15 @@ omni_range = 10.4415
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48331, 1.68249, -0.803484)
 
 [node name="wall" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.921335, 0, -0.38877, 0, 1, 0, 0.38877, 0, 0.921335, -9.00887, 1.70507, -45.5152)
+transform = Transform3D(0.919979, 0, -0.391968, 0, 1, 0, 0.391968, 0, 0.919979, -9.00887, 1.70507, -14.7521)
 size = Vector3(0.514771, 3.49402, 22.1252)
 
 [node name="wall3" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.555447, -0.956274, 0, -0.292472, -3.38033, 8.15943, -37.9165)
+transform = Transform3D(0.238076, 0.580845, -0.778421, 0.169881, -0.814014, -0.555447, -0.956274, 0, -0.292472, -3.38033, 8.15943, -18.9012)
 size = Vector3(0.514771, 24.2126, 3.47083)
 
 [node name="wall4" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
-transform = Transform3D(0.0200121, 0.927369, 0.373612, 8.73161e-06, 0.373687, -0.927556, -0.999799, 0.0185661, 0.00747037, 7.48981, -2.72693, -33.2548)
+transform = Transform3D(-0.702149, -0.660444, -0.266082, 8.73162e-06, 0.373687, -0.927556, 0.71203, -0.651285, -0.262378, 7.48981, -2.72693, -2.75176)
 size = Vector3(4.58908, 13.1407, 9.96194)
 
 [node name="wall2" parent="viewport/TestArena" instance=ExtResource("2_71fet")]
@@ -49,20 +49,29 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030756, 0, -14.5592)
 size = Vector3(37.7832, 0.462891, 51.2378)
 
 [node name="Hypershape" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.51224, -0.096463, -11.4896)
+transform = Transform3D(0.978275, 0.207314, 0, -0.207314, 0.978275, 0, 0, 0, 1, -4.51224, 2.62934, -11.4896)
+dimensions = Vector4(0.855, 0.63, 2.515, 20)
 shapeType = 1
+hyperInfo = Vector4(3.68, 4.755, 9.525, 0.525)
+
+[node name="Hypershape4" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
+transform = Transform3D(0.108902, 0.994053, 0, -0.994053, 0.108902, 0, 0, 0, 1, 1.07928, 2.56681, -11.8245)
+color = Vector3(1.22, 0.82, 0.42)
+dimensions = Vector4(8.5, 1.19, 1.345, 1.525)
+shapeType = 1
+hyperInfo = Vector4(-0.17, 13.475, 7.315, 0)
 
 [node name="Hypershape2" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(0.0707905, 0.757117, 0.649432, 0.99617, -0.0871536, -0.00698126, 0.0513147, 0.647439, -0.760387, -4.512, 2.28518, -13.923)
+transform = Transform3D(0.0707905, 0.757117, 0.649432, 0.992047, 0.0144945, -0.125035, -0.104079, 0.653118, -0.750069, -4.512, 1.50948, -4.6852)
 color = Vector3(1.85, 0, 0.435)
-dimensions = Vector4(3.445, 0.52, 12.64, 2.07)
+dimensions = Vector4(3.445, 3.18, 12.64, 6.2)
 shapeType = 1
-hyperInfo = Vector4(-0.34, 5.085, -6.66, 5.875)
+hyperInfo = Vector4(-0.46, 4.855, -3.41, 5.91)
 
 [node name="Hypershape3" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
-transform = Transform3D(-0.297707, -0.952848, 0.0587446, -0.597198, 0.137874, -0.790155, 0.744798, -0.270317, -0.610086, -4.488, 1.066, -5.473)
+transform = Transform3D(-0.297707, -0.952848, 0.0587446, -0.597198, 0.137874, -0.790155, 0.744798, -0.270317, -0.610086, -4.488, 1.066, -7.03704)
 color = Vector3(0.635, 0.835, 1.5)
-dimensions = Vector4(1, 2.205, 0.64, 10)
+dimensions = Vector4(1.985, 3.045, 0.64, 10)
 shapeType = 1
 hyperInfo = Vector4(4.005, -0.86, 5.17, 0.905)
 
