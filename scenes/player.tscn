@@ -37,7 +37,6 @@ shape = SubResource("SphereShape3D_01m26")
 
 [node name="feetsdf" type="RayCast3D" parent="collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.999889, 0)
-rotation_edit_mode = 2
 top_level = true
 target_position = Vector3(0, 0, -4)
 collision_mask = 0
@@ -60,6 +59,8 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501647, 0)
 
+[node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]
+
 [node name="InteractRay" type="RayCast3D" parent="Head"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 target_position = Vector3(0, 0, -4)
@@ -76,10 +77,8 @@ offset_top = -17.5
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Message
-[Key]"
+text = "Hyper It!!
+[LClick]"
 label_settings = SubResource("LabelSettings_sk48v")
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]

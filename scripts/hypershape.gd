@@ -31,7 +31,13 @@ func getShapeType() -> int:
 	return self.shapeType
 	
 func getHyperInfo() -> Vector4:
-	return self.hyperInfo
+	var hyperI = self.hyperInfo
+	#for i in range(3):
+		#hyperI[i] = deg_to_rad(hyperI[i])
+	return hyperI
 
 func setDimensions(size:Vector4):
 	self.dimensions = size
+
+func setColor(color:Vector3):
+	self.color = color

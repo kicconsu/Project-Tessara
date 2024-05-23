@@ -4,6 +4,9 @@ extends CharacterBody3D
 @onready var region:CollisionShape3D = $collider/sdfregion/sdfsphere
 @onready var body:CollisionShape3D = $collider
 
+signal hyper_inspection
+var inspection_enabled = false;
+
 var physVel:Vector3
 var hypercolliding:bool = false
 
@@ -44,7 +47,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
-		#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
+		velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, true, velocity)
 
 	if Input.is_action_pressed("sprint"):
 		currentSpeed = sprintSpeed
@@ -73,10 +76,20 @@ func _physics_process(delta):
 	#Set region radius to the velocity magnitude for hypercollision detection
 	region.get_shape().set_radius(max(lerp(region.get_shape().get_radius(), physVel.length(), 0.2), 1))
 
-	#velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
+	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
+	
+	#HyperHand initial implementation
+	if Input.is_action_just_pressed("ui_focus_next"):
+		hyper_inspection.emit()
 	
 	move_and_slide()
 	
 func getVel():
 	return physVel
+	
+func isInspectionEnabled():
+	return inspection_enabled
+	
+func setInspectionEnabled(boolean:bool):
+	inspection_enabled = boolean
