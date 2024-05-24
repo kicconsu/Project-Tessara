@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://boah6861amlat"]
+
+[ext_resource type="PackedScene" uid="uid://ci6nk08f7tyea" path="res://Models/Lever.glb" id="1_cwir7"]
+[ext_resource type="Script" path="res://Scripts/Buttons/lever.gd" id="2_qey6b"]
+
+[sub_resource type="Animation" id="Animation_ai5fs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sphere_003:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(3.14159, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_30myp"]
+resource_name = "ToggleOffColor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sphere_003:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.258816, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-3.14159, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0nifv"]
+resource_name = "ToggleOnColor"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sphere_003:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.258816, 1),
+"update": 0,
+"values": [Vector3(3.14159, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r4tu4"]
+_data = {
+"RESET": SubResource("Animation_ai5fs"),
+"ToggleOffColor": SubResource("Animation_30myp"),
+"ToggleOnColor": SubResource("Animation_0nifv")
+}
+
+[node name="Lever" instance=ExtResource("1_cwir7")]
+script = ExtResource("2_qey6b")
+
+[node name="Cylinder_001" parent="." index="0"]
+transform = Transform3D(0.304511, 0, 0, 0, 1.29343, -0.248782, 0, 1.8325, 0.175597, -2.06569, 1.17328, 0.00270304)
+
+[node name="Sphere_003" parent="." index="1"]
+transform = Transform3D(0.36134, 0, 0, 0, -0.36134, -9.16063e-07, 0, 9.16063e-07, -0.36134, -1.50188, 1.18245, 2.40505)
+
+[node name="Aux" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_r4tu4")
+}

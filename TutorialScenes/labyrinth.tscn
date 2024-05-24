@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnyub82qvlu1w"]
+
+[ext_resource type="Script" path="res://TutorialScenes/getnuked.gd" id="1_1mchr"]
+
+[node name="Labyrinth" type="Node3D"]
+transform = Transform3D(1.055, 0, 0, 0, 1.055, 0, 0, 0, 1.055, 0.66694, 15.6247, 0)
+script = ExtResource("1_1mchr")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 14.9632, 1.26826, 0.422497)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 9.69608)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 18.042, 1.24544, -6.00306)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 5.67438)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8608, 1.24368, 1.50467)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 12)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.4637, 1.12184, -1.47343)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 12)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.8589, 1.24368, -3.98175)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 8.00415)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 18.7212, 1.24544, -0.695571)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 5.67438)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 22.853, 1.23065, -0.720692)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 6.72279)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 22.2471, 1.23065, 1.22192)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 5.51102)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 26.8277, 1.36419, 3.59321)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 7.83412)
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 18.5834, 1.26826, 5.92459)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 6.32099)
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="."]
+transform = Transform3D(-1, 0, -2.62268e-07, 0, 1, 0, 2.62268e-07, 0, -1, 21.199, 1.26826, 4.70158)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 5.52124)
+
+[node name="CSGBox3D12" type="CSGBox3D" parent="."]
+transform = Transform3D(3.0598e-07, 0, -1, 0, 1, 0, 1, 0, 3.0598e-07, 26.6014, 1.26826, 5.54143)
+use_collision = true
+collision_layer = 3
+collision_mask = 3
+size = Vector3(1, 2.2388, 7.80151)
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
