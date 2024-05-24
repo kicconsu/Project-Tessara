@@ -1,0 +1,89 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6xhsomwrbi2w"]
+
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="1_ihy6v"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="2_uvhqw"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="2_y4ga5"]
+
+[node name="Root" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(360, 360)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="Viewport"]
+
+[node name="floor" parent="Viewport/World" instance=ExtResource("1_ihy6v")]
+size = Vector3(27.5537, 0.297119, 23.5283)
+
+[node name="Pillars" type="Node3D" parent="Viewport/World"]
+transform = Transform3D(0.16935, 0, 0.985556, 0, 1, 0, -0.985556, 0, 0.16935, 0, 0, 0)
+
+[node name="pillar" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(-0.0818689, 0, -0.996643, 0, 1, 0, 0.996643, 0, -0.0818689, -4.30894, 6.87969, 1.64097)
+size = Vector3(1.42505, 13.8633, 1.09351)
+
+[node name="pillar2" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(0.883668, 0, 0.468115, 0, 1, 0, -0.468115, 0, 0.883668, -1.7594, 3.84364, 5.19633)
+size = Vector3(1.42505, 7.79114, 1.09351)
+
+[node name="pillar3" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(-0.370022, 0, 0.929023, 0, 1, 0, -0.929023, 0, -0.370022, 1.91633, 1.36753, 3.3308)
+size = Vector3(1.42505, 2.83893, 1.09351)
+
+[node name="pillar4" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, -3.77188, 9.82597, -3.26234)
+size = Vector3(1.42505, 19.7558, 1.09351)
+
+[node name="pillar5" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 3.2091, 12.2815, -6.23572)
+size = Vector3(1.42505, 24.6669, 1.09351)
+
+[node name="pillar6" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 7.18695, 16.6521, -0.999986)
+size = Vector3(1.42505, 33.4081, 1.09351)
+
+[node name="pillar7" parent="Viewport/World/Pillars" instance=ExtResource("1_ihy6v")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 3.8281, 33.8877, 5.29664)
+size = Vector3(6.07709, 0.808517, 4.49786)
+
+[node name="Hypershapes" type="Node3D" parent="Viewport/World"]
+
+[node name="Tess" parent="Viewport/World/Hypershapes" instance=ExtResource("2_uvhqw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0409236, 1.66743, -1.95118)
+dimensions = Vector4(0.5, 0.5, 0.5, 1)
+shapeType = 1
+
+[node name="Tess2" parent="Viewport/World/Hypershapes" instance=ExtResource("2_uvhqw")]
+transform = Transform3D(0.894142, -0.365002, 0.259392, 0.377938, 0.925831, 0, -0.240153, 0.0980341, 0.965772, -0.92407, 15.3535, -1.95118)
+color = Vector3(1.125, 1.255, 0.4)
+dimensions = Vector4(0.5, 2.48, 0.5, 1.85)
+shapeType = 1
+hyperInfo = Vector4(1.17, 0.89, -0.58, -0.115)
+
+[node name="Tess3" parent="Viewport/World/Hypershapes" instance=ExtResource("2_uvhqw")]
+transform = Transform3D(-0.550533, 0.0121113, -0.834726, 0.177836, 0.978646, -0.10309, 0.815652, -0.205198, -0.540931, 2.25943, 8.82643, -2.39913)
+color = Vector3(1.775, 0.575, 0.165)
+dimensions = Vector4(0.235, 2.115, 0.16, 4.595)
+shapeType = 1
+hyperInfo = Vector4(2.45, 2.04, 1.25, -0.02)
+
+[node name="Tess4" parent="Viewport/World/Hypershapes" instance=ExtResource("2_uvhqw")]
+transform = Transform3D(0.922113, -0.129142, 0.364733, 0.177836, 0.978646, -0.10309, -0.343631, 0.159923, 0.925388, -1.90615, 3.11237, 0.72808)
+color = Vector3(1.775, -0.185, 0.16)
+dimensions = Vector4(0.485, 6.925, 0.46, 3)
+shapeType = 1
+hyperInfo = Vector4(2.45, 2.04, 0.86, -0.02)
+
+[node name="Player" parent="Viewport/World" instance=ExtResource("2_y4ga5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.01868, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport/World"]
+transform = Transform3D(0.408713, 0.912663, -1.22432e-08, -0.365355, 0.163615, 0.916377, 0.836343, -0.374535, 0.400317, 0, 45.386, 0)
+directional_shadow_mode = 0

@@ -11,7 +11,7 @@
 //Work group size
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
-const float maxDst = 80.0;
+const float maxDst = 200.0;
 const float epsilon = 0.001;
 const float shadowBias = epsilon*50.0;
 const int maxSteps = 300;

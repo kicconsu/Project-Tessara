@@ -23,7 +23,7 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		return Vector3.ZERO
 	
 	#Compensate skinOffset so that distances are tracked from the collider boundary
-	var dist:float = vel.length() + skinOffset
+	#var dist:float = vel.length() + skinOffset
 	
 	var hit:Array = []
 	

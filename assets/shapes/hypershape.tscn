@@ -18,6 +18,7 @@ script = ExtResource("1_ijw01")
 shape = SubResource("BoxShape3D_h5etl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("BoxMesh_4kw0f")
 
 [node name="hyperRegion" type="Area3D" parent="."]

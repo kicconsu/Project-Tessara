@@ -19,7 +19,6 @@ func _ready():
 	var regionRadius:float = sqrt(pow(maxExtentX, 2)+pow(maxExtentY, 2)) + 1
 	_hyperRegion.set_shape(SphereShape3D.new())
 	_hyperRegion.get_shape().set_radius(regionRadius)
-	print("Shape ", self.name, " region radius of: ", regionRadius)
 
 func getSize() -> Vector4:
 	return self.dimensions
@@ -32,8 +31,6 @@ func getShapeType() -> int:
 	
 func getHyperInfo() -> Vector4:
 	var hyperI = self.hyperInfo
-	#for i in range(3):
-		#hyperI[i] = deg_to_rad(hyperI[i])
 	return hyperI
 
 func setDimensions(size:Vector4):

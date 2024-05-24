@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://3npl0u6dfar2"]
+
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="1_2hq1g"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="2_26v5b"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="4_8t0k0"]
+
+[node name="Root" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="Viewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(360, 360)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="Viewport"]
+
+[node name="floor" parent="Viewport/World" instance=ExtResource("1_2hq1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+size = Vector3(27.554, 0.297, 8)
+
+[node name="floor2" parent="Viewport/World" instance=ExtResource("1_2hq1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
+size = Vector3(27.554, 0.297, 8)
+
+[node name="Walls" type="Node3D" parent="Viewport/World"]
+
+[node name="wall" parent="Viewport/World/Walls" instance=ExtResource("1_2hq1g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.10529, 0)
+size = Vector3(5.82031, 0.321289, 3.7041)
+
+[node name="Hypershapes" type="Node3D" parent="Viewport/World"]
+
+[node name="Hypershape" parent="Viewport/World/Hypershapes" instance=ExtResource("2_26v5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.36685, 0)
+dimensions = Vector4(1, 1, 1, 50)
+shapeType = 1
+
+[node name="Hypershape2" parent="Viewport/World/Hypershapes" instance=ExtResource("2_26v5b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11708, 18.5584)
+color = Vector3(2.25, 0.695, 1.15)
+dimensions = Vector4(0.735, 0.2, 0.2, 15)
+shapeType = 1
+
+[node name="Player" parent="Viewport/World" instance=ExtResource("4_8t0k0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27397, 20.8931)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport/World"]
+transform = Transform3D(0.408713, 0.912663, -1.22432e-08, -0.365355, 0.163615, 0.916377, 0.836343, -0.374535, 0.400317, 0, 45.386, 0)
+directional_shadow_mode = 0
