@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://boah6861amlat"]
 
 [ext_resource type="PackedScene" uid="uid://ci6nk08f7tyea" path="res://Models/Lever.glb" id="1_cwir7"]
-[ext_resource type="Script" path="res://Scripts/Buttons/lever.gd" id="2_qey6b"]
+[ext_resource type="Script" path="res://Scripts/ButtonScripts/Lever (2).gd" id="2_wwrus"]
 
 [sub_resource type="Animation" id="Animation_ai5fs"]
 length = 0.001
@@ -56,7 +56,8 @@ _data = {
 }
 
 [node name="Lever" instance=ExtResource("1_cwir7")]
-script = ExtResource("2_qey6b")
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+script = ExtResource("2_wwrus")
 
 [node name="Cylinder_001" parent="." index="0"]
 transform = Transform3D(0.304511, 0, 0, 0, 1.29343, -0.248782, 0, 1.8325, 0.175597, -2.06569, 1.17328, 0.00270304)

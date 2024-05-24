@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://q6htwbr7ubm2"]
+[gd_scene load_steps=11 format=3 uid="uid://q6htwbr7ubm2"]
 
-[ext_resource type="Script" path="res://scripts/player_controller.gd" id="1_x2bix"]
-[ext_resource type="Script" path="res://scripts/hyperCnS.gd" id="2_8elja"]
-[ext_resource type="Script" path="res://scripts/sdfEvaluator.gd" id="3_ywqjp"]
-[ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_dj0eu"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="5_3ebqn"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/Player (2).gd" id="1_81q3v"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/hyperCnS.gd" id="2_5e2iq"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/sdfEvaluator.gd" id="3_6jvb5"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/PlayerScenes/raymarchCam.tscn" id="5_3ebqn"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/InteractRay.gd" id="5_w2e81"]
+[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/Fonts/Pixellari.ttf" id="6_k8xpn"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
@@ -13,19 +14,21 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_01m26"]
 radius = 1.0
 
-[sub_resource type="LabelSettings" id="LabelSettings_sk48v"]
+[sub_resource type="LabelSettings" id="LabelSettings_382y5"]
+font = ExtResource("6_k8xpn")
 font_size = 31
-font_color = Color(0, 0, 0, 1)
+outline_size = 7
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
-script = ExtResource("1_x2bix")
+script = ExtResource("1_81q3v")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_jcnsm")
 
 [node name="collider" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_r6c5g")
-script = ExtResource("2_8elja")
+script = ExtResource("2_5e2iq")
 
 [node name="sdfregion" type="Area3D" parent="collider"]
 collision_layer = 0
@@ -43,7 +46,7 @@ collision_mask = 0
 collide_with_bodies = false
 debug_shape_custom_color = Color(1, 0, 0, 1)
 debug_shape_thickness = 5
-script = ExtResource("3_ywqjp")
+script = ExtResource("3_6jvb5")
 
 [node name="headsdf" type="RayCast3D" parent="collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -62,11 +65,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501647, 0)
 [node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]
 
 [node name="InteractRay" type="RayCast3D" parent="Head"]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.7, 0, 0, 0)
 target_position = Vector3(0, 0, -4)
 collision_mask = 2
-debug_shape_thickness = 1
-script = ExtResource("4_dj0eu")
+script = ExtResource("5_w2e81")
 
 [node name="prompt" type="Label" parent="Head/InteractRay"]
 anchors_preset = 14
@@ -77,8 +79,20 @@ offset_top = -17.5
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "Hyper It!!
-[LClick]"
-label_settings = SubResource("LabelSettings_sk48v")
+text = "Message
+[Key]"
+label_settings = SubResource("LabelSettings_382y5")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Hand" type="Marker3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+
+[node name="joint" type="Generic6DOFJoint3D" parent="Head"]
+node_a = NodePath("../aux")
+linear_limit_x/enabled = false
+linear_limit_y/enabled = false
+linear_limit_z/enabled = false
+
+[node name="aux" type="StaticBody3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)

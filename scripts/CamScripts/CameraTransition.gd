@@ -4,7 +4,8 @@ extends Node
 var transitioning = false
 
 func _ready() -> void:
-	camera3D.current = false
+	pass
+	#camera3D.current = false
 	
 func transition_camera3D(from: Camera3D, to: Camera3D, duration: float = 1.0) -> void:
 	if transitioning: return

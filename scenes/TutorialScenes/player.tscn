@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://c855iubkgi6ne"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_gkujc"]
-[ext_resource type="Script" path="res://Scripts/InteractRay.gd" id="2_42ie5"]
-[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://Fonts/Pixellari.ttf" id="3_ceed7"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/Player.gd" id="1_gkujc"]
+[ext_resource type="Script" path="res://Scripts/PlayerScripts/InteractRay.gd" id="2_42ie5"]
+[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/Fonts/Pixellari.ttf" id="3_ceed7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 

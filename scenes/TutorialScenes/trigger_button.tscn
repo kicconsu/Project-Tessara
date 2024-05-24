@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cv3nboonmvkfk"]
 
-[ext_resource type="Script" path="res://Scripts/Buttons/trigger_button.gd" id="1_gg1n3"]
-[ext_resource type="PackedScene" uid="uid://d33ipqbswjoq2" path="res://TutorialScenes/button.tscn" id="2_2pafh"]
+[ext_resource type="Script" path="res://Scripts/ButtonScripts/trigger_button.gd" id="1_gg1n3"]
+[ext_resource type="PackedScene" uid="uid://d33ipqbswjoq2" path="res://Scenes/TutorialScenes/button.tscn" id="2_2pafh"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qmdpv"]
 size = Vector3(0.455322, 1.33978, 0.541565)

@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://btcfcgg10uvlr"
-path="res://.godot/imported/font.ttf-2b28925b654f3c00246544b01f5d6278.fontdata"
+path="res://.godot/imported/font.ttf-88451cb1069b414a0f7c1f1413a8746d.fontdata"
 
 [deps]
 
-source_file="res://Fonts/font.ttf"
-dest_files=["res://.godot/imported/font.ttf-2b28925b654f3c00246544b01f5d6278.fontdata"]
+source_file="res://assets/Fonts/font.ttf"
+dest_files=["res://.godot/imported/font.ttf-88451cb1069b414a0f7c1f1413a8746d.fontdata"]
 
 [params]
 

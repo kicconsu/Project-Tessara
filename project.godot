@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="ProjectTessara"
-run/main_scene="res://scenes/test_arena.tscn"
+run/main_scene="res://Scenes/test_arena.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-CameraTransition="*res://CameraTransition.gd"
+CameraTransition="*res://Scripts/CamScripts/CameraTransition.gd"
 
 [display]
 

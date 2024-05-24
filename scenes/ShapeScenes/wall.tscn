@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://h7hbqujod4nf"]
 
-[ext_resource type="Script" path="res://scripts/wallWrapperHandler.gd" id="1_wcdhs"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="2_47krt"]
+[ext_resource type="Script" path="res://Scripts/ShapeScripts/wallWrapperHandler.gd" id="1_wcdhs"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/Shapes/hypershape.tscn" id="2_47krt"]
 
 [node name="wall" type="CSGBox3D"]
 rotation_edit_mode = 2
