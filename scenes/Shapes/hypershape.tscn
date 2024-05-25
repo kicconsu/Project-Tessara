@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://berd28q3uhje5"]
 
-[ext_resource type="Script" path="res://scripts/hypershape.gd" id="1_ijw01"]
+[ext_resource type="Script" path="res://scripts/Shapes/hypershape.gd" id="1_ijw01"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h5etl"]
 

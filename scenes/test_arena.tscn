@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_eeyai"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/Shapes/hypershape.tscn" id="1_obbmp"]
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="2_71fet"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="1_obbmp"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="2_71fet"]
 [ext_resource type="Script" path="res://scripts/fpscounter.gd" id="4_y11jm"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="5_ej2lh"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="5_ej2lh"]
 
 [node name="root" type="SubViewportContainer"]
 texture_filter = 1
