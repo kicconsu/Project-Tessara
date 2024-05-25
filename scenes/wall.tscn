@@ -13,4 +13,3 @@ script = ExtResource("1_wcdhs")
 [node name="wallWrapper" parent="." instance=ExtResource("2_47krt")]
 rotation_edit_mode = 2
 visible = false
-color = Vector3(0, 0, 0)
