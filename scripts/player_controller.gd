@@ -166,7 +166,6 @@ func hyper_rotate_object(event):
 		var xw = 0
 		var yw = 0
 		var zw = 0
-		var w = hand.picked_object.getHyperInfo().w
 		if event is InputEventMouseMotion:
 			xw = event.relative.x * 0.001
 			yw = event.relative.y *0.001
@@ -174,7 +173,7 @@ func hyper_rotate_object(event):
 			zw += hand.rotation_power
 		elif Input.is_action_just_released("wheeldown"):
 			zw -= hand.rotation_power 
-		hand.picked_object.adjustHyperInfo(xw,yw,zw,w)
+		hand.picked_object.adjustHyperInfo(xw,yw,zw,0)
 
 
 func getVel():
