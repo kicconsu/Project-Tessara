@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/hyperCnS.gd" id="2_8elja"]
 [ext_resource type="Script" path="res://scripts/sdfEvaluator.gd" id="3_ywqjp"]
 [ext_resource type="Script" path="res://scripts/InteractRay.gd" id="4_dj0eu"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/raymarchCam.tscn" id="5_ysrul"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_ysrul"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 

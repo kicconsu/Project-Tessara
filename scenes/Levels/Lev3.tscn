@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://8xawjdxiwv5f"]
 
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/wall.tscn" id="1_gg158"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/shapes/hypershape.tscn" id="2_34d6h"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/player.tscn" id="3_snsg5"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_1ntkj"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://assets/Shapes/hypershape.tscn" id="2_l2g32"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="3_wvbs6"]
 
 [node name="Root" type="SubViewportContainer"]
 anchors_preset = 15
@@ -19,80 +19,80 @@ render_target_update_mode = 4
 
 [node name="World" type="Node3D" parent="Viewport"]
 
-[node name="floor" parent="Viewport/World" instance=ExtResource("1_gg158")]
+[node name="floor" parent="Viewport/World" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.11234, 0, 38.7201)
 size = Vector3(8.25747, 0.297, 8)
 
-[node name="floor2" parent="Viewport/World" instance=ExtResource("1_gg158")]
+[node name="floor2" parent="Viewport/World" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -438.142, -67.8702)
 size = Vector3(27.554, 1025.66, 8)
 
 [node name="Plataforms" type="Node3D" parent="Viewport/World"]
 
-[node name="wall" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.859281, 0, 0.511503, 0, 1, 0, -0.511503, 0, 0.859281, -14.3233, -422.44, 15.5866)
 size = Vector3(2.00952, 853.672, 1)
 
-[node name="wall4" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall4" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.99565, 0, -0.09317, 0, 1, 0, 0.09317, 0, 0.99565, -17.8913, -418.728, 4.64953)
 size = Vector3(4.07129, 861.098, 1.55029)
 
-[node name="wall5" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall5" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.68456, 0, -0.728957, 0, 1, 0, 0.728957, 0, 0.68456, -11.6197, -413.382, -7.9053)
 size = Vector3(4.88647, 871.789, 2.81543)
 
-[node name="wall6" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall6" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.432778, 0, -0.9015, 0, 1, 0, 0.9015, 0, 0.432778, -0.942134, -404.855, -14.9688)
 size = Vector3(5.55566, 888.843, 2.62439)
 
-[node name="wall7" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall7" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.984041, 0, -0.177944, 0, 1, 0, 0.177944, 0, 0.984041, 6.38808, -394.73, -22.9218)
 size = Vector3(5.90405, 909.093, 2.75977)
 
-[node name="wall8" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall8" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.998808, 0, 0.0488149, 0, 1, 0, -0.0488149, 0, 0.998808, 4.08312, -391.548, -35.6691)
 size = Vector3(9.38452, 915.457, 3.85889)
 
-[node name="wall2" parent="Viewport/World/Plataforms" instance=ExtResource("1_gg158")]
+[node name="wall2" parent="Viewport/World/Plataforms" instance=ExtResource("1_1ntkj")]
 transform = Transform3D(0.997192, 0, 0.0748918, 0, 1, 0, -0.0748918, 0, 0.997192, -8.521, -424.006, 27.4911)
 size = Vector3(2.00952, 850.542, 1)
 
 [node name="Hypershapes" type="Node3D" parent="Viewport/World"]
 
-[node name="Hypershape2" parent="Viewport/World/Hypershapes" instance=ExtResource("2_34d6h")]
+[node name="Hypershape2" parent="Viewport/World/Hypershapes" instance=ExtResource("2_l2g32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03255, 1.46359, 37.3238)
 color = Vector3(2.255, 0.23, 0.04)
 dimensions = Vector4(1.54, 1.28, 0.115, 5)
 shapeType = 1
 
-[node name="Hypershape" parent="Viewport/World/Hypershapes" instance=ExtResource("2_34d6h")]
+[node name="Hypershape" parent="Viewport/World/Hypershapes" instance=ExtResource("2_l2g32")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7433, 3.06088, 22.0795)
 color = Vector3(-0.805, 1.6, -0.19)
 dimensions = Vector4(0.92, 0.54, 0.465, 5)
 shapeType = 1
 hyperInfo = Vector4(0.51, 1.39, -0.455, 0)
 
-[node name="Hypershape3" parent="Viewport/World/Hypershapes" instance=ExtResource("2_34d6h")]
+[node name="Hypershape3" parent="Viewport/World/Hypershapes" instance=ExtResource("2_l2g32")]
 transform = Transform3D(0.580703, -0.814116, 0, 0.809656, 0.577522, 0.104528, -0.0850982, -0.0607, 0.994522, -17.014, 7.586, -1.38)
 color = Vector3(0.785, -0.2, 0.685)
 dimensions = Vector4(0.92, 5.25, 0.465, 10)
 shapeType = 1
 hyperInfo = Vector4(-1.16, 2.62, 0.845, 0)
 
-[node name="Hypershape4" parent="Viewport/World/Hypershapes" instance=ExtResource("2_34d6h")]
+[node name="Hypershape4" parent="Viewport/World/Hypershapes" instance=ExtResource("2_l2g32")]
 transform = Transform3D(0.676377, -0.567548, -0.469471, 0.642788, 0.766044, 0, 0.359636, -0.30177, 0.882948, 5.859, 63.07, -25.953)
 color = Vector3(1.795, 1.135, 0.165)
 dimensions = Vector4(0.2, 1, 0.2, 30)
 shapeType = 1
 
-[node name="Hypershape5" parent="Viewport/World/Hypershapes" instance=ExtResource("2_34d6h")]
+[node name="Hypershape5" parent="Viewport/World/Hypershapes" instance=ExtResource("2_l2g32")]
 transform = Transform3D(0.743145, -0.66913, 0, 0.669131, 0.743145, 0, 0, 0, 1, -0.387, 101.681, -112.957)
 color = Vector3(1.21, 0.355, 0.14)
 dimensions = Vector4(30, 30, 20, 1)
 shapeType = 1
 hyperInfo = Vector4(2.945, 3.425, 3.39, -1.29)
 
-[node name="Player" parent="Viewport/World" instance=ExtResource("3_snsg5")]
+[node name="Player" parent="Viewport/World" instance=ExtResource("3_wvbs6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.03255, 1.27397, 39.6585)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport/World"]
