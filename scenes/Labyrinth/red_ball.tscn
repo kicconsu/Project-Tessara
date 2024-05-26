@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ci8mlsr2lhw8x"]
+
+[ext_resource type="Script" path="res://scripts/Tutorial/getnuked.gd" id="1_assg8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_drq0w"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_coeml"]
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ywofh"]
+radius = 0.556878
+
+[node name="redBall" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 14)
+script = ExtResource("1_assg8")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 1.01062, 0)
+material_override = SubResource("StandardMaterial3D_drq0w")
+mesh = SubResource("SphereMesh_coeml")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_ywofh")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

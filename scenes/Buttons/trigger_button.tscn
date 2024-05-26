@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv3nboonmvkfk"]
+
+[ext_resource type="Script" path="res://scripts/Objects/Buttons/trigger_button.gd" id="1_gg1n3"]
+[ext_resource type="PackedScene" uid="uid://d33ipqbswjoq2" path="res://scenes/Buttons/button.tscn" id="2_2pafh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmdpv"]
+size = Vector3(0.455322, 1.33978, 0.541565)
+
+[node name="TriggerButton" type="StaticBody3D"]
+collision_layer = 2
+script = ExtResource("1_gg1n3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0181885, 0.626862, -0.000152588)
+shape = SubResource("BoxShape3D_qmdpv")
+
+[node name="Button" parent="." instance=ExtResource("2_2pafh")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="interacted" from="." to="." method="_on_interacted"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

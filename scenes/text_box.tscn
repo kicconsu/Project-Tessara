@@ -1,0 +1,93 @@
+[gd_scene load_steps=7 format=3 uid="uid://d11iieumkt2fi"]
+
+[ext_resource type="Script" path="res://Scripts/text_box.gd" id="1_mnvo0"]
+[ext_resource type="AudioStream" uid="uid://b8mk7n5asvdv3" path="res://assets/sounds/sfx.mp3" id="2_2q7g0"]
+[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="2_n4vxl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qg8hb"]
+bg_color = Color(0.215686, 0.337255, 0.917647, 0.670588)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_li6pq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ahaka"]
+font = ExtResource("2_n4vxl")
+font_size = 40
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TextBox" type="CanvasLayer"]
+script = ExtResource("1_mnvo0")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_2q7g0")
+volume_db = 2.811
+pitch_scale = 0.93
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qg8hb")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+visible = false
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_li6pq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 0
+text = "*"
+label_settings = SubResource("LabelSettings_ahaka")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(1000, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Placeholder para cuando quieras hacer algo bien gracioso"
+label_settings = SubResource("LabelSettings_ahaka")
+horizontal_alignment = 1
+vertical_alignment = 3
+autowrap_mode = 3
+clip_text = true
+max_lines_visible = 2
+
+[node name="End" type="Label" parent="TextboxContainer/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 8
+text = "v"
+label_settings = SubResource("LabelSettings_ahaka")
+horizontal_alignment = 1

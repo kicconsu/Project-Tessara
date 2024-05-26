@@ -1,4 +1,3 @@
-class_name WorldWall
 extends CSGBox3D
 
 func _ready():
