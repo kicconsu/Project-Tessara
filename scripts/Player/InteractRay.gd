@@ -3,7 +3,7 @@ extends RayCast3D
 @onready var prompt = $prompt
 
 #This is useful to detect if a hypershape is being pointed to (see getShape()
-@onready var areas:Area3D = self.get_parent().get_parent().get_parent().get_node("collider").get_node("sdfregion")
+@onready var areas:Area3D = $"../../collider/sdfregion"
 var localPos:Vector3 = self.get_transform().origin
 var RAYCAST_LENGTH = 20
 

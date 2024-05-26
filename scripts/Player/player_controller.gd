@@ -3,11 +3,12 @@ extends CharacterBody3D
 @onready var head:Node3D = $Head
 @onready var region:CollisionShape3D = $collider/sdfregion/sdfsphere
 @onready var body:CollisionShape3D = $collider
-@onready var raycast:RayCast3D = $Head/eyes/InteractRay
+@onready var raycast:RayCast3D = $Head/InteractRay
 @onready var camera = $Head/eyes
-@onready var hand = $Head/eyes/Hand
-@onready var joint = $Head/eyes/joint
-@onready var aux = $Head/eyes/aux
+
+@onready var hand = $Head/Hand
+@onready var joint = $Head/joint
+@onready var aux = $Head/aux
 
 signal enable_hyper_inspection
 signal disable_hyper_inspection
