@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_eeyai"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="1_obbmp"]
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="2_71fet"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="1_obbmp"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="2_71fet"]
 [ext_resource type="Script" path="res://scripts/fpscounter.gd" id="4_y11jm"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="5_ej2lh"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="5_ej2lh"]
 
 [node name="root" type="SubViewportContainer"]
 texture_filter = 1
@@ -56,21 +56,18 @@ hyperInfo = Vector4(3.68, 4.755, 9.525, 0.525)
 
 [node name="Hypershape4" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(0.108902, 0.994053, 0, -0.994053, 0.108902, 0, 0, 0, 1, 1.07928, 2.56681, -11.8245)
-color = Vector3(1.22, 0.82, 0.42)
 dimensions = Vector4(8.5, 1.19, 1.345, 1.525)
 shapeType = 1
 hyperInfo = Vector4(-0.17, 13.475, 7.315, 0)
 
 [node name="Hypershape2" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(0.0707905, 0.757117, 0.649432, 0.992047, 0.0144945, -0.125035, -0.104079, 0.653118, -0.750069, -4.512, 1.50948, -4.6852)
-color = Vector3(1.85, 0, 0.435)
 dimensions = Vector4(3.445, 3.18, 12.64, 6.2)
 shapeType = 1
 hyperInfo = Vector4(-0.46, 4.855, -3.41, 5.91)
 
 [node name="Hypershape3" parent="viewport/TestArena" instance=ExtResource("1_obbmp")]
 transform = Transform3D(-0.297707, -0.952848, 0.0587446, -0.597198, 0.137874, -0.790155, 0.744798, -0.270317, -0.610086, -4.488, 1.066, -7.03704)
-color = Vector3(0.635, 0.835, 1.5)
 dimensions = Vector4(1.985, 3.045, 0.64, 10)
 shapeType = 1
 hyperInfo = Vector4(4.005, -0.86, 5.17, 0.905)

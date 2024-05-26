@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://q6htwbr7ubm2"]
+[gd_scene load_steps=11 format=3 uid="uid://q6htwbr7ubm2"]
 
-[ext_resource type="Script" path="res://scripts/Player/player_controller.gd" id="1_x2bix"]
-[ext_resource type="Script" path="res://scripts/Player/hyperCnS.gd" id="2_8elja"]
-[ext_resource type="Script" path="res://scripts/Player/sdfEvaluator.gd" id="3_ywqjp"]
-[ext_resource type="Script" path="res://scripts/Player/InteractRay.gd" id="4_dj0eu"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/Player/raymarchCam.tscn" id="5_ysrul"]
+[ext_resource type="Script" path="res://Scripts/Player/player_controller.gd" id="1_x2bix"]
+[ext_resource type="Script" path="res://Scripts/Player/hyperCnS.gd" id="2_8elja"]
+[ext_resource type="Script" path="res://Scripts/Player/sdfEvaluator.gd" id="3_ywqjp"]
+[ext_resource type="Script" path="res://Scripts/Player/InteractRay.gd" id="4_dj0eu"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_3ebqn"]
+[ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="6_bxm2i"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
@@ -37,6 +38,7 @@ shape = SubResource("SphereShape3D_01m26")
 
 [node name="feetsdf" type="RayCast3D" parent="collider"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.999889, 0)
+rotation_edit_mode = 2
 top_level = true
 target_position = Vector3(0, 0, -4)
 collision_mask = 0
@@ -59,6 +61,8 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501647, 0)
 
+[node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]
+
 [node name="InteractRay" type="RayCast3D" parent="Head"]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
 target_position = Vector3(0, 0, -4)
@@ -80,5 +84,28 @@ text = "Hyper It!!
 label_settings = SubResource("LabelSettings_sk48v")
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="eyes" parent="Head" instance=ExtResource("5_ysrul")]
+[node name="ColorRect" type="ColorRect" parent="Head/InteractRay"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.129653, 0.0156, 0.26, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Hand" type="Marker3D" parent="Head"]
+script = ExtResource("6_bxm2i")
+
+[node name="aux" type="StaticBody3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+
+[node name="joint" type="Generic6DOFJoint3D" parent="Head"]
+node_a = NodePath("../aux")
