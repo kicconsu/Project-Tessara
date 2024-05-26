@@ -6,32 +6,33 @@ extends CharacterBody3D
 @onready var raycast:RayCast3D = $Head/InteractRay
 @onready var camera = $Head/eyes
 
-@onready var hand = $Head/Hand
-@onready var joint = $Head/joint
-@onready var aux = $Head/aux
+@onready var hand:Node3D = $Head/Hand
+@onready var joint:Node3D = $Head/joint
+@onready var aux:Node3D = $Head/aux
 
 signal enable_hyper_inspection
 signal disable_hyper_inspection
-var inspection_enabled = false
-var target_shape = null
 
-var locked = false
-var hyper_locked = false
+var inspection_enabled := false
+var target_shape : Node = null
+
+var locked := false
+var hyper_locked := false
 var physVel:Vector3
-var hypercolliding:bool = false
+var hypercolliding := false
 
-var mouseToggle = true
-var currentSpeed
+var mouseToggle := true
 
-const walkSpeed = 5.0
-const sprintSpeed = 8.0
-const jumpVelocity = 4.5
+var currentSpeed:float
+const walkSpeed := 5.0
+const sprintSpeed := 8.0
+const jumpVelocity := 4.5
 
-const mouse_sens = 0.25
+const mouse_sens := 0.25
 
-var lerp_speed = 10.0
-var direction = Vector3.ZERO
-
+var lerp_speed := 10.0
+var direction := Vector3.ZERO
+var distOffset:float = 5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -47,6 +48,9 @@ func _input(event):
 	
 	if Input.is_action_pressed("lclick"):
 		pick_object()
+		
+	if Input.is_action_just_pressed("lclick"): 
+		distOffset = raycast.distToShape
 	
 	if hand.picked_object != null and Input.is_action_just_released("lclick"):
 		hand.picked_object.set_freeze_enabled(true)
@@ -70,14 +74,25 @@ func _input(event):
 	if Input.is_action_just_released("ctrl"):
 		hyper_locked = false
 	
+	if Input.is_action_just_released("wheeldown") and hand.picked_object != null and !hyper_locked:
+		print("holding at dst: ", distOffset)
+		distOffset -= 0.2
+		distOffset = clamp(distOffset, 0.2, 7)
 	
+	if Input.is_action_just_released("wheelup") and hand.picked_object != null and !hyper_locked:
+		print("holding at dst: ", distOffset)
+		distOffset += 0.2
+		distOffset = clamp(distOffset, 0.2, 7)
+	
+	#Toggle Hyperhand coloration mode by emitting a signal
+	if Input.is_action_just_pressed("ui_focus_next"):
+		inspection_enabled = !inspection_enabled
+		if inspection_enabled:
+			enable_hyper_inspection.emit()
+		else:
+			disable_hyper_inspection.emit()
 
 func _physics_process(delta):
-	#print("\ninspection enabled: ",inspection_enabled)
-	#print("target_shape: ",target_shape)
-	#print("hand.picked_object: ",hand.picked_object,"\n")
-	
-	#print("hypercolliding" if hypercolliding else "not hypercolliding")
 	
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
@@ -117,12 +132,13 @@ func _physics_process(delta):
 	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
 	
-	#HyperHand initial implementation
-	if Input.is_action_just_pressed("ui_focus_next"):
-		disable_hyper_inspection.emit() if inspection_enabled else enable_hyper_inspection.emit()
-
+	move_and_slide()
+	
+func _process(_delta):
+	#-camera.transform.basis.z returns the forward direction of the camera as a Vector3
+	var cameraForward : Vector3 = -camera.get_global_transform().basis.z
 	if inspection_enabled:
-		var shape = raycast.getShape(-camera.get_global_transform().basis.z) #That weird camera thing returns the forward direction of the camera as a Vector3
+		var shape = raycast.getShape(cameraForward) 
 		if shape != null:
 			if target_shape == null:
 				shape.colorAsTarget()
@@ -135,10 +151,8 @@ func _physics_process(delta):
 			target_shape.colorOnInspection()
 			target_shape = null
 		
-	if hand.picked_object != null and not hyper_locked:
-		hand.pull_object()
-	
-	move_and_slide()
+	if hand.picked_object != null:
+		hand.pull_object(cameraForward*distOffset)
 
 func rotate_head(event):
 	if event is InputEventMouseMotion and mouseToggle and Input.get_mouse_mode() == 2:

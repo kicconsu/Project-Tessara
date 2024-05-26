@@ -2,4 +2,4 @@
 .godot/
 **.tmp
 **.import
-test_arena.tscn
+scenes/test_arena.tscn

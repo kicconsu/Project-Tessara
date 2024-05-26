@@ -4,14 +4,9 @@ extends RayCast3D
 
 #This is useful to detect if a hypershape is being pointed to (see getShape()
 @onready var areas:Area3D = $"../../collider/sdfregion"
-var localPos:Vector3 = self.get_transform().origin
-var RAYCAST_LENGTH = 20
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
-
+@onready var localPos:Vector3 = self.get_parent().get_transform().origin
+var distToShape:float = 0
+var RAYCAST_LENGTH:float = 20
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -26,9 +21,9 @@ func _process(_delta):
 			if Input.is_action_just_pressed(detected.prompt_action):
 				detected.interact(owner)
 
+#Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
+#if theres a hit, we send the shape information, so the player can interact with it
 func getShape(direction:Vector3):
-	#Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
-	#if theres a hit, we send the shape information, so the player can interact with it
 	
 	#print("\nCurrently pointing at: ",direction.normalized())
 	
@@ -68,6 +63,7 @@ func _getColliderAcross(from:Vector3, to:Vector3):
 		steps += 1
 		if popo[0] < 0.05:
 			#print("Found it baby!!!!")
+			distToShape = dist
 			return popo[1]
 	#print("Well... it was a fun ride...\n")
 	return null
@@ -79,7 +75,7 @@ func _distFromShapes(pos:Vector3) -> Array:
 	for area in areas.get_overlapping_areas():
 		var shape = area.get_parent()
 		match shape.getShapeType():
-			_:
+			1:
 				var shapeTransform = shape.get_global_transform()
 				var distToShape = _distToBox(shapeTransform, shape.getSize(), Vector4(pos.x, pos.y, pos.z, 0.0), shape.getHyperInfo())
 				if distToShape < dist:

@@ -8,11 +8,9 @@ func _ready():
 	shapesInScene = get_tree().get_nodes_in_group("hyperShapes")
 
 func _enable_hyper_inspection():
-	player.setInspectionEnabled(true)
 	for shape in shapesInScene:
 		shape.colorOnInspection()
 
 func _disable_hyper_inspection():
-	player.setInspectionEnabled(false)
 	for shape in shapesInScene:
 		shape.colorFromScratch()
