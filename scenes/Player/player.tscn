@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/sdfEvaluator.gd" id="3_ywqjp"]
 [ext_resource type="Script" path="res://Scripts/Player/InteractRay.gd" id="4_dj0eu"]
 [ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_3ebqn"]
-[ext_resource type="Script" path="res://Scripts/PlayerHand.gd" id="6_bxm2i"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerHand.gd" id="6_achbf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
@@ -102,7 +102,7 @@ color = Color(0.129653, 0.0156, 0.26, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="Hand" type="Marker3D" parent="Head"]
-script = ExtResource("6_bxm2i")
+script = ExtResource("6_achbf")
 
 [node name="aux" type="StaticBody3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)

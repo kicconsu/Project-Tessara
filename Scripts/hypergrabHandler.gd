@@ -7,11 +7,6 @@ func _ready():
 	player.disable_hyper_inspection.connect(_disable_hyper_inspection)
 	shapesInScene = get_tree().get_nodes_in_group("hyperShapes")
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _enable_hyper_inspection():
 	player.setInspectionEnabled(true)
 	for shape in shapesInScene:
