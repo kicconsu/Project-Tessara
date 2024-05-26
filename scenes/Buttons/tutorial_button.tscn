@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://dg6rmyfjtah6s"]
 
-[ext_resource type="Script" path="res://scripts/Tutorial/getnuked.gd" id="1_r3ltd"]
+[ext_resource type="Script" path="res://Scripts/Tutorial/getnuked.gd" id="1_r3ltd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhg4k"]
 albedo_color = Color(1, 0.223529, 0.0117647, 1)

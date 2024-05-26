@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d33ipqbswjoq2"]
 
 [ext_resource type="PackedScene" uid="uid://dqcuvgau41lbt" path="res://assets/models/Button.glb" id="1_vtg8p"]
-[ext_resource type="Script" path="res://scripts/Objects/Buttons/button.gd" id="2_3bnrv"]
+[ext_resource type="Script" path="res://Scripts/Objects/Buttons/button.gd" id="2_3bnrv"]
 
 [node name="Button" instance=ExtResource("1_vtg8p")]
 script = ExtResource("2_3bnrv")

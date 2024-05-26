@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dnyub82qvlu1w"]
 
-[ext_resource type="Script" path="res://scripts/Tutorial/getnuked.gd" id="1_1mchr"]
+[ext_resource type="Script" path="res://Scripts/Tutorial/getnuked.gd" id="1_1mchr"]
 
 [node name="Labyrinth" type="Node3D"]
 transform = Transform3D(1.055, 0, 0, 0, 1.055, 0, 0, 0, 1.055, 0.66694, 15.6247, 0)
