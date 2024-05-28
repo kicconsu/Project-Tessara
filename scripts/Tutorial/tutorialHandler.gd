@@ -82,10 +82,6 @@ func _process(_delta):
 		Animations.play("blink")
 		camera_transition.start()
 	
-	# Al presionar Esc aparece o desaparece el cursor
-	#if Input.is_action_just_pressed("pause"):
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED)
-			
 	
 	if questCompleted:
 		change_state()

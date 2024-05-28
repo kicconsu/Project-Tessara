@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://3npl0u6dfar2"]
 
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="1_2hq1g"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="2_26v5b"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="4_8t0k0"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_2hq1g"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_26v5b"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="4_8t0k0"]
 
 [node name="Root" type="SubViewportContainer"]
 anchors_preset = 15

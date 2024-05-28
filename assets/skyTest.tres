@@ -1,0 +1,15 @@
+[gd_resource type="Sky" load_steps=2 format=3 uid="uid://chswvcf7hqojy"]
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_x2ork"]
+rayleigh_coefficient = 64.0
+rayleigh_color = Color(0.70372, 0.2044, 0.73, 1)
+mie_coefficient = 0.05
+mie_eccentricity = 0.98
+mie_color = Color(0.658125, 0.6075, 0.81, 1)
+turbidity = 221.24
+ground_color = Color(0.2009, 0.196, 0.49, 1)
+energy_multiplier = 0.8
+use_debanding = false
+
+[resource]
+sky_material = SubResource("PhysicalSkyMaterial_x2ork")

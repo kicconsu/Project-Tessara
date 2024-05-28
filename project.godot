@@ -11,18 +11,18 @@ config_version=5
 [application]
 
 config/name="ProjectTessara"
-run/main_scene="res://scenes/test_arena.tscn"
+run/main_scene="res://Scenes/Levels/Lev1.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-CameraTransition="*res://autoload/camera_transition.tscn"
+CameraTransition="*res://Autoload/camera_transition.tscn"
 
 [display]
 
-window/size/viewport_width=360
-window/size/viewport_height=360
+window/size/viewport_width=600
+window/size/viewport_height=600
 window/stretch/scale_mode="integer"
 
 [file_customization]

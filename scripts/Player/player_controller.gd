@@ -20,6 +20,7 @@ var locked := false
 var hyper_locked := false
 var physVel:Vector3
 var hypercolliding := false
+var cameraForward:=Vector3(1,0,0)
 
 var mouseToggle := true
 
@@ -43,8 +44,12 @@ func _ready():
 
 func _input(event):
 	
-	if !locked and !hyper_locked:
-		rotate_head(event)	
+	if event is InputEventMouseMotion:
+		if mouseToggle and Input.get_mouse_mode() == 2 and !locked and !hyper_locked:
+			rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
+			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
+			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	
 	
 	if Input.is_action_pressed("lclick"):
 		pick_object()
@@ -134,9 +139,12 @@ func _physics_process(delta):
 	
 	move_and_slide()
 	
+	if hand.picked_object != null:
+		hand.pull_object(cameraForward*distOffset)
+	
 func _process(_delta):
 	#-camera.transform.basis.z returns the forward direction of the camera as a Vector3
-	var cameraForward : Vector3 = -camera.get_global_transform().basis.z
+	cameraForward = -camera.get_global_transform().basis.z
 	if inspection_enabled:
 		var shape = raycast.getShape(cameraForward) 
 		if shape != null:
@@ -150,15 +158,6 @@ func _process(_delta):
 		elif target_shape != null:
 			target_shape.colorOnInspection()
 			target_shape = null
-		
-	if hand.picked_object != null:
-		hand.pull_object(cameraForward*distOffset)
-
-func rotate_head(event):
-	if event is InputEventMouseMotion and mouseToggle and Input.get_mouse_mode() == 2:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func pick_object():
 	if  target_shape != null:# and collider is Trigger:
