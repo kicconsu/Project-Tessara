@@ -14,28 +14,30 @@ var mouseToggle = true
 var currentSpeed
 
 const walkSpeed = 5.0
-const sprintSpeed = 8.0
+const sprintSpeed = 15
 const jumpVelocity = 4.5
 
 const mouse_sens = 0.25
 
 var lerp_speed = 10.0
 var direction = Vector3.ZERO
+var locked = true
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass	
 
 func _input(event):
 	
-	if event is InputEventMouseMotion and mouseToggle and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-		head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+	if !locked:
+		if event is InputEventMouseMotion and mouseToggle and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
+			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
+			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 
 func _physics_process(delta):
 	

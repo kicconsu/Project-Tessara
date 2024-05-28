@@ -1,19 +1,25 @@
 extends Node3D
 
 @onready var text_box = $TextBox
-@onready var expansion_sound = $World/expansionSound
-@onready var pop = $World/popSound
+
 @onready var red_ball = $redBall
 
 # Animations
 @onready var Animations = $Animations
+@onready var _2d_anim = $"SecondDimensionQuest/2DAnim"
+
+# Sounds
+@onready var expansion_sound = $World/expansionSound
+@onready var pop = $World/popSound
+@onready var fall = $SecondDimensionQuest/fall
+@onready var pop_xd = $"SecondDimensionQuest/pop?xd"
 
 # Player
 @onready var player = $Player
 
 # Camera
 @onready var ceilingCamera = $Ceiling/Camera3D
-@onready var playerCam = $"Player/Head/playerCam"
+@onready var playerCam = $"Player/Head/eyes"
 
 # Timer
 @onready var timer = $World/Timer
@@ -24,8 +30,13 @@ extends Node3D
 @onready var labyrinth = $SecondDimensionQuest/Labyrinth
 
 # Second Dimension Quest
-@onready var tutbut1 = $SecondDimensionQuest/TutBut1
-@onready var tutbut2 = $SecondDimensionQuest/TutBut2
+@onready var tutbut1 = $"SecondDimensionQuest/2DButtons/TutBut1"
+@onready var tutbut2 = $"SecondDimensionQuest/2DButtons/TutBut2"
+@onready var tutbut3 = $"SecondDimensionQuest/2DButtons/TutBut3"
+@onready var tutbut4 = $"SecondDimensionQuest/2DButtons/TutBut4"
+@onready var tutbut5 = $"SecondDimensionQuest/2DButtons/TutBut5"
+
+@onready var pillar = $SecondDimensionQuest/Pillar
 
 # Global Quest VARs
 var current_state = State.Void
@@ -47,7 +58,8 @@ enum State{
 	FirstDimension,
 	FirstDimensionQuest,
 	SecondDimension,
-	SecondDimensionQuest,
+	SecondDimension1stQuest,
+	SecondDimension2ndQuest,
 	ThirdDimension,
 	ThirdDimensionQuest,
 	FourthDimension
@@ -55,8 +67,6 @@ enum State{
 
 
 func _ready():
-	
-	print(Input.get_mouse_mode())
 	
 	# Carga de dialogos para la primera dimension 
 			
@@ -69,29 +79,49 @@ func _ready():
 	
 func _process(_delta):
 
-	
 	if Input.is_action_just_pressed("test"):
 		#obstacle.set_freeze_enabled(false)
 		#Animations.play("Labyrinth")
 		#labyrinth.set_visible(true)
-		labyrinth.nuke()
+		Animations.play("pillarFall")
+		fall.play()	
 		pass
 	
 	# Al presionar C cambia a primera persona
 	if Input.is_action_just_pressed("changeState"):
-		Animations.play("blink")
+		#Animations.play("blink")
+		player.locked = false
+		
+		pillar.get_material_override().set_shading_mode(1)
 		camera_transition.start()
 	
-	# Al presionar Esc aparece o desaparece el cursor
-	#if Input.is_action_just_pressed("pause"):
-		#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED else Input.MOUSE_MODE_CAPTURED)
+	if State.SecondDimension1stQuest:
+		if questFailed and questFlag:
+		
+			if tutbut1 != null:
+				tutbut1.nuke()
+			if tutbut2 != null:
+				tutbut2.nuke()
+				
+			relatedQuest = true
+			questFailed = false
+			questFlag = false
+				
+			labyrinth.nuke()
+			change_state()
+			timer.emit_signal("timeout")
+		
+		if questCompleted:
+			timer.stop()
 			
-	
-	if questCompleted:
-		change_state()
-		timer.emit_signal("timeout")
-		questCompleted = false
-	
+			questCompleted = false
+			questFailed = false
+			questFlag = false
+			change_state()
+			timer.emit_signal("timeout")
+		
+		
+		
 	
 	# Cuando no hay mas dialogos en un estado, significa que seguira la secuencia de State
 	if text_box.text_queue.is_empty() and text_box.State.FINISHED:	
@@ -109,7 +139,7 @@ func _process(_delta):
 					if relatedQuest:
 						red_ball.set_position(Vector3(5, 0.08, 0))
 						timer.set_wait_time(3)
-						timer.start()				
+						timer.start()
 						change_state()
 						relatedQuest = false
 
@@ -119,27 +149,22 @@ func _process(_delta):
 						expansion_sound.play()
 						twoDimension = true
 						timer.set_wait_time(2)
-						timer.start()				
+						timer.start()
 						change_state()
 						relatedQuest = false
 						
 				State.SecondDimension:
 					if relatedQuest:
 						timer.set_wait_time(2)
-						timer.start()				
+						timer.start()
 						change_state()
 						relatedQuest = false
 				
-				State.SecondDimensionQuest:
-					if questFailed and questFlag:
-						print("fallo?")
-						change_state()
-						timer.emit_signal("timeout")
-						relatedQuest = false
-					
+				State.SecondDimension1stQuest:
+	
 					if relatedQuest:		
 						print("comenzo")
-						timer.set_wait_time(5)
+						timer.set_wait_time(15)
 						timer.start()
 						
 						Animations.play("Labyrinth")
@@ -151,9 +176,11 @@ func _process(_delta):
 															
 						var t1 = get_tree().create_tween()
 						var t2 = get_tree().create_tween()
+						var t3 = get_tree().create_tween()
 						
 						t1.tween_property(tutbut1, "scale", Vector3(1,1,1), 1).set_ease(Tween.EASE_IN_OUT)
 						t2.tween_property(tutbut2, "scale", Vector3(1,1,1), 1).set_ease(Tween.EASE_IN_OUT)
+						t3.tween_property(player, "position", Vector3(0.2,1,1), 1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
 											
 						tutbut1.translate(Vector3(0,-6,0))
 						tutbut2.translate(Vector3(0,-6,0))
@@ -161,14 +188,19 @@ func _process(_delta):
 						relatedQuest = false
 						questFailed = true
 						
-				State.ThirdDimension:
-					print("a")
-					if relatedQuest:
-						print("eee")
-						Animations.play("blink")
-						camera_transition.start()
+				State.SecondDimension2ndQuest:
+					
+					if questFlag:
+						_2d_anim.play("butRise")
 						
+					
+					if relatedQuest:
+						Animations.play("pillarRise")
+						_2d_anim.play("tutbutRise")
+						
+						questFlag = true
 						relatedQuest = false
+						
 					
 
 
@@ -186,10 +218,10 @@ func change_state():
 			Animations.play("extendWalls Up & Down")
 			pass
 		State.SecondDimension:	# De 2D a 2DQuest
-			current_state = State.SecondDimensionQuest
+			current_state = State.SecondDimension1stQuest
 			pass
-		State.SecondDimensionQuest:	# De 2DQuest a 3D
-			current_state = State.ThirdDimension
+		State.SecondDimension1stQuest:	# De 2DQuest a 3D
+			current_state = State.SecondDimension2ndQuest
 			pass
 	
 # Carga de dialogos
@@ -210,9 +242,7 @@ func _on_timer_timeout():
 			#text_box.queue_text("Ahora si podemos movernos mejor")
 			#text_box.queue_text("¡Intenta ir mas rapido con SHIFT!")
 			relatedQuest = true
-		State.SecondDimensionQuest:
-			print("qF",questFailed)
-			print("qC",questCompleted)
+		State.SecondDimension1stQuest:
 			if !questFailed:
 				text_box.queue_text("Juguemos este juego, trata de tocar ambos botones en el menor tiempo posible")
 				#text_box.queue_text("Pero... puedes tratar de agarrar la bola...")
@@ -222,13 +252,17 @@ func _on_timer_timeout():
 			elif questFailed and !questCompleted:
 				text_box.queue_text("Como vg demoras tanto loco")
 				questFlag = true
-				
-		State.ThirdDimension:
-			text_box.queue_text("Suficiente guachafita de 2 dimensiones")
-			#text_box.queue_text("che, yo quiero algo bien bacano")
-			#text_box.queue_text("deja arreglo unas cosas....")
-			#text_box.queue_text("movamonos rey(na)")
-			relatedQuest = true
+		State.SecondDimension2ndQuest:
+			print("qFl",questFlag)
+			if !questFlag:
+				text_box.queue_text("¿Que tal mi pequeño laberinto?")
+				#text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
+				#text_box.queue_text("Bueno, intentemos otra cosa")
+				#text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
+				relatedQuest = true
+			else:
+				text_box.queue_text("Parece que no puedes tocar la siguiente bola")
+				text_box.queue_text("Toca este boton especial")
 			
 # Cada vez que el Player colisione con la bola, esta aparece en otro lugar random
 func _on_red_ball_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
@@ -252,7 +286,8 @@ func _on_camera_transition_timeout():
 	player.mouseToggle = true
 
 func _on_tut_but_1_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
-	#Animations.play("Labyrinth_Anim_But1")	
+	pop_xd.play()
+	Animations.play("Labyrinth_Anim_But1")	
 	tutbut1.nuke()
 	tutbut1.translate(Vector3(0,6,0))
 	
@@ -261,10 +296,27 @@ func _on_tut_but_1_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 		questCompleted = true
 
 func _on_tut_but_2_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
-	#Animations.play("Labyrinth_Anim_But2")	
+	pop_xd.play()
+	Animations.play("Labyrinth_Anim_But2")	
 	tutbut2.nuke()
 	tutbut2.translate(Vector3(0,6,0))
 	
 	if tutbut1 == null:
 		labyrinth.nuke()
 		questCompleted = true
+
+func _on_tut_but_3_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
+	timer.set_wait_time(5)
+	timer.start()
+	tutbut3.nuke()
+	pop_xd.play()
+
+func _on_tut_but_4_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
+	tutbut4.nuke()
+	pop_xd.play()
+
+func _on_tut_but_5_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
+	tutbut5.nuke()
+	pop_xd.play()
+	Animations.play("pillarFall")
+	

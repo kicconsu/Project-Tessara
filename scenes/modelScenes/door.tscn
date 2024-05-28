@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cv6m3hs13pn7e"]
+
+[ext_resource type="PackedScene" uid="uid://4vlj4n1buslb" path="res://assets/models/Door.glb" id="1_k7sit"]
+[ext_resource type="Script" path="res://scripts/Objects/models/modeldoor.gd" id="2_76hc7"]
+
+[node name="Door" instance=ExtResource("1_k7sit")]
+script = ExtResource("2_76hc7")
+
+[node name="Cube_003" parent="." index="2"]
+transform = Transform3D(0.982467, -0.0617033, -0.0669006, 0.164463, 0.391924, -1.02166e-09, 0.247129, -0.0155208, 0.265965, 0.651055, 6.64372, 0.102732)

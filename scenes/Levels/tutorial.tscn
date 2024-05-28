@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=39 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -7,9 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://dp1oisuh80wsh" path="res://assets/images/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="4_i7u6h"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="5_fkbo0"]
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://scenes/Labyrinth/red_ball.tscn" id="5_osr12"]
-[ext_resource type="PackedScene" path="res://Scenes/Labyrinth/obstacle.tscn" id="7_jl17e"]
+[ext_resource type="PackedScene" uid="uid://bdcw66mam3hob" path="res://scenes/Labyrinth/obstacle.tscn" id="7_jl17e"]
 [ext_resource type="PackedScene" uid="uid://dnyub82qvlu1w" path="res://scenes/Labyrinth/labyrinth.tscn" id="8_crn6b"]
-[ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://scenes/Buttons/tutorial_button.tscn" id="9_xtsgp"]
+[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://scenes/portal.tscn" id="9_m8k2h"]
+[ext_resource type="AudioStream" uid="uid://bscomfujsksda" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
+[ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
+[ext_resource type="AudioStream" uid="uid://dkmr1vkwc2hs5" path="res://assets/sounds/press.mp3" id="14_mx4rw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
 disable_ambient_light = true
@@ -31,6 +34,9 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s27qj"]
 albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja7wd"]
+albedo_color = Color(0.207843, 0.435294, 1, 1)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gu6mj"]
 panorama = ExtResource("4_i7u6h")
@@ -1246,6 +1252,66 @@ tracks/33/keys = {
 "update": 0,
 "values": [Vector3(1, 2.2388, 12)]
 }
+tracks/34/type = "value"
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/path = NodePath("Floors/movingFloor:position")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(6, -2.27073, -0.5)]
+}
+tracks/35/type = "value"
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut3:position")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-11, -1, 0)]
+}
+tracks/36/type = "value"
+tracks/36/imported = false
+tracks/36/enabled = true
+tracks/36/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut4:position")
+tracks/36/interp = 1
+tracks/36/loop_wrap = true
+tracks/36/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(7, -2, 0)]
+}
+tracks/37/type = "value"
+tracks/37/imported = false
+tracks/37/enabled = true
+tracks/37/path = NodePath("../SecondDimensionQuest/Pillar:position")
+tracks/37/interp = 1
+tracks/37/loop_wrap = true
+tracks/37/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-17, 2.5, 0)]
+}
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("../SecondDimensionQuest/Pillar:rotation")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_y4ff4"]
 resource_name = "blink"
@@ -1415,6 +1481,61 @@ tracks/4/keys = {
 "values": [Vector3(28, 0.1, 1), Vector3(28, 0.1, 15)]
 }
 
+[sub_resource type="Animation" id="Animation_jk4va"]
+resource_name = "pillarFall"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SecondDimensionQuest/Pillar:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(3.36358, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, -1.14633)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SecondDimensionQuest/Pillar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(3.605, 1),
+"update": 0,
+"values": [Vector3(-3, 3.5, 0), Vector3(0, 1.185, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e48mo"]
+resource_name = "pillarRise"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Floors/movingFloor:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.31864, 1),
+"update": 0,
+"values": [Vector3(20, -2.27073, -0.0643587), Vector3(8, 0.729271, -0.0643587)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../SecondDimensionQuest/Pillar:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.217638, 1),
+"update": 0,
+"values": [Vector3(-15, 3.5, 0), Vector3(-3, 3.5, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_luthe"]
 _data = {
 "Labyrinth": SubResource("Animation_wfmny"),
@@ -1423,8 +1544,127 @@ _data = {
 "RESET": SubResource("Animation_knelt"),
 "blink": SubResource("Animation_y4ff4"),
 "extendWalls Left & Right": SubResource("Animation_11qeb"),
-"extendWalls Up & Down": SubResource("Animation_w1arq")
+"extendWalls Up & Down": SubResource("Animation_w1arq"),
+"pillarFall": SubResource("Animation_jk4va"),
+"pillarRise": SubResource("Animation_e48mo")
 }
+
+[sub_resource type="Animation" id="Animation_54rju"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2DButtons/TutBut3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-11, -1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2DButtons/TutBut4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(7, -2, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("2DButtons/TutBut5:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-4, -2, 4)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("2DButtons/TutBut5:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0089885)]
+}
+
+[sub_resource type="Animation" id="Animation_i0xp6"]
+resource_name = "butRise"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2DButtons/TutBut5:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-4, -2, 4), Vector3(-4, 2, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2DButtons/TutBut5:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6, 1.6, 2.3),
+"transitions": PackedFloat32Array(3.36358, 0.277393, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0089885), Vector3(0, 0, 1.57978), Vector3(0, 1.57952, 1.57952)]
+}
+
+[sub_resource type="Animation" id="Animation_u3kvw"]
+resource_name = "tutbutRise"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("2DButtons/TutBut3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-11, -1, 0), Vector3(-11, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("2DButtons/TutBut4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(7, -2, 0), Vector3(7, 3, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cny1l"]
+_data = {
+"RESET": SubResource("Animation_54rju"),
+"butRise": SubResource("Animation_i0xp6"),
+"tutbutRise": SubResource("Animation_u3kvw")
+}
+
+[sub_resource type="ORMMaterial3D" id="ORMMaterial3D_7h6v2"]
+shading_mode = 0
+disable_receive_shadows = true
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_sbt0f")
@@ -1443,7 +1683,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_left = -22.0
 offset_top = -500.0
-offset_right = 120194.0
+offset_right = 123794.0
 offset_bottom = -6.10352e-05
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
@@ -1456,7 +1696,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -30.0
 offset_top = 290.0
-offset_right = 120186.0
+offset_right = 123786.0
 offset_bottom = 790.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -1508,6 +1748,34 @@ use_collision = true
 collision_layer = 2
 size = Vector3(1, 2, 1)
 
+[node name="InvisibleWalls" type="Node3D" parent="World"]
+transform = Transform3D(1, 0, 0, 0, 3.18, 0, 0, 0, 1, 0, 4.27578, 0)
+visible = false
+
+[node name="InvWall_1" type="CSGBox3D" parent="World/InvisibleWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8)
+use_collision = true
+collision_layer = 2
+size = Vector3(29, 1, 1)
+
+[node name="InvWall_2" type="CSGBox3D" parent="World/InvisibleWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+use_collision = true
+collision_layer = 2
+size = Vector3(29, 1, 1)
+
+[node name="InvWall_3" type="CSGBox3D" parent="World/InvisibleWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+use_collision = true
+collision_layer = 2
+size = Vector3(1, 1, 17)
+
+[node name="InvWall_4" type="CSGBox3D" parent="World/InvisibleWalls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.969, 0, 0.0307517)
+use_collision = true
+collision_layer = 2
+size = Vector3(1, 1, 17)
+
 [node name="Floors" type="Node3D" parent="World"]
 
 [node name="Floor" type="CSGBox3D" parent="World/Floors"]
@@ -1523,6 +1791,14 @@ material_override = SubResource("StandardMaterial3D_s27qj")
 use_collision = true
 collision_layer = 2
 size = Vector3(1, 0.1, 1)
+
+[node name="movingFloor" type="CSGBox3D" parent="World/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -2.27073, -0.5)
+material_override = SubResource("StandardMaterial3D_ja7wd")
+use_collision = true
+collision_layer = 2
+collision_mask = 3
+size = Vector3(10.712, 3.56531, 14.6124)
 
 [node name="Timer" type="Timer" parent="World"]
 wait_time = 10.0
@@ -1550,7 +1826,7 @@ shadow_enabled = true
 [node name="redBall" parent="." instance=ExtResource("5_osr12")]
 
 [node name="Player" parent="." instance=ExtResource("5_fkbo0")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0, 0.174211, 0)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3.99808, 1.17421, 3.99207)
 collision_mask = 3
 
 [node name="TextBox" parent="." instance=ExtResource("3_rd8co")]
@@ -1571,24 +1847,64 @@ gravity_scale = 8.0
 freeze = true
 freeze_mode = 1
 
+[node name="Portal" parent="." instance=ExtResource("9_m8k2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182942, 8.51637)
+
 [node name="SecondDimensionQuest" type="Node3D" parent="."]
+
+[node name="fall" type="AudioStreamPlayer" parent="SecondDimensionQuest"]
+stream = ExtResource("12_a67lk")
+volume_db = -8.758
+pitch_scale = 0.93
 
 [node name="Labyrinth" parent="SecondDimensionQuest" instance=ExtResource("8_crn6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494344, 2.91697, -0.263956)
 visible = false
 
-[node name="TutBut1" parent="SecondDimensionQuest" instance=ExtResource("9_xtsgp")]
+[node name="2DAnim" type="AnimationPlayer" parent="SecondDimensionQuest"]
+libraries = {
+"": SubResource("AnimationLibrary_cny1l")
+}
+
+[node name="pop?xd" type="AudioStreamPlayer" parent="SecondDimensionQuest"]
+stream = ExtResource("14_mx4rw")
+
+[node name="Pillar" type="CSGBox3D" parent="SecondDimensionQuest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 2.5, 0)
+material_override = SubResource("ORMMaterial3D_7h6v2")
+cast_shadow = 0
+gi_mode = 0
+operation = 1
+use_collision = true
+collision_layer = 2
+size = Vector3(1, 8, 1)
+
+[node name="2DButtons" type="Node3D" parent="SecondDimensionQuest"]
+
+[node name="TutBut1" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -12.105, 3.35159, 0.761646)
 visible = false
 
-[node name="TutBut2" parent="SecondDimensionQuest" instance=ExtResource("9_xtsgp")]
+[node name="TutBut2" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 12.2817, 3.35159, -5.32083)
 visible = false
+
+[node name="TutBut3" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 0)
+
+[node name="TutBut4" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -2, 0)
+
+[node name="TutBut5" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
+transform = Transform3D(0.99996, -0.00898837, 0, 0.00898838, 0.999959, 0, 0, 0, 1, -4, -2, 4)
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="World/Timer" to="." method="_on_timer_timeout"]
 [connection signal="timeout" from="World/Timer" to="World" method="_on_timer_timeout"]
 [connection signal="body_shape_entered" from="redBall" to="." method="_on_red_ball_body_shape_entered"]
-[connection signal="body_shape_entered" from="SecondDimensionQuest/TutBut1" to="." method="_on_tut_but_1_body_shape_entered"]
-[connection signal="body_shape_entered" from="SecondDimensionQuest/TutBut2" to="." method="_on_tut_but_2_body_shape_entered"]
+[connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut1" to="." method="_on_tut_but_1_body_shape_entered"]
+[connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut2" to="." method="_on_tut_but_2_body_shape_entered"]
+[connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut3" to="." method="_on_tut_but_3_body_shape_entered"]
+[connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut4" to="." method="_on_tut_but_4_body_shape_entered"]
+[connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut5" to="." method="_on_tut_but_5_body_shape_entered"]
