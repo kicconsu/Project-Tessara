@@ -1,11 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bp5wk26kfjvb0"]
+[gd_scene load_steps=9 format=3 uid="uid://bp5wk26kfjvb0"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_eeyai"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="1_obbmp"]
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="2_71fet"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="1_obbmp"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="2_71fet"]
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="4_y11jm"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="5_ej2lh"]
-[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_o1v08"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="5_ej2lh"]
+[ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://scenes/Player/raymarchCam.tscn" id="5_o1v08"]
+[ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="7_w1c3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ndyiy"]
+shader = ExtResource("7_w1c3d")
+shader_parameter/correction_mode = 1
+shader_parameter/correction_intensity = 1.0
 
 [node name="root" type="SubViewportContainer"]
 texture_filter = 1
@@ -80,3 +86,14 @@ current = true
 [node name="fps" type="Label" parent="."]
 layout_mode = 2
 script = ExtResource("4_y11jm")
+
+[node name="FiltersLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Colorblindness" type="ColorRect" parent="FiltersLayer"]
+material = SubResource("ShaderMaterial_ndyiy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
