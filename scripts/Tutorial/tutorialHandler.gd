@@ -89,7 +89,7 @@ func _process(_delta):
 	
 	# Al presionar C cambia a primera persona
 	if Input.is_action_just_pressed("changeState"):
-		#Animations.play("blink")
+		Animations.play("blink")
 		player.locked = false
 		
 		pillar.get_material_override().set_shading_mode(1)
