@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=38 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -9,30 +9,35 @@
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://scenes/Labyrinth/red_ball.tscn" id="5_osr12"]
 [ext_resource type="PackedScene" uid="uid://bdcw66mam3hob" path="res://scenes/Labyrinth/obstacle.tscn" id="7_jl17e"]
 [ext_resource type="PackedScene" uid="uid://dnyub82qvlu1w" path="res://scenes/Labyrinth/labyrinth.tscn" id="8_crn6b"]
-[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://scenes/portal.tscn" id="9_m8k2h"]
 [ext_resource type="AudioStream" uid="uid://bscomfujsksda" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
 [ext_resource type="AudioStream" uid="uid://dkmr1vkwc2hs5" path="res://assets/sounds/press.mp3" id="14_mx4rw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
+shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wymia"]
+shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3yr8"]
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_db218"]
+shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu0vo"]
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s27qj"]
+shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja7wd"]
@@ -967,103 +972,103 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("../Control/up:position")
+tracks/10/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D:position")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-22, -500)]
+"values": [Vector3(10, -1.87816, -1.47343)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("../Control/down:position")
+tracks/11/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D2:position")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-30, 650)]
+"values": [Vector3(6.3971, -1.75632, 1.50467)]
 }
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D:position")
+tracks/12/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D3:position")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(10, -1.87816, -1.47343)]
+"values": [Vector3(2.39521, -1.75632, -3.98175)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
 tracks/13/enabled = true
-tracks/13/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D2:position")
+tracks/13/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D3:size")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(6.3971, -1.75632, 1.50467)]
+"values": [Vector3(1, 2.2388, 8.00415)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
 tracks/14/enabled = true
-tracks/14/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D3:position")
+tracks/14/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D9:position")
 tracks/14/interp = 1
 tracks/14/loop_wrap = true
 tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(2.39521, -1.75632, -3.98175)]
+"values": [Vector3(-9.636, -1.63581, 2.59321)]
 }
 tracks/15/type = "value"
 tracks/15/imported = false
 tracks/15/enabled = true
-tracks/15/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D3:size")
+tracks/15/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D6:position")
 tracks/15/interp = 1
 tracks/15/loop_wrap = true
 tracks/15/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 8.00415)]
+"values": [Vector3(-10.7425, -1.75456, -0.695571)]
 }
 tracks/16/type = "value"
 tracks/16/imported = false
 tracks/16/enabled = true
-tracks/16/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D9:position")
+tracks/16/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D6:size")
 tracks/16/interp = 1
 tracks/16/loop_wrap = true
 tracks/16/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-9.636, -1.63581, 2.59321)]
+"values": [Vector3(1, 2.2388, 5.67438)]
 }
 tracks/17/type = "value"
 tracks/17/imported = false
 tracks/17/enabled = true
-tracks/17/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D6:position")
+tracks/17/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D4:position")
 tracks/17/interp = 1
 tracks/17/loop_wrap = true
 tracks/17/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-10.7425, -1.75456, -0.695571)]
+"values": [Vector3(-8.42166, -1.75456, -4.00306)]
 }
 tracks/18/type = "value"
 tracks/18/imported = false
 tracks/18/enabled = true
-tracks/18/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D6:size")
+tracks/18/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D4:size")
 tracks/18/interp = 1
 tracks/18/loop_wrap = true
 tracks/18/keys = {
@@ -1075,238 +1080,214 @@ tracks/18/keys = {
 tracks/19/type = "value"
 tracks/19/imported = false
 tracks/19/enabled = true
-tracks/19/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D4:position")
+tracks/19/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D11:position")
 tracks/19/interp = 1
 tracks/19/loop_wrap = true
 tracks/19/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-8.42166, -1.75456, -4.00306)]
+"values": [Vector3(-0.264648, -1.73174, 4.70158)]
 }
 tracks/20/type = "value"
 tracks/20/imported = false
 tracks/20/enabled = true
-tracks/20/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D4:size")
+tracks/20/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D5:position")
 tracks/20/interp = 1
 tracks/20/loop_wrap = true
 tracks/20/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 5.67438)]
+"values": [Vector3(-3.50042, -1.73174, 0.422497)]
 }
 tracks/21/type = "value"
 tracks/21/imported = false
 tracks/21/enabled = true
-tracks/21/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D11:position")
+tracks/21/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D7:position")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.264648, -1.73174, 4.70158)]
+"values": [Vector3(-0.610668, -1.76935, -0.720692)]
 }
 tracks/22/type = "value"
 tracks/22/imported = false
 tracks/22/enabled = true
-tracks/22/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D5:position")
+tracks/22/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D7:size")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-3.50042, -1.73174, 0.422497)]
+"values": [Vector3(1, 2.2388, 6.72279)]
 }
 tracks/23/type = "value"
 tracks/23/imported = false
 tracks/23/enabled = true
-tracks/23/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D7:position")
+tracks/23/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D8:position")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-0.610668, -1.76935, -0.720692)]
+"values": [Vector3(-6.21656, -1.76935, -0.778084)]
 }
 tracks/24/type = "value"
 tracks/24/imported = false
 tracks/24/enabled = true
-tracks/24/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D7:size")
+tracks/24/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D8:size")
 tracks/24/interp = 1
 tracks/24/loop_wrap = true
 tracks/24/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 6.72279)]
+"values": [Vector3(1, 2.2388, 5.51102)]
 }
 tracks/25/type = "value"
 tracks/25/imported = false
 tracks/25/enabled = true
-tracks/25/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D8:position")
+tracks/25/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D10:position")
 tracks/25/interp = 1
 tracks/25/loop_wrap = true
 tracks/25/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-6.21656, -1.76935, -0.778084)]
+"values": [Vector3(3.11971, -1.73174, 1.92459)]
 }
 tracks/26/type = "value"
 tracks/26/imported = false
 tracks/26/enabled = true
-tracks/26/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D8:size")
+tracks/26/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D10:size")
 tracks/26/interp = 1
 tracks/26/loop_wrap = true
 tracks/26/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 5.51102)]
+"values": [Vector3(1, 2.2388, 6.32099)]
 }
 tracks/27/type = "value"
 tracks/27/imported = false
 tracks/27/enabled = true
-tracks/27/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D10:position")
+tracks/27/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D12:size")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(3.11971, -1.73174, 1.92459)]
+"values": [Vector3(1, 2.2388, 7.80151)]
 }
 tracks/28/type = "value"
 tracks/28/imported = false
 tracks/28/enabled = true
-tracks/28/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D10:size")
+tracks/28/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D12:position")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 6.32099)]
+"values": [Vector3(-6.86228, -1.73174, 5.54143)]
 }
 tracks/29/type = "value"
 tracks/29/imported = false
 tracks/29/enabled = true
-tracks/29/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D12:size")
+tracks/29/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D5:size")
 tracks/29/interp = 1
 tracks/29/loop_wrap = true
 tracks/29/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 7.80151)]
+"values": [Vector3(1.17, 2.239, 9.696)]
 }
 tracks/30/type = "value"
 tracks/30/imported = false
 tracks/30/enabled = true
-tracks/30/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D12:position")
+tracks/30/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D9:size")
 tracks/30/interp = 1
 tracks/30/loop_wrap = true
 tracks/30/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-6.86228, -1.73174, 5.54143)]
+"values": [Vector3(1, 2.2388, 7.83412)]
 }
 tracks/31/type = "value"
 tracks/31/imported = false
 tracks/31/enabled = true
-tracks/31/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D5:size")
+tracks/31/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D2:size")
 tracks/31/interp = 1
 tracks/31/loop_wrap = true
 tracks/31/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1.17, 2.239, 9.696)]
+"values": [Vector3(1, 2.2388, 12)]
 }
 tracks/32/type = "value"
 tracks/32/imported = false
 tracks/32/enabled = true
-tracks/32/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D9:size")
+tracks/32/path = NodePath("Floors/movingFloor:position")
 tracks/32/interp = 1
 tracks/32/loop_wrap = true
 tracks/32/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 7.83412)]
+"values": [Vector3(6, -2.27073, -0.5)]
 }
 tracks/33/type = "value"
 tracks/33/imported = false
 tracks/33/enabled = true
-tracks/33/path = NodePath("../SecondDimensionQuest/Labyrinth/CSGBox3D2:size")
+tracks/33/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut3:position")
 tracks/33/interp = 1
 tracks/33/loop_wrap = true
 tracks/33/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(1, 2.2388, 12)]
+"values": [Vector3(-11, -1, 0)]
 }
 tracks/34/type = "value"
 tracks/34/imported = false
 tracks/34/enabled = true
-tracks/34/path = NodePath("Floors/movingFloor:position")
+tracks/34/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut4:position")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(6, -2.27073, -0.5)]
+"values": [Vector3(7, -2, 0)]
 }
 tracks/35/type = "value"
 tracks/35/imported = false
 tracks/35/enabled = true
-tracks/35/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut3:position")
+tracks/35/path = NodePath("../SecondDimensionQuest/Pillar:position")
 tracks/35/interp = 1
 tracks/35/loop_wrap = true
 tracks/35/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(-11, -1, 0)]
+"values": [Vector3(-17, 2.5, 0)]
 }
 tracks/36/type = "value"
 tracks/36/imported = false
 tracks/36/enabled = true
-tracks/36/path = NodePath("../SecondDimensionQuest/2DButtons/TutBut4:position")
+tracks/36/path = NodePath("../SecondDimensionQuest/Pillar:rotation")
 tracks/36/interp = 1
 tracks/36/loop_wrap = true
 tracks/36/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(7, -2, 0)]
-}
-tracks/37/type = "value"
-tracks/37/imported = false
-tracks/37/enabled = true
-tracks/37/path = NodePath("../SecondDimensionQuest/Pillar:position")
-tracks/37/interp = 1
-tracks/37/loop_wrap = true
-tracks/37/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-17, 2.5, 0)]
-}
-tracks/38/type = "value"
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/path = NodePath("../SecondDimensionQuest/Pillar:rotation")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -1316,30 +1297,6 @@ tracks/38/keys = {
 [sub_resource type="Animation" id="Animation_y4ff4"]
 resource_name = "blink"
 length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Control/up:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(0.15, 1, 1),
-"update": 0,
-"values": [Vector2(-22, -500), Vector2(-22, -150), Vector2(-22, -500)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Control/down:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1, 2),
-"transitions": PackedFloat32Array(0.15, 1, 1),
-"update": 0,
-"values": [Vector2(-30, 650), Vector2(-30, 350), Vector2(-30, 650)]
-}
 
 [sub_resource type="Animation" id="Animation_11qeb"]
 resource_name = "extendWalls Left & Right"
@@ -1681,10 +1638,6 @@ grow_vertical = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -22.0
-offset_top = -500.0
-offset_right = 123794.0
-offset_bottom = -6.10352e-05
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
 
@@ -1694,10 +1647,6 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -30.0
-offset_top = 290.0
-offset_right = 123786.0
-offset_bottom = 790.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
@@ -1719,6 +1668,7 @@ one_shot = true
 [node name="World" type="Node3D" parent="."]
 
 [node name="Walls" type="Node3D" parent="World"]
+visible = false
 
 [node name="Wall_1" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1)
@@ -1779,11 +1729,11 @@ size = Vector3(1, 1, 17)
 [node name="Floors" type="Node3D" parent="World"]
 
 [node name="Floor" type="CSGBox3D" parent="World/Floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.124437, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.619965, 0.124437, -1.1532)
 material_override = SubResource("StandardMaterial3D_xu0vo")
 use_collision = true
 collision_layer = 2
-size = Vector3(28, 0.002, 28)
+size = Vector3(31.4975, 0.002, 31.2825)
 
 [node name="PlayerFloor" type="CSGBox3D" parent="World/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130592, 0)
@@ -1826,7 +1776,7 @@ shadow_enabled = true
 [node name="redBall" parent="." instance=ExtResource("5_osr12")]
 
 [node name="Player" parent="." instance=ExtResource("5_fkbo0")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, -3.99808, 1.17421, 3.99207)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.00191998, 2.17421, -0.00793004)
 collision_mask = 3
 
 [node name="TextBox" parent="." instance=ExtResource("3_rd8co")]
@@ -1846,9 +1796,6 @@ mass = 1000.0
 gravity_scale = 8.0
 freeze = true
 freeze_mode = 1
-
-[node name="Portal" parent="." instance=ExtResource("9_m8k2h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.182942, 8.51637)
 
 [node name="SecondDimensionQuest" type="Node3D" parent="."]
 
