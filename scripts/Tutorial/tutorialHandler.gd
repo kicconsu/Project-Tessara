@@ -78,7 +78,7 @@ func _ready():
 	#text_box.queue_text("¡Dejame ayudarte extendiendo nuestro espacio!")
 	
 func _process(_delta):
-
+	print("qFl",questFlag)
 	if Input.is_action_just_pressed("test"):
 		#obstacle.set_freeze_enabled(false)
 		#Animations.play("Labyrinth")
@@ -117,6 +117,7 @@ func _process(_delta):
 			questCompleted = false
 			questFailed = false
 			questFlag = false
+			relatedQuest = true
 			change_state()
 			timer.emit_signal("timeout")
 		
@@ -131,14 +132,14 @@ func _process(_delta):
 				
 				State.Void:
 					expansion_sound.play()
-					timer.set_wait_time(3)
+					timer.set_wait_time(.1)
 					timer.start()
 					change_state()
 					
 				State.FirstDimension:
 					if relatedQuest:
 						red_ball.set_position(Vector3(5, 0.08, 0))
-						timer.set_wait_time(3)
+						timer.set_wait_time(.1)
 						timer.start()
 						change_state()
 						relatedQuest = false
@@ -148,7 +149,7 @@ func _process(_delta):
 						expansion_sound.set_pitch_scale(0.7)
 						expansion_sound.play()
 						twoDimension = true
-						timer.set_wait_time(2)
+						timer.set_wait_time(.1)
 						timer.start()
 						change_state()
 						relatedQuest = false
@@ -164,7 +165,7 @@ func _process(_delta):
 	
 					if relatedQuest:		
 						print("comenzo")
-						timer.set_wait_time(15)
+						timer.set_wait_time(4)
 						timer.start()
 						
 						Animations.play("Labyrinth")
@@ -192,14 +193,13 @@ func _process(_delta):
 					
 					if questFlag:
 						_2d_anim.play("butRise")
-						
-					
+											
 					if relatedQuest:
 						Animations.play("pillarRise")
 						_2d_anim.play("tutbutRise")
 						
-						questFlag = true
 						relatedQuest = false
+					
 						
 					
 
@@ -251,14 +251,15 @@ func _on_timer_timeout():
 				relatedQuest = true
 			elif questFailed and !questCompleted:
 				text_box.queue_text("Como vg demoras tanto loco")
+				relatedQuest = true
 				questFlag = true
 		State.SecondDimension2ndQuest:
-			print("qFl",questFlag)
+			
 			if !questFlag:
 				text_box.queue_text("¿Que tal mi pequeño laberinto?")
-				#text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
-				#text_box.queue_text("Bueno, intentemos otra cosa")
-				#text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
+				text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
+				text_box.queue_text("Bueno, intentemos otra cosa")
+				text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
 				relatedQuest = true
 			else:
 				text_box.queue_text("Parece que no puedes tocar la siguiente bola")
@@ -310,6 +311,7 @@ func _on_tut_but_3_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 	timer.start()
 	tutbut3.nuke()
 	pop_xd.play()
+	questFlag = true
 
 func _on_tut_but_4_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	tutbut4.nuke()
@@ -319,4 +321,5 @@ func _on_tut_but_5_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 	tutbut5.nuke()
 	pop_xd.play()
 	Animations.play("pillarFall")
+	fall.play()	
 	

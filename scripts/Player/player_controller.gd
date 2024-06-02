@@ -21,7 +21,7 @@ const mouse_sens = 0.25
 
 var lerp_speed = 10.0
 var direction = Vector3.ZERO
-var locked = true
+var locked = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.

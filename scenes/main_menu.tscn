@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0mr5ssjoycj1"]
+[gd_scene load_steps=5 format=3 uid="uid://citcyvat8j2f2"]
 
 [ext_resource type="Texture2D" uid="uid://dp5t6wdoore5a" path="res://Background/cogoyo.png" id="1_a35e4"]
 [ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_h4fqx"]
@@ -14,8 +14,6 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 740.0
-offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h4fqx")
@@ -30,6 +28,15 @@ grow_vertical = 2
 texture = ExtResource("1_a35e4")
 expand_mode = 3
 
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -37,13 +44,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 35
+theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 60
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
@@ -51,6 +59,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = SubResource("SystemFont_vxms7")
@@ -60,10 +69,14 @@ vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 64
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 40
 alignment = 1
 
 [node name="Start_Button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
@@ -79,6 +92,18 @@ layout_mode = 2
 theme_override_fonts/font = SubResource("SystemFont_sj6u2")
 theme_override_font_sizes/font_size = 24
 text = "EXIT  GAME"
+
+[node name="fire" type="Node2D" parent="."]
+position = Vector2(203, 431)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="fire"]
+position = Vector2(-13, 6)
+randomness = 1.0
+emission_shape = 2
+emission_sphere_radius = 128.0
+gravity = Vector2(0, -600)
+scale_amount_min = 7.75
+scale_amount_max = 23.25
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Exit_Button" to="." method="_on_exit_button_pressed"]
