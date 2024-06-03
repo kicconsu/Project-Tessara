@@ -94,7 +94,7 @@ func setupCompute():
 	
 	for shape in shapesInScene:
 		print(shape.get_name())
-		var shapeTransform : Transform3D = shape.get_transform() #mat4
+		var shapeTransform : Transform3D = shape.get_global_transform() #mat4
 		var shapeCol:Vector3 = shape.getColor() 
 		var shapeSize:Vector4 = shape.getSize() 
 		var shapeType:int = shape.getShapeType() 
@@ -181,7 +181,7 @@ func updateCompute():
 	#padding so that openGL wont shit its stupid fucking baby pants
 	
 	for shape in shapesInScene:
-		var shapeTransform : Transform3D = shape.get_transform() #mat4
+		var shapeTransform : Transform3D = shape.get_global_transform() #mat4
 		var shapeCol:Vector3 = shape.getColor() 
 		var shapeSize:Vector4 = shape.getSize() 
 		var shapeType:int = shape.getShapeType() 

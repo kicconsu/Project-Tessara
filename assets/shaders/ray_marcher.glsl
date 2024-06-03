@@ -11,8 +11,8 @@
 //Work group size
 layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
 
-const float maxDst = 200.0;
-const float epsilon = 0.001;
+const float maxDst = 90.0;
+const float epsilon = 0.005;
 const float shadowBias = epsilon*50.0;
 const int maxSteps = 300;
 
@@ -298,7 +298,7 @@ vec4 raymarch(Ray ray){
         }
         
         //If the distance starts growing after it was diminishing, it means we're on the edge of a shape.
-        if(dst > last_dist_eval && dst <= epsilon*60){
+        if(dst > last_dist_eval && dst <= epsilon*30){
             return (sceneInfo.r == -1)? vec4(vec3(0.5, 0.0, 0.5)*0.3, 1.0):vec4(vec3(0.3)*sceneInfo.rgb,1.0);
         }
 
