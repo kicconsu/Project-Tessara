@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d11iieumkt2fi"]
 
-[ext_resource type="Script" path="res://Scripts/text_box.gd" id="1_mnvo0"]
+[ext_resource type="Script" path="res://scripts/text_box.gd" id="1_mnvo0"]
 [ext_resource type="AudioStream" uid="uid://b8mk7n5asvdv3" path="res://assets/sounds/sfx.mp3" id="2_2q7g0"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="2_n4vxl"]
 

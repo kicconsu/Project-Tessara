@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://clidhel0jwb5v"]
+
+[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="2_7kuqd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hh5ha"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_y6a54"]
+
+[node name="3DWorld" type="Node3D"]
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
+transform = Transform3D(82.204, 0, 0, 0, 1, 0, 0, 0, 72.723, 0, 0, -4.70498)
+use_collision = true
+collision_mask = 0
+size = Vector3(1, 0.001, 0.870605)
+
+[node name="Goal" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98432, 11.5173, 13)
+
+[node name="Portal" parent="Goal" instance=ExtResource("1_nt5u5")]
+transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 3.118, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Goal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.513, 0)
+size = Vector3(5, 3, 5)
+
+[node name="Layout" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, -18)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 2, 9.5)
+use_collision = true
+size = Vector3(5, 9, 14)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 5, 12.5)
+use_collision = true
+size = Vector3(30, 15, 4)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1.5, 22.5)
+use_collision = true
+size = Vector3(39, 8, 6)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1.5, 22.5)
+use_collision = true
+size = Vector3(39, 8, 6)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5, 1.5, 0.5)
+use_collision = true
+size = Vector3(10, 8, 14)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0.5, -2.5)
+use_collision = true
+size = Vector3(6, 6, 6)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Layout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0, -2.5)
+use_collision = true
+size = Vector3(16, 5, 6)
+
+[node name="Player" parent="." instance=ExtResource("2_7kuqd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 2, -18)
+collision_mask = 9
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4958, 5.41111, -36.5566)
+light_energy = 13.403
+omni_range = 22.031
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4305, 1.1088, -23.5809)
+collision_layer = 2
+freeze = true
+freeze_mode = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("BoxShape3D_hh5ha")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
+mesh = SubResource("BoxMesh_y6a54")

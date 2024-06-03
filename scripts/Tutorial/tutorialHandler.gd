@@ -203,11 +203,10 @@ func _process(_delta):
 						relatedQuest = false	
 					
 				State.ThirdDimensionQuest:
-					
 					if relatedQuest:
 						Animations.play("blink")
 						player.locked = false
-						#pillar.get_material_override().set_shading_mode(1)
+
 						camera_transition.start()
 						relatedQuest = false
 					
@@ -231,6 +230,9 @@ func change_state():
 			pass
 		State.SecondDimension2ndQuest:
 			current_state = State.ThirdDimension
+			pass
+		State.ThirdDimension:
+			current_state = State.ThirdDimensionQuest
 			pass
 	
 # Carga de dialogos
@@ -278,7 +280,7 @@ func _on_timer_timeout():
 			text_box.queue_text("Diviertete un poco con esto.")
 			relatedQuest = true
 			
-		State.ThirdDimension:
+		State.ThirdDimensionQuest:
 			text_box.queue_text("Bueno ¿Tal parece que es un cubo comun y corriente no?")
 			text_box.queue_text("Lo que vas a ver a contunacion bolita, te va a volar la cabeza")	
 			relatedQuest = true
