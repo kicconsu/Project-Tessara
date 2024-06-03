@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dpkfha4uu287c"]
+[gd_scene load_steps=18 format=3 uid="uid://dpkfha4uu287c"]
 
 [ext_resource type="Script" path="res://scripts/portal.gd" id="1_2afb3"]
 [ext_resource type="Shader" uid="uid://dwrv6u3jqtwpd" path="res://assets/shaders/portal.tres" id="1_os0qb"]
@@ -61,11 +61,13 @@ anim_speed_curve = SubResource("CurveTexture_4oodg")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nx8x6"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5817b"]
-albedo_color = Color(0, 0, 0, 1)
-
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_spblr"]
 height = 4.37523
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxqrm"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2b5b6"]
 
 [node name="Portal" type="Area3D"]
 script = ExtResource("1_2afb3")
@@ -84,12 +86,12 @@ visibility_aabb = AABB(-0.98656, -45.8432, -0.854607, 1.96095, 46.3193, 1.79883)
 process_material = SubResource("ParticleProcessMaterial_taudt")
 draw_pass_1 = SubResource("QuadMesh_nx8x6")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0120197, 0)
-material_override = SubResource("StandardMaterial3D_5817b")
-size = Vector3(9, 0.001, 7)
-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_spblr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(5.4, 0, 0, 0, 0.027, 0, 0, 0, 5.4, 0, -0.0646738, 0)
+material_override = SubResource("StandardMaterial3D_jxqrm")
+mesh = SubResource("CylinderMesh_2b5b6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

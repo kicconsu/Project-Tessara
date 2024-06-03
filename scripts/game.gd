@@ -1,8 +1,14 @@
 extends Node3D
 @onready var player = $Player
+@onready var text_box = $"../../TextBox"
+
 var shapesInScene:Array[Node]
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	text_box.queue_text("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
+	
+	
 	player.hyper_inspection.connect(_toggle_hyper_inspection) #Connect the signal that the player will emit 
 	shapesInScene = get_tree().get_nodes_in_group("hyperShapes")
 

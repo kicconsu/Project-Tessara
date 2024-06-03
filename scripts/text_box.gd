@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 @onready var textbox_container = $TextboxContainer
 @onready var start = $TextboxContainer/MarginContainer/HBoxContainer/Start

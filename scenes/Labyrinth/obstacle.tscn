@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdcw66mam3hob"]
+[gd_scene load_steps=14 format=3 uid="uid://bdcw66mam3hob"]
 
 [ext_resource type="PackedScene" uid="uid://ewe1vrmqrohb" path="res://assets/models/Obstacle.glb" id="1_svf1w"]
 
@@ -34,6 +34,8 @@ size = Vector3(1.26563, 3.75818, 3.53671)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ro5c3"]
 size = Vector3(9.92047, 1, 10.8273)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w7hn6"]
 
 [node name="Obstacle" type="RigidBody3D"]
 
@@ -91,3 +93,8 @@ shape = SubResource("BoxShape3D_5oylv")
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0080204, 10.4365, 0.0574503)
 shape = SubResource("BoxShape3D_ro5c3")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.58092, 9.13496, 2.17099)
+material_override = SubResource("StandardMaterial3D_w7hn6")
+size = Vector3(2.59375, 1, 4.48395)

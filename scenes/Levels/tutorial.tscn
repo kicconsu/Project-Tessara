@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=40 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -12,32 +12,27 @@
 [ext_resource type="AudioStream" uid="uid://bhtbp7jenyt5v" path="res://assets/sounds/pressed.mp3" id="11_ljnpb"]
 [ext_resource type="AudioStream" uid="uid://bscomfujsksda" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
+[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://scenes/portal.tscn" id="13_mdww4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
-shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wymia"]
-shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x3yr8"]
-shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_db218"]
-shading_mode = 0
 disable_ambient_light = true
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xu0vo"]
-shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s27qj"]
-shading_mode = 0
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ja7wd"]
@@ -1305,6 +1300,18 @@ tracks/37/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/38/type = "value"
+tracks/38/imported = false
+tracks/38/enabled = true
+tracks/38/path = NodePath("../SecondDimensionQuest/Obstacle:position")
+tracks/38/interp = 1
+tracks/38/loop_wrap = true
+tracks/38/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-8, -14, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_y4ff4"]
 resource_name = "blink"
@@ -1395,7 +1402,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(0.254902, 0.47451, 1, 1)]
+"values": [Color(0, 0, 0, 1), Color(0.081, 0.36045, 0.81, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_w1arq"]
@@ -1462,6 +1469,21 @@ tracks/4/keys = {
 "values": [Vector3(28, 0.1, 1), Vector3(28, 0.1, 15)]
 }
 
+[sub_resource type="Animation" id="Animation_con4e"]
+resource_name = "obstacleRise"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SecondDimensionQuest/Obstacle:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.143587, 1),
+"update": 0,
+"values": [Vector3(-7.5, -14, 1), Vector3(-7.5, 0.244, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_jk4va"]
 resource_name = "pillarFall"
 length = 1.8
@@ -1487,7 +1509,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1.8),
 "transitions": PackedFloat32Array(3.605, 1),
 "update": 0,
-"values": [Vector3(-3, 3.5, 0), Vector3(0, 1.185, 0)]
+"values": [Vector3(-3, 3.5, -5.566), Vector3(0, 1.185, -5.566)]
 }
 
 [sub_resource type="Animation" id="Animation_e48mo"]
@@ -1514,7 +1536,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.217638, 1),
 "update": 0,
-"values": [Vector3(-15, 3.5, 0), Vector3(-3, 3.5, 0)]
+"values": [Vector3(-15, 3.5, -5.56554), Vector3(-3, 3.5, -5.566)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_luthe"]
@@ -1526,6 +1548,7 @@ _data = {
 "blink": SubResource("Animation_y4ff4"),
 "extendWalls Left & Right": SubResource("Animation_11qeb"),
 "extendWalls Up & Down": SubResource("Animation_w1arq"),
+"obstacleRise": SubResource("Animation_con4e"),
 "pillarFall": SubResource("Animation_jk4va"),
 "pillarRise": SubResource("Animation_e48mo")
 }
@@ -1695,6 +1718,7 @@ one_shot = true
 
 [node name="Wall_1" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1)
+visible = false
 material_override = SubResource("StandardMaterial3D_hg3f7")
 use_collision = true
 collision_layer = 2
@@ -1702,6 +1726,7 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_2" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1)
+visible = false
 material_override = SubResource("StandardMaterial3D_wymia")
 use_collision = true
 collision_layer = 2
@@ -1709,6 +1734,7 @@ size = Vector3(3, 2, 1)
 
 [node name="Wall_3" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.25, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_x3yr8")
 use_collision = true
 collision_layer = 2
@@ -1716,6 +1742,7 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_4" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, 0)
+visible = false
 material_override = SubResource("StandardMaterial3D_db218")
 use_collision = true
 collision_layer = 2
@@ -1799,7 +1826,7 @@ shadow_enabled = true
 [node name="redBall" parent="." instance=ExtResource("5_osr12")]
 
 [node name="Player" parent="." instance=ExtResource("5_fkbo0")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.00191998, 2.17421, -0.00793004)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.00191998, 2.17421, 5.99207)
 collision_mask = 3
 
 [node name="TextBox" parent="." instance=ExtResource("3_rd8co")]
@@ -1809,16 +1836,6 @@ root_node = NodePath("../World")
 libraries = {
 "": SubResource("AnimationLibrary_luthe")
 }
-
-[node name="Obstacle" parent="." instance=ExtResource("7_jl17e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29, 6, 0)
-visible = false
-collision_layer = 3
-collision_mask = 3
-mass = 1000.0
-gravity_scale = 8.0
-freeze = true
-freeze_mode = 1
 
 [node name="SecondDimensionQuest" type="Node3D" parent="."]
 
@@ -1867,7 +1884,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, -1, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -2, 0)
 
 [node name="TutBut5" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
-transform = Transform3D(0.99996, -0.00898837, 0, 0.00898838, 0.999959, 0, 0, 0, 1, -4, -2, 4)
+transform = Transform3D(0.99996, -0.00898836, 0, 0.00898838, 0.999958, 0, 0, 0, 1, -4, -2, 4)
+
+[node name="Obstacle" parent="SecondDimensionQuest" instance=ExtResource("7_jl17e")]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -8, -14, 1)
+collision_layer = 3
+collision_mask = 3
+mass = 1000.0
+gravity_scale = 8.0
+freeze = true
+freeze_mode = 1
+
+[node name="Portal" parent="SecondDimensionQuest/Obstacle" instance=ExtResource("13_mdww4")]
+transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -2.51524, 3.35802, 2.85714)
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]

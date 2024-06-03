@@ -26,7 +26,12 @@ font_size = 40
 outline_size = 8
 outline_color = Color(0, 0, 0, 1)
 
-[node name="TextBox" type="CanvasLayer"]
+[node name="TextBox" type="Control"]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
 script = ExtResource("1_mnvo0")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -35,6 +40,7 @@ volume_db = 2.811
 pitch_scale = 0.93
 
 [node name="TextboxContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 180.0

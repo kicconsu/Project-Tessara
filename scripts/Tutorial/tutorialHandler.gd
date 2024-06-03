@@ -36,7 +36,7 @@ extends Node3D
 @onready var tutbut4 = $"SecondDimensionQuest/2DButtons/TutBut4"
 @onready var tutbut5 = $"SecondDimensionQuest/2DButtons/TutBut5"
 
-@onready var pillar = $SecondDimensionQuest/Pillar
+#@onready var pillar = $SecondDimensionQuest/Pillar
 
 # Global Quest VARs
 var current_state = State.Void
@@ -78,13 +78,13 @@ func _ready():
 	#text_box.queue_text("¡Dejame ayudarte extendiendo nuestro espacio!")
 	
 func _process(_delta):
-	print("qFl",questFlag)
+
 	if Input.is_action_just_pressed("test"):
 		#obstacle.set_freeze_enabled(false)
 		#Animations.play("Labyrinth")
 		#labyrinth.set_visible(true)
-		Animations.play("pillarFall")
-		fall.play()	
+		Animations.play("obstacleRise")
+		#fall.play()	
 		pass
 	
 	# Al presionar C cambia a primera persona
@@ -92,12 +92,11 @@ func _process(_delta):
 		Animations.play("blink")
 		player.locked = false
 		
-		pillar.get_material_override().set_shading_mode(1)
+		#pillar.get_material_override().set_shading_mode(1)
 		camera_transition.start()
 	
 	if State.SecondDimension1stQuest:
 		if questFailed and questFlag:
-		
 			if tutbut1 != null:
 				tutbut1.nuke()
 			if tutbut2 != null:
@@ -120,10 +119,7 @@ func _process(_delta):
 			relatedQuest = true
 			change_state()
 			timer.emit_signal("timeout")
-		
-		
-		
-	
+
 	# Cuando no hay mas dialogos en un estado, significa que seguira la secuencia de State
 	if text_box.text_queue.is_empty() and text_box.State.FINISHED:	
 		
@@ -162,7 +158,6 @@ func _process(_delta):
 						relatedQuest = false
 				
 				State.SecondDimension1stQuest:
-	
 					if relatedQuest:		
 						print("comenzo")
 						timer.set_wait_time(4)
@@ -190,7 +185,6 @@ func _process(_delta):
 						questFailed = true
 						
 				State.SecondDimension2ndQuest:
-					
 					if questFlag:
 						_2d_anim.play("butRise")
 											
@@ -199,12 +193,24 @@ func _process(_delta):
 						_2d_anim.play("tutbutRise")
 						
 						relatedQuest = false
+				
+				State.ThirdDimension:
+					if relatedQuest:
+						timer.set_wait_time(2)
+						timer.start()
+						Animations.play("obstacleRise")
+						change_state()
+						relatedQuest = false	
 					
-						
+				State.ThirdDimensionQuest:
 					
-
-
-
+					if relatedQuest:
+						Animations.play("blink")
+						player.locked = false
+						#pillar.get_material_override().set_shading_mode(1)
+						camera_transition.start()
+						relatedQuest = false
+					
 func change_state():
 	match current_state:
 		State.Void: # De 0D a 1D
@@ -222,6 +228,9 @@ func change_state():
 			pass
 		State.SecondDimension1stQuest:	# De 2DQuest a 3D
 			current_state = State.SecondDimension2ndQuest
+			pass
+		State.SecondDimension2ndQuest:
+			current_state = State.ThirdDimension
 			pass
 	
 # Carga de dialogos
@@ -254,16 +263,25 @@ func _on_timer_timeout():
 				relatedQuest = true
 				questFlag = true
 		State.SecondDimension2ndQuest:
-			
 			if !questFlag:
 				text_box.queue_text("¿Que tal mi pequeño laberinto?")
-				text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
-				text_box.queue_text("Bueno, intentemos otra cosa")
-				text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
+				#text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
+				#text_box.queue_text("Bueno, intentemos otra cosa")
+				#text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
 				relatedQuest = true
 			else:
 				text_box.queue_text("Parece que no puedes tocar la siguiente bola")
-				text_box.queue_text("Toca este boton especial")
+				#text_box.queue_text("Toca este boton especial")
+		State.ThirdDimension:
+			text_box.queue_text("Te preguntarás ¿Que acaba de pasar?")
+			text_box.queue_text("Te lo explicaré luego.")	
+			text_box.queue_text("Diviertete un poco con esto.")
+			relatedQuest = true
+			
+		State.ThirdDimension:
+			text_box.queue_text("Bueno ¿Tal parece que es un cubo comun y corriente no?")
+			text_box.queue_text("Lo que vas a ver a contunacion bolita, te va a volar la cabeza")	
+			relatedQuest = true
 			
 # Cada vez que el Player colisione con la bola, esta aparece en otro lugar random
 func _on_red_ball_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
@@ -307,7 +325,7 @@ func _on_tut_but_2_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 		questCompleted = true
 
 func _on_tut_but_3_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
-	timer.set_wait_time(5)
+	timer.set_wait_time(1)
 	timer.start()
 	tutbut3.nuke()
 	pop_xd.play()
@@ -316,10 +334,11 @@ func _on_tut_but_3_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 func _on_tut_but_4_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	tutbut4.nuke()
 	pop_xd.play()
+	change_state()
+	timer.emit_signal("timeout")
 
 func _on_tut_but_5_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	tutbut5.nuke()
 	pop_xd.play()
 	Animations.play("pillarFall")
 	fall.play()	
-	
