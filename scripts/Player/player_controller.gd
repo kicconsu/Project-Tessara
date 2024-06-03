@@ -99,6 +99,8 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	hypercolliding = body.checkHypergound()
+	
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
 	

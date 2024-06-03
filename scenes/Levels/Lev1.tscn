@@ -9,7 +9,6 @@
 [sub_resource type="Environment" id="Environment_37hhe"]
 background_mode = 1
 background_color = Color(0.299667, 0, 0.31, 1)
-ssil_enabled = true
 ssil_sharpness = 1.0
 sdfgi_use_occlusion = true
 volumetric_fog_enabled = true
@@ -127,7 +126,10 @@ hyperInfo = Vector4(0, 92.591, 0, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Viewport/World"]
 transform = Transform3D(0.408713, 0.912663, -1.22432e-08, -0.365355, 0.163615, 0.916377, 0.836343, -0.374535, 0.400317, 0, 45.386, 0)
-directional_shadow_mode = 0
+shadow_enabled = true
+shadow_bias = 0.058
+shadow_normal_bias = 2.228
+shadow_blur = 4.986
 
 [node name="Player" parent="Viewport/World" instance=ExtResource("2_y4ga5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14705, 14.9395, 7.88688)
