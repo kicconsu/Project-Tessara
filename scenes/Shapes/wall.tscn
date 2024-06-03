@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://h7hbqujod4nf"]
 
-[ext_resource type="Script" path="res://scripts/Shapes/wallWrapperHandler.gd" id="1_wcdhs"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="2_47krt"]
+[ext_resource type="Script" path="res://Scripts/Shapes/wallWrapperHandler.gd" id="1_wcdhs"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_47krt"]
 
 [node name="wall" type="CSGBox3D"]
 rotation_edit_mode = 2
@@ -13,4 +13,4 @@ script = ExtResource("1_wcdhs")
 [node name="wallWrapper" parent="." instance=ExtResource("2_47krt")]
 rotation_edit_mode = 2
 visible = false
-color = Vector3(0, 0, 0)
+collision_layer = 0

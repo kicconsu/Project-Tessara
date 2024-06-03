@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://7e2wj4cswdpr"]
 
-[ext_resource type="Script" path="res://scripts/Objects/Buttons/trigger_lever.gd" id="1_2b7p8"]
-[ext_resource type="PackedScene" uid="uid://boah6861amlat" path="res://scenes/Buttons/lever.tscn" id="2_0i0tp"]
+[ext_resource type="Script" path="res://Scripts/Objects/Buttons/trigger_lever.gd" id="1_2b7p8"]
+[ext_resource type="PackedScene" uid="uid://boah6861amlat" path="res://Scenes/Buttons/lever.tscn" id="2_0i0tp"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xllqx"]
 size = Vector3(1, 1.38693, 2.4325)

@@ -3,9 +3,9 @@ extends RayCast3D
 @onready var areas:Area3D = self.get_parent().get_node("sdfregion")
 var localPos:Vector3 = self.get_transform().origin
 
-func evaluateVelCast(displacement:Vector3):
-	#Evaluate SDF along casted velocity vector. This means we ray march along it to check if theres any object in our way
-	#if theres a hit, we send the collision info to be handled by hyperCnS.
+#Evaluate SDF along casted velocity vector. This means we ray march along it to check if theres any object in our way
+#if theres a hit, we send the collision info to be handled by hyperCnS.
+func evaluateVelCast(displacement:Vector3) -> Array:
 	
 	var globalPos = areas.get_global_transform().origin
 	#Initial point

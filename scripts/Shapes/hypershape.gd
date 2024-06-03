@@ -1,13 +1,15 @@
-extends StaticBody3D
+extends RigidBody3D
 
 @onready var _shapeContainer:CollisionShape3D = get_node("CollisionShape3D")
 @onready var _hyperRegion:CollisionShape3D = get_node("hyperRegion/regionShape")
 
 @export_category("RayMarched Properties")
-@export var color := Vector3(0.2, 0.7, 0.3)
+@export var base_color := Vector3(0.2, 0.7, 0.3)
+var color = Vector3(0.0,0.0,0.0)
 @export var dimensions := Vector4(1.0, 1.0, 1.0, 1.0)
 @export var shapeType := int(0)
 @export var hyperInfo := Vector4(0.0, 0.0, 0.0, 0.0) 
+
 #the first three elements in this vector are xw, yw, zw rotation degrees.
 #the last one is the w coordinate position.
 
@@ -19,6 +21,8 @@ func _ready():
 	var regionRadius:float = sqrt(pow(maxExtentX, 2)+pow(maxExtentY, 2)) + 1
 	_hyperRegion.set_shape(SphereShape3D.new())
 	_hyperRegion.get_shape().set_radius(regionRadius)
+	color = base_color
+	print("Shape ", self.name, " region radius of: ", regionRadius)
 
 func getSize() -> Vector4:
 	return self.dimensions
@@ -30,11 +34,25 @@ func getShapeType() -> int:
 	return self.shapeType
 	
 func getHyperInfo() -> Vector4:
-	var hyperI = self.hyperInfo
-	return hyperI
+	return self.hyperInfo
 
 func setDimensions(size:Vector4):
 	self.dimensions = size
 
 func setColor(color:Vector3):
 	self.color = color
+
+func adjustHyperInfo(xw,yw,zw,w):
+	hyperInfo += Vector4(xw,yw,zw,w)
+	
+func colorOnInspection():
+	color = Vector3(0, 0, 5.0)
+	
+func colorAsTarget():
+	color = Vector3(5.0, 5.0, 0)
+	
+func colorSelected():
+	color = Vector3(0, 5.0, 0)
+
+func colorFromScratch():
+	color = base_color

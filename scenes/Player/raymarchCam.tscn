@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://daf7qvy0xm1r7"]
 
-[ext_resource type="Script" path="res://scripts/Shader/ray_march_core.gd" id="1_jcy05"]
-[ext_resource type="Script" path="res://scripts/Shader/compute_output.gd" id="2_ah74o"]
+[ext_resource type="Script" path="res://Scripts/Shader/ray_march_core.gd" id="1_jcy05"]
+[ext_resource type="Script" path="res://Scripts/Shader/compute_output.gd" id="2_ah74o"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="3_a0slj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qv0e7"]

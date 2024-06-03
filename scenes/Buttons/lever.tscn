@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://boah6861amlat"]
 
 [ext_resource type="PackedScene" uid="uid://ci6nk08f7tyea" path="res://assets/models/Lever.glb" id="1_cwir7"]
-[ext_resource type="Script" path="res://scripts/Objects/Buttons/lever.gd" id="2_qey6b"]
+[ext_resource type="Script" path="res://Scripts/Objects/Buttons/lever.gd" id="2_qey6b"]
 
 [sub_resource type="Animation" id="Animation_ai5fs"]
 length = 0.001

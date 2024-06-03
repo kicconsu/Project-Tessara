@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://berd28q3uhje5"]
 
-[ext_resource type="Script" path="res://scripts/Shapes/hypershape.gd" id="1_ijw01"]
+[ext_resource type="Script" path="res://Scripts/Shapes/hypershape.gd" id="1_ijw01"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_h5etl"]
 
@@ -9,9 +9,11 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_jqhwn"]
 radius = 1.4
 
-[node name="Hypershape" type="StaticBody3D" groups=["hyperShapes"]]
-collision_layer = 0
+[node name="Hypershape" type="RigidBody3D" groups=["hyperShapes"]]
+collision_layer = 8
 collision_mask = 0
+can_sleep = false
+freeze = true
 script = ExtResource("1_ijw01")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

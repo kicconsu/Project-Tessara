@@ -1,4 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
 **.tmp
-test_arena.tscn
+**.import
+scenes/test_arena.tscn
