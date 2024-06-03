@@ -1,11 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://clidhel0jwb5v"]
+[gd_scene load_steps=3 format=3 uid="uid://clidhel0jwb5v"]
 
-[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://scenes/portal.tscn" id="1_nt5u5"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="2_7kuqd"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_hh5ha"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_y6a54"]
+[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
 
 [node name="3DWorld" type="Node3D"]
 
@@ -73,15 +69,3 @@ collision_mask = 9
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4958, 5.41111, -36.5566)
 light_energy = 13.403
 omni_range = 22.031
-
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.4305, 1.1088, -23.5809)
-collision_layer = 2
-freeze = true
-freeze_mode = 1
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-shape = SubResource("BoxShape3D_hh5ha")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D"]
-mesh = SubResource("BoxMesh_y6a54")

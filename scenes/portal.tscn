@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://dpkfha4uu287c"]
 
-[ext_resource type="Script" path="res://scripts/portal.gd" id="1_2afb3"]
+[ext_resource type="Script" path="res://Scripts/portal.gd" id="1_2afb3"]
 [ext_resource type="Shader" uid="uid://dwrv6u3jqtwpd" path="res://assets/shaders/portal.tres" id="1_os0qb"]
 [ext_resource type="ArrayMesh" uid="uid://blxat27ltxbll" path="res://assets/models/Aura.obj" id="2_lt7yg"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/shaders/portal_particles.tres" id="3_mpxck"]
