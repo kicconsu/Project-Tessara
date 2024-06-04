@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dh1k2chsis7ww"]
+[gd_scene load_steps=8 format=3 uid="uid://clidhel0jwb5v"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
-[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://Scenes/portal.tscn" id="1_nt5u5"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
@@ -24,6 +24,8 @@ script = ExtResource("1_hnfm3")
 
 [node name="World" type="Node3D" parent="SubViewport"]
 script = ExtResource("2_p0qd1")
+
+[node name="Player" parent="SubViewport/World" instance=ExtResource("2_7kuqd")]
 
 [node name="Floor" type="Node3D" parent="SubViewport/World"]
 
@@ -132,10 +134,6 @@ shadow_enabled = true
 shadow_bias = 0.058
 shadow_normal_bias = 2.228
 shadow_blur = 4.986
-
-[node name="Player" parent="SubViewport/World" instance=ExtResource("2_7kuqd")]
-transform = Transform3D(0.16701, 0, -0.985955, 0, 1, 0, 0.985955, 0, 0.16701, -34.8099, 1.17766, -13.2192)
-collision_mask = 9
 
 [node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
 layout_mode = 2

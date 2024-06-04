@@ -185,7 +185,11 @@ func _process(_delta):
 						questFailed = true
 						
 				State.SecondDimension2ndQuest:
+					
 					if questFlag:
+						
+						# Secuencia de explicacion
+						
 						_2d_anim.play("butRise")
 											
 					if relatedQuest:

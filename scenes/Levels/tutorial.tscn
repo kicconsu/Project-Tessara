@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=49 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -1694,6 +1694,112 @@ _data = {
 shading_mode = 0
 disable_receive_shadows = true
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rb5o"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_87gr4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q75g"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_erbek"]
+
+[sub_resource type="Animation" id="Animation_is60u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-23.5672, 1.12564, -0.0958836)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Plain:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(10.03, 0.966, 14.84)]
+}
+
+[sub_resource type="Animation" id="Animation_hhnl6"]
+resource_name = "animSlide"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.133972, 1),
+"update": 0,
+"values": [Vector3(-23.5672, 1.12564, -0.0958836), Vector3(-9.26105, 1.12564, -0.0958836)]
+}
+
+[sub_resource type="Animation" id="Animation_m2xe1"]
+resource_name = "cubeRotation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5708, 1.5708, 1.5708), Vector3(3.14159, 1.5708, 1.5708), Vector3(3.14159, 3.14159, 1.5708), Vector3(3.14159, 3.14159, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_ivp6p"]
+resource_name = "plainExtend"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plain:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.353553, 1),
+"update": 0,
+"values": [Vector3(4.24, 0.276, 4.24), Vector3(10.03, 0.966, 14.84)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hbd0t"]
+_data = {
+"RESET": SubResource("Animation_is60u"),
+"animSlide": SubResource("Animation_hhnl6"),
+"cubeRotation": SubResource("Animation_m2xe1"),
+"plainExtend": SubResource("Animation_ivp6p")
+}
+
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_sbt0f")
 
@@ -1921,6 +2027,26 @@ freeze_mode = 1
 [node name="Portal" parent="SecondDimensionQuest/Obstacle" instance=ExtResource("13_mdww4")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -2.51524, 3.33586, 2.85714)
 NextScene = "Lev1"
+
+[node name="Anim" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5672, 1.12564, -0.0958836)
+
+[node name="Plain" type="MeshInstance3D" parent="Anim"]
+transform = Transform3D(10.03, 0, 0, 0, 0.966, 0, 0, 0, 14.84, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_1rb5o")
+mesh = SubResource("BoxMesh_87gr4")
+skeleton = NodePath("../..")
+
+[node name="Cube" type="MeshInstance3D" parent="Anim"]
+transform = Transform3D(2.02, 0, 0, 0, 2.02, 0, 0, 0, 2.02, 0, 2.85846, 0)
+material_override = SubResource("StandardMaterial3D_8q75g")
+mesh = SubResource("BoxMesh_erbek")
+skeleton = NodePath("../..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Anim"]
+libraries = {
+"": SubResource("AnimationLibrary_hbd0t")
+}
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]

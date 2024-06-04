@@ -26,7 +26,7 @@ var mouseToggle := true
 
 var currentSpeed:float
 const walkSpeed := 5.0
-const sprintSpeed := 8.0
+const sprintSpeed := 20.0
 const jumpVelocity := 4.5
 
 const mouse_sens := 0.25
@@ -115,7 +115,7 @@ func _physics_process(delta):
 		currentSpeed = walkSpeed
 	
 	 #Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or hypercolliding):
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or hypercolliding):
 		velocity.y = jumpVelocity
 
 	# Get the input direction and handle the movement/deceleration.
