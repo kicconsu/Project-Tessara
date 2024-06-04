@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="ProjectTessara"
-run/main_scene="res://Scenes/Levels/Lev1.tscn"
+run/main_scene="res://Scenes/Levels/tutorial.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -21,8 +21,8 @@ CameraTransition="*res://Autoload/camera_transition.tscn"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=720
+window/size/viewport_width=500
+window/size/viewport_height=500
 window/stretch/scale_mode="integer"
 
 [file_customization]

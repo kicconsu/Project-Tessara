@@ -7,6 +7,8 @@ extends Node3D
 # Animations
 @onready var Animations = $Animations
 @onready var _2d_anim = $"SecondDimensionQuest/2DAnim"
+@onready var anim_explicacion = $Anim/animExplicacion
+
 
 # Sounds
 @onready var expansion_sound = $World/expansionSound
@@ -41,6 +43,7 @@ extends Node3D
 # Global Quest VARs
 var current_state = State.Void
 var twoDimension = false
+var flag = true
 var relatedQuest = false 
 var questCompleted = false
 var questFailed = false
@@ -60,6 +63,7 @@ enum State{
 	SecondDimension,
 	SecondDimension1stQuest,
 	SecondDimension2ndQuest,
+	Explaining,
 	ThirdDimension,
 	ThirdDimensionQuest,
 	FourthDimension
@@ -68,7 +72,7 @@ enum State{
 
 func _ready():
 	
-	# Carga de dialogos para la primera dimension 
+	player.locked = true
 			
 	text_box.queue_text("¡Hola pequeña bolita!")
 	#text_box.queue_text("Vamos, intenta moverte usando las teclas WASD.")
@@ -83,9 +87,10 @@ func _process(_delta):
 		#obstacle.set_freeze_enabled(false)
 		#Animations.play("Labyrinth")
 		#labyrinth.set_visible(true)
-		Animations.play("obstacleRise")
+		#Animations.play("obstacleRise")
 		#fall.play()	
 		pass
+		
 	
 	# Al presionar C cambia a primera persona
 	if Input.is_action_just_pressed("changeState"):
@@ -96,7 +101,7 @@ func _process(_delta):
 		camera_transition.start()
 	
 	if State.SecondDimension1stQuest:
-		if questFailed and questFlag:
+		if questFailed and questFlag and flag:
 			if tutbut1 != null:
 				tutbut1.nuke()
 			if tutbut2 != null:
@@ -109,16 +114,18 @@ func _process(_delta):
 			labyrinth.nuke()
 			change_state()
 			timer.emit_signal("timeout")
+			flag = false
 		
-		if questCompleted:
+		if questCompleted and flag:
 			timer.stop()
-			
+			flag = false
 			questCompleted = false
 			questFailed = false
 			questFlag = false
 			relatedQuest = true
 			change_state()
 			timer.emit_signal("timeout")
+			print("entra aca lol?")
 
 	# Cuando no hay mas dialogos en un estado, significa que seguira la secuencia de State
 	if text_box.text_queue.is_empty() and text_box.State.FINISHED:	
@@ -187,15 +194,37 @@ func _process(_delta):
 				State.SecondDimension2ndQuest:
 					
 					if questFlag:
+						anim_explicacion.play("animSlide")
+						anim_explicacion.queue("plainExtend")
+						anim_explicacion.queue("cubeRotation")
 						
-						# Secuencia de explicacion
+						questFlag = false
 						
-						_2d_anim.play("butRise")
+						change_state()
+						timer.set_wait_time(2)
+						timer.start()
+						
+						
 											
 					if relatedQuest:
 						Animations.play("pillarRise")
 						_2d_anim.play("tutbutRise")
 						
+						relatedQuest = false
+				
+				State.Explaining:
+					
+					if questFailed:
+						anim_explicacion.play("plainShrink")
+						anim_explicacion.queue("animExit")
+						_2d_anim.play("butRise")
+						questFailed = false
+					
+					if relatedQuest:
+						timer.set_wait_time(2)
+						timer.start()
+						questFlag = true
+						anim_explicacion.play("cubeTranslate")
 						relatedQuest = false
 				
 				State.ThirdDimension:
@@ -207,9 +236,15 @@ func _process(_delta):
 						relatedQuest = false	
 					
 				State.ThirdDimensionQuest:
+					
+					
 					if relatedQuest:
 						Animations.play("blink")
 						player.locked = false
+						
+						questFailed = true
+						timer.set_wait_time(2)
+						timer.start()
 
 						camera_transition.start()
 						relatedQuest = false
@@ -221,23 +256,19 @@ func change_state():
 			Animations.play("extendWalls Left & Right")
 		State.FirstDimension:	# De 1D a 1DQuest
 			current_state = State.FirstDimensionQuest
-			pass
 		State.FirstDimensionQuest:	# De 1DQuest a 2D
 			current_state = State.SecondDimension
 			Animations.play("extendWalls Up & Down")
-			pass
 		State.SecondDimension:	# De 2D a 2DQuest
 			current_state = State.SecondDimension1stQuest
-			pass
 		State.SecondDimension1stQuest:	# De 2DQuest a 3D
 			current_state = State.SecondDimension2ndQuest
-			pass
 		State.SecondDimension2ndQuest:
+			current_state = State.Explaining
+		State.Explaining:
 			current_state = State.ThirdDimension
-			pass
 		State.ThirdDimension:
 			current_state = State.ThirdDimensionQuest
-			pass
 	
 # Carga de dialogos
 func _on_timer_timeout(): 
@@ -276,18 +307,42 @@ func _on_timer_timeout():
 				#text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese bloque blanco...")
 				relatedQuest = true
 			else:
-				text_box.queue_text("Parece que no puedes tocar la siguiente bola")
-				#text_box.queue_text("Toca este boton especial")
+				text_box.queue_text("Parece que no puedes tocar el siguiente boton")
+				text_box.queue_text("Bueno, falta entender algo.")
+				text_box.queue_text("Voy a explicarte acerca de las analogias dimensionales")
+				
+		State.Explaining:
+			
+			if !questFlag:
+				text_box.queue_text("Por un momento se alcanzo a ver un cuadrado. Pero empezo a deformarse ¿Lo que parece raro verdad?")
+				#text_box.queue_text("Un objeto 2D solo ve 'cortes' de un objeto 3D, por lo que significa...")
+				#text_box.queue_text("¡Los objetos 3D estan compuestos de objetos 2D!")
+				#text_box.queue_text("Voy a atravesar un objeto 3D en nuestro plano para que logres entender mejor")
+				relatedQuest = true
+			else:
+				text_box.queue_text("Estoy atravesando un cubo adentro y fuera de nuestro espacio de 2 dimensiones")
+				#text_box.queue_text("¿Notas que cuando lo roto se ve como un triangulo?")
+				#text_box.queue_text("Es debido a que solo vemos los cortes que atraviesan nuestro espacio")
+				#text_box.queue_text("Este espacio 2D es una extension de la 1era Dimension")
+				#text_box.queue_text("Añadimos otro eje para movernos, y si queremos pasar de dimension...")
+				#text_box.queue_text("Toca extender nuestro espacio hacia otro eje")
+				#text_box.queue_text("Objetos de dimensiones mas altas estan compuestos de objetos de una dimension menor")
+				#text_box.queue_text("¿Interesante verdad? ¡Solo imagina las posibilidades!")
+				questFailed = true
 		State.ThirdDimension:
 			text_box.queue_text("Te preguntarás ¿Que acaba de pasar?")
-			text_box.queue_text("Te lo explicaré luego.")	
+			text_box.queue_text("Te lo explicaré luego.")
 			text_box.queue_text("Diviertete un poco con esto.")
 			relatedQuest = true
 			
 		State.ThirdDimensionQuest:
-			text_box.queue_text("Bueno ¿Tal parece que es un cubo comun y corriente no?")
-			text_box.queue_text("Lo que vas a ver a contunacion bolita, te va a volar la cabeza")	
-			relatedQuest = true
+			if !questFailed:
+				text_box.queue_text("Bueno ¿Tal parece que es un cubo común y corriente no?")
+				text_box.queue_text("Lo que vas a ver a contunacion bolita, te va a volar la cabeza")
+				relatedQuest = true
+			else:
+				text_box.queue_text("¡3 Dimensiones! ¡Bienvenida bolita! o deberia decir...")
+				text_box.queue_text("Como sea, mueve el MOUSE y salta con ESPACIO para avanzar")
 			
 # Cada vez que el Player colisione con la bola, esta aparece en otro lugar random
 func _on_red_ball_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):

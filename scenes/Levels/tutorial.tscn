@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=52 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -41,12 +41,12 @@ albedo_color = Color(0.207843, 0.435294, 1, 1)
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gu6mj"]
 panorama = ExtResource("4_i7u6h")
 
-[sub_resource type="Sky" id="Sky_nomnm"]
+[sub_resource type="Sky" id="Sky_dxw6i"]
 sky_material = SubResource("PanoramaSkyMaterial_gu6mj")
 
 [sub_resource type="Environment" id="Environment_ldbkc"]
 background_mode = 2
-sky = SubResource("Sky_nomnm")
+sky = SubResource("Sky_dxw6i")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -1694,17 +1694,6 @@ _data = {
 shading_mode = 0
 disable_receive_shadows = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rb5o"]
-shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_87gr4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q75g"]
-shading_mode = 0
-
-[sub_resource type="BoxMesh" id="BoxMesh_erbek"]
-
 [sub_resource type="Animation" id="Animation_is60u"]
 length = 0.001
 tracks/0/type = "value"
@@ -1741,7 +1730,35 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(10.03, 0.966, 14.84)]
+"values": [Vector3(4.24, 0.276, 4.24)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Cube:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 2.85846, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_21x83"]
+resource_name = "animExit"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1.8025, 0.133972),
+"update": 0,
+"values": [Vector3(-9.26105, 4.12564, -0.0958836), Vector3(-23.5672, 3.12564, -0.0958836)]
 }
 
 [sub_resource type="Animation" id="Animation_hhnl6"]
@@ -1757,7 +1774,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 2),
 "transitions": PackedFloat32Array(0.133972, 1),
 "update": 0,
-"values": [Vector3(-23.5672, 1.12564, -0.0958836), Vector3(-9.26105, 1.12564, -0.0958836)]
+"values": [Vector3(-23.5672, 3.12564, -0.0958836), Vector3(-9.26105, 4.12564, -0.0958836)]
 }
 
 [sub_resource type="Animation" id="Animation_m2xe1"]
@@ -1777,6 +1794,35 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(1.5708, 1.5708, 1.5708), Vector3(3.14159, 1.5708, 1.5708), Vector3(3.14159, 3.14159, 1.5708), Vector3(3.14159, 3.14159, 3.14159)]
 }
 
+[sub_resource type="Animation" id="Animation_oq2em"]
+resource_name = "cubeTranslate"
+length = 6.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Cube:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 0.196146, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 2.85846, 0), Vector3(0, -3.14154, 0), Vector3(0, 2.85846, 0), Vector3(0, 2.85846, 0), Vector3(0, -3.14154, 0), Vector3(0, 2.85846, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cube:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 3, 5, 6),
+"transitions": PackedFloat32Array(0.406126, 1, 0.466517, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.785398, 0.785398, 0.785398), Vector3(0.785398, 0.785398, 0.785398), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ivp6p"]
 resource_name = "plainExtend"
 tracks/0/type = "value"
@@ -1789,16 +1835,45 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.353553, 1),
 "update": 0,
-"values": [Vector3(4.24, 0.276, 4.24), Vector3(10.03, 0.966, 14.84)]
+"values": [Vector3(4.24, 0.276, 4.24), Vector3(11.15, 1.074, 16.497)]
+}
+
+[sub_resource type="Animation" id="Animation_qsp62"]
+resource_name = "plainShrink"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Plain:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.210224, 0.353553),
+"update": 0,
+"values": [Vector3(11.15, 1.074, 16.497), Vector3(4.24, 0.276, 4.24)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hbd0t"]
 _data = {
 "RESET": SubResource("Animation_is60u"),
+"animExit": SubResource("Animation_21x83"),
 "animSlide": SubResource("Animation_hhnl6"),
 "cubeRotation": SubResource("Animation_m2xe1"),
-"plainExtend": SubResource("Animation_ivp6p")
+"cubeTranslate": SubResource("Animation_oq2em"),
+"plainExtend": SubResource("Animation_ivp6p"),
+"plainShrink": SubResource("Animation_qsp62")
 }
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rb5o"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_87gr4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8q75g"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_erbek"]
 
 [node name="Tutorial" type="Node3D"]
 script = ExtResource("1_sbt0f")
@@ -1956,7 +2031,7 @@ shadow_enabled = true
 [node name="redBall" parent="." instance=ExtResource("5_osr12")]
 
 [node name="Player" parent="." instance=ExtResource("5_fkbo0")]
-transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.00191998, 2.17421, -0.0079298)
+transform = Transform3D(1, 0, 1.06581e-14, 0, 1, 0, -1.06581e-14, 0, 1, 0.00192022, 1.17421, -0.0079298)
 collision_mask = 3
 
 [node name="TextBox" parent="." instance=ExtResource("3_rd8co")]
@@ -2026,13 +2101,18 @@ freeze_mode = 1
 
 [node name="Portal" parent="SecondDimensionQuest/Obstacle" instance=ExtResource("13_mdww4")]
 transform = Transform3D(0.305, 0, 0, 0, 0.305, 0, 0, 0, 0.305, -2.51524, 3.33586, 2.85714)
-NextScene = "Lev1"
+NextScene = "3d_world"
 
 [node name="Anim" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5672, 1.12564, -0.0958836)
 
+[node name="animExplicacion" type="AnimationPlayer" parent="Anim"]
+libraries = {
+"": SubResource("AnimationLibrary_hbd0t")
+}
+
 [node name="Plain" type="MeshInstance3D" parent="Anim"]
-transform = Transform3D(10.03, 0, 0, 0, 0.966, 0, 0, 0, 14.84, 0, 0, 0)
+transform = Transform3D(4.24, 0, 0, 0, 0.276, 0, 0, 0, 4.24, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_1rb5o")
 mesh = SubResource("BoxMesh_87gr4")
 skeleton = NodePath("../..")
@@ -2042,11 +2122,6 @@ transform = Transform3D(2.02, 0, 0, 0, 2.02, 0, 0, 0, 2.02, 0, 2.85846, 0)
 material_override = SubResource("StandardMaterial3D_8q75g")
 mesh = SubResource("BoxMesh_erbek")
 skeleton = NodePath("../..")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Anim"]
-libraries = {
-"": SubResource("AnimationLibrary_hbd0t")
-}
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]
