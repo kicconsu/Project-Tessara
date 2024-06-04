@@ -15,11 +15,11 @@ func _process(_delta):
 		
 		var detected = get_collider()
 		
-		if detected is Interactable:
+		if detected is Trigger:
 			prompt.text = detected.get_prompt()
 			
 			if Input.is_action_just_pressed(detected.prompt_action):
-				detected.interact(owner)
+				detected.interact()
 
 #Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
 #if theres a hit, we send the shape information, so the player can interact with it
@@ -35,8 +35,8 @@ func getShape(direction:Vector3):
 	var castedPoint:Vector3 = pos+(direction.normalized()*RAYCAST_LENGTH)
 	
 	#Some raycast visualization stuff
-	self.set_position(pos)
-	self.set_target_position(direction)
+	#self.set_position(pos)
+	#self.set_target_position(direction)
 	
 	var shape = _getColliderAcross(pos, castedPoint)
 	return shape

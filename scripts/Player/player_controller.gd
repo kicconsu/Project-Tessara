@@ -17,6 +17,7 @@ var inspection_enabled := false
 var target_shape : Node = null
 
 var locked := false
+var freezed := false
 var hyper_locked := false
 var physVel:Vector3
 var hypercolliding := false
@@ -44,63 +45,64 @@ func _ready():
 
 func _input(event):
 	
-	if event is InputEventMouseMotion:
-		if mouseToggle and Input.get_mouse_mode() == 2 and !locked and !hyper_locked:
-			rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
-			head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
-			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
-	
-	
-	if Input.is_action_pressed("lclick"):
-		pick_object()
-		
-	if Input.is_action_just_pressed("lclick"): 
-		distOffset = raycast.distToShape
-	
-	if hand.picked_object != null and Input.is_action_just_released("lclick"):
-		hand.picked_object.set_freeze_enabled(true)
-		hand.picked_object.colorFromScratch()
-		hand.picked_object = null
-		joint.set_node_b(joint.get_path())
-		
-	if Input.is_action_pressed("rclick"):
-		locked = true
-		rotate_object(event)
-	
-	if Input.is_action_just_released("rclick"):
-		locked = false
-	
-	if Input.is_action_just_pressed("ctrl"):
-		hyper_locked = true
-	
-	if hyper_locked:
-		hyper_rotate_object(event)
-	
-	if Input.is_action_just_released("ctrl"):
-		hyper_locked = false
-	
-	if Input.is_action_just_released("wheeldown") and hand.picked_object != null and !hyper_locked:
-		print("holding at dst: ", distOffset)
-		distOffset -= 0.2
-		distOffset = clamp(distOffset, 0.2, 7)
-	
-	if Input.is_action_just_released("wheelup") and hand.picked_object != null and !hyper_locked:
-		print("holding at dst: ", distOffset)
-		distOffset += 0.2
-		distOffset = clamp(distOffset, 0.2, 7)
-	
-	#Toggle Hyperhand coloration mode by emitting a signal
-	if Input.is_action_just_pressed("ui_focus_next"):
-		inspection_enabled = !inspection_enabled
-		if inspection_enabled:
-			enable_hyper_inspection.emit()
-		else:
-			disable_hyper_inspection.emit()
-
-func _physics_process(delta):
-	
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
+	
+	if freezed:
+		if event is InputEventMouseMotion:
+			if mouseToggle and Input.get_mouse_mode() == 2 and !locked and !hyper_locked:
+				rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
+				head.rotate_x(deg_to_rad(-event.relative.y * mouse_sens))
+				head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
+		
+		
+		if Input.is_action_pressed("lclick"):
+			pick_object()
+			
+		if Input.is_action_just_pressed("lclick"): 
+			distOffset = raycast.distToShape
+		
+		if hand.picked_object != null and Input.is_action_just_released("lclick"):
+			hand.picked_object.set_freeze_enabled(true)
+			hand.picked_object.colorFromScratch()
+			hand.picked_object = null
+			joint.set_node_b(joint.get_path())
+			
+		if Input.is_action_pressed("rclick"):
+			locked = true
+			rotate_object(event)
+		
+		if Input.is_action_just_released("rclick"):
+			locked = false
+		
+		if Input.is_action_just_pressed("ctrl"):
+			hyper_locked = true
+		
+		if hyper_locked:
+			hyper_rotate_object(event)
+		
+		if Input.is_action_just_released("ctrl"):
+			hyper_locked = false
+		
+		if Input.is_action_just_released("wheeldown") and hand.picked_object != null and !hyper_locked:
+			print("holding at dst: ", distOffset)
+			distOffset -= 0.2
+			distOffset = clamp(distOffset, 0.2, 7)
+		
+		if Input.is_action_just_released("wheelup") and hand.picked_object != null and !hyper_locked:
+			print("holding at dst: ", distOffset)
+			distOffset += 0.2
+			distOffset = clamp(distOffset, 0.2, 7)
+		
+		#Toggle Hyperhand coloration mode by emitting a signal
+		if Input.is_action_just_pressed("ui_focus_next"):
+			inspection_enabled = !inspection_enabled
+			if inspection_enabled:
+				enable_hyper_inspection.emit()
+			else:
+				disable_hyper_inspection.emit()
+
+func _physics_process(delta):
 	
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
@@ -172,8 +174,10 @@ func pick_object():
 func rotate_object(event):
 	if hand.picked_object != null:
 		if event is InputEventMouseMotion:
-			aux.rotate_x(deg_to_rad(event.relative.y * hand.rotation_power))
-			aux.rotate_y(deg_to_rad(event.relative.x * hand.rotation_power))
+			if hand.picked_object.rotateX:
+				aux.rotate_x(deg_to_rad(event.relative.y * hand.rotation_power))
+			if hand.picked_object.rotateY:
+				aux.rotate_y(deg_to_rad(event.relative.x * hand.rotation_power))
 
 func hyper_rotate_object(event):
 	if hand.picked_object != null:
@@ -198,3 +202,12 @@ func isInspectionEnabled():
 	
 func setInspectionEnabled(boolean:bool):
 	inspection_enabled = boolean
+	
+
+func isFreezed():
+	return freezed
+
+func setFreezed(boolean:bool):
+	freezed = boolean
+	self.set_physics_process(!boolean)
+	self.set_process(!boolean)

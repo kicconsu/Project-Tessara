@@ -19,6 +19,7 @@ font_size = 31
 font_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
+collision_layer = 3
 script = ExtResource("1_x2bix")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]
@@ -62,10 +63,8 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.501647, 0)
 
 [node name="InteractRay" type="RayCast3D" parent="Head"]
-top_level = true
 target_position = Vector3(0, 0, -4)
 collision_mask = 2
-collide_with_bodies = false
 debug_shape_thickness = 1
 script = ExtResource("4_dj0eu")
 

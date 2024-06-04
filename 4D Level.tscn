@@ -1,0 +1,267 @@
+[gd_scene load_steps=14 format=3 uid="uid://bw22x5ifu3d4d"]
+
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_kf00x"]
+[ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_mdflx"]
+[ext_resource type="Script" path="res://4DLevel.gd" id="2_22wtu"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_bvh5f"]
+[ext_resource type="PackedScene" uid="uid://dxeotyavnimt3" path="res://Scenes/Levels/generic_chamber.tscn" id="3_bagb3"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_ld1ju"]
+[ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="5_q51qw"]
+[ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/lamp.tscn" id="6_qxser"]
+[ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="8_umolx"]
+[ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="9_4myx8"]
+[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="11_w0e60"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_gs8pe"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lfgcn"]
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+script = ExtResource("1_mdflx")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(600, 600)
+render_target_update_mode = 4
+
+[node name="World" type="Node3D" parent="SubViewport"]
+script = ExtResource("2_22wtu")
+
+[node name="Player" parent="SubViewport/World" instance=ExtResource("2_bvh5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5557, 1.196, -14)
+
+[node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("3_bagb3")]
+
+[node name="Tunnel" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00192642, -0.00449705, 9.16272e-05)
+
+[node name="Structure" type="Node3D" parent="SubViewport/World/Tunnel"]
+
+[node name="floor" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4752, 2.38419e-07, -2.92817)
+size = Vector3(34.9027, 0.5, 27.4834)
+
+[node name="floor2" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6603, 2.38419e-07, -14.285)
+size = Vector3(11.9551, 0.5, 4.76974)
+
+[node name="ceilling" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3729, 4.12047, -2.99057)
+size = Vector3(48.6108, 0.5, 27.501)
+
+[node name="wall" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0499, 2.0575, -2.37534)
+size = Vector3(13.9691, 4.6135, 0.793397)
+
+[node name="wall11" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58.6884, 2.0575, -14.0081)
+rotation_edit_mode = 0
+size = Vector3(5.47511, 4.6135, 0.793397)
+
+[node name="wall6" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0785, 2.0575, 2.39603)
+size = Vector3(10.0264, 4.6135, 0.793397)
+
+[node name="wall7" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 19.6954, 2.0575, 6.77776)
+rotation_edit_mode = 0
+size = Vector3(7.96938, 4.6135, 0.793397)
+
+[node name="wall8" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.4333, 2.0575, 1.1996)
+rotation_edit_mode = 0
+size = Vector3(7.9343, 4.6135, 0.793397)
+
+[node name="wall9" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 32.7495, 2.0575, -5.81148)
+rotation_edit_mode = 0
+size = Vector3(21.9565, 4.6135, 0.793397)
+
+[node name="wall10" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 37.4919, 2.0575, -0.210239)
+rotation_edit_mode = 0
+size = Vector3(21.9647, 4.6135, 0.793397)
+
+[node name="wall2" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5938, 2.0575, 5.56969)
+size = Vector3(9.12142, 4.6135, 0.798607)
+
+[node name="wall4" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.5851, 2.0575, 10.359)
+size = Vector3(17.0224, 4.6135, 0.798607)
+
+[node name="wall3" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.901, 2.0575, -16.393)
+size = Vector3(25.4925, 4.6135, 0.798607)
+
+[node name="wall5" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.8679, 2.0575, -11.5986)
+size = Vector3(21.5588, 4.6135, 0.798607)
+
+[node name="Lights" type="Node3D" parent="SubViewport/World/Tunnel"]
+
+[node name="Lamp" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2694, 2.00588, 0)
+
+[node name="Lamp2" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.0502, 2.00588, 4.56804)
+
+[node name="Lamp3" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.3665, 2.00588, 8.05015)
+
+[node name="Lamp4" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0319, 2.00588, 1.82699)
+
+[node name="Lamp5" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0319, 2.00588, -6.9685)
+
+[node name="Lamp6" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.1769, 2.00588, -14.0115)
+
+[node name="Lamp7" parent="SubViewport/World/Tunnel/Lights" instance=ExtResource("6_qxser")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2509, 2.00588, -14.0115)
+
+[node name="Rotating wall" parent="SubViewport/World/Tunnel" instance=ExtResource("3_ld1ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.7216, 2.057, -13.942)
+gravity_scale = 0.0
+dimensions = Vector4(0.2, 2, 2, 1)
+shapeType = 1
+translate = false
+rotateX = false
+transformable = false
+
+[node name="Fake Floor" type="RigidBody3D" parent="SubViewport/World/Tunnel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.1643, 0.00734764, -14.1053)
+freeze = true
+freeze_mode = 1
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/World/Tunnel/Fake Floor"]
+transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 4.77, 0, 0, 0)
+mesh = SubResource("BoxMesh_gs8pe")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Tunnel/Fake Floor"]
+transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 4.77, 0, 0, 0)
+shape = SubResource("BoxShape3D_lfgcn")
+
+[node name="TriggerLever" parent="SubViewport/World/Tunnel" node_paths=PackedStringArray("target") instance=ExtResource("5_q51qw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.7127, 0.0512397, -13.6162)
+target = NodePath("../Fake Floor")
+destination = Vector3(0, 0, -20)
+translateDuration = 90.0
+
+[node name="Donde caemos gente" type="Node3D" parent="SubViewport/World/Tunnel"]
+
+[node name="wall15" parent="SubViewport/World/Tunnel/Donde caemos gente" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 41.5166, -13.0691, -13.9679)
+rotation_edit_mode = 0
+size = Vector3(5.6186, 25.626, 0.798607)
+
+[node name="wall14" parent="SubViewport/World/Tunnel/Donde caemos gente" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 47.1212, -13.0691, -13.9679)
+rotation_edit_mode = 0
+size = Vector3(5.6186, 25.626, 0.798607)
+
+[node name="wall13" parent="SubViewport/World/Tunnel/Donde caemos gente" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3202, -10.6745, -16.38)
+size = Vector3(4.79641, 20.9183, 0.798607)
+
+[node name="wall12" parent="SubViewport/World/Tunnel/Donde caemos gente" instance=ExtResource("1_kf00x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3202, -13.0691, -11.5986)
+size = Vector3(4.79641, 25.626, 0.798607)
+
+[node name="HyperGrab Room" type="Node3D" parent="SubViewport/World"]
+
+[node name="Structure" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+
+[node name="Floor" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -26.1451, -26.1623)
+rotation_edit_mode = 0
+size = Vector3(30, 0.5, 15)
+
+[node name="Floor2" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -11.1535, -31.472)
+rotation_edit_mode = 0
+size = Vector3(29.3695, 0.5, 15)
+
+[node name="Floor3" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.0689, -11.1535, -13.9849)
+rotation_edit_mode = 0
+size = Vector3(5.64179, 0.5, 4.15625)
+
+[node name="Floor4" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49.7803, -11.1535, -13.9853)
+rotation_edit_mode = 0
+size = Vector3(5.64267, 0.5, 4.51221)
+
+[node name="Pedestal Surface" type="Node3D" parent="SubViewport/World/HyperGrab Room/Structure"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5017, -28.396, -43.6699)
+
+[node name="Floor2" parent="SubViewport/World/HyperGrab Room/Structure/Pedestal Surface" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+rotation_edit_mode = 0
+size = Vector3(5.01385, 5.01257, 15)
+
+[node name="Pedestal" type="MeshInstance3D" parent="SubViewport/World/HyperGrab Room/Structure/Pedestal Surface"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45647, 0)
+mesh = ExtResource("8_umolx")
+skeleton = NodePath("../../../../../..")
+
+[node name="wall16" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.5992, -18.4187, -28.6712)
+rotation_edit_mode = 0
+size = Vector3(35.0257, 15, 0.799)
+
+[node name="wall17" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.4072, -18.4187, -28.6712)
+rotation_edit_mode = 0
+size = Vector3(35.0257, 15, 0.799)
+
+[node name="wall19" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.5053, -18.4187, -10.9059)
+rotation_edit_mode = 0
+size = Vector3(0.506848, 15, 16.6028)
+
+[node name="wall18" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.534, -18.4187, -46.4396)
+rotation_edit_mode = 0
+size = Vector3(0.513073, 15, 16.5453)
+
+[node name="Lights" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/World/HyperGrab Room/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1319, -22.4751, -26.3254)
+omni_range = 30.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/World/HyperGrab Room/Lights"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 44.5051, -11.4704, -43.6685)
+light_energy = 4.5
+spot_range = 25.0
+spot_angle = 7.86178
+
+[node name="Hypershapes" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+
+[node name="Hypershape" parent="SubViewport/World/HyperGrab Room/Hypershapes" instance=ExtResource("3_ld1ju")]
+transform = Transform3D(0.999722, -0.023527, 0.00178552, 0.0235947, 0.996855, -0.0756538, 0, 0.0756749, 0.997133, 44.2738, -22.9872, -27.141)
+shapeType = 1
+
+[node name="TriggerAreas" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+
+[node name="MovementTrigger" parent="SubViewport/World/HyperGrab Room/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_4myx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4908, -26.1451, -34.3187)
+dimensions = Vector3(15, 20, 0.3)
+target = NodePath("../../Structure/Pedestal Surface")
+destination = Vector3(0, 5, 0)
+translateDuration = 2.5
+
+[node name="Timer" type="Timer" parent="SubViewport/World"]
+one_shot = true
+
+[node name="TextBox" parent="SubViewport/World" instance=ExtResource("11_w0e60")]
+
+[connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]

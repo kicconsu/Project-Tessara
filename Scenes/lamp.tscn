@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://fr2ciceutsck"]
+
+[ext_resource type="ArrayMesh" uid="uid://yhdm1jguq6rt" path="res://assets/models/Lamp.obj" id="1_hd1q8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0a6y"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_budnq"]
+
+[node name="Lamp" type="Node3D"]
+
+[node name="Lamp" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_hd1q8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.37, 0, 0, 0, 0.37, 0, 0, 0, 0.37, 0.00125945, 0.668712, -0.00311661)
+material_override = SubResource("StandardMaterial3D_r0a6y")
+mesh = SubResource("SphereMesh_budnq")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.760367, 0.643925, 0.0647184, 1)
+light_energy = 0.7
+omni_range = 10.0

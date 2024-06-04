@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxeotyavnimt3"]
+
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_p1vn5"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_a8gea"]
+
+[node name="StartingChamber" type="Node3D"]
+
+[node name="wall" parent="." instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.06, 7.25, 0.005)
+size = Vector3(0.25, 15, 20)
+
+[node name="wall2" parent="." instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 7.25, -10.11)
+size = Vector3(20.5, 15, 0.25)
+
+[node name="wall3" parent="." instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 7.25, 10.11)
+size = Vector3(20.5, 15, 0.25)
+
+[node name="Fake wall" type="Node3D" parent="."]
+
+[node name="Upper Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 9.56124, 0.005)
+size = Vector3(0.25, 10.3775, 20)
+
+[node name="Left Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 2.0575, -5.98682)
+size = Vector3(0.25, 4.6135, 8.01636)
+
+[node name="Right Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 2.06812, 6.00073)
+size = Vector3(0.25, 4.61943, 8.00854)
+
+[node name="MovableWall" parent="Fake wall" instance=ExtResource("2_a8gea")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.19, 2.057, 0.005)
+base_color = Vector3(0.9, 0.9, 0.9)
+dimensions = Vector4(0.25, 4.619, 3.982, 1)
+shapeType = 1
+rotateX = false
+rotateY = false
+transformable = false
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80549, 0)
+omni_range = 30.0
+
+[node name="floor" parent="." instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0682116, 2.38419e-07, 0.0171375)
+size = Vector3(20, 0.5, 20)
+
+[node name="floor2" parent="." instance=ExtResource("1_p1vn5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068, 15, 0.017)
+size = Vector3(20.5, 0.5, 20.5)
