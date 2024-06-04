@@ -1,5 +1,5 @@
-extends Node3D
-@onready var player = $Player
+extends Node
+@onready var player = $World/Player
 var shapesInScene:Array[Node]
 # Called when the node enters the scene tree for the first time.
 func _ready():
