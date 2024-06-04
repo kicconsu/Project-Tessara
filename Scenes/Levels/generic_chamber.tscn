@@ -36,8 +36,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.19, 2.057, 0.005)
 base_color = Vector3(0.9, 0.9, 0.9)
 dimensions = Vector4(0.25, 4.619, 3.982, 1)
 shapeType = 1
-rotateX = false
-rotateY = false
 transformable = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

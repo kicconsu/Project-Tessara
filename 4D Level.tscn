@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bw22x5ifu3d4d"]
+[gd_scene load_steps=15 format=3 uid="uid://bw22x5ifu3d4d"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_kf00x"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_mdflx"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/lamp.tscn" id="6_qxser"]
 [ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="8_umolx"]
 [ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="9_4myx8"]
+[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_85frq"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="11_w0e60"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gs8pe"]
@@ -34,7 +35,7 @@ render_target_update_mode = 4
 script = ExtResource("2_22wtu")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("2_bvh5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53.5557, 1.196, -14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0298, -23.8905, -25.8137)
 
 [node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("3_bagb3")]
 
@@ -128,12 +129,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 37.1769, 2.00588, -14.0115)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.2509, 2.00588, -14.0115)
 
 [node name="Rotating wall" parent="SubViewport/World/Tunnel" instance=ExtResource("3_ld1ju")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 47.7216, 2.057, -13.942)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 62.722, 2.057, -13.942)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
 gravity_scale = 0.0
 dimensions = Vector4(0.2, 2, 2, 1)
 shapeType = 1
 translate = false
-rotateX = false
 transformable = false
 
 [node name="Fake Floor" type="RigidBody3D" parent="SubViewport/World/Tunnel"]
@@ -150,7 +152,7 @@ transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 4.77, 0, 0, 0)
 shape = SubResource("BoxShape3D_lfgcn")
 
 [node name="TriggerLever" parent="SubViewport/World/Tunnel" node_paths=PackedStringArray("target") instance=ExtResource("5_q51qw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.7127, 0.0512397, -13.6162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.7127, 0.0512397, -14.035)
 target = NodePath("../Fake Floor")
 destination = Vector3(0, 0, -20)
 translateDuration = 90.0
@@ -175,92 +177,176 @@ size = Vector3(4.79641, 20.9183, 0.798607)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3202, -13.0691, -11.5986)
 size = Vector3(4.79641, 25.626, 0.798607)
 
-[node name="HyperGrab Room" type="Node3D" parent="SubViewport/World"]
+[node name="TriggerAreas" type="Node3D" parent="SubViewport/World/Tunnel"]
 
-[node name="Structure" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+[node name="TextTrigger" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 0.99982, 0.0189531, 0, -0.0189531, 0.99982, 11.7473, 2.04658, 0.0672352)
+top_level = true
+dimensions = Vector3(0.3, 5, 5)
+target = NodePath("../../../TextBox")
+message = "Ay no... ¡Espera, no entres!"
+change_scene_state = true
 
-[node name="Floor" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="TextTrigger2" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(-0.0216752, 0, -0.999765, 0, 1, 0, 0.999765, 0, -0.0216752, 22.0972, 1.72602, 4.48527)
+dimensions = Vector3(7, 7, 0.3)
+target = NodePath("../../../TextBox")
+message = "¡Tienes que detenerte ahora mismo! No lo entiendes..."
+
+[node name="TextTrigger3" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.0788, 1.72602, 0.8775)
+dimensions = Vector3(7, 7, 0.3)
+target = NodePath("../../../TextBox")
+message = "No estamos preparados, el 4D es muy complejo..."
+
+[node name="TextTrigger4" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.1751, 1.63922, -14.1947)
+dimensions = Vector3(0.3, 5, 5)
+target = NodePath("../../../TextBox")
+message = "Ya sé, ¡Toma! suerte moviendo esa figura"
+
+[node name="TextTrigger5" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.1038, 2.04742, -14.0315)
+dimensions = Vector3(0.3, 5, 5)
+target = NodePath("../../../TextBox")
+message = "¡¿Qué?!"
+
+[node name="MovementTrigger2" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_4myx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 39.1751, 1.63922, -14.1947)
+dimensions = Vector3(0.3, 7, 7)
+target = NodePath("../../Rotating wall")
+destination = Vector3(-15, 0, 0)
+translateDuration = 0.8
+
+[node name="TextTrigger6" parent="SubViewport/World/Tunnel/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4419, -5.08929, -13.5907)
+dimensions = Vector3(5, 0.3, 5)
+target = NodePath("../../../TextBox")
+message = "Por favor..."
+
+[node name="HyperGrabRoom" type="Node3D" parent="SubViewport/World"]
+
+[node name="Structure" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
+
+[node name="Floor" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -26.1451, -26.1623)
 rotation_edit_mode = 0
 size = Vector3(30, 0.5, 15)
 
-[node name="Floor2" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="Floor2" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -11.1535, -31.472)
 rotation_edit_mode = 0
 size = Vector3(29.3695, 0.5, 15)
 
-[node name="Floor3" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="Floor3" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.0689, -11.1535, -13.9849)
 rotation_edit_mode = 0
 size = Vector3(5.64179, 0.5, 4.15625)
 
-[node name="Floor4" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="Floor4" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 49.7803, -11.1535, -13.9853)
 rotation_edit_mode = 0
 size = Vector3(5.64267, 0.5, 4.51221)
 
-[node name="Pedestal Surface" type="Node3D" parent="SubViewport/World/HyperGrab Room/Structure"]
+[node name="Pedestal Surface" type="Node3D" parent="SubViewport/World/HyperGrabRoom/Structure"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.5017, -28.396, -43.6699)
 
-[node name="Floor2" parent="SubViewport/World/HyperGrab Room/Structure/Pedestal Surface" instance=ExtResource("1_kf00x")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+[node name="Floor2" parent="SubViewport/World/HyperGrabRoom/Structure/Pedestal Surface" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.993492, 0)
 rotation_edit_mode = 0
-size = Vector3(5.01385, 5.01257, 15)
+size = Vector3(5.014, 7, 15)
 
-[node name="Pedestal" type="MeshInstance3D" parent="SubViewport/World/HyperGrab Room/Structure/Pedestal Surface"]
+[node name="Pedestal" type="MeshInstance3D" parent="SubViewport/World/HyperGrabRoom/Structure/Pedestal Surface"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45647, 0)
 mesh = ExtResource("8_umolx")
 skeleton = NodePath("../../../../../..")
 
-[node name="wall16" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.5992, -18.4187, -28.6712)
+[node name="wall16" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 36.599, -18.419, -28.671)
 rotation_edit_mode = 0
 size = Vector3(35.0257, 15, 0.799)
 
-[node name="wall17" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.4072, -18.4187, -28.6712)
+[node name="wall17" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 52.407, -18.419, -28.671)
 rotation_edit_mode = 0
 size = Vector3(35.0257, 15, 0.799)
 
-[node name="wall19" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="wall19" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.5053, -18.4187, -10.9059)
 rotation_edit_mode = 0
 size = Vector3(0.506848, 15, 16.6028)
 
-[node name="wall18" parent="SubViewport/World/HyperGrab Room/Structure" instance=ExtResource("1_kf00x")]
+[node name="wall18" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.534, -18.4187, -46.4396)
 rotation_edit_mode = 0
 size = Vector3(0.513073, 15, 16.5453)
 
-[node name="Lights" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+[node name="Lights" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
 
-[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/World/HyperGrab Room/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.1319, -22.4751, -26.3254)
-omni_range = 30.0
-
-[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/World/HyperGrab Room/Lights"]
+[node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/World/HyperGrabRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 44.5051, -11.4704, -43.6685)
 light_energy = 4.5
-spot_range = 25.0
-spot_angle = 7.86178
+spot_range = 50.0
+spot_angle = 13.7051
 
-[node name="Hypershapes" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+[node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/World/HyperGrabRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3287, -25.0483, -21.8574)
 
-[node name="Hypershape" parent="SubViewport/World/HyperGrab Room/Hypershapes" instance=ExtResource("3_ld1ju")]
-transform = Transform3D(0.999722, -0.023527, 0.00178552, 0.0235947, 0.996855, -0.0756538, 0, 0.0756749, 0.997133, 44.2738, -22.9872, -27.141)
+[node name="Hypershapes" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7, -4.04236)
+
+[node name="Hypershape3" parent="SubViewport/World/HyperGrabRoom/Hypershapes" instance=ExtResource("3_ld1ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.795, -20.445, -33.046)
+gravity_scale = 0.0
+constant_force = Vector3(1, 0, 0)
+base_color = Vector3(0.7, 0.4, 0.4)
 shapeType = 1
+transformable = false
 
-[node name="TriggerAreas" type="Node3D" parent="SubViewport/World/HyperGrab Room"]
+[node name="Hypershape4" parent="SubViewport/World/HyperGrabRoom/Hypershapes" instance=ExtResource("3_ld1ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.1651, -22.445, -28.046)
+gravity_scale = 0.0
+linear_velocity = Vector3(-3, 0, 0)
+constant_force = Vector3(-2, 0, 0)
+base_color = Vector3(0.7, 0.4, 0.4)
+shapeType = 1
+transformable = false
 
-[node name="MovementTrigger" parent="SubViewport/World/HyperGrab Room/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_4myx8")]
+[node name="Hypershape5" parent="SubViewport/World/HyperGrabRoom/Hypershapes" instance=ExtResource("3_ld1ju")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7947, -24.445, -23.046)
+gravity_scale = 0.0
+constant_force = Vector3(1.5, 0, 0)
+base_color = Vector3(0.7, 0.4, 0.4)
+shapeType = 1
+transformable = false
+
+[node name="TriggerAreas" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
+
+[node name="MovementTrigger" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_4myx8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4908, -26.1451, -34.3187)
 dimensions = Vector3(15, 20, 0.3)
 target = NodePath("../../Structure/Pedestal Surface")
-destination = Vector3(0, 5, 0)
-translateDuration = 2.5
+destination = Vector3(0, 6, 0)
+translateDuration = 2.0
+change_scene_state = true
+
+[node name="TextTrigger7" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("9_85frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.4889, -26.1496, -34.3186)
+dimensions = Vector3(15, 20, 0.3)
+target = NodePath("../../../TextBox")
+message = "NOOOOOOOOOOOOOOO"
+
+[node name="MovementTrigger2" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" instance=ExtResource("9_4myx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, -18.419, -28.671)
+dimensions = Vector3(0.3, 20, 35.026)
+destination = Vector3(-30, 0, 0)
+
+[node name="MovementTrigger3" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" instance=ExtResource("9_4myx8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -18.419, -28.671)
+dimensions = Vector3(0.3, 20, 35.026)
+destination = Vector3(30, 0, 0)
 
 [node name="Timer" type="Timer" parent="SubViewport/World"]
-one_shot = true
 
 [node name="TextBox" parent="SubViewport/World" instance=ExtResource("11_w0e60")]
 

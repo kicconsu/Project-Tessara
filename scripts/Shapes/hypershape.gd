@@ -10,8 +10,6 @@ var color = Vector3(0.0,0.0,0.0)
 @export var shapeType := int(0)
 @export var hyperInfo := Vector4(0.0, 0.0, 0.0, 0.0) 
 @export var translate = true
-@export var rotateX = true
-@export var rotateY = true
 @export var transformable = true
 #the first three elements in this vector are xw, yw, zw rotation degrees.
 #the last one is the w coordinate position.

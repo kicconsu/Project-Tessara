@@ -28,7 +28,7 @@ var mouseToggle := true
 var currentSpeed:float
 const walkSpeed := 5.0
 const sprintSpeed := 8.0
-const jumpVelocity := 4.5
+const jumpVelocity := 10
 
 const mouse_sens := 0.25
 
@@ -48,7 +48,7 @@ func _input(event):
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
 	
-	if freezed:
+	if !freezed:
 		if event is InputEventMouseMotion:
 			if mouseToggle and Input.get_mouse_mode() == 2 and !locked and !hyper_locked:
 				rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
@@ -115,7 +115,7 @@ func _physics_process(delta):
 		currentSpeed = walkSpeed
 	
 	 #Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and (is_on_floor() or hypercolliding):
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or hypercolliding):
 		velocity.y = jumpVelocity
 
 	# Get the input direction and handle the movement/deceleration.
@@ -169,14 +169,13 @@ func pick_object():
 		target_shape.set_freeze_enabled(false)
 		hand.picked_object = target_shape
 		target_shape = null
+		hand.picked_object.set_constant_force(Vector3(0,0,0))
 		joint.set_node_b(hand.picked_object.get_path())
 
 func rotate_object(event):
 	if hand.picked_object != null:
 		if event is InputEventMouseMotion:
-			if hand.picked_object.rotateX:
 				aux.rotate_x(deg_to_rad(event.relative.y * hand.rotation_power))
-			if hand.picked_object.rotateY:
 				aux.rotate_y(deg_to_rad(event.relative.x * hand.rotation_power))
 
 func hyper_rotate_object(event):
