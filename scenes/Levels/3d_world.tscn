@@ -1,71 +1,141 @@
-[gd_scene load_steps=3 format=3 uid="uid://clidhel0jwb5v"]
+[gd_scene load_steps=8 format=3 uid="uid://dh1k2chsis7ww"]
 
-[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
+[ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
+[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="1_nt5u5"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
+[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="7_n31h7"]
 
-[node name="3DWorld" type="Node3D"]
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(720, 720)
+render_target_update_mode = 4
+script = ExtResource("1_hnfm3")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(82.204, 0, 0, 0, 1, 0, 0, 0, 72.723, 0, 0, -4.70498)
-use_collision = true
-collision_mask = 0
-size = Vector3(1, 0.001, 0.870605)
+[node name="World" type="Node3D" parent="SubViewport"]
+script = ExtResource("2_p0qd1")
 
-[node name="Goal" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.98432, 11.5173, 13)
+[node name="Floor" type="Node3D" parent="SubViewport/World"]
 
-[node name="Portal" parent="Goal" instance=ExtResource("1_nt5u5")]
+[node name="wall" parent="SubViewport/World/Floor" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26832, -3.95171, -10.3849)
+size = Vector3(64.209, 7.75518, 54.9839)
+
+[node name="Goal" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(0.954386, 0, 0.298574, 0, 1, 0, -0.298574, 0, 0.954386, 6.8149, 14.871, 23.0683)
+
+[node name="Portal" parent="SubViewport/World/Goal" instance=ExtResource("1_nt5u5")]
 transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 3.118, 0)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Goal"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.513, 0)
+[node name="wall6" parent="SubViewport/World/Goal" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.513, 0)
 size = Vector3(5, 3, 5)
 
-[node name="Layout" type="Node3D" parent="."]
+[node name="Layout" type="Node3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, -18)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 2, 9.5)
-use_collision = true
-size = Vector3(5, 9, 14)
+[node name="wall7" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.912553, 0.129142, 0.388033, 0.118844, 0.991626, -0.0505344, -0.39131, 0, -0.920259, 19.7982, 6.12434, -12.8104)
+size = Vector3(9.6015, 0.561401, 4)
 
-[node name="CSGBox3D7" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5, 5, 12.5)
-use_collision = true
-size = Vector3(30, 15, 4)
+[node name="wall6" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(0.946136, 0, -0.323769, 0, 1, 0, 0.323769, 0, 0.946136, 38.7263, 8.77636, 25.971)
+size = Vector3(6.67688, 10.3026, 6)
 
-[node name="CSGBox3D6" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1.5, 22.5)
-use_collision = true
-size = Vector3(39, 8, 6)
+[node name="wall5" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(0.946136, 0, -0.323769, 0, 1, 0, 0.323769, 0, 0.946136, 20.7546, 0.356896, 19.8211)
+size = Vector3(44.6665, 6.71179, 10.9417)
 
-[node name="CSGBox3D5" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23, 1.5, 22.5)
-use_collision = true
-size = Vector3(39, 8, 6)
+[node name="wall4" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.510168, 0, 0.860075, 0, 1, 0, -0.860075, 0, -0.510168, 6.19102, -2.04663, -10.9974)
+size = Vector3(13.1255, 0.906738, 23.2949)
 
-[node name="CSGBox3D4" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5, 1.5, 0.5)
-use_collision = true
-size = Vector3(10, 8, 14)
+[node name="wall3" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.510168, 0, 0.860075, 0, 1, 0, -0.860075, 0, -0.510168, 14.6797, 2.66237, -14.5689)
+size = Vector3(5, 9, 5.00742)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.5, 0.5, -2.5)
-use_collision = true
-size = Vector3(6, 6, 6)
+[node name="wall2" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.555328, 0.375957, -0.7418, 0.56061, 0.82808, -1.07255e-08, 0.61427, -0.415861, -0.670621, 42.5016, 8.78569, 3.92499)
+size = Vector3(16.6282, 0.701904, 6)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Layout"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.5, 0, -2.5)
-use_collision = true
-size = Vector3(16, 5, 6)
+[node name="wall" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.555266, 0, -0.831673, 0, 1, 0, 0.831673, 0, -0.555266, 46.4718, 1.4052, -5.29954)
+size = Vector3(16, 7.81039, 20.5157)
 
-[node name="Player" parent="." instance=ExtResource("2_7kuqd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 2, -18)
+[node name="wall8" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.560671, 0.367942, -0.7418, 0.548658, 0.836047, 7.90593e-09, 0.62018, -0.406995, -0.670621, 35.7603, 3.72996, 11.1987)
+size = Vector3(1.90479, 18.7045, 1.19922)
+
+[node name="Shapes" type="Node3D" parent="SubViewport/World"]
+
+[node name="Hypershape" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.0361902, 0.999345, 0, -0.999345, 0.0361902, 0, 0, 0, 1, -31.7999, 0.631467, -24.0569)
+base_color = Vector3(0.9, 1.395, 0.045)
+dimensions = Vector4(0.115, 7.24, 0.885, 0.1)
+shapeType = 1
+
+[node name="Hypershape7" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.266887, 0.900996, 0.34202, 0.95882, 0.284015, 0, -0.097139, 0.327936, -0.939692, -13.7273, 10.6232, 1.6029)
+base_color = Vector3(2.055, 0.835, 1.01)
+dimensions = Vector4(0.115, 17.715, 1.685, 0.1)
+shapeType = 1
+
+[node name="Hypershape8" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.598446, -0.0230643, -0.800831, 0.559513, 0.703403, -0.438371, 0.573418, -0.710416, -0.408044, -3.301, 9.493, 5.797)
+base_color = Vector3(0.235, 1.59, 1.01)
+dimensions = Vector4(2.82, 0.235, 2.9, 1)
+shapeType = 1
+
+[node name="Hypershape6" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.753784, -0.552044, 0.356451, -0.0247063, 0.565867, 0.824126, -0.656658, 0.612406, -0.44018, 10.2749, 12.2226, -12.6688)
+base_color = Vector3(1.855, 0.81, -0.005)
+dimensions = Vector4(0.115, 7.24, 1.685, 0.1)
+shapeType = 1
+
+[node name="Hypershape2" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.252069, 0.967709, 0, 0.802267, -0.208975, 0.559193, 0.541136, -0.140955, -0.829038, -10.8356, 9.43538, -26.7269)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape3" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.278943, -0.696944, -0.660651, 0.940502, 0.0592694, 0.334578, -0.194026, -0.714672, 0.672011, -3.54663, 9.05513, -29.3794)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape5" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.678538, -0.690152, 0.251548, 0.653283, 0.723546, 0.222941, -0.335869, 0.0130579, 0.941818, -1.75228, 9.05513, -25.0217)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape4" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.903044, -0.0250123, -0.428819, 0.398843, 0.321834, -0.858689, 0.159486, -0.946466, -0.280654, -6.538, 7.285, -27.788)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
+transform = Transform3D(0.408713, 0.912663, -4.21667e-09, -0.684883, 0.306708, 0.660958, 0.603232, -0.270142, 0.750423, 0, 45.386, 0)
+shadow_enabled = true
+shadow_bias = 0.058
+shadow_normal_bias = 2.228
+shadow_blur = 4.986
+
+[node name="Player" parent="SubViewport/World" instance=ExtResource("2_7kuqd")]
+transform = Transform3D(0.16701, 0, -0.985955, 0, 1, 0, 0.985955, 0, 0.16701, -34.8099, 1.17766, -13.2192)
 collision_mask = 9
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.4958, 5.41111, -36.5566)
-light_energy = 13.403
-omni_range = 22.031
+[node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
+layout_mode = 2

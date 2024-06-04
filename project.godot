@@ -21,14 +21,15 @@ CameraTransition="*res://Autoload/camera_transition.tscn"
 
 [display]
 
-window/size/viewport_width=600
-window/size/viewport_height=600
+window/size/viewport_width=720
+window/size/viewport_height=720
 window/stretch/scale_mode="integer"
 
 [file_customization]
 
 folder_colors={
 "res://Autoload/": "orange",
+"res://Background/": "pink",
 "res://Scenes/": "yellow",
 "res://Scripts/": "green",
 "res://addons/": "purple",
