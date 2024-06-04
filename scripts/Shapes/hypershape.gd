@@ -28,7 +28,7 @@ func getSize() -> Vector4:
 	return self.dimensions
 
 func getColor() -> Vector3:
-	return self.base_color
+	return self.color
 
 func getShapeType() -> int:
 	return self.shapeType

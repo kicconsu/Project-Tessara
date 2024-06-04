@@ -18,7 +18,7 @@ stretch = true
 
 [node name="viewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(600, 600)
+size = Vector2i(720, 720)
 render_target_update_mode = 4
 
 [node name="TestArena" type="Node3D" parent="viewport"]
