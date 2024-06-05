@@ -74,11 +74,21 @@ func _change_state():
 		State.HYPER_ROOM:
 			sub_state = -1
 			
+			var tween = get_tree().create_tween()
+			var tween2 = get_tree().create_tween()
+			
+			var wall16 = $HyperGrabRoom/Structure/wall16
+			var wall17 = $HyperGrabRoom/Structure/wall17
+			
+			tween.tween_property(wall16, "position", wall16.get_global_position() + Vector3(0,-15,0), 1).set_ease(Tween.EASE_IN_OUT)
+			tween2.tween_property(wall17, "position", wall17.get_global_position() + Vector3(0,-15,0), 1).set_ease(Tween.EASE_IN_OUT)
+			
 			for shape in movingHypershapes:
 				shape.set_freeze_enabled(false)
 		
 			level_state = State.PUZZLE
 		State.PUZZLE:
+			
 			level_state = State.HYPERGRAB
 
 # Carga de dialogos

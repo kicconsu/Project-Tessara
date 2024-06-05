@@ -1,18 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://bw22x5ifu3d4d"]
+[gd_scene load_steps=18 format=3 uid="uid://d2c3t6wpstngc"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_kf00x"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_mdflx"]
 [ext_resource type="Script" path="res://4DLevel.gd" id="2_22wtu"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_bvh5f"]
-[ext_resource type="PackedScene" uid="uid://dxeotyavnimt3" path="res://Scenes/Levels/generic_chamber.tscn" id="3_bagb3"]
+[ext_resource type="PackedScene" uid="uid://c1rsv0xfktynh" path="res://Scenes/Levels/generic_chamber.tscn" id="3_bagb3"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_ld1ju"]
 [ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="5_q51qw"]
-[ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/lamp.tscn" id="6_qxser"]
-[ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="8_umolx"]
-[ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="9_4myx8"]
-[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_85frq"]
+[ext_resource type="PackedScene" path="res://Scenes/lamp.tscn" id="6_qxser"]
+[ext_resource type="ArrayMesh" uid="uid://co0cj6vgddl7k" path="res://assets/models/pedestal.obj" id="8_umolx"]
+[ext_resource type="PackedScene" path="res://Scenes/Buttons/movement_trigger.tscn" id="9_4myx8"]
+[ext_resource type="PackedScene" path="res://Scenes/Buttons/text_trigger.tscn" id="9_85frq"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="11_w0e60"]
-[ext_resource type="Texture2D" uid="uid://dc5scetm7re11" path="res://assets/images/hyperglove.png" id="12_76xvi"]
+[ext_resource type="Texture2D" uid="uid://do6hf6s2it1wx" path="res://assets/images/hyperglove.png" id="12_76xvi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gs8pe"]
 
@@ -47,7 +47,7 @@ render_target_update_mode = 4
 script = ExtResource("2_22wtu")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("2_bvh5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0298, -23.8905, -25.8137)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.0298, -23.8905, -25.8137)
 
 [node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("3_bagb3")]
 
@@ -246,9 +246,9 @@ rotation_edit_mode = 0
 size = Vector3(30, 0.5, 15)
 
 [node name="Floor2" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -11.1535, -31.472)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.5201, -11.1535, -31.472)
 rotation_edit_mode = 0
-size = Vector3(29.3695, 0.5, 15)
+size = Vector3(29.3695, 0.5, 16.6423)
 
 [node name="Floor3" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("1_kf00x")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 39.0689, -11.1535, -13.9849)

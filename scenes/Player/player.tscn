@@ -1,22 +1,27 @@
-[gd_scene load_steps=11 format=3 uid="uid://q6htwbr7ubm2"]
+[gd_scene load_steps=12 format=3 uid="uid://q6htwbr7ubm2"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player_controller.gd" id="1_x2bix"]
 [ext_resource type="Script" path="res://Scripts/Player/hyperCnS.gd" id="2_8elja"]
 [ext_resource type="Script" path="res://Scripts/Player/sdfEvaluator.gd" id="3_ywqjp"]
 [ext_resource type="Script" path="res://Scripts/Player/InteractRay.gd" id="4_dj0eu"]
 [ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_3ebqn"]
+[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="5_c30d7"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHand.gd" id="6_achbf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r6c5g"]
+radius = 0.48
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_01m26"]
 radius = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_sk48v"]
+font = ExtResource("5_c30d7")
 font_size = 31
 font_color = Color(0, 0, 0, 1)
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 3
