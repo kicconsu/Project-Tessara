@@ -23,7 +23,7 @@ func _ready():
 	_hyperRegion.set_shape(SphereShape3D.new())
 	_hyperRegion.get_shape().set_radius(regionRadius)
 	color = base_color
-	print("Shape ", self.name, " region radius of: ", regionRadius)
+	#print("Shape ", self.name, " region radius of: ", regionRadius)
 
 func getSize() -> Vector4:
 	return self.dimensions

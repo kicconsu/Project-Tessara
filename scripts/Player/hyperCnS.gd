@@ -18,7 +18,6 @@ const maxSlopeAngle:float = 50
 #If there is a collision, take the collision normal to slide() the velocity vector across the surface.
 #Repeat this process until there are no more collisions or recursive maxDepth is reached.
 func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool, velInit:Vector3)->Vector3:
-	#TODO: dont increase depth unnecessarily
 	if depth>=maxDepth:
 		return Vector3.ZERO
 	
@@ -46,20 +45,36 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 		#Decide what to do depending on slope angle:
 		if angle <= maxSlopeAngle:
 			#Logic for walkable ground
-			player.hypercolliding = true
 			if gravityPass: # If on gravity pass, dont slide
 				return velSnap
 			leftover = projectAndScale(leftover, hit[2])
 		else:
 			#Logic for un-walkable ground (like, walls)
 			#Scale vel depending on the angle between initVel and the wall
-			var scale:float = 1 - (Vector3(hit[2].x, 0, hit[2].z)).dot(Vector3(velInit.x, 0, velInit.z))
-			leftover = projectAndScale(leftover, hit[2]) / (scale)
+			var scalar:float = 1 - (Vector3(hit[2].x, 0, hit[2].z)).dot(Vector3(velInit.x, 0, velInit.z))
+			leftover = projectAndScale(leftover, hit[2]) / (scalar)
 			
 		#Recursively resolve hypercollsions
 		return velSnap + hyperCollideAndSlide(leftover, pos+velSnap, depth+1, gravityPass, velInit)
-	player.hypercolliding = false
+		
 	return vel
+
+#Check if feet are close enough to ground to jump.
+func checkHyperground()->bool:
+	var hitData:Array = []
+	#Check if theres any potential hypershapes near; if there arent any, return [0] = false
+	if not region.has_overlapping_areas():
+		return false
+	else:
+		hitData = feet.evaluateVelCast(Vector3(0, -1, 0))
+	
+	if not hitData[0]:
+		return false
+	else:
+		if hitData[1] > 1.5:
+			return false
+		else:
+			return true
 
 func castVelocity(vel:Vector3)->Array:
 	# [0] -> did it hit something?

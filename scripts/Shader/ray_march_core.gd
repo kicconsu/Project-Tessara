@@ -213,7 +213,7 @@ func render():
 	# Binds the uniform set with the data we want to give our shader 
 	rd.compute_list_bind_uniform_set(compute_list, uniform_set, 0)
 	# Dispatch (X,Y,Z) work groups
-	rd.compute_list_dispatch(compute_list, (screen[0] / 8), (screen[1] / 8)+1, 1)
+	rd.compute_list_dispatch(compute_list, (screen[0] / 16), (screen[1] / 16), 1)
 	
 	# Tell the GPU we are done with this compute task
 	rd.compute_list_end()

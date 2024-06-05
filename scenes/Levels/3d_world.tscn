@@ -1,0 +1,428 @@
+[gd_scene load_steps=19 format=3 uid="uid://clidhel0jwb5v"]
+
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
+[ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
+[ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
+[ext_resource type="Texture2D" uid="uid://dp1oisuh80wsh" path="res://assets/images/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="7_fiil4"]
+[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="7_n31h7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laani"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4vieq"]
+albedo_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="Animation" id="Animation_nuie6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Top:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Left:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Left:anchor_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Bottom:anchor_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Bottom:anchor_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Player/Head/eyes:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.438078, -0.79587, -0.0296706)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Player/Head/eyes:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(21.565, 18.216, -44.809)]
+}
+
+[sub_resource type="Animation" id="Animation_ix5xv"]
+resource_name = "camera"
+length = 10.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Head/eyes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
+"transitions": PackedFloat32Array(3, 0.35, 3, 4.54861, 0.416089, 0.35, 1.68179, 3.73213, 1),
+"update": 0,
+"values": [Vector3(-0.438078, -0.79587, -0.0296706), Vector3(0.242601, -1.28456, 0.00523599), Vector3(-0.0802851, -0.640536, 0.00523599), Vector3(-0.211185, -1.88845, 0.118682), Vector3(-0.516617, -0.553269, 0.118682), Vector3(0.0244346, -0.247837, -0.020944), Vector3(-0.438078, 0.0750492, -0.020944), Vector3(0.129154, -0.657989, -0.0296706), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Head/eyes:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
+"transitions": PackedFloat32Array(3, 0.35, 3, 0.35, 3, 0.35, 2.54912, 0.466516, 1),
+"update": 0,
+"values": [Vector3(21.565, 18.216, -44.809), Vector3(11.32, 14.971, -40.819), Vector3(0.108, 10.609, -32.449), Vector3(-24.4661, 16.153, -28.1263), Vector3(-24.4733, 16.153, -28.1511), Vector3(-21.8581, 6.90612, -19.2729), Vector3(-16.2732, 12.8284, 0.0739326), Vector3(-15.2795, 0.351143, 3.50255), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_usvxl"]
+resource_name = "transition"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Top:anchor_top")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Left:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Left:anchor_left")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(3.5, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Bottom:anchor_left")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.5]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/Bottom:anchor_bottom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 1.5),
+"transitions": PackedFloat32Array(3.5, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qjj31"]
+_data = {
+"RESET": SubResource("Animation_nuie6"),
+"camera": SubResource("Animation_ix5xv"),
+"transition": SubResource("Animation_usvxl")
+}
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yhbis"]
+panorama = ExtResource("7_fiil4")
+
+[sub_resource type="Sky" id="Sky_o6ko0"]
+sky_material = SubResource("PanoramaSkyMaterial_yhbis")
+
+[sub_resource type="Environment" id="Environment_vg30s"]
+background_mode = 2
+sky = SubResource("Sky_o6ko0")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irodc"]
+size = Vector3(74.2539, 38.8398, 72.2014)
+
+[node name="SubViewportContainer" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(500, 500)
+render_target_update_mode = 4
+script = ExtResource("1_hnfm3")
+
+[node name="World" type="Node3D" parent="SubViewport"]
+script = ExtResource("2_p0qd1")
+
+[node name="Player" parent="SubViewport/World" instance=ExtResource("2_7kuqd")]
+transform = Transform3D(-0.278371, 0, -0.960474, 0, 1, 0, 0.960474, 0, -0.278371, -32.8469, 1.4698, -15.8397)
+collision_mask = 9
+
+[node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
+transform = Transform3D(0.690364, 0.323702, -0.647004, -0.0268648, 0.90517, 0.4242, 0.722963, -0.275471, 0.633593, 21.565, 18.216, -44.809)
+
+[node name="Timer" type="Timer" parent="SubViewport/World/Player"]
+wait_time = 10.0
+one_shot = true
+
+[node name="Floor" type="Node3D" parent="SubViewport/World"]
+
+[node name="wall" parent="SubViewport/World/Floor" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.26832, -3.95171, -10.3849)
+material_override = SubResource("StandardMaterial3D_laani")
+size = Vector3(64.209, 7.75518, 54.9839)
+
+[node name="Goal" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(0.954386, 0, 0.298574, 0, 1, 0, -0.298574, 0, 0.954386, 6.8149, 14.871, 23.0683)
+
+[node name="Portal" parent="SubViewport/World/Goal" instance=ExtResource("1_nt5u5")]
+transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 3.118, 0)
+
+[node name="wall6" parent="SubViewport/World/Goal" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.513, 0)
+size = Vector3(5, 3, 5)
+
+[node name="Layout" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 2, -18)
+
+[node name="wall7" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.912553, 0.129142, 0.388033, 0.118844, 0.991626, -0.0505344, -0.39131, 0, -0.920259, 19.7982, 6.12434, -12.8104)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(9.6015, 0.561401, 4)
+
+[node name="wall6" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(0.946136, 0, -0.323769, 0, 1, 0, 0.323769, 0, 0.946136, 38.7263, 8.77636, 25.971)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(6.67688, 10.3026, 6)
+
+[node name="wall5" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(0.946136, 0, -0.323769, 0, 1, 0, 0.323769, 0, 0.946136, 20.7546, 0.356896, 19.8211)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(44.6665, 6.71179, 10.9417)
+
+[node name="wall4" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.510168, 0, 0.860075, 0, 1, 0, -0.860075, 0, -0.510168, 6.19102, -2.04663, -10.9974)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(13.1255, 0.906738, 23.2949)
+
+[node name="wall3" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.510168, 0, 0.860075, 0, 1, 0, -0.860075, 0, -0.510168, 14.6797, 2.66237, -14.5689)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(5, 9, 5.00742)
+
+[node name="wall2" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.555328, 0.375957, -0.7418, 0.56061, 0.82808, -1.07255e-08, 0.61427, -0.415861, -0.670621, 42.5016, 8.78569, 3.92499)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(16.6282, 0.701904, 6)
+
+[node name="wall" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.555266, 0, -0.831673, 0, 1, 0, 0.831673, 0, -0.555266, 46.4718, 1.4052, -5.29954)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(16, 7.81039, 20.5157)
+
+[node name="wall8" parent="SubViewport/World/Layout" instance=ExtResource("1_7x8ul")]
+transform = Transform3D(-0.560671, 0.367942, -0.7418, 0.548658, 0.836047, 7.90593e-09, 0.62018, -0.406995, -0.670621, 35.7603, 3.72996, 11.1987)
+material_override = SubResource("StandardMaterial3D_4vieq")
+size = Vector3(1.90479, 18.7045, 1.19922)
+
+[node name="Shapes" type="Node3D" parent="SubViewport/World"]
+
+[node name="Hypershape" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.0361902, 0.999345, 0, -0.999345, 0.0361902, 0, 0, 0, 1, -31.7999, 0.631467, -24.0569)
+base_color = Vector3(0.9, 1.395, 0.045)
+dimensions = Vector4(0.115, 7.24, 0.885, 0.1)
+shapeType = 1
+
+[node name="Hypershape7" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.266887, 0.900996, 0.34202, 0.95882, 0.284015, 0, -0.097139, 0.327936, -0.939692, -13.7273, 10.6232, 1.6029)
+base_color = Vector3(2.055, 0.835, 1.01)
+dimensions = Vector4(0.115, 17.715, 1.685, 0.1)
+shapeType = 1
+
+[node name="Hypershape8" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.598446, -0.0230643, -0.800831, 0.559513, 0.703403, -0.438371, 0.573418, -0.710416, -0.408044, -3.301, 9.493, 5.797)
+base_color = Vector3(0.235, 1.59, 1.01)
+dimensions = Vector4(2.82, 0.235, 2.9, 1)
+shapeType = 1
+
+[node name="Hypershape6" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.753784, -0.552044, 0.356451, -0.0247063, 0.565867, 0.824126, -0.656658, 0.612406, -0.44018, 10.2749, 12.2226, -12.6688)
+base_color = Vector3(1.855, 0.81, -0.005)
+dimensions = Vector4(0.115, 7.24, 1.685, 0.1)
+shapeType = 1
+
+[node name="Hypershape2" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.252069, 0.967709, 0, 0.802267, -0.208975, 0.559193, 0.541136, -0.140955, -0.829038, -10.8356, 9.43538, -26.7269)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape3" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.278943, -0.696944, -0.660651, 0.940502, 0.0592694, 0.334578, -0.194026, -0.714672, 0.672011, -3.54663, 9.05513, -29.3794)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape5" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(0.678538, -0.690152, 0.251548, 0.653283, 0.723546, 0.222941, -0.335869, 0.0130579, 0.941818, -1.75228, 9.05513, -25.0217)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="Hypershape4" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
+transform = Transform3D(-0.903044, -0.0250123, -0.428819, 0.398843, 0.321834, -0.858689, 0.159486, -0.946466, -0.280654, -6.538, 7.285, -27.788)
+base_color = Vector3(0.4, 0.4, 0.8)
+dimensions = Vector4(1.285, 1.1, 0.16, 1)
+shapeType = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
+transform = Transform3D(0.408713, 0.912663, -4.21667e-09, -0.684883, 0.306708, 0.660958, 0.603232, -0.270142, 0.750423, 0, 45.386, 0)
+shadow_enabled = true
+shadow_bias = 0.058
+shadow_normal_bias = 2.228
+shadow_blur = 4.986
+
+[node name="Control" type="Control" parent="SubViewport/World"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="ColorRect" parent="SubViewport/World/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Left" type="ColorRect" parent="SubViewport/World/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+
+[node name="Bottom" type="ColorRect" parent="SubViewport/World/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/World"]
+libraries = {
+"": SubResource("AnimationLibrary_qjj31")
+}
+
+[node name="Enviroment" type="Node3D" parent="SubViewport/World"]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World/Enviroment"]
+environment = SubResource("Environment_vg30s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World/Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Area3D" type="Area3D" parent="SubViewport/World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.27835, 7.91992, -8.17912)
+shape = SubResource("BoxShape3D_irodc")
+
+[node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
+layout_mode = 2
+
+[connection signal="timeout" from="SubViewport/World/Player/Timer" to="SubViewport/World" method="_on_timer_timeout"]
+[connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport/World" method="_on_area_3d_body_exited"]
+
+[editable path="SubViewport/World/Player"]

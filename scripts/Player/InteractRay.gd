@@ -10,6 +10,7 @@ var RAYCAST_LENGTH:float = 20
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
 	prompt.text = ""
 	if is_colliding():
 		
