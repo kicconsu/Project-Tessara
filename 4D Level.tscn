@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="9_4myx8"]
 [ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_85frq"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="11_w0e60"]
-[ext_resource type="Texture2D" uid="uid://dc5scetm7re11" path="res://assets/images/hyperglove.png" id="12_76xvi"]
+[ext_resource type="Texture2D" uid="uid://cahv35rbuoofw" path="res://assets/images/hyperglove.png" id="12_76xvi"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_gs8pe"]
 
@@ -36,18 +36,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-script = ExtResource("1_mdflx")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(600, 600)
+size = Vector2i(500, 500)
 render_target_update_mode = 4
+script = ExtResource("1_mdflx")
 
 [node name="World" type="Node3D" parent="SubViewport"]
 script = ExtResource("2_22wtu")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("2_bvh5f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0298, -23.8905, -25.8137)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.0298, -23.8905, -20.4212)
+top_level = true
 
 [node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("3_bagb3")]
 
