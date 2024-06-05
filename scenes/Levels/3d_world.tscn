@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cgm0oubn3e0pa"]
+[gd_scene load_steps=19 format=3 uid="uid://clidhel0jwb5v"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]

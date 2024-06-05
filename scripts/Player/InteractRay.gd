@@ -10,12 +10,14 @@ var RAYCAST_LENGTH:float = 20
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	
 	prompt.text = ""
 	if is_colliding():
 		
 		var detected = get_collider()
+		print(detected)
 		
-		if detected is Interactable:
+		if detected is Trigger:
 			prompt.text = detected.get_prompt()
 			
 			if Input.is_action_just_pressed(detected.prompt_action):
