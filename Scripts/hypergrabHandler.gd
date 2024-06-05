@@ -1,5 +1,5 @@
-extends SubViewportContainer
-@onready var player = $SubViewport/World/Player
+extends Node
+@onready var player = $World/Player
 
 var shapesInScene:Array[Node]
 # Called when the node enters the scene tree for the first time.

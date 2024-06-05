@@ -3,6 +3,7 @@ extends Node3D
 @onready var timer = $Timer
 
 func nuke():
+	self.translate(Vector3(0,4,0))
 	timer.set_wait_time(1.8)
 	timer.start()
 	var t1 = get_tree().create_tween()
@@ -10,3 +11,7 @@ func nuke():
 
 func _on_timer_timeout():
 	queue_free()
+
+
+func _on_body_entered(body):
+	pass # Replace with function body.

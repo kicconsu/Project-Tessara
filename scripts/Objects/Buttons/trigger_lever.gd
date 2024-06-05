@@ -60,7 +60,6 @@ func move():
 	
 	translate.tween_property(target, "position", Tdest, translateDuration).set_ease(Tween.EASE_IN_OUT)
 	rotated.tween_property(target, "rotation", Rdest, rotationDuration).set_ease(Tween.EASE_IN_OUT)
-	
 	target.set_freeze_enabled(true)
 	
-
+	

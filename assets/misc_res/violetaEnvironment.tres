@@ -1,0 +1,13 @@
+[gd_resource type="Environment" format=3 uid="uid://b5jkngkkm533k"]
+
+[resource]
+background_mode = 1
+background_color = Color(0.299667, 0, 0.31, 1)
+ssil_sharpness = 1.0
+sdfgi_use_occlusion = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0106
+volumetric_fog_albedo = Color(0.76896, 0.6804, 0.81, 1)
+volumetric_fog_emission = Color(0.3705, 0, 0.39, 1)
+volumetric_fog_emission_energy = 1.09
+volumetric_fog_length = 52.18

@@ -44,6 +44,8 @@ func _ready():
 	pass	
 
 func _input(event):
+
+	hypercolliding = body.checkHyperground()
 	
 	if Input.is_action_just_pressed("pause"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
@@ -124,9 +126,10 @@ func _physics_process(delta):
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() , delta*lerp_speed ) 
 	
 	
+	
 	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
+		velocity.x = direction.x * currentSpeed 
+		velocity.z = direction.z * currentSpeed 
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
