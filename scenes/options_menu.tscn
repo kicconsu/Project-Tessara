@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://c54u10j4uta2g"]
+[gd_scene load_steps=12 format=3 uid="uid://c54u10j4uta2g"]
 
 [ext_resource type="Script" path="res://scenes/options_menu.gd" id="1_nv0aq"]
 [ext_resource type="PackedScene" uid="uid://b4qeart3r6nq3" path="res://scenes/audio_slider.tscn" id="2_ylc4o"]
+[ext_resource type="PackedScene" uid="uid://drotrjrpvki1v" path="res://scenes/action_button.tscn" id="3_imcny"]
 
 [sub_resource type="SystemFont" id="SystemFont_ifngv"]
 font_names = PackedStringArray("VCR OSD Mono")
@@ -30,6 +31,9 @@ subpixel_positioning = 0
 [sub_resource type="SystemFont" id="SystemFont_umx0i"]
 font_names = PackedStringArray("VCR OSD Mono")
 subpixel_positioning = 0
+
+[sub_resource type="SystemFont" id="SystemFont_4vkic"]
+font_names = PackedStringArray("VCR OSD Mono")
 
 [node name="Options_Menu" type="Control"]
 layout_mode = 3
@@ -109,7 +113,6 @@ clip_tabs = false
 tabs_rearrange_group = 0
 
 [node name="Graphics" type="TabBar" parent="Panel/SettingsGridContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Panel/SettingsGridContainer/Graphics"]
@@ -212,7 +215,116 @@ custom_minimum_size = Vector2(326, 184)
 layout_mode = 2
 theme_override_constants/h_separation = 20
 
+[node name="ActionButton" parent="Panel/SettingsGridContainer/Keybinds" instance=ExtResource("3_imcny")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.136
+anchor_right = 0.693
+anchor_bottom = 0.223
+offset_top = -0.0240021
+offset_right = 0.0820007
+offset_bottom = -0.0320015
+
+[node name="ActionButton2" parent="Panel/SettingsGridContainer/Keybinds" instance=ExtResource("3_imcny")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.321
+anchor_right = 0.693
+anchor_bottom = 0.408
+offset_top = -0.064003
+offset_right = 0.0820007
+offset_bottom = -0.0720062
+action = "ui_down"
+
+[node name="ActionButton3" parent="Panel/SettingsGridContainer/Keybinds" instance=ExtResource("3_imcny")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.511
+anchor_right = 0.693
+anchor_bottom = 0.598
+offset_top = -0.0240097
+offset_right = 0.0820007
+offset_bottom = -0.0320129
+action = "ui_left"
+
+[node name="ActionButton4" parent="Panel/SettingsGridContainer/Keybinds" instance=ExtResource("3_imcny")]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.658
+anchor_right = 0.693
+anchor_bottom = 0.745
+offset_top = -0.0720062
+offset_right = 0.0820007
+offset_bottom = -0.0800171
+action = "ui_right"
+
+[node name="Label" type="Label" parent="Panel/SettingsGridContainer/Keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.109
+anchor_right = 0.153
+anchor_bottom = 0.242
+offset_left = 0.0699997
+offset_top = -0.0560017
+offset_right = 8.122
+offset_bottom = -1.528
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_4vkic")
+theme_override_font_sizes/font_size = 55
+text = "UP"
+
+[node name="Label2" type="Label" parent="Panel/SettingsGridContainer/Keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.288
+anchor_right = 0.153
+anchor_bottom = 0.421
+offset_left = 0.0699997
+offset_top = 0.00799561
+offset_right = 32.122
+offset_bottom = 24.536
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_4vkic")
+theme_override_font_sizes/font_size = 55
+text = "DOWN"
+
+[node name="Label3" type="Label" parent="Panel/SettingsGridContainer/Keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.457
+anchor_right = 0.15
+anchor_bottom = 0.59
+offset_left = -0.93
+offset_top = -0.0880051
+offset_right = 96.1
+offset_bottom = 24.44
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_4vkic")
+theme_override_font_sizes/font_size = 55
+text = "LEFT"
+
+[node name="Label4" type="Label" parent="Panel/SettingsGridContainer/Keybinds"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.63
+anchor_right = 0.175
+anchor_bottom = 0.764
+offset_left = -0.93
+offset_top = 0.0799866
+offset_right = 119.95
+offset_bottom = 24.424
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_4vkic")
+theme_override_font_sizes/font_size = 55
+text = "RIGHT
+"
+
 [node name="Filtro" type="TabBar" parent="Panel/SettingsGridContainer"]
+visible = false
 custom_minimum_size = Vector2(326, 184)
 layout_mode = 2
 

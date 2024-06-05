@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://drotrjrpvki1v"]
+
+[ext_resource type="Script" path="res://ActionButton.gd" id="1_txlm3"]
+
+[node name="ActionButton" type="Button"]
+anchors_preset = -1
+anchor_right = 0.128
+anchor_bottom = 0.056
+offset_right = -0.0800018
+offset_bottom = -0.16
+toggle_mode = true
+script = ExtResource("1_txlm3")
+
+[connection signal="toggled" from="." to="." method="_on_toggled"]

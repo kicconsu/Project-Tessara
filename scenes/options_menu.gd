@@ -3,7 +3,6 @@ extends Control
 @onready var option_button = $Panel/SettingsGridContainer/Graphics/Window_Mode as OptionButton
 @onready var resolution = $Panel/SettingsGridContainer/Graphics/Resolution as OptionButton
 
-
 const WINDOW_MODE_ARRAY: Array[String] = [
 	"Full-Screen",
 	"Window Mode",
@@ -35,7 +34,6 @@ func _on_option_button_item_selected(index):
 		0: #Full-Secreen
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
-			
 		1: #Window mode
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS,false)
