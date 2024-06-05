@@ -36,6 +36,12 @@ var lerp_speed := 10.0
 var direction := Vector3.ZERO
 var distOffset:float = 5
 
+# Head Bobbing Vars
+
+const hbSprinting = 22.0
+const hbWalking = 14.0
+
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 

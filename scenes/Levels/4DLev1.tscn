@@ -1,11 +1,12 @@
-[gd_scene load_steps=25 format=3 uid="uid://bbpdxmpt5eotj"]
+[gd_scene load_steps=26 format=3 uid="uid://bbpdxmpt5eotj"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_ncguc"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevHandler.gd" id="2_0h3ah"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_eet83"]
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="3_d02be"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_wm0q0"]
-[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="4_lrgr3"]
+[ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="4_lrgr3"]
 [ext_resource type="PackedScene" uid="uid://cv3nboonmvkfk" path="res://Scenes/Buttons/trigger_button.tscn" id="6_dxo44"]
 [ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="7_a53ra"]
 [ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="8_aqu7a"]
@@ -325,12 +326,13 @@ render_target_update_mode = 4
 script = ExtResource("1_bban4")
 
 [node name="World" type="Node3D" parent="SubViewport"]
+script = ExtResource("2_0h3ah")
 
 [node name="Eye" type="Node3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31269e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -375,17 +377,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57059e-06, -0.00251326, -7.0861e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57059e-06, -0.00251326, -7.08606e-11, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31269e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31269e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
@@ -633,6 +635,12 @@ color = Color(0, 0, 0, 1)
 [node name="Timer" type="Timer" parent="SubViewport/World"]
 one_shot = true
 
+[node name="Stars" type="Node3D" parent="SubViewport/World"]
+
+[node name="CPUParticles3D" type="GPUParticles3D" parent="SubViewport/World/Stars"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 0)
+amount = 30
+
 [node name="fps" type="Label" parent="."]
 layout_mode = 2
 script = ExtResource("3_d02be")
@@ -640,8 +648,8 @@ script = ExtResource("3_d02be")
 [node name="TextBox" parent="." instance=ExtResource("10_tba4c")]
 layout_mode = 2
 
-[connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="SubViewport/World/movingPlatforms/TriggerAnim" to="SubViewport" method="_on_trigger_anim_body_entered"]
-[connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport" method="_on_timer_timeout"]
+[connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport/World" method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="SubViewport/World/movingPlatforms/TriggerAnim" to="SubViewport/World" method="_on_trigger_anim_body_entered"]
+[connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]
 
 [editable path="SubViewport/World/Player"]
