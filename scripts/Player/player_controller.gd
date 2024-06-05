@@ -27,7 +27,7 @@ var mouseToggle := true
 
 var currentSpeed:float
 const walkSpeed := 5.0
-const sprintSpeed := 20.0
+const sprintSpeed := 8.0
 const jumpVelocity := 4.5
 
 const mouse_sens := 0.25
@@ -60,7 +60,7 @@ func _input(event):
 			pick_object()
 			
 		if Input.is_action_just_pressed("lclick"): 
-			distOffset = raycast.distToShape
+			distOffset = 7
 		
 		if hand.picked_object != null and Input.is_action_just_released("lclick"):
 			hand.picked_object.set_freeze_enabled(true)
@@ -104,6 +104,8 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	hypercolliding = body.checkHyperground()
+	
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
@@ -124,9 +126,10 @@ func _physics_process(delta):
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() , delta*lerp_speed ) 
 	
 	
+	
 	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
+		velocity.x = direction.x * currentSpeed 
+		velocity.z = direction.z * currentSpeed 
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
