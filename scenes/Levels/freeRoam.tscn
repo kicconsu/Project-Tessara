@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6xhsomwrbi2w"]
+[gd_scene load_steps=19 format=3 uid="uid://dbv7usvstveja"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_5knyl"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/freeRoamHandler.gd" id="2_obqip"]
@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_t3yqv"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="4_g0uqj"]
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="5_jycmq"]
-[ext_resource type="Texture2D" uid="uid://cfmq3vpmlf5c" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
+[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="8_2um7f"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="8_rj2pp"]
 [ext_resource type="Script" path="res://Scripts/pointdisplay.gd" id="10_p3w55"]
@@ -185,7 +185,7 @@ amount = 20
 lifetime = 3.43
 randomness = 0.38
 lifetime_randomness = 0.41
-fixed_fps = 15
+fixed_fps = 30
 mesh = SubResource("QuadMesh_6wpf0")
 emission_shape = 1
 emission_sphere_radius = 1.0
