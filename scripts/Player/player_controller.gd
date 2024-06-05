@@ -36,10 +36,13 @@ var lerp_speed := 10.0
 var direction := Vector3.ZERO
 var distOffset:float = 5
 
-# Head Bobbing Vars
+var hbVec = Vector2.ZERO
+var hbIndex = 0.0
 
-const hbSprinting = 22.0
-const hbWalking = 14.0
+# Sounds
+
+@onready var walk = $walk
+@onready var running = $running
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -131,7 +134,19 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() , delta*lerp_speed ) 
 	
-	
+	if input_dir != Vector2.ZERO and is_on_floor():
+		match currentSpeed:
+			5.0:
+				if !walk.is_playing():
+					walk.play()
+					running.stop()
+			8.0:
+				if !running.is_playing():
+					running.play()
+					walk.stop()
+	else:
+		walk.stop()
+		running.stop()
 	
 	if direction:
 		velocity.x = direction.x * currentSpeed 
@@ -147,6 +162,7 @@ func _physics_process(delta):
 
 	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
+	
 	
 	move_and_slide()
 	

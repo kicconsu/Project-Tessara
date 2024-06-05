@@ -339,7 +339,7 @@ func _on_timer_timeout():
 		State.ThirdDimensionQuest:
 			if !questFailed:
 				text_box.queue_text("Bueno ¿Tal parece que es un cubo común y corriente no?")
-				text_box.queue_text("Lo que vas a ver a contunacion bolita, te va a volar la cabeza")
+				text_box.queue_text("Lo que vas a ver a continuacion bolita, te va a volar la cabeza")
 				relatedQuest = true
 			else:
 				text_box.queue_text("¡3 Dimensiones! ¡Bienvenida bolita! o deberia decir...")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bbpdxmpt5eotj"]
+[gd_scene load_steps=29 format=3 uid="uid://bbpdxmpt5eotj"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_ncguc"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cv3nboonmvkfk" path="res://Scenes/Buttons/trigger_button.tscn" id="6_dxo44"]
 [ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="7_a53ra"]
 [ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="8_aqu7a"]
+[ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="10_bye2j"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="10_tba4c"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pmk8"]
@@ -29,7 +30,7 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_gyfse"]
-size = Vector3(225.711, 93.5398, 113.038)
+size = Vector3(225.711, 93.5398, 97.4124)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o4agj"]
 size = Vector3(29, 1, 63)
@@ -311,6 +312,14 @@ _data = {
 "transition": SubResource("Animation_usvxl")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5sptk"]
+render_priority = 0
+shader = ExtResource("10_bye2j")
+
+[sub_resource type="QuadMesh" id="QuadMesh_qoxgv"]
+lightmap_size_hint = Vector2i(3, 6)
+size = Vector2(0.29, 0.81)
+
 [node name="Control" type="SubViewportContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -332,7 +341,7 @@ script = ExtResource("2_0h3ah")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.3126e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -377,17 +386,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57059e-06, -0.00251326, -7.08606e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57059e-06, -0.00251326, -7.08583e-11, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.3126e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.31268e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57094e-06, -0.00251327, 2.3126e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
@@ -453,10 +462,11 @@ size = Vector3(17.1823, 0.425633, 17.917)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.10573, 0)
 
 [node name="H1" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
-transform = Transform3D(0.96432, -0.0983782, 0.24578, 0.0513744, 0.980282, 0.190809, -0.259705, -0.171374, 0.95036, 25.9745, -0.588467, -0.834927)
+transform = Transform3D(-0.863025, 0.479946, -0.157604, 0.20817, 0.622156, 0.75471, 0.460274, 0.618525, -0.636847, 25.975, -3.643, -0.835)
 base_color = Vector3(1.64, 0.355, 0.525)
-dimensions = Vector4(2.97, 4.23, 2.94, 0.2)
+dimensions = Vector4(0.27, 5.02, 1.52, 1)
 shapeType = 1
+hyperInfo = Vector4(-6.015, 1.545, -0.145, 0)
 
 [node name="H2" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
 transform = Transform3D(0.85264, 0, 0.522499, 0, 1, 0, -0.522499, 0, 0.85264, 3.61006, -26.6227, -0.652996)
@@ -498,18 +508,21 @@ dimensions = Vector4(1, 20, 1, 1)
 shapeType = 1
 
 [node name="H8" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
-transform = Transform3D(0.762796, 0.467575, -0.446671, -0.403488, 0.883953, 0.236271, 0.505311, 0, 0.862937, 48.3486, 4.58862, 2.7131)
+transform = Transform3D(0.0985626, 0.984095, -0.147791, 0.872197, -0.156933, -0.463296, -0.47912, -0.0832394, -0.873793, 48.3486, 4.58862, 2.7131)
 base_color = Vector3(0.095, 1.195, 0.165)
-dimensions = Vector4(1.08, 4.86, 1, 1)
+dimensions = Vector4(0.825, 4.035, 1, 1)
 shapeType = 1
-hyperInfo = Vector4(2.315, 0.14, 0.52, 0)
+hyperInfo = Vector4(4.07, 1.79, -1.21, 0)
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("2_eet83")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 68.3833, 18.7361, 0.734382)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.5126, 1.73609, -0.724325)
 disable_mode = 2
 
 [node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
 transform = Transform3D(0.439893, 0.456735, -0.773232, -0.00602143, 0.862493, 0.506034, 0.89803, -0.217945, 0.382155, 48.2414, 44.5712, -103.835)
+
+[node name="running" parent="SubViewport/World/Player" index="4"]
+stream_paused = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
 transform = Transform3D(-0.656059, -0.354315, 0.666369, 0, 0.882948, 0.469472, -0.75471, 0.308001, -0.579266, 0, 13.8738, 0)
@@ -553,7 +566,7 @@ shadow_enabled = true
 [node name="Area3D" type="Area3D" parent="SubViewport/World"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.1438, 17.1305, 8.92673)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 88.1438, 17.1305, 1.11394)
 shape = SubResource("BoxShape3D_gyfse")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World/Area3D"]
@@ -637,9 +650,16 @@ one_shot = true
 
 [node name="Stars" type="Node3D" parent="SubViewport/World"]
 
-[node name="CPUParticles3D" type="GPUParticles3D" parent="SubViewport/World/Stars"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 0, 0)
-amount = 30
+[node name="GPUParticles3D" type="CPUParticles3D" parent="SubViewport/World/Stars"]
+transform = Transform3D(35.35, 0, 0, 0, 35.35, 0, 0, 0, 35.35, 85.5148, -5.75808, 0)
+material_override = SubResource("ShaderMaterial_5sptk")
+amount = 150
+lifetime = 3.0
+randomness = 1.0
+mesh = SubResource("QuadMesh_qoxgv")
+emission_shape = 3
+emission_box_extents = Vector3(4.11, 1.54, 3.74)
+gravity = Vector3(0, 9.8, 0)
 
 [node name="fps" type="Label" parent="."]
 layout_mode = 2

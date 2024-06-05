@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://ckk58el0j3e80"]
+[gd_scene load_steps=22 format=3 uid="uid://ckk58el0j3e80"]
 
 [ext_resource type="Script" path="res://Scripts/portal.gd" id="1_2afb3"]
 [ext_resource type="Shader" uid="uid://dwrv6u3jqtwpd" path="res://assets/misc_res/portal.tres" id="1_os0qb"]
 [ext_resource type="ArrayMesh" uid="uid://blxat27ltxbll" path="res://assets/models/Aura.obj" id="2_lt7yg"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="3_mpxck"]
+[ext_resource type="AudioStream" uid="uid://dpp5au6ojwg6y" path="res://assets/sounds/bell.mp3" id="5_7vko6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbs8d"]
 render_priority = 0
@@ -16,7 +17,7 @@ shader_parameter/Speed = Vector2(0, -1)
 offsets = PackedFloat32Array(0.222222, 0.238889, 0.3, 0.305556, 0.394444, 0.605556)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0.259259, 0.259259, 0.259259, 1, 0, 0, 0, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_uh36e"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8sf80"]
 gradient = SubResource("Gradient_ql2j3")
 fill_from = Vector2(0.2, 0.4)
 fill_to = Vector2(0.5, 0.4)
@@ -25,13 +26,13 @@ metadata/_snap_enabled = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fd6r5"]
 render_priority = 0
 shader = ExtResource("3_mpxck")
-shader_parameter/Main_Texture = SubResource("GradientTexture2D_uh36e")
+shader_parameter/Main_Texture = SubResource("GradientTexture2D_8sf80")
 
 [sub_resource type="Curve" id="Curve_7rctu"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.021978), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_di81g"]
+[sub_resource type="CurveTexture" id="CurveTexture_w2w51"]
 curve = SubResource("Curve_7rctu")
 
 [sub_resource type="Curve" id="Curve_xo8ro"]
@@ -39,7 +40,7 @@ max_value = 200.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 200), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4oodg"]
+[sub_resource type="CurveTexture" id="CurveTexture_07xr2"]
 curve = SubResource("Curve_xo8ro")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_taudt"]
@@ -56,8 +57,8 @@ initial_velocity_min = 3.0
 initial_velocity_max = 6.0
 gravity = Vector3(0, 0, 0)
 color = Color(0, 0.988235, 0.356863, 1)
-alpha_curve = SubResource("CurveTexture_di81g")
-anim_speed_curve = SubResource("CurveTexture_4oodg")
+alpha_curve = SubResource("CurveTexture_w2w51")
+anim_speed_curve = SubResource("CurveTexture_07xr2")
 
 [sub_resource type="QuadMesh" id="QuadMesh_nx8x6"]
 
@@ -295,6 +296,9 @@ one_shot = true
 libraries = {
 "": SubResource("AnimationLibrary_i68j1")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7vko6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
