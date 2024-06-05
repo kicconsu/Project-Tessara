@@ -26,7 +26,7 @@ var mouseToggle := true
 
 var currentSpeed:float
 const walkSpeed := 5.0
-const sprintSpeed := 20.0
+const sprintSpeed := 8.0
 const jumpVelocity := 4.5
 
 const mouse_sens := 0.25
@@ -53,9 +53,10 @@ func _input(event):
 	
 	if Input.is_action_pressed("lclick"):
 		pick_object()
+		print(distOffset)
 		
 	if Input.is_action_just_pressed("lclick"): 
-		distOffset = raycast.distToShape
+		distOffset = 5
 	
 	if hand.picked_object != null and Input.is_action_just_released("lclick"):
 		hand.picked_object.set_freeze_enabled(true)

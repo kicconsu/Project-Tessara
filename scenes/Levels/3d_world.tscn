@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://clidhel0jwb5v"]
+[gd_scene load_steps=9 format=3 uid="uid://clidhel0jwb5v"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="7_n31h7"]
+[ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="8_043ka"]
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 anchors_preset = 15
@@ -18,7 +19,7 @@ stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
-size = Vector2i(720, 720)
+size = Vector2i(500, 500)
 render_target_update_mode = 4
 script = ExtResource("1_hnfm3")
 
@@ -27,7 +28,6 @@ script = ExtResource("2_p0qd1")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("2_7kuqd")]
 transform = Transform3D(-0.278371, 0, -0.960474, 0, 1, 0, 0.960474, 0, -0.278371, -32.8469, 1.4698, -15.8397)
-collision_mask = 9
 
 [node name="Floor" type="Node3D" parent="SubViewport/World"]
 
@@ -139,3 +139,7 @@ shadow_blur = 4.986
 
 [node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
 layout_mode = 2
+
+[node name="fps" type="Label" parent="."]
+layout_mode = 2
+script = ExtResource("8_043ka")

@@ -21,8 +21,8 @@ CameraTransition="*res://Autoload/camera_transition.tscn"
 
 [display]
 
-window/size/viewport_width=720
-window/size/viewport_height=720
+window/size/viewport_width=500
+window/size/viewport_height=500
 window/stretch/scale_mode="integer"
 
 [file_customization]

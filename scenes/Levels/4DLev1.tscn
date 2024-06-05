@@ -1,0 +1,184 @@
+[gd_scene load_steps=7 format=3 uid="uid://blei4d824wjx3"]
+
+[ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_ncguc"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_eet83"]
+[ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="3_d02be"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_wm0q0"]
+[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="4_lrgr3"]
+
+[node name="Control" type="SubViewportContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="."]
+handle_input_locally = false
+size = Vector2i(500, 500)
+render_target_update_mode = 4
+script = ExtResource("1_bban4")
+
+[node name="World" type="Node3D" parent="SubViewport"]
+
+[node name="Eye" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.6825, 41.0394, -0.726508)
+
+[node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.00221652, 0.00251326, -0.00221651, 0.999998, -5.57093e-06, -0.00251327, 2.19599e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 14.1737)
+
+[node name="plat7" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999995, 0.00189189, 0.00276603, -0.00221663, 0.99246, 0.122556, -0.00251331, -0.122562, 0.992458, 0.551003, 0.422131, -16.9508)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 8.62904)
+
+[node name="plat8" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.000861728, 0.00323831, -0.00221642, 0.89488, 0.446301, -0.00251331, -0.446306, 0.894877, 0.576965, 2.97087, -8.87112)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 9.65424)
+
+[node name="plat9" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, -0.000698833, 0.00327733, -0.0022164, 0.595597, 0.80328, -0.00251332, -0.803283, 0.595592, 0.661362, 4.01191, 23.7912)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 15.6348)
+
+[node name="plat10" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, -0.000698709, 0.00327736, -0.0022165, 0.595597, 0.80328, -0.00251325, -0.803283, 0.595592, 0.676399, -0.380581, 33.6356)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 15.6348)
+
+[node name="plat11" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, -0.000698709, 0.00327736, -0.0022165, 0.595597, 0.80328, -0.00251325, -0.803283, 0.595592, 0.689919, -5.7202, 43.7338)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 15.6348)
+
+[node name="plat12" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.000861728, 0.00323831, -0.00221642, 0.89488, 0.446301, -0.00251331, -0.446306, 0.894877, 0.61068, -1.36337, 8.36118)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 8.44096)
+
+[node name="plat13" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(-0.999995, -0.00310499, 0.00126014, 0.00221649, -0.894929, -0.446202, 0.00251319, -0.446197, 0.894931, 0.537422, -1.38191, -8.53172)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 8.47995)
+
+[node name="plat14" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(-0.999995, -0.00310499, 0.00126014, 0.00221649, -0.894929, -0.446202, 0.00251319, -0.446197, 0.894931, 0.60968, -3.56246, 22.1452)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 38.6839)
+
+[node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57055e-06, -0.00251326, -1.03642e-10, 0.999996, 0.70005, 0.429424, 54.9832)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 13.6977)
+
+[node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.00221652, 0.00251326, -0.00221651, 0.999998, -5.57093e-06, -0.00251327, 2.19599e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 9.65424)
+
+[node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.999994, 0.00221652, 0.00251326, -0.00221651, 0.999998, -5.57093e-06, -0.00251327, 2.19599e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+rotation_edit_mode = 0
+size = Vector3(7.52421, 0.611319, 9.65424)
+
+[node name="Hypershape5" parent="SubViewport/World/Eye" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(0.805928, -0.592013, 0, 0.592013, 0.805928, 0, 0, 0, 1, -0.0984359, 0.0850506, -0.0300856)
+base_color = Vector3(1.28, 0, 0.3)
+dimensions = Vector4(1, 2.43, 1, 50)
+shapeType = 1
+
+[node name="Hypershape6" parent="SubViewport/World/Eye" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(0.929587, 0.346414, 0.12596, -0.159246, 0.069242, 0.984808, 0.33243, -0.935523, 0.119531, 0.215363, -4.247, 27.8773)
+base_color = Vector3(1.35, 1.135, -0.34)
+dimensions = Vector4(1.09, 1.72, 0.155, 1)
+shapeType = 1
+hyperInfo = Vector4(0.185, 0.94, 1.465, 0)
+
+[node name="Hypershape8" parent="SubViewport/World/Eye" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.761887, -9.49, 38.5889)
+base_color = Vector3(0.705, 1.855, 0.825)
+dimensions = Vector4(1.59, 0.255, 1.555, 10.155)
+shapeType = 1
+hyperInfo = Vector4(0.075, -1.74, 0.155, 0)
+
+[node name="Hypershape7" parent="SubViewport/World/Eye" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.01434, 1.01482, 17.6392)
+base_color = Vector3(1.405, 0.26, 0.3)
+dimensions = Vector4(2.2, 0.125, 1, 1)
+shapeType = 1
+hyperInfo = Vector4(0.105, 1.81, -0.23, 0)
+
+[node name="Portal" parent="SubViewport/World/Eye" instance=ExtResource("4_lrgr3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.654465, 0.838371, 55.6183)
+
+[node name="Platforms" type="Node3D" parent="SubViewport/World"]
+
+[node name="plat" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.3094, -0.0964966, 0)
+size = Vector3(5.831, 0.433, 20)
+
+[node name="plat2" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.797097, -0.0213878, 0.603472, 0.0268225, 0.99964, 0, -0.603255, 0.0161866, 0.797384, 16.7128, -0.0964966, -0.246726)
+size = Vector3(5.831, 0.433, 4.90723)
+
+[node name="plat3" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.513361, -0.140892, -0.846528, 0.264664, 0.964341, 0, 0.816341, -0.224046, 0.532344, 36.832, 5.2382, -0.246726)
+size = Vector3(17.9985, 0.433, 4.90723)
+
+[node name="plat4" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
+transform = Transform3D(0.895887, 0.442444, -0.0403759, 0.442805, -0.896618, 4.12347e-09, -0.0362018, -0.0178787, -0.999185, 55.7534, 14.1186, -0.204447)
+size = Vector3(5.7651, 0.433, 4.90723)
+
+[node name="plat5" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
+transform = Transform3D(-0.999185, 0, -0.0403759, 0, 1, 0, 0.0403759, 0, -0.999185, 65.1254, 15.7346, -0.583161)
+rotation_edit_mode = 0
+size = Vector3(12.3852, 0.425633, 17.917)
+
+[node name="Shapes" type="Node3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.10573, 0)
+
+[node name="Hypershape4" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(0.96432, -0.0983782, 0.24578, 0.0513744, 0.980282, 0.190809, -0.259705, -0.171374, 0.95036, 25.9745, -0.588467, -0.834927)
+base_color = Vector3(1.64, 0.355, 0.525)
+dimensions = Vector4(2.97, 4.23, 2.94, 0.2)
+shapeType = 1
+
+[node name="Hypershape" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(0.85264, 0, 0.522499, 0, 1, 0, -0.522499, 0, 0.85264, 3.61006, -26.6227, -0.652996)
+base_color = Vector3(1.31, 1.365, 0.17)
+dimensions = Vector4(1, 20, 1, 1)
+shapeType = 1
+hyperInfo = Vector4(0.381, 0.081, 0.172, 0)
+
+[node name="Hypershape2" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.48215, -26.6227, 4.13937)
+base_color = Vector3(-0.035, 1.105, 0.395)
+dimensions = Vector4(1, 20, 1, 1)
+shapeType = 1
+hyperInfo = Vector4(0.227, 0.109, 0.665, 0)
+
+[node name="Hypershape3" parent="SubViewport/World/Shapes" instance=ExtResource("3_wm0q0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3857, -26.4964, 7.14087)
+base_color = Vector3(1.64, 0.355, 0.525)
+dimensions = Vector4(1, 20, 1, 1)
+shapeType = 1
+hyperInfo = Vector4(0.227, 0.109, 0.665, 0)
+
+[node name="Player" parent="SubViewport/World" instance=ExtResource("2_eet83")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -10.3093, 0.929783, -0.332529)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
+transform = Transform3D(-0.656059, -0.354315, 0.666369, 0, 0.882948, 0.469472, -0.75471, 0.308001, -0.579266, 0, 13.8738, 0)
+shadow_enabled = true
+shadow_bias = 0.058
+shadow_normal_bias = 2.228
+shadow_blur = 4.986
+
+[node name="fps" type="Label" parent="."]
+layout_mode = 2
+script = ExtResource("3_d02be")

@@ -9,7 +9,7 @@
 //https://github.com/SebLague/Ray-Marching/blob/master/Assets/Scripts/SDF/Raymarching.compute
 
 //Work group size
-layout(local_size_x = 8, local_size_y = 8, local_size_z = 1) in;
+layout(local_size_x = 16, local_size_y = 16, local_size_z = 1) in;
 
 const float maxDst = 200.0;
 const float epsilon = 0.001;
@@ -63,7 +63,7 @@ screen;
 
 
 //Output image
-precision highp image2D;
+precision lowp image2D;
 layout(rgba32f, binding = 3) uniform writeonly image2D outputTexture;
 
 
