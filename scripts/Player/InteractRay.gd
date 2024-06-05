@@ -6,7 +6,7 @@ extends RayCast3D
 @onready var areas:Area3D = $"../../collider/sdfregion"
 @onready var localPos:Vector3 = self.get_parent().get_transform().origin
 var distToShape:float = 0
-var RAYCAST_LENGTH:float = 20
+var RAYCAST_LENGTH:float = 30
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

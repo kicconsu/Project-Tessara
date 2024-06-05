@@ -80,8 +80,8 @@ func _change_state():
 			var wall16 = $HyperGrabRoom/Structure/wall16
 			var wall17 = $HyperGrabRoom/Structure/wall17
 			
-			tween.tween_property(wall16, "position", wall16.get_global_position() + Vector3(0,-15,0), 1).set_ease(Tween.EASE_IN_OUT)
-			tween2.tween_property(wall17, "position", wall17.get_global_position() + Vector3(0,-15,0), 1).set_ease(Tween.EASE_IN_OUT)
+			tween.tween_property(wall16, "position", wall16.get_global_position() + Vector3(0,15,0), 1).set_ease(Tween.EASE_IN_OUT)
+			tween2.tween_property(wall17, "position", wall17.get_global_position() + Vector3(0,15,0), 1).set_ease(Tween.EASE_IN_OUT)
 			
 			for shape in movingHypershapes:
 				shape.set_freeze_enabled(false)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmn2yfob7fs0v"]
 
-[ext_resource type="Script" path="res://MovementTrigger.gd" id="1_banrj"]
+[ext_resource type="Script" path="res://Scenes/Buttons/MovementTrigger.gd" id="1_banrj"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_idi8l"]
 

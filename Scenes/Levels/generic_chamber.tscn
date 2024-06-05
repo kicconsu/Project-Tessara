@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://dex6snwx4sgo8" path="res://assets/images/TessaraTeaser.png" id="3_pmcf1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsw8b"]
+shading_mode = 0
 albedo_texture = ExtResource("3_pmcf1")
-texture_filter = 0
+texture_filter = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_qiw8o"]
 material = SubResource("StandardMaterial3D_rsw8b")

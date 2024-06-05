@@ -28,7 +28,7 @@ var mouseToggle := true
 var currentSpeed:float
 const walkSpeed := 5.0
 const sprintSpeed := 8.0
-const jumpVelocity := 10
+const jumpVelocity := 7
 
 const mouse_sens := 0.25
 
@@ -104,6 +104,7 @@ func _input(event):
 
 func _physics_process(delta):
 	
+	hypercolliding = body.checkHyperground()
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
@@ -144,7 +145,7 @@ func _physics_process(delta):
 	if hand.picked_object != null:
 		hand.pull_object(cameraForward*distOffset)
 	
-func _process(_delta):
+func _process(delta):
 	#-camera.transform.basis.z returns the forward direction of the camera as a Vector3
 	cameraForward = -camera.get_global_transform().basis.z
 	if inspection_enabled:
