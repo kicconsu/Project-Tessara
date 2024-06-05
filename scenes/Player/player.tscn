@@ -95,7 +95,6 @@ vertical_alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="Head/InteractRay"]
-visible = false
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5

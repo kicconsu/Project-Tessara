@@ -6,6 +6,7 @@ var shapesInScene:Array[Node]
 func _ready():
 	player.enable_hyper_inspection.connect(_enable_hyper_inspection) #Connect the signal that the player will emit 
 	player.disable_hyper_inspection.connect(_disable_hyper_inspection)
+	
 	shapesInScene = get_tree().get_nodes_in_group("hyperShapes")
 
 func _enable_hyper_inspection():

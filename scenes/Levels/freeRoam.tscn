@@ -1,0 +1,238 @@
+[gd_scene load_steps=19 format=3 uid="uid://b6xhsomwrbi2w"]
+
+[ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_5knyl"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/freeRoamHandler.gd" id="2_obqip"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="2_tjnxs"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_t3yqv"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="4_g0uqj"]
+[ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="5_jycmq"]
+[ext_resource type="Texture2D" uid="uid://cfmq3vpmlf5c" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
+[ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="8_2um7f"]
+[ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="8_rj2pp"]
+[ext_resource type="Script" path="res://Scripts/pointdisplay.gd" id="10_p3w55"]
+[ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="10_tfgvx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci3uk"]
+albedo_color = Color(0.0561, 0.073185, 0.17, 1)
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8ucn8"]
+panorama = ExtResource("5_wbbf8")
+filter = false
+
+[sub_resource type="Sky" id="Sky_nomnm"]
+sky_material = SubResource("PanoramaSkyMaterial_8ucn8")
+
+[sub_resource type="Environment" id="Environment_rsjsv"]
+background_mode = 2
+sky = SubResource("Sky_nomnm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sirxa"]
+render_priority = 0
+shader = ExtResource("8_rj2pp")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6wpf0"]
+size = Vector2(0.165, 0.695)
+
+[sub_resource type="LabelSettings" id="LabelSettings_qjfxy"]
+font = ExtResource("10_tfgvx")
+font_size = 50
+outline_size = 15
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Root" type="SubViewportContainer" parent="."]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 2
+
+[node name="Viewport" type="SubViewport" parent="Root"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(250, 250)
+render_target_update_mode = 4
+script = ExtResource("1_5knyl")
+
+[node name="World" type="Node3D" parent="Root/Viewport"]
+script = ExtResource("2_obqip")
+
+[node name="floor" parent="Root/Viewport/World" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.26926, 0)
+size = Vector3(51.6084, 2.83652, 48.2783)
+material = SubResource("StandardMaterial3D_ci3uk")
+
+[node name="Pillars" type="Node3D" parent="Root/Viewport/World"]
+transform = Transform3D(0.16935, 0, 0.985556, 0, 1, 0, -0.985556, 0, 0.16935, 0, 0, 0)
+
+[node name="pillar" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(-0.081869, 0, -0.996643, 0, 1, 0, 0.996643, 0, -0.081869, -9.13439, 6.87969, -6.68772)
+size = Vector3(1.42505, 13.8633, 1.09351)
+
+[node name="pillar2" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(0.883668, 0, 0.468115, 0, 1, 0, -0.468115, 0, 0.883668, -4.07796, 3.84364, 6.41862)
+size = Vector3(1.42505, 7.79114, 1.09351)
+
+[node name="pillar3" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(-0.370022, 0, 0.929023, 0, 1, 0, -0.929023, 0, -0.370022, 3.16942, 1.36753, 8.56698)
+size = Vector3(1.42505, 2.83893, 1.09351)
+
+[node name="pillar4" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, -2.32307, 9.82597, -18.2529)
+size = Vector3(1.42505, 19.7558, 1.09351)
+
+[node name="pillar5" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 8.99541, 12.2815, -4.85463)
+size = Vector3(1.42505, 24.6669, 1.09351)
+
+[node name="pillar6" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 11.7096, 16.6521, 11.7736)
+size = Vector3(1.42505, 33.4081, 1.09351)
+
+[node name="pillar7" parent="Root/Viewport/World/Pillars" instance=ExtResource("2_tjnxs")]
+transform = Transform3D(0.882004, 0, -0.471243, 0, 1, 0, 0.471243, 0, 0.882004, 8.68624, 33.8877, 17.0026)
+size = Vector3(6.07709, 0.808517, 4.49786)
+
+[node name="Hypershapes" type="Node3D" parent="Root/Viewport/World"]
+
+[node name="Tess" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.645, -1.166)
+dimensions = Vector4(0.5, 0.5, 0.5, 1)
+shapeType = 1
+
+[node name="Tess2" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(0.894142, -0.365002, 0.259392, 0.377938, 0.925831, 0, -0.240153, 0.0980341, 0.965772, -0.92407, 15.3535, -1.95118)
+base_color = Vector3(1.26, 0.365, 0.3)
+dimensions = Vector4(0.5, 2.48, 0.5, 1.85)
+shapeType = 1
+hyperInfo = Vector4(1.17, 0.89, -0.58, -0.115)
+
+[node name="Tess3" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(-0.550533, 0.0121113, -0.834726, 0.177836, 0.978646, -0.10309, 0.815652, -0.205198, -0.540931, 2.25943, 8.82643, -2.39913)
+base_color = Vector3(0.01, -0.135, 1.29)
+dimensions = Vector4(0.235, 2.115, 0.16, 4.595)
+shapeType = 1
+hyperInfo = Vector4(2.45, 2.04, 1.25, -0.02)
+
+[node name="Tess4" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(0.922113, -0.129142, 0.364733, 0.177836, 0.978646, -0.10309, -0.343631, 0.159923, 0.925388, -1.90615, 3.11237, 0.72808)
+base_color = Vector3(1.485, -0.255, 1.155)
+dimensions = Vector4(0.485, 6.925, 0.46, 3)
+shapeType = 1
+hyperInfo = Vector4(2.45, 2.04, 0.86, -0.02)
+
+[node name="Tess5" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.24639, 3.69603, 0.123552)
+base_color = Vector3(-1.52, 0.78, 0.895)
+dimensions = Vector4(0.2, 5, 1, 1)
+shapeType = 1
+hyperInfo = Vector4(1.345, 2.035, 0.925, 0.44)
+
+[node name="Tess6" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(0.894142, -0.365002, 0.259392, 0.377938, 0.925831, 0, -0.240153, 0.0980341, 0.965772, -0.250249, 9.11504, 6.94204)
+base_color = Vector3(1.5, 0.145, -0.525)
+dimensions = Vector4(0.5, 2, 10, 0.1)
+shapeType = 1
+hyperInfo = Vector4(1.16, 0.64, 1.585, 0)
+
+[node name="Tess7" parent="Root/Viewport/World/Hypershapes" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(0.894142, -0.365002, 0.259392, 0.377938, 0.925831, -7.75777e-08, -0.240153, 0.0980341, 0.965772, -16.3941, 12.1424, 0.815481)
+base_color = Vector3(1.515, 0.21, 0.76)
+dimensions = Vector4(0.135, 10, 0.125, 1.015)
+shapeType = 1
+hyperInfo = Vector4(0, 92.591, 0, 0)
+
+[node name="Player" parent="Root/Viewport/World" instance=ExtResource("4_g0uqj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14705, 14.9395, 7.88688)
+
+[node name="Enviroment" type="Node3D" parent="Root/Viewport/World"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Root/Viewport/World/Enviroment"]
+environment = SubResource("Environment_rsjsv")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Root/Viewport/World/Enviroment"]
+transform = Transform3D(0.408713, 0.912663, -4.43074e-07, -0.684883, 0.306708, 0.660958, 0.603232, -0.270142, 0.750423, 0, 4.93983, 0)
+light_color = Color(0.843333, 0.8, 1, 1)
+shadow_enabled = true
+shadow_bias = 0.058
+shadow_normal_bias = 2.228
+shadow_blur = 4.986
+
+[node name="redBall" parent="Root/Viewport/World" instance=ExtResource("8_2um7f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00869, 2.2998, 14)
+
+[node name="BallRefresh" type="Timer" parent="Root/Viewport/World/redBall"]
+wait_time = 40.0
+autostart = true
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="Root/Viewport/World/redBall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.992711, 0)
+material_override = SubResource("ShaderMaterial_sirxa")
+amount = 20
+lifetime = 3.43
+randomness = 0.38
+lifetime_randomness = 0.41
+fixed_fps = 15
+mesh = SubResource("QuadMesh_6wpf0")
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3(0, 9.8, 0)
+color = Color(0.76, 0.038, 0.1824, 1)
+
+[node name="Hypershape" parent="Root/Viewport/World/redBall" instance=ExtResource("3_t3yqv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999946, 0)
+dimensions = Vector4(0.5, 0.5, 0.5, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -241.0
+offset_bottom = 51.0
+grow_horizontal = 0
+
+[node name="pdisp" type="Label" parent="HBoxContainer"]
+z_index = 2
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+text = "Points:"
+label_settings = SubResource("LabelSettings_qjfxy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="pdisp2" type="Label" parent="HBoxContainer"]
+z_index = 2
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+label_settings = SubResource("LabelSettings_qjfxy")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("10_p3w55")
+
+[node name="fps" type="Label" parent="."]
+layout_mode = 1
+offset_right = 29.0
+offset_bottom = 23.0
+script = ExtResource("5_jycmq")
+
+[connection signal="body_entered" from="Root/Viewport/World/redBall" to="Root/Viewport/World" method="_on_red_ball_body_entered"]
+[connection signal="timeout" from="Root/Viewport/World/redBall/BallRefresh" to="Root/Viewport/World" method="_on_ball_refresh_timeout"]
