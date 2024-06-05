@@ -241,9 +241,6 @@ collision_mask = 9
 [node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
 transform = Transform3D(0.690364, 0.323702, -0.647004, -0.0268648, 0.90517, 0.4242, 0.722963, -0.275471, 0.633593, 21.565, 18.216, -44.809)
 
-[node name="running" parent="SubViewport/World/Player" index="4"]
-stream_paused = false
-
 [node name="Timer" type="Timer" parent="SubViewport/World/Player"]
 wait_time = 10.0
 one_shot = true

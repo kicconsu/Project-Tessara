@@ -137,6 +137,8 @@ angular_limit_z/erp = 0.2
 
 [node name="walk" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("8_cdry8")
+volume_db = -18.194
 
 [node name="running" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("9_106xc")
+volume_db = -18.127
