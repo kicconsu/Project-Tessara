@@ -60,7 +60,7 @@ func hyperCollideAndSlide(vel:Vector3, pos:Vector3, depth:int, gravityPass:bool,
 	return vel
 
 #Check if feet are close enough to ground to jump.
-func checkHypergound()->bool:
+func checkHyperground()->bool:
 	var hitData:Array = []
 	#Check if theres any potential hypershapes near; if there arent any, return [0] = false
 	if not region.has_overlapping_areas():

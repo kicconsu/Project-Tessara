@@ -15,13 +15,12 @@ func _process(_delta):
 	if is_colliding():
 		
 		var detected = get_collider()
-		print(detected)
 		
 		if detected is Trigger:
 			prompt.text = detected.get_prompt()
 			
 			if Input.is_action_just_pressed(detected.prompt_action):
-				detected.interact(owner)
+				detected.interact()
 
 #Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
 #if theres a hit, we send the shape information, so the player can interact with it

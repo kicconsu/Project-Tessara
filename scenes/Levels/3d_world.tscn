@@ -204,12 +204,12 @@ _data = {
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_yhbis"]
 panorama = ExtResource("7_fiil4")
 
-[sub_resource type="Sky" id="Sky_nomnm"]
+[sub_resource type="Sky" id="Sky_o6ko0"]
 sky_material = SubResource("PanoramaSkyMaterial_yhbis")
 
 [sub_resource type="Environment" id="Environment_vg30s"]
 background_mode = 2
-sky = SubResource("Sky_nomnm")
+sky = SubResource("Sky_o6ko0")
 tonemap_mode = 2
 glow_enabled = true
 
