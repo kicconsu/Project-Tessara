@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4qeart3r6nq3"]
+
+[ext_resource type="Script" path="res://Audio_Slider.gd" id="1_o7pyj"]
+
+[sub_resource type="SystemFont" id="SystemFont_uen3e"]
+font_names = PackedStringArray("VCR OSD Mono")
+
+[sub_resource type="SystemFont" id="SystemFont_niodm"]
+font_names = PackedStringArray("VCR OSD Mono")
+
+[node name="Audio_Slider" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o7pyj")
+bus_name = "Music"
+
+[node name="Audio_Name_Lbl" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.117
+anchor_right = 0.614
+anchor_bottom = 0.117
+offset_top = -3.12
+offset_right = 202.96
+offset_bottom = 42.88
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_uen3e")
+theme_override_font_sizes/font_size = 52
+text = "Master Volume"
+
+[node name="VSeparator" type="VSeparator" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.887
+anchor_top = 0.153
+anchor_right = 0.887
+anchor_bottom = 0.153
+offset_left = -15.388
+offset_top = -19.9138
+offset_right = 15.612
+offset_bottom = 20.0862
+
+[node name="HSlider" type="HSlider" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.694
+anchor_top = 0.153
+anchor_right = 0.847
+anchor_bottom = 0.153
+offset_left = 0.160004
+offset_top = -8.08
+offset_right = 0.0799866
+offset_bottom = 7.91999
+max_value = 1.0
+step = 0.001
+
+[node name="VSeparator2" type="VSeparator" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.668
+anchor_top = 0.159
+anchor_right = 0.668
+anchor_bottom = 0.159
+offset_left = -15.432
+offset_top = -20.0084
+offset_right = 15.568
+offset_bottom = 19.9916
+
+[node name="Audio_Num_Lbl" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.907
+anchor_top = 0.156
+anchor_right = 0.932
+anchor_bottom = 0.164
+offset_left = -2.86801
+offset_top = -10.4611
+offset_right = 11.032
+offset_bottom = 12.0793
+theme_override_fonts/font = SubResource("SystemFont_niodm")
+text = "99"
+
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

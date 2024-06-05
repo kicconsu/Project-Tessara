@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=39 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -10,7 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bdcw66mam3hob" path="res://scenes/Labyrinth/obstacle.tscn" id="7_jl17e"]
 [ext_resource type="PackedScene" uid="uid://dnyub82qvlu1w" path="res://scenes/Labyrinth/labyrinth.tscn" id="8_crn6b"]
 [ext_resource type="AudioStream" uid="uid://bscomfujsksda" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
-[ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
+[ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://Buttons/tutorial_button.tscn" id="13_l3aqv"]
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://scenes/pause_menu.tscn" id="13_mwiyj"]
 [ext_resource type="AudioStream" uid="uid://dkmr1vkwc2hs5" path="res://assets/sounds/press.mp3" id="14_mx4rw"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
@@ -1757,10 +1758,12 @@ one_shot = true
 [node name="expansionSound" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource("2_e2wkm")
 volume_db = -11.244
+bus = &"Sfx"
 
 [node name="popSound" type="AudioStreamPlayer" parent="World"]
 stream = ExtResource("3_f1etk")
 volume_db = -14.054
+bus = &"Sfx"
 
 [node name="Enviroment" type="Node3D" parent="World"]
 visible = false
@@ -1803,6 +1806,7 @@ freeze_mode = 1
 stream = ExtResource("12_a67lk")
 volume_db = -8.758
 pitch_scale = 0.93
+bus = &"Sfx"
 
 [node name="Labyrinth" parent="SecondDimensionQuest" instance=ExtResource("8_crn6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494344, 2.91697, -0.263956)
@@ -1815,6 +1819,7 @@ libraries = {
 
 [node name="pop?xd" type="AudioStreamPlayer" parent="SecondDimensionQuest"]
 stream = ExtResource("14_mx4rw")
+bus = &"Sfx"
 
 [node name="Pillar" type="CSGBox3D" parent="SecondDimensionQuest"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 2.5, 0)
@@ -1844,6 +1849,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -2, 0)
 
 [node name="TutBut5" parent="SecondDimensionQuest/2DButtons" instance=ExtResource("13_l3aqv")]
 transform = Transform3D(0.99996, -0.00898837, 0, 0.00898838, 0.999959, 0, 0, 0, 1, -4, -2, 4)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_mwiyj")]
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]

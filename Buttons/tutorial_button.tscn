@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://dg6rmyfjtah6s"]
+
+[ext_resource type="Script" path="res://scripts/Tutorial/getnuked.gd" id="1_r3ltd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bhg4k"]
+albedo_color = Color(1, 0.223529, 0.0117647, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1yhvk"]
+material = SubResource("StandardMaterial3D_bhg4k")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bufi6"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_pthyp"]
+material = SubResource("StandardMaterial3D_bufi6")
+outer_radius = 0.661
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m78nv"]
+radius = 0.620847
+
+[node name="TutorialButton" type="Area3D"]
+script = ExtResource("1_r3ltd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_1yhvk")
+skeleton = NodePath("../..")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+mesh = SubResource("TorusMesh_pthyp")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_m78nv")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

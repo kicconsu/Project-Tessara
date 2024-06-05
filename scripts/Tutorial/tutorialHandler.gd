@@ -67,7 +67,6 @@ enum State{
 
 
 func _ready():
-	
 	# Carga de dialogos para la primera dimension 
 			
 	text_box.queue_text("¡Hola pequeña bolita!")
@@ -126,7 +125,7 @@ func _process(_delta):
 	# Cuando no hay mas dialogos en un estado, significa que seguira la secuencia de State
 	if text_box.text_queue.is_empty() and text_box.State.FINISHED:	
 		
-		if Input.is_action_just_pressed("textInteract"):
+		if Input.is_action_just_pressed("textInteract") and !get_tree().paused:
 			match current_state:
 				
 				State.Void:

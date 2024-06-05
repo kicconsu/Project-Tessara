@@ -43,9 +43,6 @@ func _physics_process(delta):
 	
 	#print("hypercolliding" if hypercolliding else "not hypercolliding")
 	
-	if Input.is_action_just_pressed("pause"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
-	
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta

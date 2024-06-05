@@ -33,6 +33,7 @@ script = ExtResource("1_mnvo0")
 stream = ExtResource("2_2q7g0")
 volume_db = 2.811
 pitch_scale = 0.93
+bus = &"Sfx"
 
 [node name="TextboxContainer" type="MarginContainer" parent="."]
 anchors_preset = 10
