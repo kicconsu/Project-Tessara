@@ -128,3 +128,4 @@ angular_limit_z/damping = 0.7
 angular_limit_z/erp = 0.2
 
 [node name="eyes" parent="Head" instance=ExtResource("5_3ebqn")]
+current = true

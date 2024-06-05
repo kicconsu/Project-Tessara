@@ -9,10 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="5_osr12"]
 [ext_resource type="PackedScene" uid="uid://bdcw66mam3hob" path="res://Scenes/Labyrinth/obstacle.tscn" id="7_jl17e"]
 [ext_resource type="PackedScene" uid="uid://dnyub82qvlu1w" path="res://Scenes/Labyrinth/labyrinth.tscn" id="8_crn6b"]
-[ext_resource type="AudioStream" uid="uid://bhtbp7jenyt5v" path="res://assets/sounds/pressed.mp3" id="11_ljnpb"]
-[ext_resource type="AudioStream" uid="uid://bscomfujsksda" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
+[ext_resource type="AudioStream" path="res://assets/sounds/pressed.mp3" id="11_ljnpb"]
+[ext_resource type="AudioStream" path="res://assets/sounds/fall.mp3" id="12_a67lk"]
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://Scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
-[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://Scenes/portal.tscn" id="13_mdww4"]
+[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="13_mdww4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
 disable_ambient_light = true
@@ -2047,7 +2047,7 @@ libraries = {
 [node name="fall" type="AudioStreamPlayer" parent="SecondDimensionQuest"]
 stream = ExtResource("12_a67lk")
 volume_db = -8.758
-pitch_scale = 1.16
+pitch_scale = 1.05
 
 [node name="Labyrinth" parent="SecondDimensionQuest" instance=ExtResource("8_crn6b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.494344, 2.91697, -0.263956)

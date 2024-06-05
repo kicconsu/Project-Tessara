@@ -72,6 +72,7 @@ enum State{
 
 func _ready():
 	
+	ceilingCamera.set_current(true)
 	player.locked = true
 			
 	text_box.queue_text("¡Hola pequeña bolita!")

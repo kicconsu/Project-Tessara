@@ -1,8 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://clidhel0jwb5v"]
+[gd_scene load_steps=19 format=3 uid="uid://cgm0oubn3e0pa"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
-[ext_resource type="PackedScene" uid="uid://dpkfha4uu287c" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" path="res://Scenes/portal.tscn" id="1_nt5u5"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
@@ -102,6 +102,34 @@ tracks/6/keys = {
 "values": [Vector3(21.565, 18.216, -44.809)]
 }
 
+[sub_resource type="Animation" id="Animation_ix5xv"]
+resource_name = "camera"
+length = 10.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player/Head/eyes:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
+"transitions": PackedFloat32Array(3, 0.35, 3, 4.54861, 0.416089, 0.35, 1.68179, 3.73213, 1),
+"update": 0,
+"values": [Vector3(-0.438078, -0.79587, -0.0296706), Vector3(0.242601, -1.28456, 0.00523599), Vector3(-0.0802851, -0.640536, 0.00523599), Vector3(-0.211185, -1.88845, 0.118682), Vector3(-0.516617, -0.553269, 0.118682), Vector3(0.0244346, -0.247837, -0.020944), Vector3(-0.438078, 0.0750492, -0.020944), Vector3(0.129154, -0.657989, -0.0296706), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Player/Head/eyes:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
+"transitions": PackedFloat32Array(3, 0.35, 3, 0.35, 3, 0.35, 2.54912, 0.466516, 1),
+"update": 0,
+"values": [Vector3(21.565, 18.216, -44.809), Vector3(11.32, 14.971, -40.819), Vector3(0.108, 10.609, -32.449), Vector3(-24.4661, 16.153, -28.1263), Vector3(-24.4733, 16.153, -28.1511), Vector3(-21.8581, 6.90612, -19.2729), Vector3(-16.2732, 12.8284, 0.0739326), Vector3(-15.2795, 0.351143, 3.50255), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_usvxl"]
 resource_name = "transition"
 length = 1.5
@@ -166,34 +194,6 @@ tracks/4/keys = {
 "values": [1.0, 0.0]
 }
 
-[sub_resource type="Animation" id="Animation_ix5xv"]
-resource_name = "camera"
-length = 10.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Player/Head/eyes:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
-"transitions": PackedFloat32Array(3, 0.35, 3, 4.54861, 0.416089, 0.35, 1.68179, 3.73213, 1),
-"update": 0,
-"values": [Vector3(-0.438078, -0.79587, -0.0296706), Vector3(0.242601, -1.28456, 0.00523599), Vector3(-0.0802851, -0.640536, 0.00523599), Vector3(-0.211185, -1.88845, 0.118682), Vector3(-0.516617, -0.553269, 0.118682), Vector3(0.0244346, -0.247837, -0.020944), Vector3(-0.438078, 0.0750492, -0.020944), Vector3(0.129154, -0.657989, -0.0296706), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Player/Head/eyes:position")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1.3, 2.6, 3.9, 5.2, 6.5, 7.8, 9.1, 10.3),
-"transitions": PackedFloat32Array(3, 0.35, 3, 0.35, 3, 0.35, 2.54912, 0.466516, 1),
-"update": 0,
-"values": [Vector3(21.565, 18.216, -44.809), Vector3(11.32, 14.971, -40.819), Vector3(0.108, 10.609, -32.449), Vector3(-24.4661, 16.153, -28.1263), Vector3(-24.4733, 16.153, -28.1511), Vector3(-21.8581, 6.90612, -19.2729), Vector3(-16.2732, 12.8284, 0.0739326), Vector3(-15.2795, 0.351143, 3.50255), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qjj31"]
 _data = {
 "RESET": SubResource("Animation_nuie6"),
@@ -212,6 +212,9 @@ background_mode = 2
 sky = SubResource("Sky_nomnm")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_irodc"]
+size = Vector3(74.2539, 38.8398, 72.2014)
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 anchors_preset = 15
@@ -235,7 +238,7 @@ transform = Transform3D(-0.278371, 0, -0.960474, 0, 1, 0, 0.960474, 0, -0.278371
 collision_mask = 9
 
 [node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
-transform = Transform3D(0.690364, 0.323702, -0.647004, -0.0268648, 0.90517, 0.424199, 0.722963, -0.27547, 0.633593, 21.565, 18.216, -44.809)
+transform = Transform3D(0.690364, 0.323702, -0.647004, -0.0268648, 0.90517, 0.4242, 0.722963, -0.275471, 0.633593, 21.565, 18.216, -44.809)
 
 [node name="Timer" type="Timer" parent="SubViewport/World/Player"]
 wait_time = 10.0
@@ -410,9 +413,16 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10,
 visible = false
 shadow_enabled = true
 
+[node name="Area3D" type="Area3D" parent="SubViewport/World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.27835, 7.91992, -8.17912)
+shape = SubResource("BoxShape3D_irodc")
+
 [node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
 layout_mode = 2
 
 [connection signal="timeout" from="SubViewport/World/Player/Timer" to="SubViewport/World" method="_on_timer_timeout"]
+[connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport/World" method="_on_area_3d_body_exited"]
 
 [editable path="SubViewport/World/Player"]
