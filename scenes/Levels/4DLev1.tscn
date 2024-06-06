@@ -1,5 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://bbpdxmpt5eotj"]
+[gd_scene load_steps=35 format=3 uid="uid://bbpdxmpt5eotj"]
 
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="1_6psdn"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_ncguc"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevHandler.gd" id="2_0h3ah"]
@@ -7,12 +8,19 @@
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="3_d02be"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_wm0q0"]
 [ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="4_lrgr3"]
+[ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="4_ny553"]
+[ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="5_ekf3d"]
 [ext_resource type="PackedScene" uid="uid://cv3nboonmvkfk" path="res://Scenes/Buttons/trigger_button.tscn" id="6_dxo44"]
-[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="7_a53ra"]
-[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="8_aqu7a"]
+[ext_resource type="Texture2D" uid="uid://cfmq3vpmlf5c" path="res://assets/images/starSkyBox.png" id="7_a53ra"]
+[ext_resource type="AudioStream" uid="uid://dt3iiafpj1oxw" path="res://assets/sounds/respawn.mp3" id="8_aqu7a"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="10_bye2j"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="10_tba4c"]
-[ext_resource type="AudioStream" uid="uid://c4rgk2jljtix0" path="res://assets/sounds/4DLevel.mp3" id="11_8kujk"]
+[ext_resource type="AudioStream" uid="uid://cdwigd2a8r55r" path="res://assets/sounds/4DLevel.mp3" id="11_8kujk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rid7k"]
+shader = ExtResource("4_ny553")
+shader_parameter/correction_mode = 0
+shader_parameter/correction_intensity = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4pmk8"]
 albedo_color = Color(0.0784314, 0.180392, 0.25098, 1)
@@ -332,6 +340,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("1_6psdn")]
+mouse_filter = 2
+
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(500, 500)
@@ -341,11 +355,22 @@ script = ExtResource("1_bban4")
 [node name="World" type="Node3D" parent="SubViewport"]
 script = ExtResource("2_0h3ah")
 
+[node name="ColorRect" type="ColorRect" parent="SubViewport/World"]
+z_index = 1
+material = SubResource("ShaderMaterial_rid7k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_ekf3d")
+
 [node name="Eye" type="Node3D" parent="SubViewport/World"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42943e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.45867e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -390,17 +415,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57062e-06, -0.00251326, -3.80854e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57063e-06, -0.00251326, -2.98929e-11, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42943e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.45867e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42943e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.45867e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 

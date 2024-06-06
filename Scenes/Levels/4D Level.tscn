@@ -1,22 +1,30 @@
-[gd_scene load_steps=37 format=3 uid="uid://bwqldaa36fhgu"]
+[gd_scene load_steps=41 format=3 uid="uid://bwqldaa36fhgu"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_fq28j"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevel.gd" id="2_4om38"]
+[ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="3_c7dsb"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="3_kscka"]
 [ext_resource type="PackedScene" uid="uid://uxqor5r7ppom" path="res://Scenes/Levels/generic_chamber.tscn" id="4_ste5t"]
+[ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="4_u1wvx"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="5_wv15h"]
 [ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/modelScenes/lamp.tscn" id="6_ldchl"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="7_wlcxr"]
 [ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="8_6yssa"]
 [ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
 [ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
-[ext_resource type="ArrayMesh" uid="uid://dx33ccgy4q8f6" path="res://assets/models/pedestal.obj" id="11_71k60"]
+[ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="11_71k60"]
 [ext_resource type="PackedScene" uid="uid://dcdyo43xaxaw7" path="res://Scenes/hyper_hand.tscn" id="12_anvwk"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="13_m7xi5"]
-[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="14_umaop"]
-[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
-[ext_resource type="AudioStream" uid="uid://qjhn2xqhanbk" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
-[ext_resource type="AudioStream" uid="uid://03ydl5rvvyxc" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
+[ext_resource type="Texture2D" uid="uid://cfmq3vpmlf5c" path="res://assets/images/starSkyBox.png" id="14_umaop"]
+[ext_resource type="AudioStream" uid="uid://dt3iiafpj1oxw" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+[ext_resource type="AudioStream" uid="uid://7jsekvbd3bkr" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
+[ext_resource type="AudioStream" uid="uid://cx0ye7rsqw28q" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="20_e0gjd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bbo5h"]
+shader = ExtResource("3_c7dsb")
+shader_parameter/correction_mode = 0
+shader_parameter/correction_intensity = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oys28"]
 albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -61,34 +69,6 @@ size = Vector3(0.600761, 17.0154, 43.8141)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6iwdp"]
 size = Vector3(43, 1, 50.7268)
-
-[sub_resource type="Animation" id="Animation_athq1"]
-resource_name = "transition"
-length = 5.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Top:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [-20.0, 0.0]
-}
 
 [sub_resource type="Animation" id="Animation_tat4e"]
 length = 0.001
@@ -169,6 +149,34 @@ tracks/1/keys = {
 "values": [0.0, -20.101]
 }
 
+[sub_resource type="Animation" id="Animation_athq1"]
+resource_name = "transition"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, 0.0]
+}
+
 [sub_resource type="Animation" id="Animation_q27d6"]
 resource_name = "waiting"
 length = 2.0
@@ -201,6 +209,12 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("20_e0gjd")]
+mouse_filter = 2
+
 [node name="SubViewport" type="SubViewport" parent="."]
 handle_input_locally = false
 size = Vector2i(500, 500)
@@ -209,6 +223,17 @@ script = ExtResource("1_fq28j")
 
 [node name="World" type="Node3D" parent="SubViewport"]
 script = ExtResource("2_4om38")
+
+[node name="ColorRect" type="ColorRect" parent="SubViewport/World"]
+z_index = 1
+material = SubResource("ShaderMaterial_bbo5h")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("4_u1wvx")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("3_kscka")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.0298, 3.1095, 0.1863)

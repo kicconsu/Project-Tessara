@@ -23,8 +23,9 @@ func _input(event):
 		
 
 func _on_continuar_pressed():
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	resume()
+	hide()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 func _on_reiniciar_pressed():
 	if get_tree().paused:
