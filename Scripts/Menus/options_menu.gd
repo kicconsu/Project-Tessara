@@ -28,7 +28,7 @@ func _ready():
 	_add_colorblind_items()
 		
 func _on_button_pressed():
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Menus/main_menu.tscn")
 
 func _add_window_mode_items() ->void:
 	for window_mode in WINDOW_MODE_ARRAY:
@@ -59,8 +59,7 @@ func _on_resolution_item_selected(index):
 
 
 func _on_colorblind_mode_item_selected(index):	
-	pass
-	#GlobalRect.updateShader(index)
+	UpdateFilter.updateFilter(index)
 	
 
 

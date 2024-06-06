@@ -1,42 +1,54 @@
+/*
+
+Taken from: https://godotshaders.com/shader/colorblindness-correction-shader/
+
+Colorblindness correction shader with adjustable intensity. Can correct for:
+* Protanopia (Greatly reduced reds)
+* Deuteranopia (Greatly reduced greens)
+* Tritanopia (Greatly reduced blues)
+
+*/
+
+
+
+
+
+
 shader_type canvas_item;
 uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
-uniform bool grayscale = false;
 uniform int correction_mode : hint_range(0, 3) = 0;
 uniform float correction_intensity : hint_range(0.0, 1.0) = 1.0;
 
 void fragment() {
 	vec4 tex = texture(SCREEN_TEXTURE, SCREEN_UV);
 	
-	if(grayscale){
-		float avg = (tex.r + tex.g + tex.b)/3.0;
-		COLOR = vec4(vec3(avg), 1.0);
-	} else {	
-		float L = (17.8824 * tex.r) + (43.5161 * tex.g) + (4.11935 * tex.b);
-		float M = (3.45565 * tex.r) + (27.1554 * tex.g) + (3.86714 * tex.b);
-		float S = (0.0299566 * tex.r) + (0.184309 * tex.g) + (1.46709 * tex.b);
+	float L = (17.8824 * tex.r) + (43.5161 * tex.g) + (4.11935 * tex.b);
+	float M = (3.45565 * tex.r) + (27.1554 * tex.g) + (3.86714 * tex.b);
+	float S = (0.0299566 * tex.r) + (0.184309 * tex.g) + (1.46709 * tex.b);
 
-		float l, m, s;
-		if (correction_mode == 0) //Protanopia
-		{
-			l = 0.0 * L + 2.02344 * M + -2.52581 * S;
-			m = 0.0 * L + 1.0 * M + 0.0 * S;
-			s = 0.0 * L + 0.0 * M + 1.0 * S;
-		}
-		
-		if (correction_mode == 1) //Deuteranopia
-		{
-			l = 1.0 * L + 0.0 * M + 0.0 * S;
-	    	m = 0.494207 * L + 0.0 * M + 1.24827 * S;
-	    	s = 0.0 * L + 0.0 * M + 1.0 * S;
-		}
-		
-		if (correction_mode == 2) //Tritanopia
-		{
-			l = 1.0 * L + 0.0 * M + 0.0 * S;
-	    	m = 0.0 * L + 1.0 * M + 0.0 * S;
-	    	s = -0.395913 * L + 0.801109 * M + 0.0 * S;
-		}
-		
+	float l, m, s;
+	if (correction_mode == 1) //Protanopia
+	{
+		l = 0.0 * L + 2.02344 * M + -2.52581 * S;
+		m = 0.0 * L + 1.0 * M + 0.0 * S;
+		s = 0.0 * L + 0.0 * M + 1.0 * S;
+	}
+	
+	if (correction_mode == 2) //Deuteranopia
+	{
+		l = 1.0 * L + 0.0 * M + 0.0 * S;
+	    m = 0.494207 * L + 0.0 * M + 1.24827 * S;
+	    s = 0.0 * L + 0.0 * M + 1.0 * S;
+	}
+	
+	if (correction_mode == 3) //Tritanopia
+	{
+		l = 1.0 * L + 0.0 * M + 0.0 * S;
+	    m = 0.0 * L + 1.0 * M + 0.0 * S;
+	    s = -0.395913 * L + 0.801109 * M + 0.0 * S;
+	}
+	
+	if(correction_mode > 0){
 		vec4 error;
 		error.r = (0.0809444479 * l) + (-0.130504409 * m) + (0.116721066 * s);
 		error.g = (-0.0102485335 * l) + (0.0540193266 * m) + (-0.113614708 * s);
@@ -51,5 +63,7 @@ void fragment() {
 		correction.a = tex.a * correction_intensity;
 		
 		COLOR = correction;
+	} else {
+		COLOR = tex;
 	}
 }

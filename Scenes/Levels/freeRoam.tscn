@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dbv7usvstveja"]
+[gd_scene load_steps=25 format=3 uid="uid://dbv7usvstveja"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_5knyl"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/freeRoamHandler.gd" id="2_obqip"]
@@ -6,12 +6,20 @@
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_t3yqv"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="4_g0uqj"]
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="5_jycmq"]
-[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
+[ext_resource type="Texture2D" uid="uid://g4o5236g3cqc" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="8_2um7f"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="8_rj2pp"]
-[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="9_3348l"]
+[ext_resource type="AudioStream" uid="uid://dwvpmcwoov4oq" path="res://assets/sounds/respawn.mp3" id="9_3348l"]
 [ext_resource type="Script" path="res://Scripts/pointdisplay.gd" id="10_p3w55"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="10_tfgvx"]
+[ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="13_71avb"]
+[ext_resource type="Script" path="res://Scenes/Levels/ColorRect.gd" id="14_ijd5k"]
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="15_tccdr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fy8cm"]
+shader = ExtResource("13_71avb")
+shader_parameter/correction_mode = 0
+shader_parameter/correction_intensity = 1.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ci3uk"]
 albedo_color = Color(0.0561, 0.073185, 0.17, 1)
@@ -53,6 +61,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("15_tccdr")]
+mouse_filter = 2
+
 [node name="Root" type="SubViewportContainer" parent="."]
 texture_filter = 1
 layout_mode = 1
@@ -73,6 +87,17 @@ script = ExtResource("1_5knyl")
 
 [node name="World" type="Node3D" parent="Root/Viewport"]
 script = ExtResource("2_obqip")
+
+[node name="ColorRect" type="ColorRect" parent="Root/Viewport/World"]
+z_index = 1
+material = SubResource("ShaderMaterial_fy8cm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("14_ijd5k")
 
 [node name="floor" parent="Root/Viewport/World" instance=ExtResource("2_tjnxs")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.26926, 0)

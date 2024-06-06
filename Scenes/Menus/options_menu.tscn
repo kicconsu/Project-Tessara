@@ -1,11 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://c54u10j4uta2g"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/options_menu.gd" id="1_nv0aq"]
+[ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_3628a"]
 [ext_resource type="PackedScene" uid="uid://b4qeart3r6nq3" path="res://Scenes/Menus/audio_slider.tscn" id="2_ylc4o"]
-
-[sub_resource type="SystemFont" id="SystemFont_ifngv"]
-font_names = PackedStringArray("VCR OSD Mono")
-subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_kkua6"]
 font_names = PackedStringArray("VCR OSD Mono")
@@ -63,7 +60,7 @@ grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 32
-theme_override_fonts/font = SubResource("SystemFont_ifngv")
+theme_override_fonts/font = ExtResource("2_3628a")
 theme_override_font_sizes/font_size = 100
 text = "Options"
 horizontal_alignment = 1
@@ -182,13 +179,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 0.2
 offset_bottom = 214.2
+bus_name = "Master"
 
 [node name="Audio_Slider2" parent="Panel/SettingsGridContainer/Sound" instance=ExtResource("2_ylc4o")]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.266
 anchor_bottom = 0.266
-offset_top = 0.0559998
+offset_top = 1.056
 offset_bottom = 251.056
 
 [node name="Audio_Slider3" parent="Panel/SettingsGridContainer/Sound" instance=ExtResource("2_ylc4o")]
@@ -196,14 +194,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.538
 anchor_bottom = 0.538
-offset_top = 0.00798798
-offset_bottom = 251.008
-
-[node name="Keybinds" type="TabBar" parent="Panel/SettingsGridContainer"]
-visible = false
-custom_minimum_size = Vector2(326, 184)
-layout_mode = 2
-theme_override_constants/h_separation = 20
+offset_top = 0.00800323
+offset_bottom = 192.008
+bus_name = "Sfx"
 
 [node name="Filtro" type="TabBar" parent="Panel/SettingsGridContainer"]
 visible = false

@@ -5,35 +5,36 @@ func _ready():
 
 func resume():
 	get_tree().paused = false
-	$Blur.play_backwards("Blur")
-	hide()
+	$Blur.play_backwards("Blur")	
 
 func pause():
 	get_tree().paused = true
 	$Blur.play("Blur")
 
-func testEsc():
+func _input(event):
 	if Input.is_action_just_pressed("pause") and !get_tree().paused:
 		show()
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		pause()
 	elif Input.is_action_just_pressed("pause") and get_tree().paused:
+		resume()
 		hide()
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		resume()
+		
 
 func _on_continuar_pressed():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	resume()
 
 func _on_reiniciar_pressed():
-	resume()
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	get_tree().reload_current_scene()
+	if get_tree().paused:
+		resume()
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		get_tree().reload_current_scene()
+	 
 
 func _on_salir_pressed():
 	get_tree().quit()
 
-func _process(_delta):
-	testEsc()
+
 	

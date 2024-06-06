@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="ProjectTessara"
-run/main_scene="res://Scenes/Levels/tutorial.tscn"
+run/main_scene="res://Scenes/Menus/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CameraTransition="*res://Autoload/camera_transition.tscn"
+UpdateFilter="*res://Autoload/update_filter.gd"
 
 [display]
 
