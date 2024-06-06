@@ -7,7 +7,7 @@ extends Control
 @onready var tween = get_tree().create_tween()
 @onready var audio = $AudioStreamPlayer
 
-const CHAR_READ_RATE = 0.04
+@export var CHAR_READ_RATE = 0.04
 
 # 3 estados del textbox
 
@@ -96,13 +96,13 @@ func on_tween_finished():
 
 func change_state(next_state):
 	current_state = next_state
-	match current_state:
-		State.READY:
-			#print("Changing state to READY")
-			pass
-		State.READING:
-			#print("Changing state to READING")				
-			pass
-		State.FINISHED:		
-			#print("Changing state to FINISHED")		
-			pass
+	
+func force_next_text(message):
+	change_state(State.FINISHED)
+	text_queue.clear()
+	hide_textbox()
+	change_state(State.READY)
+	queue_text(message)
+
+func setVelocity(vel):
+	CHAR_READ_RATE = vel

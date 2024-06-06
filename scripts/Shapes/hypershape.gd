@@ -9,7 +9,8 @@ var color = Vector3(0.0,0.0,0.0)
 @export var dimensions := Vector4(1.0, 1.0, 1.0, 1.0)
 @export var shapeType := int(0)
 @export var hyperInfo := Vector4(0.0, 0.0, 0.0, 0.0) 
-
+@export var translate = true
+@export var transformable = true
 #the first three elements in this vector are xw, yw, zw rotation degrees.
 #the last one is the w coordinate position.
 
@@ -41,7 +42,8 @@ func setColor(color:Vector3):
 	self.color = color
 
 func adjustHyperInfo(xw,yw,zw,w):
-	hyperInfo += Vector4(xw,yw,zw,w)
+	if transformable:
+		hyperInfo += Vector4(xw,yw,zw,w)
 	
 func colorOnInspection():
 	color = Vector3(0, 0, 5.0)

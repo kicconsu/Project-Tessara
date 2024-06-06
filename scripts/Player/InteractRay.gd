@@ -6,7 +6,7 @@ extends RayCast3D
 @onready var areas:Area3D = $"../../collider/sdfregion"
 @onready var localPos:Vector3 = self.get_parent().get_transform().origin
 var distToShape:float = 0
-var RAYCAST_LENGTH:float = 20
+var RAYCAST_LENGTH:float = 30
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -21,6 +21,11 @@ func _process(_delta):
 			
 			if Input.is_action_just_pressed(detected.prompt_action):
 				detected.interact()
+		
+		if detected.is_in_group("HyperHand"):
+			prompt.text = "???\n[E]"
+			
+			
 
 #Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
 #if theres a hit, we send the shape information, so the player can interact with it
@@ -36,8 +41,8 @@ func getShape(direction:Vector3):
 	var castedPoint:Vector3 = pos+(direction.normalized()*RAYCAST_LENGTH)
 	
 	#Some raycast visualization stuff
-	self.set_position(pos)
-	self.set_target_position(direction)
+	#self.set_position(pos)
+	#self.set_target_position(direction)
 	
 	var shape = _getColliderAcross(pos, castedPoint)
 	return shape

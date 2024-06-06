@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy4ad2oeekuk"]
+
+[ext_resource type="Script" path="res://Scenes/Levels/TextTrigger.gd" id="1_28k4c"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aciy2"]
+
+[node name="TextTrigger" type="Area3D" groups=["TriggerArea"]]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_28k4c")
+dimensions = Vector3(0.3, 0.3, 0.3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_aciy2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

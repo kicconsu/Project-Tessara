@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmn2yfob7fs0v"]
+
+[ext_resource type="Script" path="res://Scenes/Buttons/MovementTrigger.gd" id="1_banrj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_idi8l"]
+
+[node name="MovementTrigger" type="Area3D" groups=["TriggerArea"]]
+collision_layer = 0
+collision_mask = 10
+script = ExtResource("1_banrj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_idi8l")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
