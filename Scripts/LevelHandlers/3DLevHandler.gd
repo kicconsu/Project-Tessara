@@ -33,7 +33,7 @@ func _on_timer_timeout():
 	textBox.queue_text("Ademas, puedes alejar y retroceder la figura con la ruedita del MOUSE")
 	textBox.queue_text("¡Nos vemos al final!")
 	
-func _on_area_3d_body_exited(body):
+func _on_area_3d_body_exited(_body):
 	audio.play()
 	player.position = Vector3(-32.847,10,-15.84)
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_p1vn5"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_a8gea"]
-[ext_resource type="Texture2D" uid="uid://dpy0uf4f4u4s0" path="res://assets/images/TessaraTeaser.png" id="3_pmcf1"]
+[ext_resource type="Texture2D" uid="uid://d11kgxu2yustu" path="res://assets/images/TessaraTeaser.png" id="3_pmcf1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgoh4"]
 emission_enabled = true

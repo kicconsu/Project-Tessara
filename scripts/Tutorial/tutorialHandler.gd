@@ -156,7 +156,7 @@ func _process(_delta):
 				State.SecondDimension1stQuest:
 					if relatedQuest:		
 
-						timer.set_wait_time(20)
+						timer.set_wait_time(2)
 						timer.start()
 						
 						Animations.play("Labyrinth")
@@ -196,6 +196,10 @@ func _process(_delta):
 						
 											
 					if relatedQuest:
+						
+						var t3 = get_tree().create_tween()
+						t3.tween_property(player, "position", Vector3(0.2,1,1), 1).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CIRC)
+						
 						Animations.play("pillarRise")
 						_2d_anim.play("tutbutRise")
 						
@@ -360,8 +364,9 @@ func _on_tut_but_1_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 	tutbut1.translate(Vector3(0,6,0))
 	
 	if tutbut2 == null:
-		labyrinth.nuke()
-		questCompleted = true
+		if labyrinth != null:
+			labyrinth.nuke()
+			questCompleted = true
 
 func _on_tut_but_2_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	pop_xd.play()
@@ -370,8 +375,9 @@ func _on_tut_but_2_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 	tutbut2.translate(Vector3(0,6,0))
 	
 	if tutbut1 == null:
-		labyrinth.nuke()
-		questCompleted = true
+		if labyrinth != null:
+			labyrinth.nuke()
+			questCompleted = true
 
 func _on_tut_but_3_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):
 	timer.set_wait_time(1)
