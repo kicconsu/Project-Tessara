@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://clidhel0jwb5v"]
+[gd_scene load_steps=21 format=3 uid="uid://clidhel0jwb5v"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dp1oisuh80wsh" path="res://assets/images/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="7_fiil4"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="7_n31h7"]
 [ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="8_3j8lc"]
+[ext_resource type="AudioStream" uid="uid://dincxw7yaoa38" path="res://assets/sounds/3DTheme.mp3" id="9_lwmrh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laani"]
 albedo_color = Color(0, 0, 0, 1)
@@ -433,10 +434,14 @@ shape = SubResource("BoxShape3D_irodc")
 stream = ExtResource("8_3j8lc")
 volume_db = -20.755
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World"]
+stream = ExtResource("9_lwmrh")
+
 [node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
 layout_mode = 2
 
 [connection signal="timeout" from="SubViewport/World/Player/Timer" to="SubViewport/World" method="_on_timer_timeout"]
 [connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport/World" method="_on_area_3d_body_exited"]
+[connection signal="finished" from="SubViewport/World/AudioStreamPlayer" to="SubViewport/World" method="_on_audio_stream_player_finished"]
 
 [editable path="SubViewport/World/Player"]

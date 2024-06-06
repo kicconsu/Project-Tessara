@@ -7,6 +7,7 @@ extends Node3D
 @onready var transition = $Control/AnimationPlayer
 @onready var timer = $Timer
 @onready var textBox = $"../../TextBox"
+@onready var theme = $"../AudioStreamPlayer"
 
 var monologue = true
 var otherMonologue = true
@@ -14,6 +15,7 @@ var jujo = false
 
 
 func _ready():
+	theme.play()
 	timer.set_wait_time(2)
 	timer.start()
 	
@@ -77,3 +79,7 @@ func _on_exp_body_entered(body):
 		# HACER AQUI
 		
 		otherMonologue = false
+
+
+func _on_audio_stream_player_finished():
+	theme.play()

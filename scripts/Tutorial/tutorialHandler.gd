@@ -15,6 +15,7 @@ extends Node3D
 @onready var pop = $World/popSound
 @onready var fall = $SecondDimensionQuest/fall
 @onready var pop_xd = $"SecondDimensionQuest/pop?xd"
+@onready var audio = $AudioStreamPlayer
 
 # Player
 @onready var player = $Player
@@ -66,12 +67,13 @@ enum State{
 	SecondDimension2ndQuest,
 	Explaining,
 	ThirdDimension,
-	ThirdDimensionQuest,
-	FourthDimension
+	ThirdDimensionQuest
 }
 
 
 func _ready():
+	
+	audio.play()
 	
 	ceilingCamera.set_current(true)
 	player.locked = true
@@ -389,3 +391,7 @@ func _on_tut_but_5_body_shape_entered(_body_rid, _body, _body_shape_index, _loca
 	pop_xd.play()
 	Animations.play("pillarFall")
 	fall.play()	
+
+
+func _on_audio_stream_player_finished():
+	audio.play()

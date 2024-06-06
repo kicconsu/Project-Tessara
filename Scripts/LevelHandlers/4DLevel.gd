@@ -19,6 +19,8 @@ var level_state
 @onready var audio = $Limit/AudioStreamPlayer
 @onready var transition = $Control/AnimationPlayer
 @onready var eyes = $Player/Head/eyes
+@onready var theme = $AudioStreamPlayer
+@onready var atraco = $atraco
 
 var movingHypershapes
 var fillerBool
@@ -30,6 +32,7 @@ var rng = RandomNumberGenerator.new()
 
 
 func _ready():
+	theme.play()
 	level_state = State.NONE
 	_change_state()
 	
@@ -105,6 +108,11 @@ func _change_state():
 			timer.start()
 			
 			level_state = State.HYPER_ROOM
+			
+			if theme.is_playing():
+				theme.stop()
+				
+			atraco.play()
 		State.HYPER_ROOM:
 			sub_state = -1
 			
@@ -121,7 +129,9 @@ func _change_state():
 				shape.set_freeze_enabled(false)
 		
 			level_state = State.PUZZLE
+			
 		State.PUZZLE:
+			
 			
 			level_state = State.HYPERGRAB
 

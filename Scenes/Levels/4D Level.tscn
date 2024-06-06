@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bwqldaa36fhgu"]
+[gd_scene load_steps=37 format=3 uid="uid://bwqldaa36fhgu"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_fq28j"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevel.gd" id="2_4om38"]
@@ -15,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="13_m7xi5"]
 [ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="14_umaop"]
 [ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+[ext_resource type="AudioStream" uid="uid://qjhn2xqhanbk" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
+[ext_resource type="AudioStream" uid="uid://03ydl5rvvyxc" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oys28"]
 albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -75,6 +77,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, 0.0]
+}
 
 [sub_resource type="Animation" id="Animation_tat4e"]
 length = 0.001
@@ -102,6 +116,30 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../atraco:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_4h7ip"]
 resource_name = "shake"
@@ -117,6 +155,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../atraco:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -20.101]
 }
 
 [sub_resource type="Animation" id="Animation_q27d6"]
@@ -570,6 +620,13 @@ grow_vertical = 2
 libraries = {
 "": SubResource("AnimationLibrary_fr7ou")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World"]
+stream = ExtResource("16_q71yx")
+volume_db = -20.0
+
+[node name="atraco" type="AudioStreamPlayer" parent="SubViewport/World"]
+stream = ExtResource("17_2y1ve")
 
 [connection signal="HYPEEEEEEEEER" from="SubViewport/World/Player/Head/InteractRay" to="SubViewport/World" method="_on_interact_ray_hypeeeeeeeeer"]
 [connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]

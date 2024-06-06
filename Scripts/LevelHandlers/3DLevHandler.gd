@@ -7,8 +7,10 @@ extends Node3D
 @onready var player = $Player
 @onready var audio = $Area3D/AudioStreamPlayer
 @onready var color_rect = $Player/Head/InteractRay/ColorRect
+@onready var theme = $AudioStreamPlayer
 
 func _ready():
+	theme.play()
 	player.setFreezed(true)
 	timer.set_wait_time(12.5)
 	timer.start()
@@ -34,3 +36,7 @@ func _on_timer_timeout():
 func _on_area_3d_body_exited(body):
 	audio.play()
 	player.position = Vector3(-32.847,10,-15.84)
+
+
+func _on_audio_stream_player_finished():
+	theme.play()
