@@ -1,0 +1,237 @@
+[gd_scene load_steps=12 format=3 uid="uid://0mr5ssjoycj1"]
+
+[ext_resource type="Script" path="res://Scripts/Menus/main_menu.gd" id="1_h4fqx"]
+[ext_resource type="Script" path="res://Scripts/Menus/Background.gd" id="2_i2uev"]
+[ext_resource type="PackedScene" uid="uid://c54u10j4uta2g" path="res://Scenes/Menus/options_menu.tscn" id="4_e0h36"]
+[ext_resource type="Texture2D" uid="uid://b6526tpfsyas5" path="res://assets/images/1682336188585.jpg" id="4_pokhq"]
+[ext_resource type="AudioStream" uid="uid://b3kqa806jqhxq" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="4_vw48f"]
+
+[sub_resource type="SystemFont" id="SystemFont_vxms7"]
+font_names = PackedStringArray("VCR OSD Mono")
+
+[sub_resource type="SystemFont" id="SystemFont_sj6u2"]
+font_names = PackedStringArray("VCR OSD Mono")
+
+[sub_resource type="Animation" id="Animation_yrwfg"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_0mfn3"]
+resource_name = "fade_out"
+length = 9.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Transition/ColorRect:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Transition/Label:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.4, 2.9, 4.4, 6.1, 7.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Transition/Label:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.4, 4.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["BUNFEE STUDIOS
+PRESENTA", "TÉSSARA"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Transition/ColorRect:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MusicStreamPlayer:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.1, 8.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-16.289, -60.253]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rancr"]
+_data = {
+"RESET": SubResource("Animation_yrwfg"),
+"fade_out": SubResource("Animation_0mfn3")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_h3j5p"]
+font_names = PackedStringArray("VCR OSD Mono")
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h4fqx")
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vw48f")
+volume_db = -16.289
+autoplay = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="Node2D" parent="Panel"]
+script = ExtResource("2_i2uev")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Panel/Background"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Panel/Background/ParallaxBackground"]
+motion_mirroring = Vector2(1900, 720)
+
+[node name="Background" type="Sprite2D" parent="Panel/Background/ParallaxBackground/ParallaxLayer"]
+texture_filter = 1
+position = Vector2(938, 522)
+texture = ExtResource("4_pokhq")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.081
+anchor_top = 0.197
+anchor_right = 0.887
+anchor_bottom = 0.283
+offset_left = -0.16
+offset_top = -30.92
+offset_right = -180.378
+offset_bottom = -44.844
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = SubResource("SystemFont_vxms7")
+theme_override_font_sizes/font_size = 141
+text = "TÉSSARA"
+vertical_alignment = 1
+
+[node name="Start_Button" type="Button" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.081
+anchor_top = 0.456
+anchor_right = 0.371
+anchor_bottom = 0.597
+offset_left = -0.16
+offset_top = -0.160004
+offset_right = 265.44
+offset_bottom = 51.08
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("SystemFont_sj6u2")
+theme_override_font_sizes/font_size = 70
+text = "START GAME"
+
+[node name="Options_Button" type="Button" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.082
+anchor_top = 0.622
+anchor_right = 0.321
+anchor_bottom = 0.764
+offset_left = -0.0400009
+offset_top = 0.0799713
+offset_right = 331.92
+offset_bottom = 50.96
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_fonts/font = SubResource("SystemFont_sj6u2")
+theme_override_font_sizes/font_size = 70
+text = "OPTIONS"
+
+[node name="Exit_Button" type="Button" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.081
+anchor_top = 0.789
+anchor_right = 0.371
+anchor_bottom = 0.931
+offset_left = -0.16
+offset_top = -0.0400391
+offset_right = 265.44
+offset_bottom = 50.84
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("SystemFont_sj6u2")
+theme_override_font_sizes/font_size = 70
+text = "EXIT  GAME"
+
+[node name="Options_Menu" parent="." instance=ExtResource("4_e0h36")]
+visible = false
+layout_mode = 1
+
+[node name="Transition" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rancr")
+}
+
+[node name="ColorRect" type="ColorRect" parent="Transition"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="Transition"]
+self_modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -39.0
+offset_right = 492.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = SubResource("SystemFont_h3j5p")
+theme_override_font_sizes/font_size = 80
+text = "BUNFEE STUDIOS
+PRESENTA"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Panel/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Panel/Options_Button" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Panel/Exit_Button" to="." method="_on_exit_button_pressed"]
+[connection signal="animation_finished" from="Transition" to="." method="_on_transition_animation_finished"]

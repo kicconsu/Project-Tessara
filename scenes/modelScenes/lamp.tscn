@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://fr2ciceutsck"]
 
-[ext_resource type="ArrayMesh" uid="uid://cxf1u64lgpv0q" path="res://assets/models/Lamp.obj" id="1_hd1q8"]
+[ext_resource type="ArrayMesh" uid="uid://b6x3uxe5tp54d" path="res://assets/models/Lamp.obj" id="1_hd1q8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0a6y"]
 emission_enabled = true
