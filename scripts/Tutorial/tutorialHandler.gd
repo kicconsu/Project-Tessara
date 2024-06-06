@@ -84,7 +84,7 @@ func _ready():
 	text_box.queue_text("Vamos, intenta moverte usando las teclas WASD.")
 	text_box.queue_text("Uh oh, parece que es imposible moverse.")
 	text_box.queue_text("¡Ah! Ya se lo que pasa.")
-	text_box.queue_text("Actualmente no estamos residiendo en ninguna dimension.")
+	text_box.queue_text("Ahora mismo no nos encontramos en ninguna dimension.")
 	text_box.queue_text("¡Dejame ayudarte extendiendo nuestro espacio!")
 	
 func _process(_delta):
@@ -268,73 +268,73 @@ func _on_timer_timeout():
 	match current_state:
 		State.FirstDimension:
 			text_box.queue_text("Y... ¡Voilá!")
-			text_box.queue_text("¿Que te parece? ¡Ahora eres libre!")
-			text_box.queue_text("¿Que tal este pequeño juego? ¡Toca la bola roja la mayor cantidad de veces!")		
+			text_box.queue_text("¿Qué te parece? ¡Ahora eres libre!")
+			text_box.queue_text("¿Qué tal si jugamos? ¡Intenta tocar la bola roja tanto como puedas!")		
 			relatedQuest = true
 		State.FirstDimensionQuest:
-			text_box.queue_text("Que... divertido...")
-			text_box.queue_text("Ah, ¡Ya se!")
-			text_box.queue_text("Intenta agarrar la bola roja ahora")
+			text_box.force_next_text("Que... divertido...")
+			text_box.queue_text("Ah, ¡Mira esto!")
+			text_box.queue_text("¡Persigue la bola roja!")
 			relatedQuest = true
 		State.SecondDimension:
-			text_box.queue_text("Perfecto")
+			text_box.force_next_text("Perfecto")
 			text_box.queue_text("Ahora si podemos movernos mejor")
 			text_box.queue_text("¡Intenta ir mas rapido con SHIFT!")
 			relatedQuest = true
 		State.SecondDimension1stQuest:
 			if !questFailed:
-				text_box.queue_text("Juguemos este juego, trata de tocar ambos botones en el menor tiempo posible")
+				text_box.force_next_text("Cambiemos de juego, trata de tocar ambos botones en el menor tiempo posible")
 				relatedQuest = true
 			elif questFailed and !questCompleted:
-				text_box.queue_text("Oh, parece que te tardastes un poco.")
-				text_box.queue_text("Tranquilidad, no pasa nada.")
+				text_box.force_next_text("Oh, parece que te tardastes un poco.")
+				text_box.queue_text("Tranquilo, no pasa nada.")
 				relatedQuest = true
 				questFlag = true
 		State.SecondDimension2ndQuest:
 			if !questFlag:
-				text_box.queue_text("¿Que tal mi pequeño laberinto?")
-				text_box.queue_text("Aunque no se le puede llamar laberinto a esto...")
+				text_box.force_next_text("¿Qué te pareció mi laberinto?")
+				text_box.queue_text("Aunque no se le puede llamar laberinto a eso...")
 				text_box.queue_text("Bueno, intentemos otra cosa")
 				text_box.queue_text("Trata de tocar ambos botones, y puedes ignorar ese cuadrado blanco...")
 				relatedQuest = true
 			else:
-				text_box.queue_text("Parece que no puedes tocar el siguiente boton")
+				text_box.force_next_text("Parece que no puedes tocar el siguiente boton")
 				text_box.queue_text("Bueno, falta entender algo.")
-				text_box.queue_text("Voy a explicarte acerca de las analogias dimensionales")
+				text_box.queue_text("Voy a explicarte las analogías dimensionales")
 				
 		State.Explaining:
 			
 			if !questFlag:
-				text_box.queue_text("Por un momento se alcanzo a ver un cuadrado. Pero empezo a deformarse ¿Lo que parece raro verdad?")
-				text_box.queue_text("Un objeto 2D solo ve 'cortes' de un objeto 3D, por lo que significa...")
-				text_box.queue_text("¡Los objetos 3D estan compuestos de objetos 2D!")
+				text_box.force_next_text("Por un momento se alcanzo a ver un cuadrado. Pero empezó a deformarse ¿Lo que parece raro verdad?")
+				text_box.queue_text("Un objeto 2D solo ve 'cortes' de un objeto 3D, lo que significa...")
+				text_box.queue_text("¡Los objetos 3D son una composición de objetos 2D!")
 				text_box.queue_text("Voy a atravesar un objeto 3D en nuestro plano para que logres entender mejor")
 				relatedQuest = true
 			else:
-				text_box.queue_text("Estoy atravesando un cubo adentro y fuera de nuestro espacio de 2 dimensiones")
-				text_box.queue_text("¿Notas que cuando lo roto se ve como un triangulo?")
+				text_box.force_next_text("Estoy atravesando un cubo adentro y fuera de nuestro espacio de 2 dimensiones")
+				text_box.queue_text("¿Notas que cuando lo roto se ve como un triángulo?")
 				text_box.queue_text("Es debido a que solo vemos los cortes que atraviesan nuestro espacio")
-				text_box.queue_text("Este espacio 2D es una extension de la 1era Dimension")
-				text_box.queue_text("Añadimos otro eje para movernos, y si queremos pasar de dimension...")
-				text_box.queue_text("Toca extender nuestro espacio hacia otro eje")
-				text_box.queue_text("Objetos de dimensiones mas altas estan compuestos de objetos de una dimension menor")
-				text_box.queue_text("¿Interesante verdad? ¡Solo imagina las posibilidades!")
+				text_box.queue_text("Este espacio 2D es una extension de la 1era dimensión")
+				text_box.queue_text("Añadimos otro eje para movernos, y si queremos pasar de dimensión...")
+				text_box.queue_text("Debemos extender nuestro espacio hacia un nuevo eje")
+				text_box.queue_text("Cada objeto de una dimensión está compuesto de varios objetos de menor dimension")
+				text_box.queue_text("¿Interesante, verdad? ¡Solo imagina las posibilidades!")
 				questFailed = true
 		State.ThirdDimension:
-			text_box.queue_text("Te preguntarás ¿Que acaba de pasar?")
+			text_box.force_next_text("Te preguntarás ¿Que acaba de pasar?")
 			text_box.queue_text("Lo verás luego.")
-			text_box.queue_text("Diviertete un poco con esto.")
+			text_box.queue_text("Diviértete un poco con esto.")
 			relatedQuest = true
 			
 		State.ThirdDimensionQuest:
 			if !questFailed:
-				text_box.queue_text("Bueno ¿Tal parece que es un cuadrado común y corriente no?")
+				text_box.force_next_text("Bueno, parece que es un cuadrado común y corriente, ¿no?")
 				text_box.queue_text("Lo que vas a ver a continuación bolita, te va a volar la cabeza")
 				relatedQuest = true
 			else:
-				text_box.queue_text("¡3 Dimensiones! ¡Bienvenida bolita! o deberia decir...")
+				text_box.force_next_text("¡3 Dimensiones! ¡Bienvenida bolita! o deberia decir...")
 				text_box.queue_text("Como sea, mueve el MOUSE y salta con ESPACIO para avanzar")
-				text_box.queue_text("Adentrate dentro del cubo y revisa...")
+				text_box.queue_text("Adéntrate en el cubo y revisa...")
 			
 # Cada vez que el Player colisione con la bola, esta aparece en otro lugar random
 func _on_red_ball_body_shape_entered(_body_rid, _body, _body_shape_index, _local_shape_index):

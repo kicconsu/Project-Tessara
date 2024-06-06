@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bbpdxmpt5eotj"]
+[gd_scene load_steps=36 format=3 uid="uid://bbpdxmpt5eotj"]
 
 [ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="1_6psdn"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
@@ -16,7 +16,6 @@
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="10_bye2j"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="10_tba4c"]
 [ext_resource type="AudioStream" uid="uid://c4rgk2jljtix0" path="res://assets/sounds/4DLevel.mp3" id="11_8kujk"]
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rid7k"]
 shader = ExtResource("4_ny553")
 shader_parameter/correction_mode = 0
@@ -467,9 +466,16 @@ material_override = SubResource("StandardMaterial3D_4pmk8")
 size = Vector3(5.831, 0.433, 20)
 
 [node name="plat2" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.797097, -0.0213878, 0.603472, 0.0268225, 0.99964, 0, -0.603255, 0.0161866, 0.797384, 17.8747, -1.2241, -1.3744)
+transform = Transform3D(0.797097, -0.0213878, 0.603472, 0.0268225, 0.99964, 7.85243e-09, -0.603255, 0.0161866, 0.797384, 17.8747, -1.2241, -1.3744)
+rotation_edit_mode = 0
 material_override = SubResource("StandardMaterial3D_4pmk8")
 size = Vector3(5.831, 0.433, 4.90723)
+
+[node name="TextTrigger" parent="SubViewport/World/Platforms/plat2" node_paths=PackedStringArray("target") instance=ExtResource("9_k42nx")]
+dimensions = Vector3(5.831, 5, 4.907)
+target = NodePath("../../../../../TextBox")
+message = "(Bah, da lo mismo, no tiene forma de descubrir la hipermano…)"
+change_scene_state = true
 
 [node name="plat3" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
 transform = Transform3D(0.513361, -0.140892, -0.846528, 0.264664, 0.964341, 0, 0.816341, -0.224046, 0.532344, 36.832, 5.2382, -0.246726)
