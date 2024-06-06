@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://Scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
 [ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="13_mdww4"]
 [ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="14_mul3v"]
-[ext_resource type="AudioStream" uid="uid://babc0vkffplca" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
+[ext_resource type="AudioStream" uid="uid://3k6wxytms4rs" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="15_4ttk6"]
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="16_1pw6s"]
 
