@@ -1,6 +1,9 @@
 extends Node3D
 
 @onready var ball:Node3D = $redBall
+@onready var audio = $Limit/AudioStreamPlayer
+@onready var player = $Player
+
 var rng := RandomNumberGenerator.new()
 var points = 0
 
@@ -21,3 +24,8 @@ func respawnBall() -> void:
 
 func getPoints() -> float:
 	return self.points
+
+
+func _on_limit_body_exited(body):
+	audio.play()
+	player.position = Vector3(-7.147,9.939,0.887)

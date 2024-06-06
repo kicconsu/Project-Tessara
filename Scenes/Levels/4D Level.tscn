@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bwqldaa36fhgu"]
+[gd_scene load_steps=29 format=3 uid="uid://bwqldaa36fhgu"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_fq28j"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevel.gd" id="2_4om38"]
@@ -8,15 +8,54 @@
 [ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/modelScenes/lamp.tscn" id="6_ldchl"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="7_wlcxr"]
 [ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="8_6yssa"]
-[ext_resource type="PackedScene" path="res://Scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
-[ext_resource type="PackedScene" path="res://Scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
+[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
+[ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
 [ext_resource type="ArrayMesh" uid="uid://dx33ccgy4q8f6" path="res://assets/models/pedestal.obj" id="11_71k60"]
 [ext_resource type="PackedScene" uid="uid://dcdyo43xaxaw7" path="res://Scenes/hyper_hand.tscn" id="12_anvwk"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="13_m7xi5"]
+[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="14_umaop"]
+[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oys28"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxorw"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j7bby"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dbxd1"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i5gyx"]
+albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hj6j4"]
+albedo_color = Color(0.545098, 0.545098, 0.545098, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gs8pe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfgcn"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0fyp7"]
+panorama = ExtResource("14_umaop")
+filter = false
+
+[sub_resource type="Sky" id="Sky_nomnm"]
+sky_material = SubResource("PanoramaSkyMaterial_0fyp7")
+
+[sub_resource type="Environment" id="Environment_t4xqg"]
+background_mode = 2
+sky = SubResource("Sky_nomnm")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x1pt4"]
+size = Vector3(0.600761, 17.0154, 43.8141)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6iwdp"]
+size = Vector3(43, 1, 50.7268)
 
 [node name="SubViewportContainer" type="SubViewportContainer"]
 anchors_preset = 15
@@ -38,6 +77,9 @@ script = ExtResource("2_4om38")
 [node name="Player" parent="SubViewport/World" instance=ExtResource("3_kscka")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.0298, -23.8905, -25.8137)
 
+[node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
+current = true
+
 [node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("4_ste5t")]
 
 [node name="Tunnel" type="Node3D" parent="SubViewport/World"]
@@ -47,18 +89,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00192642, -0.00449705, 9.1
 
 [node name="floor" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.4752, 2.38419e-07, -2.92817)
+material_override = SubResource("StandardMaterial3D_oys28")
 size = Vector3(34.9027, 0.5, 27.4834)
 
 [node name="floor2" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.6603, 2.38419e-07, -14.285)
+material_override = SubResource("StandardMaterial3D_jxorw")
 size = Vector3(11.9551, 0.5, 4.76974)
 
 [node name="ceilling" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3729, 4.12047, -2.99057)
+material_override = SubResource("StandardMaterial3D_j7bby")
 size = Vector3(48.6108, 0.5, 27.501)
 
 [node name="wall" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.0499, 2.0575, -2.37534)
+material_override = SubResource("StandardMaterial3D_dbxd1")
 size = Vector3(13.9691, 4.6135, 0.793397)
 
 [node name="wall11" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
@@ -68,6 +114,7 @@ size = Vector3(5.47511, 4.6135, 0.793397)
 
 [node name="wall6" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.0785, 2.0575, 2.39603)
+material_override = SubResource("StandardMaterial3D_i5gyx")
 size = Vector3(10.0264, 4.6135, 0.793397)
 
 [node name="wall7" parent="SubViewport/World/Tunnel/Structure" instance=ExtResource("5_wv15h")]
@@ -146,6 +193,7 @@ freeze_mode = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/World/Tunnel/Fake Floor"]
 transform = Transform3D(5, 0, 0, 0, 0.5, 0, 0, 0, 4.77, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_hj6j4")
 mesh = SubResource("BoxMesh_gs8pe")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Tunnel/Fake Floor"]
@@ -230,7 +278,7 @@ message = "Por favor..."
 [node name="Structure" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
 
 [node name="Floor" parent="SubViewport/World/HyperGrabRoom/Structure" instance=ExtResource("5_wv15h")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4908, -26.1451, -26.1623)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.4874, -26.159, -26.1625)
 rotation_edit_mode = 0
 size = Vector3(30, 0.5, 15)
 
@@ -288,12 +336,22 @@ size = Vector3(0.513073, 15, 16.5453)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="SubViewport/World/HyperGrabRoom/Lights"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 44.5051, -11.4704, -43.6685)
+light_color = Color(0.760784, 0.643137, 0.0666667, 1)
 light_energy = 10.0
 spot_range = 50.0
 spot_angle = 13.7051
 
 [node name="OmniLight3D" type="OmniLight3D" parent="SubViewport/World/HyperGrabRoom/Lights"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3287, -25.0483, -21.8574)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3287, -20.5967, -21.8574)
+light_color = Color(0.364706, 0.25098, 0.976471, 1)
+omni_range = 12.886
+omni_attenuation = 1.56917
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewport/World/HyperGrabRoom/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.3287, -20.0483, -42.8574)
+light_color = Color(0.760784, 0.643137, 0.0666667, 1)
+omni_range = 15.222
+omni_attenuation = 1.68179
 
 [node name="Hypershapes" type="Node3D" parent="SubViewport/World/HyperGrabRoom"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.042)
@@ -307,19 +365,21 @@ shapeType = 1
 transformable = false
 
 [node name="Hypershape4" parent="SubViewport/World/HyperGrabRoom/Hypershapes" instance=ExtResource("7_wlcxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57.1651, -22.445, -28.046)
+transform = Transform3D(0.901795, -0.374501, 0.215675, -0.10571, -0.675047, -0.730162, 0.419037, 0.635657, -0.648342, 57.1651, -22.445, -28.046)
 gravity_scale = 0.0
 linear_velocity = Vector3(-3, 0, 0)
 constant_force = Vector3(-2, 0, 0)
 base_color = Vector3(0.7, 0.4, 0.4)
+dimensions = Vector4(3.715, 0.225, 1, 1)
 shapeType = 1
 transformable = false
 
 [node name="Hypershape5" parent="SubViewport/World/HyperGrabRoom/Hypershapes" instance=ExtResource("7_wlcxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7947, -24.445, -23.046)
+transform = Transform3D(0.9918, -0.0269261, 0.124934, 0.0973292, 0.792683, -0.601815, -0.0828286, 0.60904, 0.788803, 29.7947, -24.445, -23.046)
 gravity_scale = 0.0
 constant_force = Vector3(1.5, 0, 0)
 base_color = Vector3(0.7, 0.4, 0.4)
+dimensions = Vector4(1.72, 0.435, 1.185, 1)
 shapeType = 1
 transformable = false
 
@@ -353,6 +413,37 @@ destination = Vector3(30, 0, 0)
 
 [node name="TextBox" parent="SubViewport/World" instance=ExtResource("13_m7xi5")]
 
+[node name="Enviroment" type="Node3D" parent="SubViewport/World"]
+visible = false
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World/Enviroment"]
+environment = SubResource("Environment_t4xqg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World/Enviroment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 10, 0)
+visible = false
+shadow_enabled = true
+
+[node name="Limit" type="Area3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45.252, -25.4353, -32.975)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/Limit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6592, 5.28078, 3.17563)
+shape = SubResource("BoxShape3D_x1pt4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="SubViewport/World/Limit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.3408, 6.28078, 3.17563)
+shape = SubResource("BoxShape3D_x1pt4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="SubViewport/World/Limit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.316605, -11, 6.72302)
+shape = SubResource("BoxShape3D_6iwdp")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World/Limit"]
+stream = ExtResource("15_fh5ul")
+volume_db = -20.755
+
 [connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]
+[connection signal="body_entered" from="SubViewport/World/Limit" to="SubViewport/World" method="_on_limit_body_entered"]
 
 [editable path="SubViewport/World/Player"]

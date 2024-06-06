@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bklbt6uyt3ajt"]
+[gd_scene load_steps=21 format=3 uid="uid://dbv7usvstveja"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_5knyl"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/freeRoamHandler.gd" id="2_obqip"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="8_2um7f"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="8_rj2pp"]
+[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="9_3348l"]
 [ext_resource type="Script" path="res://Scripts/pointdisplay.gd" id="10_p3w55"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="10_tfgvx"]
 
@@ -34,6 +35,9 @@ shader = ExtResource("8_rj2pp")
 
 [sub_resource type="QuadMesh" id="QuadMesh_6wpf0"]
 size = Vector2(0.165, 0.695)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ql618"]
+size = Vector3(64.4354, 51.21, 61)
 
 [sub_resource type="LabelSettings" id="LabelSettings_qjfxy"]
 font = ExtResource("10_tfgvx")
@@ -156,7 +160,7 @@ shapeType = 1
 hyperInfo = Vector4(0, 92.591, 0, 0)
 
 [node name="Player" parent="Root/Viewport/World" instance=ExtResource("4_g0uqj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.14705, 14.9395, 7.88688)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.14705, 9.9395, 0.88688)
 
 [node name="Enviroment" type="Node3D" parent="Root/Viewport/World"]
 
@@ -195,6 +199,16 @@ color = Color(0.76, 0.038, 0.1824, 1)
 [node name="Hypershape" parent="Root/Viewport/World/redBall" instance=ExtResource("3_t3yqv")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.999946, 0)
 dimensions = Vector4(0.5, 0.5, 0.5, 1)
+
+[node name="Limit" type="Area3D" parent="Root/Viewport/World"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Root/Viewport/World/Limit"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102753, 20.105, 0)
+shape = SubResource("BoxShape3D_ql618")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Root/Viewport/World/Limit"]
+stream = ExtResource("9_3348l")
+volume_db = -20.755
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -236,3 +250,4 @@ script = ExtResource("5_jycmq")
 
 [connection signal="body_entered" from="Root/Viewport/World/redBall" to="Root/Viewport/World" method="_on_red_ball_body_entered"]
 [connection signal="timeout" from="Root/Viewport/World/redBall/BallRefresh" to="Root/Viewport/World" method="_on_ball_refresh_timeout"]
+[connection signal="body_exited" from="Root/Viewport/World/Limit" to="Root/Viewport/World" method="_on_limit_body_exited"]

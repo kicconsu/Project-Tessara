@@ -312,48 +312,56 @@ transform = Transform3D(0.0361902, 0.999345, 0, -0.999345, 0.0361902, 0, 0, 0, 1
 base_color = Vector3(0.9, 1.395, 0.045)
 dimensions = Vector4(0.115, 7.24, 0.885, 0.1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape7" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(-0.266887, 0.900996, 0.34202, 0.95882, 0.284015, 0, -0.097139, 0.327936, -0.939692, -13.7273, 10.6232, 1.6029)
 base_color = Vector3(2.055, 0.835, 1.01)
 dimensions = Vector4(0.115, 17.715, 1.685, 0.1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape8" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(-0.598446, -0.0230643, -0.800831, 0.559513, 0.703403, -0.438371, 0.573418, -0.710416, -0.408044, -3.301, 9.493, 5.797)
 base_color = Vector3(0.235, 1.59, 1.01)
 dimensions = Vector4(2.82, 0.235, 2.9, 1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape6" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(-0.753784, -0.552044, 0.356451, -0.0247063, 0.565867, 0.824126, -0.656658, 0.612406, -0.44018, 10.2749, 12.2226, -12.6688)
 base_color = Vector3(1.855, 0.81, -0.005)
 dimensions = Vector4(0.115, 7.24, 1.685, 0.1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape2" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(0.252069, 0.967709, 0, 0.802267, -0.208975, 0.559193, 0.541136, -0.140955, -0.829038, -10.8356, 9.43538, -26.7269)
 base_color = Vector3(0.4, 0.4, 0.8)
 dimensions = Vector4(1.285, 1.1, 0.16, 1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape3" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(0.278943, -0.696944, -0.660651, 0.940502, 0.0592694, 0.334578, -0.194026, -0.714672, 0.672011, -3.54663, 9.05513, -29.3794)
 base_color = Vector3(0.4, 0.4, 0.8)
 dimensions = Vector4(1.285, 1.1, 0.16, 1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape5" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(0.678538, -0.690152, 0.251548, 0.653283, 0.723546, 0.222941, -0.335869, 0.0130579, 0.941818, -1.75228, 9.05513, -25.0217)
 base_color = Vector3(0.4, 0.4, 0.8)
 dimensions = Vector4(1.285, 1.1, 0.16, 1)
 shapeType = 1
+transformable = false
 
 [node name="Hypershape4" parent="SubViewport/World/Shapes" instance=ExtResource("4_10ejc")]
 transform = Transform3D(-0.903044, -0.0250123, -0.428819, 0.398843, 0.321834, -0.858689, 0.159486, -0.946466, -0.280654, -6.538, 7.285, -27.788)
 base_color = Vector3(0.4, 0.4, 0.8)
 dimensions = Vector4(1.285, 1.1, 0.16, 1)
 shapeType = 1
+transformable = false
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewport/World"]
 transform = Transform3D(0.408713, 0.912663, -4.21667e-09, -0.684883, 0.306708, 0.660958, 0.603232, -0.270142, 0.750423, 0, 45.386, 0)

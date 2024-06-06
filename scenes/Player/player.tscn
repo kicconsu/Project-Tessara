@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_3ebqn"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="5_c30d7"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHand.gd" id="6_achbf"]
-[ext_resource type="AudioStream" path="res://assets/sounds/walk.mp3" id="8_cdry8"]
-[ext_resource type="AudioStream" path="res://assets/sounds/running.mp3" id="9_106xc"]
+[ext_resource type="AudioStream" uid="uid://d1bhb3gkbd57g" path="res://assets/sounds/walk.mp3" id="8_cdry8"]
+[ext_resource type="AudioStream" uid="uid://cg0tykj1s32mq" path="res://assets/sounds/running.mp3" id="9_106xc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 

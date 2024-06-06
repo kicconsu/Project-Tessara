@@ -43,6 +43,7 @@ var hbIndex = 0.0
 
 @onready var walk = $walk
 @onready var running = $running
+@onready var color_rect = $Head/InteractRay/ColorRect
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -58,6 +59,7 @@ func _input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE else Input.MOUSE_MODE_VISIBLE)
 	
 	if !freezed:
+		
 		if event is InputEventMouseMotion:
 			if mouseToggle and Input.get_mouse_mode() == 2 and !locked and !hyper_locked:
 				rotate_y(deg_to_rad(-event.relative.x * mouse_sens))
@@ -114,6 +116,8 @@ func _input(event):
 func _physics_process(delta):
 	
 	hypercolliding = body.checkHyperground()
+	
+	
 	
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
@@ -233,5 +237,6 @@ func isFreezed():
 
 func setFreezed(boolean:bool):
 	freezed = boolean
+	color_rect.set_visible(!boolean)
 	self.set_physics_process(!boolean)
 	self.set_process(!boolean)

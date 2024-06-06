@@ -16,6 +16,7 @@ var level_state
 @onready var timer = $Timer
 @onready var textBox = $TextBox
 @onready var interact_ray = $Player/Head/InteractRay
+@onready var audio = $Limit/AudioStreamPlayer
 
 
 var movingHypershapes
@@ -51,8 +52,6 @@ func _process(delta):
 			if player.target_shape != null and !fillerBool:
 					fillerBool = true
 					textBox.force_next_text("Un momento... ¿Qué hace eso ahí?")
-	
-	print(interact_ray.is_colliding())
 	
 	
 
@@ -130,3 +129,8 @@ func _on_timer_timeout():
 					textBox.hide_textbox()
 					timer.stop()
 			sub_state += 1
+
+
+func _on_limit_body_entered(body):
+	audio.play()
+	player.position = Vector3(44.03,-23.89,-24)

@@ -6,6 +6,7 @@ extends Node3D
 @onready var timer = $Player/Timer
 @onready var player = $Player
 @onready var audio = $Area3D/AudioStreamPlayer
+@onready var color_rect = $Player/Head/InteractRay/ColorRect
 
 func _ready():
 	player.setFreezed(true)

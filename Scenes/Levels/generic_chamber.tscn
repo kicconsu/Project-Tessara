@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://uxqor5r7ppom"]
+[gd_scene load_steps=13 format=3 uid="uid://uxqor5r7ppom"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_p1vn5"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_a8gea"]
@@ -13,7 +13,13 @@ emission_energy_multiplier = 16.0
 albedo_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wcnu"]
-albedo_color = Color(0.364706, 0.364706, 0.364706, 1)
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tc01t"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7177x"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byktv"]
 albedo_color = Color(0, 0, 0, 1)
@@ -56,10 +62,12 @@ size = Vector3(0.25, 10.3775, 20)
 
 [node name="Left Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 2.0575, -5.98682)
+material_override = SubResource("StandardMaterial3D_tc01t")
 size = Vector3(0.25, 4.6135, 8.01636)
 
 [node name="Right Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 2.06812, 6.00073)
+material_override = SubResource("StandardMaterial3D_7177x")
 size = Vector3(0.25, 4.61943, 8.00854)
 
 [node name="MovableWall" parent="Fake wall" instance=ExtResource("2_a8gea")]
@@ -70,8 +78,10 @@ shapeType = 1
 transformable = false
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.80549, 0)
-omni_range = 30.0
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58758, 0)
+light_color = Color(0, 1, 1, 1)
+omni_range = 18.9228
+omni_attenuation = 0.0853777
 
 [node name="floor" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0682116, 2.38419e-07, 0.0171375)
