@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs3g73f8mhfd7"]
+
+[ext_resource type="Texture2D" uid="uid://06bqvlakxpd7" path="res://assets/images/hyperglove.png" id="1_m5jpk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbu1i"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_m5jpk")
+texture_filter = 0
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_1jswn"]
+material = SubResource("StandardMaterial3D_tbu1i")
+size = Vector2(3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_54i8b"]
+size = Vector3(3.1748, 1.23926, 1.81543)
+
+[node name="HyperHand" type="StaticBody3D" groups=["HyperHand"]]
+collision_layer = 2
+
+[node name="HyperHand" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.11473, 0)
+layers = 3
+mesh = SubResource("QuadMesh_1jswn")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0951233, 4.11963, 0.108368)
+shape = SubResource("BoxShape3D_54i8b")

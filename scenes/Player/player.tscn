@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://daf7qvy0xm1r7" path="res://Scenes/Player/raymarchCam.tscn" id="5_3ebqn"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="5_c30d7"]
 [ext_resource type="Script" path="res://Scripts/Player/PlayerHand.gd" id="6_achbf"]
-[ext_resource type="AudioStream" uid="uid://d1bhb3gkbd57g" path="res://assets/sounds/walk.mp3" id="8_cdry8"]
-[ext_resource type="AudioStream" uid="uid://cg0tykj1s32mq" path="res://assets/sounds/running.mp3" id="9_106xc"]
+[ext_resource type="AudioStream" path="res://assets/sounds/walk.mp3" id="8_cdry8"]
+[ext_resource type="AudioStream" path="res://assets/sounds/running.mp3" id="9_106xc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jcnsm"]
 
@@ -24,8 +24,8 @@ font_size = 31
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
-[node name="Player" type="CharacterBody3D"]
-collision_layer = 5
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+collision_layer = 3
 script = ExtResource("1_x2bix")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]
@@ -75,7 +75,6 @@ debug_shape_thickness = 1
 script = ExtResource("4_dj0eu")
 
 [node name="prompt" type="Label" parent="Head/InteractRay"]
-z_index = 2
 anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
@@ -84,9 +83,6 @@ offset_top = -17.5
 offset_bottom = 17.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 text = "Hyper It!!
 [LClick]"
 label_settings = SubResource("LabelSettings_sk48v")

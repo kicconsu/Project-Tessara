@@ -341,7 +341,7 @@ script = ExtResource("2_0h3ah")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.34183e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.37107e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -386,17 +386,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.5706e-06, -0.00251326, -6.26652e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.5706e-06, -0.00251326, -5.44725e-11, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.34183e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.37107e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.34183e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.37107e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
