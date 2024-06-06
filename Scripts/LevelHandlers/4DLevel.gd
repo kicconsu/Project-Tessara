@@ -15,6 +15,8 @@ var level_state
 @onready var chamber = $StartingChamber
 @onready var timer = $Timer
 @onready var textBox = $TextBox
+@onready var interact_ray = $Player/Head/InteractRay
+
 
 var movingHypershapes
 var fillerBool
@@ -50,12 +52,14 @@ func _process(delta):
 					fillerBool = true
 					textBox.force_next_text("Un momento... ¿Qué hace eso ahí?")
 	
+	print(interact_ray.is_colliding())
+	
 	
 
 func _change_state():
 	match level_state:
 		State.NONE:
-			player.set_global_position(chamber.get_global_position() + Vector3(0,10,0))
+			player.set_global_position(chamber.get_global_position() + Vector3(0,7,0))
 			player.setFreezed(true)
 			level_state = State.INITIAL
 			_load_dialog()

@@ -19,7 +19,6 @@ radius = 1.0
 [sub_resource type="LabelSettings" id="LabelSettings_sk48v"]
 font = ExtResource("5_c30d7")
 font_size = 31
-font_color = Color(0, 0, 0, 1)
 outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 

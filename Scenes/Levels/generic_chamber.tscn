@@ -1,8 +1,25 @@
-[gd_scene load_steps=6 format=3 uid="uid://c1rsv0xfktynh"]
+[gd_scene load_steps=11 format=3 uid="uid://uxqor5r7ppom"]
 
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_p1vn5"]
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="2_a8gea"]
-[ext_resource type="Texture2D" uid="uid://dex6snwx4sgo8" path="res://assets/images/TessaraTeaser.png" id="3_pmcf1"]
+[ext_resource type="Texture2D" uid="uid://d11kgxu2yustu" path="res://assets/images/TessaraTeaser.png" id="3_pmcf1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kgoh4"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 16.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xiuyt"]
+albedo_color = Color(0.0588235, 0.0588235, 0.0588235, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wcnu"]
+albedo_color = Color(0.364706, 0.364706, 0.364706, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_byktv"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tmo5x"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rsw8b"]
 shading_mode = 0
@@ -17,20 +34,24 @@ size = Vector2(21.15, 15)
 
 [node name="wall" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.06, 7.25, 0.005)
+material_override = SubResource("StandardMaterial3D_kgoh4")
 size = Vector3(0.25, 15, 20)
 
 [node name="wall2" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 7.25, -10.11)
+material_override = SubResource("StandardMaterial3D_xiuyt")
 size = Vector3(20.5, 15, 0.25)
 
 [node name="wall3" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 7.25, 10.11)
+material_override = SubResource("StandardMaterial3D_xiuyt")
 size = Vector3(20.5, 15, 0.25)
 
 [node name="Fake wall" type="Node3D" parent="."]
 
 [node name="Upper Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1903, 9.56124, 0.005)
+material_override = SubResource("StandardMaterial3D_5wcnu")
 size = Vector3(0.25, 10.3775, 20)
 
 [node name="Left Wall" parent="Fake wall" instance=ExtResource("1_p1vn5")]
@@ -54,10 +75,12 @@ omni_range = 30.0
 
 [node name="floor" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0682116, 2.38419e-07, 0.0171375)
+material_override = SubResource("StandardMaterial3D_byktv")
 size = Vector3(20, 0.5, 20)
 
 [node name="floor2" parent="." instance=ExtResource("1_p1vn5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.068, 15, 0.017)
+material_override = SubResource("StandardMaterial3D_tmo5x")
 size = Vector3(20.5, 0.5, 20.5)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

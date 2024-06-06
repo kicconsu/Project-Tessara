@@ -21,6 +21,11 @@ func _process(_delta):
 			
 			if Input.is_action_just_pressed(detected.prompt_action):
 				detected.interact()
+		
+		if detected.is_in_group("HyperHand"):
+			prompt.text = "???\n[E]"
+			
+			
 
 #Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way
 #if theres a hit, we send the shape information, so the player can interact with it
