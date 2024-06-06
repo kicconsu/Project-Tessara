@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bbpdxmpt5eotj"]
+[gd_scene load_steps=30 format=3 uid="uid://bbpdxmpt5eotj"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_bban4"]
 [ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_ncguc"]
@@ -320,6 +320,9 @@ shader = ExtResource("10_bye2j")
 lightmap_size_hint = Vector2i(3, 6)
 size = Vector2(0.29, 0.81)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_lijdg"]
+size = Vector3(1, 5, 7)
+
 [node name="Control" type="SubViewportContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -341,7 +344,7 @@ script = ExtResource("2_0h3ah")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42954e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42946e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -386,17 +389,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57062e-06, -0.00251326, -3.80871e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57062e-06, -0.00251326, -3.80859e-11, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42954e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42946e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42954e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57095e-06, -0.00251327, 2.42946e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
@@ -694,6 +697,13 @@ emission_shape = 3
 emission_box_extents = Vector3(4.11, 1.54, 3.74)
 gravity = Vector3(0, 9.8, 0)
 
+[node name="exp" type="Area3D" parent="SubViewport/World"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/exp"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -1)
+shape = SubResource("BoxShape3D_lijdg")
+
 [node name="fps" type="Label" parent="."]
 layout_mode = 2
 script = ExtResource("3_d02be")
@@ -704,5 +714,6 @@ layout_mode = 2
 [connection signal="body_exited" from="SubViewport/World/Area3D" to="SubViewport/World" method="_on_area_3d_body_exited"]
 [connection signal="body_entered" from="SubViewport/World/movingPlatforms/TriggerAnim" to="SubViewport/World" method="_on_trigger_anim_body_entered"]
 [connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]
+[connection signal="body_entered" from="SubViewport/World/exp" to="SubViewport/World" method="_on_exp_body_entered"]
 
 [editable path="SubViewport/World/Player"]

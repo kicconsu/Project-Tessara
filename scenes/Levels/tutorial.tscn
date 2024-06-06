@@ -1923,7 +1923,6 @@ one_shot = true
 
 [node name="Wall_1" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1)
-visible = false
 material_override = SubResource("StandardMaterial3D_hg3f7")
 use_collision = true
 collision_layer = 2
@@ -1931,7 +1930,6 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_2" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1)
-visible = false
 material_override = SubResource("StandardMaterial3D_wymia")
 use_collision = true
 collision_layer = 2
@@ -1939,7 +1937,6 @@ size = Vector3(3, 2, 1)
 
 [node name="Wall_3" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.25, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_x3yr8")
 use_collision = true
 collision_layer = 2
@@ -1947,7 +1944,6 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_4" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_db218")
 use_collision = true
 collision_layer = 2
@@ -1984,11 +1980,11 @@ size = Vector3(1, 1, 17)
 [node name="Floors" type="Node3D" parent="World"]
 
 [node name="Floor" type="CSGBox3D" parent="World/Floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.619965, 0.124437, -1.1532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128785, 0.124437, -0.29445)
 material_override = SubResource("StandardMaterial3D_xu0vo")
 use_collision = true
 collision_layer = 2
-size = Vector3(31.4975, 0.002, 31.2825)
+size = Vector3(30, 0.002, 17)
 
 [node name="PlayerFloor" type="CSGBox3D" parent="World/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130592, 0)
@@ -2133,3 +2129,5 @@ skeleton = NodePath("../..")
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut3" to="." method="_on_tut_but_3_body_shape_entered"]
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut4" to="." method="_on_tut_but_4_body_shape_entered"]
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut5" to="." method="_on_tut_but_5_body_shape_entered"]
+
+[editable path="Player"]

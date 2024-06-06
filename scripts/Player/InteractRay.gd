@@ -1,5 +1,7 @@
 extends RayCast3D
 
+signal HYPEEEEEEEEER()
+
 @onready var prompt = $prompt
 
 #This is useful to detect if a hypershape is being pointed to (see getShape()
@@ -25,6 +27,8 @@ func _process(_delta):
 		if detected.is_in_group("HyperHand"):
 			prompt.text = "???\n[E]"
 			
+			if Input.is_action_just_pressed("interact"):
+				self.emit_signal("HYPEEEEEEEEER")
 			
 
 #Evaluate SDF along the ray, using the direction (which could be normalized or not). This means we ray march along it to check if theres any object in our way

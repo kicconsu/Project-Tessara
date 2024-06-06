@@ -9,8 +9,9 @@ extends Node3D
 @onready var textBox = $"../../TextBox"
 
 var monologue = true
-
+var otherMonologue = true
 var jujo = false
+
 
 func _ready():
 	timer.set_wait_time(2)
@@ -46,14 +47,14 @@ func _on_timer_timeout():
 	if monologue:
 		textBox.queue_text("...")
 		textBox.queue_text("...")
-		#textBox.queue_text("Espero que estés satisfecho contigo mismo...")
-		#textBox.queue_text("Podías quedarte en la habitación, recibir las últimas novedades sobre el desarrollo...")
-		#textBox.queue_text("Pero tenías que arruinarlo, ¿no?")
-		#textBox.queue_text("Felicidades, encontraste el contenido oculto de nuestra versión Alpha")
-		#textBox.queue_text("Para tu pesar, los niveles 4D te plantean desafíos que no puedes superar sin ayuda de la hiperm-")
-		#textBox.queue_text("O-olvida eso que dije. Me temo que te quedaste atrapado aquí, para siempre...")
-		#textBox.queue_text("Perdido en un universo tetradimensional...")
-		#textBox.queue_text("En fin, me temo que iré a ayudar a nuevos usuarios con el tutorial, ¡Nos vemos!")
+		textBox.queue_text("Espero que estés satisfecho contigo mismo...")
+		textBox.queue_text("Podías quedarte en la habitación, recibir las últimas novedades sobre el desarrollo...")
+		textBox.queue_text("Pero tenías que arruinarlo, ¿no?")
+		textBox.queue_text("Felicidades, encontraste el contenido oculto de nuestra versión Alpha")
+		textBox.queue_text("Para tu pesar, los niveles 4D te plantean desafíos que no puedes superar sin ayuda de la hiperm-")
+		textBox.queue_text("O-olvida eso que dije. Me temo que te quedaste atrapado aquí, para siempre...")
+		textBox.queue_text("Perdido en un universo tetradimensional...")
+		textBox.queue_text("En fin, me temo que iré a ayudar a nuevos usuarios con el tutorial, ¡Nos vemos!")
 	else:
 		
 		textBox.queue_text("(Hmmm… ¿se habrá creído que me fui?)")
@@ -68,3 +69,11 @@ func _on_timer_timeout():
 		
 		player.setFreezed(false)
 	
+
+
+func _on_exp_body_entered(body):
+	if otherMonologue:
+		
+		# HACER AQUI
+		
+		otherMonologue = false

@@ -257,6 +257,7 @@ transform = Transform3D(0.954386, 0, 0.298574, 0, 1, 0, -0.298574, 0, 0.954386, 
 
 [node name="Portal" parent="SubViewport/World/Goal" instance=ExtResource("1_nt5u5")]
 transform = Transform3D(0.84, 0, 0, 0, 0.84, 0, 0, 0, 0.84, 0, 3.118, 0)
+NextScene = "4D Level"
 
 [node name="wall6" parent="SubViewport/World/Goal" instance=ExtResource("1_7x8ul")]
 transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 0, 1.513, 0)
