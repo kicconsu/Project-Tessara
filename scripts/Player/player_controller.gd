@@ -28,13 +28,22 @@ var mouseToggle := true
 var currentSpeed:float
 const walkSpeed := 5.0
 const sprintSpeed := 8.0
-const jumpVelocity := 7
+const jumpVelocity := 4.5
 
 const mouse_sens := 0.25
 
 var lerp_speed := 10.0
 var direction := Vector3.ZERO
 var distOffset:float = 5
+
+var hbVec = Vector2.ZERO
+var hbIndex = 0.0
+
+# Sounds
+
+@onready var walk = $walk
+@onready var running = $running
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -60,7 +69,7 @@ func _input(event):
 			pick_object()
 			
 		if Input.is_action_just_pressed("lclick"): 
-			distOffset = raycast.distToShape
+			distOffset = 7
 		
 		if hand.picked_object != null and Input.is_action_just_released("lclick"):
 			hand.picked_object.set_freeze_enabled(true)
@@ -105,6 +114,7 @@ func _input(event):
 func _physics_process(delta):
 	
 	hypercolliding = body.checkHyperground()
+	
 	# Add the gravity.
 	if not is_on_floor() and not hypercolliding:
 		velocity.y -= gravity * delta
@@ -124,10 +134,23 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("left", "right", "up", "down")
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized() , delta*lerp_speed ) 
 	
+	if input_dir != Vector2.ZERO and is_on_floor():
+		match currentSpeed:
+			5.0:
+				if !walk.is_playing():
+					walk.play()
+					running.stop()
+			8.0:
+				if !running.is_playing():
+					running.play()
+					walk.stop()
+	else:
+		walk.stop()
+		running.stop()
 	
 	if direction:
-		velocity.x = direction.x * currentSpeed
-		velocity.z = direction.z * currentSpeed
+		velocity.x = direction.x * currentSpeed 
+		velocity.z = direction.z * currentSpeed 
 	else:
 		velocity.x = move_toward(velocity.x, 0, currentSpeed)
 		velocity.z = move_toward(velocity.z, 0, currentSpeed)
@@ -140,12 +163,13 @@ func _physics_process(delta):
 	velocity = body.hyperCollideAndSlide(velocity, self.get_global_transform().origin, 0, false, velocity)
 	#$collider/feetsdf.evaluateVelCast(velocity)
 	
+	
 	move_and_slide()
 	
 	if hand.picked_object != null:
 		hand.pull_object(cameraForward*distOffset)
 	
-func _process(delta):
+func _process(_delta):
 	#-camera.transform.basis.z returns the forward direction of the camera as a Vector3
 	cameraForward = -camera.get_global_transform().basis.z
 	if inspection_enabled:

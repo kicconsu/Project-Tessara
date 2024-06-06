@@ -15,8 +15,6 @@ var color = Vector3(0.0,0.0,0.0)
 #the last one is the w coordinate position.
 
 func _ready():
-	_shapeContainer.set_shape(BoxShape3D.new())
-	_shapeContainer.get_shape().set_size(Vector3(dimensions[0], dimensions[1], dimensions[2]))
 	var maxExtentX:float = max(dimensions[0], dimensions[1])
 	var maxExtentY:float =  max(dimensions[2], dimensions[3])
 	var regionRadius:float = sqrt(pow(maxExtentX, 2)+pow(maxExtentY, 2)) + 1
