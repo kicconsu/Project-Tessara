@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dbv7usvstveja"]
+[gd_scene load_steps=19 format=3 uid="uid://bklbt6uyt3ajt"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_5knyl"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/freeRoamHandler.gd" id="2_obqip"]
