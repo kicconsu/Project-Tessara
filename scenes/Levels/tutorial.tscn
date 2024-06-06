@@ -1,6 +1,6 @@
 [gd_scene load_steps=57 format=3 uid="uid://cjdgupis01xae"]
 
-[ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
 [ext_resource type="AudioStream" uid="uid://c1d8bq0mjxcj4" path="res://assets/sounds/pop.mp3" id="3_f1etk"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="3_rd8co"]
@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://Scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
 [ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="13_mdww4"]
 [ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="14_mul3v"]
-[ext_resource type="AudioStream" uid="uid://3k6wxytms4rs" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
+[ext_resource type="AudioStream" uid="uid://26cexy0x0kyc" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="15_4ttk6"]
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="16_1pw6s"]
 
