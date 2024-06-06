@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bwqldaa36fhgu"]
+[gd_scene load_steps=37 format=3 uid="uid://bwqldaa36fhgu"]
 
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_fq28j"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevel.gd" id="2_4om38"]
@@ -10,11 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="8_6yssa"]
 [ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
 [ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
-[ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="11_71k60"]
+[ext_resource type="ArrayMesh" uid="uid://dx33ccgy4q8f6" path="res://assets/models/pedestal.obj" id="11_71k60"]
 [ext_resource type="PackedScene" uid="uid://dcdyo43xaxaw7" path="res://Scenes/hyper_hand.tscn" id="12_anvwk"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="13_m7xi5"]
-[ext_resource type="Texture2D" uid="uid://g4o5236g3cqc" path="res://assets/images/starSkyBox.png" id="14_umaop"]
-[ext_resource type="AudioStream" uid="uid://dwvpmcwoov4oq" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+[ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="14_umaop"]
+[ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+[ext_resource type="AudioStream" uid="uid://qjhn2xqhanbk" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
+[ext_resource type="AudioStream" uid="uid://03ydl5rvvyxc" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oys28"]
 albedo_color = Color(0.14902, 0.14902, 0.14902, 1)
@@ -38,6 +40,9 @@ albedo_color = Color(0.545098, 0.545098, 0.545098, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lfgcn"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_34ftx"]
+size = Vector3(0.1, 0.1, 0.1)
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_0fyp7"]
 panorama = ExtResource("14_umaop")
 filter = false
@@ -57,6 +62,137 @@ size = Vector3(0.600761, 17.0154, 43.8141)
 [sub_resource type="BoxShape3D" id="BoxShape3D_6iwdp"]
 size = Vector3(43, 1, 50.7268)
 
+[sub_resource type="Animation" id="Animation_athq1"]
+resource_name = "transition"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [-20.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_tat4e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Top:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("White:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-20.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../atraco:volume_db")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4h7ip"]
+resource_name = "shake"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("White:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../atraco:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, -20.101]
+}
+
+[sub_resource type="Animation" id="Animation_q27d6"]
+resource_name = "waiting"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("White:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fr7ou"]
+_data = {
+"RESET": SubResource("Animation_tat4e"),
+"shake": SubResource("Animation_4h7ip"),
+"transition": SubResource("Animation_athq1"),
+"waiting": SubResource("Animation_q27d6")
+}
+
 [node name="SubViewportContainer" type="SubViewportContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -75,16 +211,10 @@ script = ExtResource("1_fq28j")
 script = ExtResource("2_4om38")
 
 [node name="Player" parent="SubViewport/World" instance=ExtResource("3_kscka")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 44.0298, -23.8905, -25.8137)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.0298, 3.1095, 0.1863)
 
 [node name="eyes" parent="SubViewport/World/Player/Head" index="4"]
 current = true
-
-[node name="walk" parent="SubViewport/World/Player" index="3"]
-bus = &"Sfx"
-
-[node name="running" parent="SubViewport/World/Player" index="4"]
-bus = &"Sfx"
 
 [node name="StartingChamber" parent="SubViewport/World" instance=ExtResource("4_ste5t")]
 
@@ -405,22 +535,33 @@ dimensions = Vector3(15, 20, 0.3)
 target = NodePath("../../../TextBox")
 message = "NOOOOOOOOOOOOOOO"
 
-[node name="MovementTrigger2" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" instance=ExtResource("10_ejweg")]
+[node name="MovementTrigger2" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("10_ejweg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 61, -18.419, -28.671)
 dimensions = Vector3(0.3, 20, 35.026)
+target = NodePath("../a")
 destination = Vector3(-30, 0, 0)
 
-[node name="MovementTrigger3" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" instance=ExtResource("10_ejweg")]
+[node name="MovementTrigger3" parent="SubViewport/World/HyperGrabRoom/TriggerAreas" node_paths=PackedStringArray("target") instance=ExtResource("10_ejweg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -18.419, -28.671)
 dimensions = Vector3(0.3, 20, 35.026)
+target = NodePath("../b")
 destination = Vector3(30, 0, 0)
+
+[node name="a" type="RigidBody3D" parent="SubViewport/World/HyperGrabRoom/TriggerAreas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/HyperGrabRoom/TriggerAreas/a"]
+shape = SubResource("BoxShape3D_34ftx")
+
+[node name="b" type="RigidBody3D" parent="SubViewport/World/HyperGrabRoom/TriggerAreas"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/World/HyperGrabRoom/TriggerAreas/b"]
+shape = SubResource("BoxShape3D_34ftx")
 
 [node name="Timer" type="Timer" parent="SubViewport/World"]
 
 [node name="TextBox" parent="SubViewport/World" instance=ExtResource("13_m7xi5")]
 
 [node name="Enviroment" type="Node3D" parent="SubViewport/World"]
-visible = false
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewport/World/Enviroment"]
 environment = SubResource("Environment_t4xqg")
@@ -448,8 +589,46 @@ shape = SubResource("BoxShape3D_6iwdp")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World/Limit"]
 stream = ExtResource("15_fh5ul")
 volume_db = -20.755
-bus = &"Sfx"
 
+[node name="Control" type="Control" parent="SubViewport/World"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="ColorRect" parent="SubViewport/World/Control"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+
+[node name="White" type="ColorRect" parent="SubViewport/World/Control"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SubViewport/World/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_fr7ou")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World"]
+stream = ExtResource("16_q71yx")
+volume_db = -20.0
+
+[node name="atraco" type="AudioStreamPlayer" parent="SubViewport/World"]
+stream = ExtResource("17_2y1ve")
+
+[connection signal="HYPEEEEEEEEER" from="SubViewport/World/Player/Head/InteractRay" to="SubViewport/World" method="_on_interact_ray_hypeeeeeeeeer"]
 [connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]
 [connection signal="body_entered" from="SubViewport/World/Limit" to="SubViewport/World" method="_on_limit_body_entered"]
 

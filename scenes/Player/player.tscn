@@ -25,7 +25,7 @@ outline_size = 15
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-collision_layer = 3
+collision_layer = 7
 script = ExtResource("1_x2bix")
 
 [node name="playermesh" type="MeshInstance3D" parent="."]

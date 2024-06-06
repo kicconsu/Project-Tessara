@@ -16,5 +16,4 @@ func _on_body_entered(_body):
 func _on_timer_timeout():
 	var full_path = scene_folder + NextScene + ".tscn"
 	var scene_tree = get_tree()
-	print(full_path)
 	scene_tree.change_scene_to_file(full_path)

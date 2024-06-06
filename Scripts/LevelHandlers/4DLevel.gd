@@ -17,15 +17,28 @@ var level_state
 @onready var textBox = $TextBox
 @onready var interact_ray = $Player/Head/InteractRay
 @onready var audio = $Limit/AudioStreamPlayer
-
+@onready var transition = $Control/AnimationPlayer
+@onready var eyes = $Player/Head/eyes
+@onready var theme = $AudioStreamPlayer
+@onready var atraco = $atraco
 
 var movingHypershapes
 var fillerBool
 var sub_state
 
+var TEODIOJUANDIEGOTEODIO = false
+var commits = true
+var rng = RandomNumberGenerator.new()
+
+
 func _ready():
+	theme.play()
 	level_state = State.NONE
 	_change_state()
+	
+	sub_state = 0
+	
+	player.setFreezed(true)
 	
 	var triggerAreas = get_tree().get_nodes_in_group("TriggerArea")
 	for area in triggerAreas:
@@ -40,6 +53,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	
+	if Input.is_action_just_pressed("test"):
+		TEODIOJUANDIEGOTEODIO = true
+	
 	if textBox.text_queue.is_empty() and textBox.State.FINISHED:	
 			if Input.is_action_just_pressed("textInteract"):
 				match level_state:
@@ -52,16 +69,33 @@ func _process(delta):
 			if player.target_shape != null and !fillerBool:
 					fillerBool = true
 					textBox.force_next_text("Un momento... ¿Qué hace eso ahí?")
-	
-	
 
+	if TEODIOJUANDIEGOTEODIO:
+		rng.randomize()
+		var rand = rng.randf_range(-.1,.1)
+		
+		if commits:
+			timer.set_wait_time(7)
+			timer.start()
+			transition.play("shake")
+			transition.queue("waiting")
+			commits = false
+		
+		
+		eyes.h_offset = rand
+		eyes.v_offset = rand
+		
+		
 func _change_state():
 	match level_state:
 		State.NONE:
 			player.set_global_position(chamber.get_global_position() + Vector3(0,7,0))
 			player.setFreezed(true)
+			
+			timer.set_wait_time(1)
+			timer.start()
+			
 			level_state = State.INITIAL
-			_load_dialog()
 		State.INITIAL:
 			player.setFreezed(false)
 			level_state = State.CHAMBER
@@ -74,6 +108,11 @@ func _change_state():
 			timer.start()
 			
 			level_state = State.HYPER_ROOM
+			
+			if theme.is_playing():
+				theme.stop()
+				
+			atraco.play()
 		State.HYPER_ROOM:
 			sub_state = -1
 			
@@ -90,7 +129,9 @@ func _change_state():
 				shape.set_freeze_enabled(false)
 		
 			level_state = State.PUZZLE
+			
 		State.PUZZLE:
+			
 			
 			level_state = State.HYPERGRAB
 
@@ -107,7 +148,21 @@ func _load_dialog():
 
 
 func _on_timer_timeout():
+	
+	if TEODIOJUANDIEGOTEODIO:
+		TEODIOJUANDIEGOTEODIO = false
+		get_tree().change_scene_to_file("res://Scenes/Levels/4DLev1.tscn")
+
 	match level_state:
+		State.INITIAL:
+			
+			match sub_state:
+				0:
+					transition.play("transition")
+					sub_state = 1
+				1:
+					_load_dialog()
+					sub_state = -1
 		State.HYPER_ROOM:
 			match sub_state:
 				0:
@@ -134,3 +189,6 @@ func _on_timer_timeout():
 func _on_limit_body_entered(body):
 	audio.play()
 	player.position = Vector3(44.03,-23.89,-24)
+
+func _on_interact_ray_hypeeeeeeeeer():
+	TEODIOJUANDIEGOTEODIO = true

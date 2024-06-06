@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cjdgupis01xae"]
+[gd_scene load_steps=53 format=3 uid="uid://cjdgupis01xae"]
 
 [ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="14_mul3v"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="15_4ttk6"]
 [ext_resource type="Script" path="res://Scenes/Levels/ColorRect.gd" id="16_1pw6s"]
+[ext_resource type="AudioStream" uid="uid://3k6wxytms4rs" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hg3f7"]
 disable_ambient_light = true
@@ -1931,7 +1932,6 @@ one_shot = true
 
 [node name="Wall_1" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, -1)
-visible = false
 material_override = SubResource("StandardMaterial3D_hg3f7")
 use_collision = true
 collision_layer = 2
@@ -1939,7 +1939,6 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_2" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 1)
-visible = false
 material_override = SubResource("StandardMaterial3D_wymia")
 use_collision = true
 collision_layer = 2
@@ -1947,7 +1946,6 @@ size = Vector3(3, 2, 1)
 
 [node name="Wall_3" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.25, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_x3yr8")
 use_collision = true
 collision_layer = 2
@@ -1955,7 +1953,6 @@ size = Vector3(1, 2, 1)
 
 [node name="Wall_4" type="CSGBox3D" parent="World/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.25, 0)
-visible = false
 material_override = SubResource("StandardMaterial3D_db218")
 use_collision = true
 collision_layer = 2
@@ -1992,11 +1989,11 @@ size = Vector3(1, 1, 17)
 [node name="Floors" type="Node3D" parent="World"]
 
 [node name="Floor" type="CSGBox3D" parent="World/Floors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.619965, 0.124437, -1.1532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128785, 0.124437, -0.29445)
 material_override = SubResource("StandardMaterial3D_xu0vo")
 use_collision = true
 collision_layer = 2
-size = Vector3(31.4975, 0.002, 31.2825)
+size = Vector3(30, 0.002, 17)
 
 [node name="PlayerFloor" type="CSGBox3D" parent="World/Floors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.130592, 0)
@@ -2144,6 +2141,9 @@ script = ExtResource("16_1pw6s")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("14_mul3v")]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_v4pio")
+volume_db = -3.081
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]
@@ -2155,3 +2155,6 @@ script = ExtResource("16_1pw6s")
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut3" to="." method="_on_tut_but_3_body_shape_entered"]
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut4" to="." method="_on_tut_but_4_body_shape_entered"]
 [connection signal="body_shape_entered" from="SecondDimensionQuest/2DButtons/TutBut5" to="." method="_on_tut_but_5_body_shape_entered"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+
+[editable path="Player"]
