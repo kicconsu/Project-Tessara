@@ -18,3 +18,7 @@ func _on_sandbox_button_pressed():
 
 func _on_select_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Menus/level_selector.tscn")
+
+
+func _on_level_selector_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/Menus/level_selector.tscn")

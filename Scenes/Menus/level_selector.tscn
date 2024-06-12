@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menus/level_selector.gd" id="1_bo1w6"]
 [ext_resource type="Script" path="res://Scripts/Menus/Background.gd" id="1_klunx"]
-[ext_resource type="Texture2D" uid="uid://dfnungtkul51t" path="res://assets/images/1682336188585.jpg" id="2_icu3q"]
+[ext_resource type="Texture2D" uid="uid://c6el02smemtgd" path="res://assets/images/1682336188585.jpg" id="2_icu3q"]
 [ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_iamlx"]
 [ext_resource type="Theme" uid="uid://dxl7ye1121i88" path="res://assets/themes/mainMenu_theme.tres" id="4_iivx3"]
 
@@ -38,31 +38,29 @@ texture = ExtResource("2_icu3q")
 
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 2
-anchor_left = 0.081
-anchor_top = 0.197
-anchor_right = 0.887
-anchor_bottom = 0.283
-offset_left = -0.16
-offset_top = -30.92
-offset_right = -180.378
-offset_bottom = -44.844
+anchor_left = 0.062
+anchor_top = 0.08
+anchor_right = 0.678
+anchor_bottom = 0.229
+offset_right = 588.0
+offset_bottom = 74.5
+grow_horizontal = 2
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 24
 theme_override_fonts/font = ExtResource("3_iamlx")
-theme_override_font_sizes/font_size = 141
+theme_override_font_sizes/font_size = 110
 text = "LEVEL SELECTOR"
 vertical_alignment = 1
 
 [node name="Tutorial" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.08032
-anchor_top = 0.32232
-anchor_right = 0.2
-anchor_bottom = 0.444
+anchor_top = 0.256
+anchor_right = 0.285
+anchor_bottom = 0.378
 offset_left = -0.16
-offset_top = -0.160004
-offset_right = 350.0
+offset_right = 307.5
 offset_bottom = 61.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
@@ -74,12 +72,11 @@ text = "LEVEL #1"
 [node name="3D Level" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.08208
-anchor_top = 0.461696
-anchor_right = 0.199
-anchor_bottom = 0.583856
-offset_left = -0.0400009
-offset_top = 0.0799713
-offset_right = 345.5
+anchor_top = 0.398
+anchor_right = 0.282
+anchor_bottom = 0.52
+offset_left = -1.04
+offset_right = 303.0
 offset_bottom = 61.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
@@ -94,12 +91,11 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.08032
-anchor_top = 0.601426
-anchor_right = 0.217
-anchor_bottom = 0.725346
+anchor_top = 0.542
+anchor_right = 0.285
+anchor_bottom = 0.666
 offset_left = -0.16
-offset_top = -0.0400391
-offset_right = 341.5
+offset_right = 307.5
 offset_bottom = 62.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
@@ -113,13 +109,13 @@ metadata/_edit_use_anchors_ = true
 [node name="4D Level #2" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.081
-anchor_top = 0.789
-anchor_right = 0.218
-anchor_bottom = 0.912
+anchor_top = 0.684
+anchor_right = 0.285
+anchor_bottom = 0.81
 offset_left = -0.5
-offset_top = -25.5
-offset_right = 341.0
-offset_bottom = 39.0
+offset_top = -3.05176e-05
+offset_right = 307.5
+offset_bottom = 63.0
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 theme = ExtResource("4_iivx3")
@@ -132,13 +128,12 @@ metadata/_edit_use_anchors_ = true
 [node name="Back" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.081
-anchor_top = 0.789
-anchor_right = 0.218
-anchor_bottom = 0.912
+anchor_top = 0.822
+anchor_right = 0.279
+anchor_bottom = 0.948
 offset_left = -0.5
-offset_top = 48.5
-offset_right = 329.0
-offset_bottom = 113.0
+offset_right = 298.5
+offset_bottom = 63.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)

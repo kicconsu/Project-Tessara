@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://Scripts/Menus/main_menu.gd" id="1_h4fqx"]
 [ext_resource type="Script" path="res://Scripts/Menus/Background.gd" id="2_i2uev"]
-[ext_resource type="PackedScene" uid="uid://c54u10j4uta2g" path="res://Scenes/Menus/options_menu.tscn" id="4_e0h36"]
-[ext_resource type="Texture2D" uid="uid://dfnungtkul51t" path="res://assets/images/1682336188585.jpg" id="4_pokhq"]
-[ext_resource type="AudioStream" uid="uid://0b5s3nt7hsl4" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="4_vw48f"]
+[ext_resource type="PackedScene" uid="uid://c54u10j4uta2g" path="res://scenes/Menus/options_menu.tscn" id="4_e0h36"]
+[ext_resource type="Texture2D" uid="uid://c6el02smemtgd" path="res://assets/images/1682336188585.jpg" id="4_pokhq"]
+[ext_resource type="AudioStream" uid="uid://c17wvj4p5fpbs" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="4_vw48f"]
 [ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="5_bdhb0"]
 [ext_resource type="Theme" uid="uid://dxl7ye1121i88" path="res://assets/themes/mainMenu_theme.tres" id="6_mr3t7"]
 
@@ -98,6 +98,7 @@ script = ExtResource("1_h4fqx")
 stream = ExtResource("4_vw48f")
 volume_db = -16.289
 autoplay = true
+bus = &"Music"
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -123,13 +124,13 @@ texture = ExtResource("4_pokhq")
 [node name="Label" type="Label" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.081
-anchor_top = 0.197
-anchor_right = 0.887
-anchor_bottom = 0.283
-offset_left = -0.16
-offset_top = -30.92
-offset_right = -180.378
-offset_bottom = -44.844
+anchor_top = 0.135
+anchor_right = 0.661
+anchor_bottom = 0.202
+offset_left = -0.5
+offset_top = -28.5
+offset_right = 290.5
+offset_bottom = 62.0
 scale = Vector2(0.5, 0.5)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 24
@@ -141,37 +142,53 @@ vertical_alignment = 1
 [node name="Start_Button" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.081
-anchor_top = 0.3216
-anchor_right = 0.3858
-anchor_bottom = 0.4626
+anchor_top = 0.23
+anchor_right = 0.331
+anchor_bottom = 0.352
 offset_left = -0.16
-offset_top = -0.160004
-offset_right = 265.44
-offset_bottom = 51.08
+offset_right = 374.84
+offset_bottom = 60.74
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 65
 text = "START GAME"
+metadata/_edit_use_anchors_ = true
+
+[node name="Level_Selector_Button" type="Button" parent="Panel"]
+layout_mode = 2
+anchor_left = 0.081
+anchor_top = 0.38
+anchor_right = 0.331
+anchor_bottom = 0.5
+offset_left = -0.16
+offset_top = -1.52588e-05
+offset_right = 374.84
+offset_bottom = 61.74
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 0
+theme = ExtResource("6_mr3t7")
+theme_override_fonts/font = ExtResource("5_bdhb0")
+theme_override_font_sizes/font_size = 52
+text = "LEVEL SELECTOR"
 metadata/_edit_use_anchors_ = true
 
 [node name="Options_Button" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.082
-anchor_top = 0.4876
-anchor_right = 0.321
-anchor_bottom = 0.6296
-offset_left = -0.0400009
-offset_top = 0.0799713
-offset_right = 331.92
-offset_bottom = 50.96
+anchor_top = 0.528
+anchor_right = 0.331
+anchor_bottom = 0.654
+offset_left = -0.66
+offset_right = 374.84
+offset_bottom = 58.74
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 size_flags_vertical = 4
 theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 65
 text = "OPTIONS"
 metadata/_edit_use_anchors_ = true
 
@@ -180,17 +197,17 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.081
 anchor_top = 0.6546
-anchor_right = 0.371
-anchor_bottom = 0.7966
+anchor_right = 0.331
+anchor_bottom = 0.776
 offset_left = -0.16
-offset_top = -0.0400391
-offset_right = 265.44
-offset_bottom = 50.84
+offset_top = 8.69998
+offset_right = 374.84
+offset_bottom = 69.74
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 65
 text = "SANDBOX
 "
 metadata/_edit_use_anchors_ = true
@@ -198,18 +215,18 @@ metadata/_edit_use_anchors_ = true
 [node name="Exit_Button" type="Button" parent="Panel"]
 layout_mode = 2
 anchor_left = 0.081
-anchor_top = 0.789
-anchor_right = 0.371
-anchor_bottom = 0.931
+anchor_top = 0.82
+anchor_right = 0.331
+anchor_bottom = 0.942
 offset_left = -0.16
-offset_top = -0.0400391
-offset_right = 265.44
-offset_bottom = 50.84
+offset_top = -3.05176e-05
+offset_right = 374.84
+offset_bottom = 60.74
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 65
 text = "EXIT  GAME"
 
 [node name="Options_Menu" parent="." instance=ExtResource("4_e0h36")]
@@ -253,6 +270,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="Panel/Start_Button" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Panel/Level_Selector_Button" to="." method="_on_level_selector_button_pressed"]
 [connection signal="pressed" from="Panel/Options_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Panel/Sandbox_Button" to="." method="_on_sandbox_button_pressed"]
 [connection signal="pressed" from="Panel/Exit_Button" to="." method="_on_exit_button_pressed"]
