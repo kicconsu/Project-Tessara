@@ -1,11 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://0mr5ssjoycj1"]
+[gd_scene load_steps=12 format=3 uid="uid://0mr5ssjoycj1"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/main_menu.gd" id="1_h4fqx"]
 [ext_resource type="Script" path="res://Scripts/Menus/Background.gd" id="2_i2uev"]
 [ext_resource type="PackedScene" uid="uid://c54u10j4uta2g" path="res://Scenes/Menus/options_menu.tscn" id="4_e0h36"]
-[ext_resource type="Texture2D" uid="uid://b6526tpfsyas5" path="res://assets/images/1682336188585.jpg" id="4_pokhq"]
-[ext_resource type="AudioStream" uid="uid://b3kqa806jqhxq" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="4_vw48f"]
+[ext_resource type="Texture2D" uid="uid://dfnungtkul51t" path="res://assets/images/1682336188585.jpg" id="4_pokhq"]
+[ext_resource type="AudioStream" uid="uid://0b5s3nt7hsl4" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="4_vw48f"]
 [ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="5_bdhb0"]
+[ext_resource type="Theme" uid="uid://dxl7ye1121i88" path="res://assets/themes/mainMenu_theme.tres" id="6_mr3t7"]
 
 [sub_resource type="Animation" id="Animation_yrwfg"]
 length = 0.001
@@ -149,6 +150,7 @@ offset_right = 265.44
 offset_bottom = 51.08
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
+theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
 theme_override_font_sizes/font_size = 70
 text = "START GAME"
@@ -167,6 +169,7 @@ offset_bottom = 50.96
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
 theme_override_font_sizes/font_size = 70
 text = "OPTIONS"
@@ -185,6 +188,7 @@ offset_right = 265.44
 offset_bottom = 50.84
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
+theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
 theme_override_font_sizes/font_size = 70
 text = "SANDBOX
@@ -203,6 +207,7 @@ offset_right = 265.44
 offset_bottom = 50.84
 scale = Vector2(0.5, 0.5)
 size_flags_horizontal = 0
+theme = ExtResource("6_mr3t7")
 theme_override_fonts/font = ExtResource("5_bdhb0")
 theme_override_font_sizes/font_size = 70
 text = "EXIT  GAME"

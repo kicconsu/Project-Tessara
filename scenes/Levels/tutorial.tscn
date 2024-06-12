@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dg6rmyfjtah6s" path="res://Scenes/Buttons/tutorial_button.tscn" id="13_l3aqv"]
 [ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="13_mdww4"]
 [ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="14_mul3v"]
-[ext_resource type="AudioStream" uid="uid://26cexy0x0kyc" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
+[ext_resource type="AudioStream" uid="uid://b7gpqx7c0vkt" path="res://assets/sounds/TutorialMusic.mp3" id="14_v4pio"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="15_4ttk6"]
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="16_1pw6s"]
 
@@ -2144,7 +2144,7 @@ script = ExtResource("16_1pw6s")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("14_v4pio")
-volume_db = -3.081
+volume_db = -16.177
 
 [connection signal="timeout" from="Ceiling/cameraTransition" to="." method="_on_camera_transition_timeout"]
 [connection signal="timeout" from="Ceiling/cameraTransition" to="World" method="_on_camera_transition_timeout"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://8mg3nl7fxjbc"]
+[gd_scene load_steps=11 format=3 uid="uid://8mg3nl7fxjbc"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/pause_menu.gd" id="1_nxbch"]
 [ext_resource type="Shader" path="res://assets/misc_res/pauseMenu.gdshader" id="2_a2sqy"]
+[ext_resource type="Theme" uid="uid://dxl7ye1121i88" path="res://assets/themes/mainMenu_theme.tres" id="3_3447o"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p62ui"]
 shader = ExtResource("2_a2sqy")
@@ -179,18 +180,19 @@ grow_vertical = 2
 modulate = Color(1, 1, 1, 0)
 layout_direction = 1
 layout_mode = 2
-anchor_left = 0.336
+anchor_left = 0.379
 anchor_top = 0.3
-anchor_right = 0.681
-anchor_bottom = 0.393
-offset_left = -33.96
-offset_right = 32.84
-offset_bottom = -1.48
+anchor_right = 0.638
+anchor_bottom = 0.39
+offset_left = -55.46
+offset_right = 54.34
+offset_bottom = 0.019989
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_stretch_ratio = 0.0
 auto_translate = false
 localize_numeral_system = false
+theme = ExtResource("3_3447o")
 theme_override_fonts/font = SubResource("SystemFont_0gsms")
 theme_override_font_sizes/font_size = 30
 text = "Continuar"
@@ -198,14 +200,15 @@ text = "Continuar"
 [node name="Reiniciar" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-anchor_left = 0.34
+anchor_left = 0.385
 anchor_top = 0.467
-anchor_right = 0.681
-anchor_bottom = 0.564
-offset_left = -35.4
+anchor_right = 0.641
+anchor_bottom = 0.556
+offset_left = -57.9
 offset_top = -0.119995
-offset_right = 35.84
-offset_bottom = -4.04001
+offset_right = 55.84
+offset_bottom = -0.0400391
+theme = ExtResource("3_3447o")
 theme_override_fonts/font = SubResource("SystemFont_ej3ie")
 theme_override_font_sizes/font_size = 30
 text = "Reiniciar"
@@ -213,14 +216,14 @@ text = "Reiniciar"
 [node name="Salir" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-anchor_left = 0.342
+anchor_left = 0.398
 anchor_top = 0.628
-anchor_right = 0.681
-anchor_bottom = 0.725
-offset_left = -36.12
+anchor_right = 0.63
+anchor_bottom = 0.717
+offset_left = -64.12
 offset_top = -0.0800018
-offset_right = 35.84
-offset_bottom = -4.0
+offset_right = 61.34
+theme = ExtResource("3_3447o")
 theme_override_fonts/font = SubResource("SystemFont_4h84u")
 theme_override_font_sizes/font_size = 30
 text = "Salir"
