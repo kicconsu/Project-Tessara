@@ -3,23 +3,23 @@
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_fq28j"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/4DLevel.gd" id="2_4om38"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="3_c7dsb"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="3_kscka"]
-[ext_resource type="PackedScene" uid="uid://uxqor5r7ppom" path="res://scenes/Levels/generic_chamber.tscn" id="4_ste5t"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="3_kscka"]
+[ext_resource type="PackedScene" uid="uid://uxqor5r7ppom" path="res://Scenes/Levels/generic_chamber.tscn" id="4_ste5t"]
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="4_u1wvx"]
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="5_wv15h"]
-[ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://scenes/modelScenes/lamp.tscn" id="6_ldchl"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="7_wlcxr"]
-[ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://scenes/Buttons/trigger_lever.tscn" id="8_6yssa"]
-[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
-[ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="5_wv15h"]
+[ext_resource type="PackedScene" uid="uid://fr2ciceutsck" path="res://Scenes/modelScenes/lamp.tscn" id="6_ldchl"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="7_wlcxr"]
+[ext_resource type="PackedScene" uid="uid://7e2wj4cswdpr" path="res://Scenes/Buttons/trigger_lever.tscn" id="8_6yssa"]
+[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_fmgcv"]
+[ext_resource type="PackedScene" uid="uid://dmn2yfob7fs0v" path="res://Scenes/Buttons/movement_trigger.tscn" id="10_ejweg"]
 [ext_resource type="ArrayMesh" uid="uid://8s4iah7f451g" path="res://assets/models/pedestal.obj" id="11_71k60"]
-[ext_resource type="PackedScene" path="res://Scenes/hyper_hand.tscn" id="12_anvwk"]
-[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://scenes/text_box.tscn" id="13_m7xi5"]
-[ext_resource type="Texture2D" uid="uid://cp20ns7s4u060" path="res://assets/images/starSkyBox.png" id="14_umaop"]
-[ext_resource type="AudioStream" uid="uid://l5t3jq1tbiv" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
-[ext_resource type="AudioStream" uid="uid://bnqajeivebygl" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
-[ext_resource type="AudioStream" uid="uid://ca4t18cqhek0s" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
-[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://scenes/Menus/pause_menu.tscn" id="20_e0gjd"]
+[ext_resource type="PackedScene" uid="uid://dcdyo43xaxaw7" path="res://Scenes/hyper_hand.tscn" id="12_anvwk"]
+[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="13_m7xi5"]
+[ext_resource type="Texture2D" uid="uid://g4o5236g3cqc" path="res://assets/images/starSkyBox.png" id="14_umaop"]
+[ext_resource type="AudioStream" uid="uid://dwvpmcwoov4oq" path="res://assets/sounds/respawn.mp3" id="15_fh5ul"]
+[ext_resource type="AudioStream" uid="uid://dg33lv5hxjkvb" path="res://assets/sounds/thanks.mp3" id="16_q71yx"]
+[ext_resource type="AudioStream" uid="uid://kku7nh20kms7" path="res://assets/sounds/atraco.mp3" id="17_2y1ve"]
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="20_e0gjd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bbo5h"]
 shader = ExtResource("3_c7dsb")
@@ -649,11 +649,9 @@ libraries = {
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World"]
 stream = ExtResource("16_q71yx")
 volume_db = -20.0
-bus = &"Music"
 
 [node name="atraco" type="AudioStreamPlayer" parent="SubViewport/World"]
 stream = ExtResource("17_2y1ve")
-bus = &"Music"
 
 [connection signal="HYPEEEEEEEEER" from="SubViewport/World/Player/Head/InteractRay" to="SubViewport/World" method="_on_interact_ray_hypeeeeeeeeer"]
 [connection signal="timeout" from="SubViewport/World/Timer" to="SubViewport/World" method="_on_timer_timeout"]

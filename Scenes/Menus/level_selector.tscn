@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3dlvtbykp4x"]
+[gd_scene load_steps=7 format=3 uid="uid://c3dlvtbykp4x"]
 
 [ext_resource type="Script" path="res://Scripts/Menus/level_selector.gd" id="1_bo1w6"]
 [ext_resource type="Script" path="res://Scripts/Menus/Background.gd" id="1_klunx"]
-[ext_resource type="Texture2D" uid="uid://c6el02smemtgd" path="res://assets/images/1682336188585.jpg" id="2_icu3q"]
+[ext_resource type="Texture2D" uid="uid://dfnungtkul51t" path="res://assets/images/1682336188585.jpg" id="2_icu3q"]
 [ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="3_iamlx"]
 [ext_resource type="Theme" uid="uid://dxl7ye1121i88" path="res://assets/themes/mainMenu_theme.tres" id="4_iivx3"]
+[ext_resource type="AudioStream" uid="uid://0b5s3nt7hsl4" path="res://assets/sounds/Lukrembo_-_Chocolate_freetouse.com.mp3" id="6_upsew"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -144,6 +145,11 @@ theme_override_font_sizes/font_size = 70
 text = "BACK
 "
 metadata/_edit_use_anchors_ = true
+
+[node name="MusicStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_upsew")
+volume_db = -16.289
+autoplay = true
 
 [connection signal="pressed" from="Panel/Tutorial" to="." method="_on_tutorial_pressed"]
 [connection signal="pressed" from="Panel/3D Level" to="." method="_on_d_level_pressed"]

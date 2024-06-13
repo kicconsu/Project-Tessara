@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Menus/options_menu.gd" id="1_nv0aq"]
 [ext_resource type="FontFile" uid="uid://dp1p4hfox26d" path="res://assets/fonts/VCR_OSD_MONO_1.001.ttf" id="2_3628a"]
-[ext_resource type="PackedScene" uid="uid://b4qeart3r6nq3" path="res://scenes/Menus/audio_slider.tscn" id="2_ylc4o"]
+[ext_resource type="PackedScene" uid="uid://b4qeart3r6nq3" path="res://Scenes/Menus/audio_slider.tscn" id="2_ylc4o"]
 
 [sub_resource type="SystemFont" id="SystemFont_kkua6"]
 font_names = PackedStringArray("VCR OSD Mono")

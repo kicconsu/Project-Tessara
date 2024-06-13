@@ -1,18 +1,18 @@
 [gd_scene load_steps=25 format=3 uid="uid://clidhel0jwb5v"]
 
-[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://scenes/Shapes/wall.tscn" id="1_7x8ul"]
+[ext_resource type="PackedScene" uid="uid://h7hbqujod4nf" path="res://Scenes/Shapes/wall.tscn" id="1_7x8ul"]
 [ext_resource type="Script" path="res://Scripts/hypergrabHandler.gd" id="1_hnfm3"]
-[ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://scenes/portal.tscn" id="1_nt5u5"]
-[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://scenes/Menus/pause_menu.tscn" id="1_yyvd5"]
-[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://scenes/Player/player.tscn" id="2_7kuqd"]
+[ext_resource type="PackedScene" uid="uid://ckk58el0j3e80" path="res://Scenes/portal.tscn" id="1_nt5u5"]
+[ext_resource type="PackedScene" uid="uid://8mg3nl7fxjbc" path="res://Scenes/Menus/pause_menu.tscn" id="1_yyvd5"]
+[ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="2_7kuqd"]
 [ext_resource type="Script" path="res://Scripts/LevelHandlers/3DLevHandler.gd" id="2_p0qd1"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="4_2fhxk"]
-[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://scenes/Shapes/hypershape.tscn" id="4_10ejc"]
+[ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="4_10ejc"]
 [ext_resource type="Script" path="res://Scripts/ColorRect.gd" id="5_j4r2v"]
 [ext_resource type="Texture2D" uid="uid://dp1oisuh80wsh" path="res://assets/images/kloofendal_48d_partly_cloudy_puresky_2k.hdr" id="7_fiil4"]
-[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://scenes/text_box.tscn" id="7_n31h7"]
-[ext_resource type="AudioStream" uid="uid://l5t3jq1tbiv" path="res://assets/sounds/respawn.mp3" id="8_3j8lc"]
-[ext_resource type="AudioStream" uid="uid://c4413vw3dhcdg" path="res://assets/sounds/3DTheme.mp3" id="9_lwmrh"]
+[ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="7_n31h7"]
+[ext_resource type="AudioStream" uid="uid://dwvpmcwoov4oq" path="res://assets/sounds/respawn.mp3" id="8_3j8lc"]
+[ext_resource type="AudioStream" uid="uid://dwsrqtr54crv0" path="res://assets/sounds/3DTheme.mp3" id="9_lwmrh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kmsyr"]
 shader = ExtResource("4_2fhxk")
@@ -462,7 +462,6 @@ volume_db = -20.755
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="SubViewport/World"]
 stream = ExtResource("9_lwmrh")
 volume_db = -15.407
-bus = &"Music"
 
 [node name="TextBox" parent="." instance=ExtResource("7_n31h7")]
 layout_mode = 2
