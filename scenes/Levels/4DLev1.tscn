@@ -13,9 +13,11 @@
 [ext_resource type="PackedScene" uid="uid://cv3nboonmvkfk" path="res://Scenes/Buttons/trigger_button.tscn" id="6_dxo44"]
 [ext_resource type="Texture2D" uid="uid://xu2wgfrc167a" path="res://assets/images/starSkyBox.png" id="7_a53ra"]
 [ext_resource type="AudioStream" uid="uid://cl03rg8u53tw5" path="res://assets/sounds/respawn.mp3" id="8_aqu7a"]
+[ext_resource type="PackedScene" uid="uid://cy4ad2oeekuk" path="res://Scenes/Buttons/text_trigger.tscn" id="9_0xlm4"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="10_bye2j"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="10_tba4c"]
 [ext_resource type="AudioStream" uid="uid://c4rgk2jljtix0" path="res://assets/sounds/4DLevel.mp3" id="11_8kujk"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rid7k"]
 shader = ExtResource("4_ny553")
 shader_parameter/correction_mode = 0
@@ -369,7 +371,7 @@ script = ExtResource("5_ekf3d")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 97.683, 40.954, -0.727)
 
 [node name="plat6" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.4879e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57097e-06, -0.00251327, 2.5756e-10, 0.999997, 0.521942, -0.0982094, -28.0491)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 14.1737)
 
@@ -414,17 +416,17 @@ rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 38.6839)
 
 [node name="plat15" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57064e-06, -0.00251326, -2.17003e-11, 0.999996, 0.70005, 0.429424, 54.9832)
+transform = Transform3D(0.999994, 0.00221651, 0.00251325, -0.0022165, 0.999997, -5.57066e-06, -0.00251326, 2.87695e-12, 0.999996, 0.70005, 0.429424, 54.9832)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 13.6977)
 
 [node name="plat16" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.4879e-10, 0.999997, 0.604187, 5.03849, 0.140479)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57097e-06, -0.00251327, 2.5756e-10, 0.999997, 0.604187, 5.03849, 0.140479)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
 [node name="plat17" parent="SubViewport/World/Eye" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57096e-06, -0.00251327, 2.4879e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
+transform = Transform3D(0.999994, 0.00221652, 0.00251327, -0.00221651, 0.999998, -5.57097e-06, -0.00251327, 2.5756e-10, 0.999997, 0.58532, -3.22733, -0.0820341)
 rotation_edit_mode = 0
 size = Vector3(7.52421, 0.611319, 9.65424)
 
@@ -466,15 +468,14 @@ material_override = SubResource("StandardMaterial3D_4pmk8")
 size = Vector3(5.831, 0.433, 20)
 
 [node name="plat2" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]
-transform = Transform3D(0.797097, -0.0213878, 0.603472, 0.0268225, 0.99964, 7.85243e-09, -0.603255, 0.0161866, 0.797384, 17.8747, -1.2241, -1.3744)
-rotation_edit_mode = 0
+transform = Transform3D(0.797097, -0.0213878, 0.603472, 0.0268225, 0.99964, 0, -0.603255, 0.0161866, 0.797384, 17.8747, -1.2241, -1.3744)
 material_override = SubResource("StandardMaterial3D_4pmk8")
 size = Vector3(5.831, 0.433, 4.90723)
 
-[node name="TextTrigger" parent="SubViewport/World/Platforms/plat2" node_paths=PackedStringArray("target") instance=ExtResource("9_k42nx")]
-dimensions = Vector3(5.831, 5, 4.907)
+[node name="TextTrigger" parent="SubViewport/World/Platforms/plat2" node_paths=PackedStringArray("target") instance=ExtResource("9_0xlm4")]
+dimensions = Vector3(5, 5, 5)
 target = NodePath("../../../../../TextBox")
-message = "(Bah, da lo mismo, no tiene forma de descubrir la hipermano…)"
+message = "Bah... Igual, no hay modo de que descubra la hipermano..."
 change_scene_state = true
 
 [node name="plat3" parent="SubViewport/World/Platforms" instance=ExtResource("1_ncguc")]

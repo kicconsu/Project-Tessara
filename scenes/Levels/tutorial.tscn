@@ -1,6 +1,6 @@
 [gd_scene load_steps=57 format=3 uid="uid://cjdgupis01xae"]
 
-[ext_resource type="Script" path="res://Scripts/Tutorial/tutorialHandler.gd" id="1_sbt0f"]
+[ext_resource type="Script" path="res://Scripts/LevelHandlers/tutorialHandler.gd" id="1_sbt0f"]
 [ext_resource type="AudioStream" uid="uid://btk1jxyikx0k4" path="res://assets/sounds/fiu.mp3" id="2_e2wkm"]
 [ext_resource type="AudioStream" uid="uid://c1d8bq0mjxcj4" path="res://assets/sounds/pop.mp3" id="3_f1etk"]
 [ext_resource type="PackedScene" uid="uid://d11iieumkt2fi" path="res://Scenes/text_box.tscn" id="3_rd8co"]
