@@ -27,10 +27,10 @@ func _on_timer_timeout():
 	textBox.queue_text("Tranquilidad ante todo ¿Si ves esas figuras coloreadas?")
 	textBox.queue_text("Serán nuestras herramientas para avanzar")
 	textBox.queue_text("¿Ves esa tabla verde en el piso al lado tuyo?")
-	textBox.queue_text("Presiona TAB y agarrala con CLICK IZQUIERDO")
+	textBox.queue_text("Presiona TAB para resaltar las figuras agarrables, y sostén el CLICK IZQUIERDO para agarrarlas y moverlas")
 	textBox.queue_text("¿Que tal?")
-	textBox.queue_text("Mientras presiones CLICK DERECHO y lo muevas, puedes rotar la figura siendo su eje de rotacion, donde apuntes")
-	textBox.queue_text("Ademas, puedes alejar y retroceder la figura con la ruedita del MOUSE")
+	textBox.queue_text("Además, mientras presiones CLICK DERECHO y lo muevas, puedes rotar la figura")
+	textBox.queue_text("Encima, puedes alejar y retroceder la figura con la ruedita del MOUSE")
 	textBox.queue_text("¡Nos vemos al final!")
 	
 func _on_area_3d_body_exited(_body):

@@ -6,7 +6,7 @@
 
 [node name="MovementTrigger" type="Area3D" groups=["TriggerArea"]]
 collision_layer = 0
-collision_mask = 10
+collision_mask = 26
 script = ExtResource("1_banrj")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

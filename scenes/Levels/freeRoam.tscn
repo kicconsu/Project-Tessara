@@ -6,10 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://berd28q3uhje5" path="res://Scenes/Shapes/hypershape.tscn" id="3_t3yqv"]
 [ext_resource type="PackedScene" uid="uid://q6htwbr7ubm2" path="res://Scenes/Player/player.tscn" id="4_g0uqj"]
 [ext_resource type="Script" path="res://Scripts/fpscounter.gd" id="5_jycmq"]
-[ext_resource type="Texture2D" uid="uid://g4o5236g3cqc" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
+[ext_resource type="Texture2D" uid="uid://cfmq3vpmlf5c" path="res://assets/images/starSkyBox.png" id="5_wbbf8"]
 [ext_resource type="PackedScene" uid="uid://ci8mlsr2lhw8x" path="res://Scenes/Labyrinth/red_ball.tscn" id="8_2um7f"]
 [ext_resource type="Shader" uid="uid://45ufspo1aje5" path="res://assets/misc_res/portal_particles.tres" id="8_rj2pp"]
-[ext_resource type="AudioStream" uid="uid://dwvpmcwoov4oq" path="res://assets/sounds/respawn.mp3" id="9_3348l"]
+[ext_resource type="AudioStream" uid="uid://dt3iiafpj1oxw" path="res://assets/sounds/respawn.mp3" id="9_3348l"]
 [ext_resource type="Script" path="res://Scripts/pointdisplay.gd" id="10_p3w55"]
 [ext_resource type="FontFile" uid="uid://c1rmdcg71wcol" path="res://assets/fonts/Pixellari.ttf" id="10_tfgvx"]
 [ext_resource type="Shader" path="res://assets/shaders/filters.gdshader" id="13_71avb"]
@@ -204,7 +204,7 @@ shadow_blur = 4.986
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.00869, 2.2998, 14)
 
 [node name="BallRefresh" type="Timer" parent="Root/Viewport/World/redBall"]
-wait_time = 40.0
+wait_time = 500.0
 autostart = true
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="Root/Viewport/World/redBall"]
